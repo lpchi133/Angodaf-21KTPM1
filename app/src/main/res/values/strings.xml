@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">AngodaFake</string>
+    <string name="fragment1">Home</string>
+    <string name="fragment2">My Room</string>
+    <string name="fragment3">My Hotel</string>
+    <string name="fragment4">Bookmark</string>
+    <string name="fragment5">My Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
