@@ -28,6 +28,8 @@ data class Bookmarks (
 interface BookmarkDAO {
     @Query("Select * from bookmark_db")
     fun getBookmarkList() : List<Bookmarks>
+    @Query("SELECT * FROM bookmark_db WHERE ID_Owner = :user_id")
+    fun getBookmarksByUserID(user_id: Int): List<Bookmarks>
     @Insert
     fun insertBookmark(bookmark : Bookmarks)
     @Update

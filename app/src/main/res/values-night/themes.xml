@@ -1,4 +1,4 @@
 <resources >
-    <style name="Base.Theme.AngodaFake" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.AngodaFake" parent="Theme.AppCompat.DayNight.DarkActionBar">
     </style>
 </resources>

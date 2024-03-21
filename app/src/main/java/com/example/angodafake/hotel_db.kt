@@ -19,12 +19,16 @@ data class Hotel (
     var ID_Owner : Int,
     @ColumnInfo(name = "name" )
     var name : String,
-    @ColumnInfo(name = "location" )
-    var location : String,
+    @ColumnInfo(name = "locationDetail" )
+    var locationDetail : String,
+    @ColumnInfo(name = "city" )
+    var city : String,
     @ColumnInfo(name = "description" )
     var description : String,
     @ColumnInfo(name = "conveniences" )
     var convenience : String,
+    @ColumnInfo(name = "point" )
+    var point : Double,
     @ColumnInfo(name = "profit" )
     var profit : Double,
 ){
@@ -36,6 +40,8 @@ data class Hotel (
 interface HotelDAO {
     @Query("Select * from hotel_db")
     fun getHotelList() : List<Hotel>
+    @Query("SELECT * FROM hotel_db WHERE id = :hotel_id")
+    fun getHotelByID(hotel_id: Int): Hotel
     @Insert
     fun insertHotel(hotel : Hotel)
     @Update

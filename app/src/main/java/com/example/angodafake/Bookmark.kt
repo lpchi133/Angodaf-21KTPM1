@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import org.jetbrains.annotations.TestOnly
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,6 +23,10 @@ class Bookmark : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var bookmark_db: BookmarkDatabase
+    private lateinit var bookmarksRecyclerView : RecyclerView
+    private lateinit var layoutManager: RecyclerView.LayoutManager
+    private lateinit var linearAdapter: BookmarkAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +41,28 @@ class Bookmark : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bookmark, container, false)
+        val view = inflater.inflate(R.layout.fragment_bookmark, container, false)
+
+        bookmark_db = BookmarkDatabase.getInstance(requireContext())
+        val allBookmarks = bookmark_db.BookmarkDAO().getBookmarksByUserID(1)
+
+        bookmarksRecyclerView = view.findViewById(R.id.contactsRV)
+        layoutManager = LinearLayoutManager(requireContext())
+        bookmarksRecyclerView.layoutManager = layoutManager
+        bookmarksRecyclerView.setHasFixedSize(true)
+
+        linearAdapter = BookmarkAdapter(requireContext(), allBookmarks)
+        bookmarksRecyclerView.adapter = linearAdapter
+
+        return view
+    }
+
+    @TestOnly
+    private fun testPrintAllBookmarks() {
+        val list = bookmark_db.BookmarkDAO().getBookmarkList()
+        for (bookmark in list) {
+            println(bookmark.toString())
+        }
     }
 
     companion object {
