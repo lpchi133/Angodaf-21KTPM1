@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.angodafake.db.BookmarkDatabase
 import org.jetbrains.annotations.TestOnly
 
 // TODO: Rename parameter arguments, choose names that match

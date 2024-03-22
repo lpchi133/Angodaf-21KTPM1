@@ -9,8 +9,13 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.graphics.drawable.toDrawable
 import androidx.recyclerview.widget.RecyclerView
+import com.example.angodafake.db.BookmarkDatabase
+import com.example.angodafake.db.Bookmarks
+import com.example.angodafake.db.Hotel
+import com.example.angodafake.db.HotelDatabase
+import com.example.angodafake.db.Picture
+import com.example.angodafake.db.PictureDatabase
 
 class BookmarkAdapter(private val context: Context, private var bookmarks: List<Bookmarks>) : RecyclerView.Adapter<BookmarkAdapter.MyViewHolder>() {
     private var listener: OnItemClickListener? = null
@@ -42,7 +47,8 @@ class BookmarkAdapter(private val context: Context, private var bookmarks: List<
         Picture = picture_db.PictureDAO().getPictureByHotelID(currentItem.ID_Hotel)
         bookmark_db = BookmarkDatabase.getInstance(context)
 
-        holder.img.setImageResource(Picture.picture)
+        val idPicture = context.resources.getIdentifier(Picture.picture, "drawable", context.packageName)
+        holder.img.setImageResource(idPicture)
         holder.hotelName.text = HotelMarked.name
         holder.buttonFav.setOnClickListener {
             bookmark_db.BookmarkDAO().deleteBookmark(currentItem)

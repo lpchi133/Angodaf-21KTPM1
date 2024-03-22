@@ -5,6 +5,14 @@ import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.angodafake.databinding.ActivityMainBinding
+import com.example.angodafake.db.BookmarkDatabase
+import com.example.angodafake.db.Bookmarks
+import com.example.angodafake.db.Hotel
+import com.example.angodafake.db.HotelDatabase
+import com.example.angodafake.db.Picture
+import com.example.angodafake.db.PictureDatabase
+import com.example.angodafake.db.User
+import com.example.angodafake.db.UserDatabase
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.jetbrains.annotations.TestOnly
 import java.io.BufferedReader
@@ -25,11 +33,11 @@ class MainActivity : AppCompatActivity() {
         replaceFragment(Home())
 
 //        ******* ADD DATABASE **********
-//        user_db = UserDatabase.getInstance(this)
-//        hotel_db = HotelDatabase.getInstance(this)
-//        bookmark_db = BookmarkDatabase.getInstance(this)
-//        picture_db = PictureDatabase.getInstance(this)
-//
+        user_db = UserDatabase.getInstance(this)
+        hotel_db = HotelDatabase.getInstance(this)
+        bookmark_db = BookmarkDatabase.getInstance(this)
+        picture_db = PictureDatabase.getInstance(this)
+
         addDatabase()
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
@@ -137,7 +145,7 @@ class MainActivity : AppCompatActivity() {
         var line: String? = reader.readLine()
         while (line != null) {
             val ID_Hotel = line.toInt()
-            val pictureID = reader.readLine().toInt()
+            val pictureID = reader.readLine()
 
             val picture = Picture(ID_Hotel, pictureID)
             picture_db.PictureDAO().insertPicture(picture)

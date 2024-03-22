@@ -1,4 +1,4 @@
-package com.example.angodafake
+package com.example.angodafake.db
 
 import android.content.Context
 import androidx.room.ColumnInfo
@@ -18,7 +18,7 @@ data class Picture (
     @ColumnInfo(name = "ID_Hotel" )
     var ID_Hotel : Int,
     @ColumnInfo(name = "picture" )
-    var picture : Int,
+    var picture : String,
 ){
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
@@ -49,6 +49,7 @@ abstract class PictureDatabase : RoomDatabase() {
 
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(context, PictureDatabase::class.java,
-                DB_NAME).allowMainThreadQueries().build()
+                DB_NAME
+            ).allowMainThreadQueries().build()
     }
 }

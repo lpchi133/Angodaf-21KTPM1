@@ -1,4 +1,4 @@
-package com.example.angodafake
+package com.example.angodafake.db
 
 import android.content.Context
 import androidx.room.ColumnInfo
@@ -54,6 +54,7 @@ abstract class CommentDatabase : RoomDatabase() {
 
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(context, CommentDatabase::class.java,
-                DB_NAME).allowMainThreadQueries().build()
+                DB_NAME
+            ).allowMainThreadQueries().build()
     }
 }

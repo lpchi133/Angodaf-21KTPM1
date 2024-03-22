@@ -1,4 +1,4 @@
-package com.example.angodafake
+package com.example.angodafake.db
 
 import android.content.Context
 import androidx.room.ColumnInfo
@@ -62,6 +62,7 @@ abstract class HotelDatabase : RoomDatabase() {
 
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(context, HotelDatabase::class.java,
-                DB_NAME).allowMainThreadQueries().build()
+                DB_NAME
+            ).allowMainThreadQueries().build()
     }
 }
