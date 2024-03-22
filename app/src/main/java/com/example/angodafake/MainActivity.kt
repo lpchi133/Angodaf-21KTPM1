@@ -5,14 +5,11 @@ import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.angodafake.databinding.ActivityMainBinding
-import com.example.angodafake.db.BookmarkDatabase
 import com.example.angodafake.db.Bookmarks
 import com.example.angodafake.db.Hotel
 import com.example.angodafake.db.HotelDatabase
 import com.example.angodafake.db.Picture
-import com.example.angodafake.db.PictureDatabase
 import com.example.angodafake.db.User
-import com.example.angodafake.db.UserDatabase
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.jetbrains.annotations.TestOnly
 import java.io.BufferedReader
@@ -20,10 +17,7 @@ import java.io.InputStreamReader
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var user_db: UserDatabase
     private lateinit var hotel_db: HotelDatabase
-    private lateinit var bookmark_db: BookmarkDatabase
-    private lateinit var picture_db: PictureDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,10 +27,7 @@ class MainActivity : AppCompatActivity() {
         replaceFragment(Home())
 
 //        ******* ADD DATABASE **********
-        user_db = UserDatabase.getInstance(this)
         hotel_db = HotelDatabase.getInstance(this)
-        bookmark_db = BookmarkDatabase.getInstance(this)
-        picture_db = PictureDatabase.getInstance(this)
 
         addDatabase()
 
@@ -91,7 +82,7 @@ class MainActivity : AppCompatActivity() {
             val password = reader.readLine()
 
             val user = User(name, dob, gender, number, email, country, cardNumber, cardName, point, userName, password)
-            user_db.UserDAO().insertUser(user)
+            hotel_db.UserDAO().insertUser(user)
             println(user)
             line = reader.readLine()
         }
@@ -131,7 +122,7 @@ class MainActivity : AppCompatActivity() {
             val ID_Hotel = reader.readLine().toInt()
 
             val bookmark = Bookmarks(ID_Owner, ID_Hotel)
-            bookmark_db.BookmarkDAO().insertBookmark(bookmark)
+            hotel_db.BookmarkDAO().insertBookmark(bookmark)
             println(bookmark)
             line = reader.readLine()
         }
@@ -148,7 +139,7 @@ class MainActivity : AppCompatActivity() {
             val pictureID = reader.readLine()
 
             val picture = Picture(ID_Hotel, pictureID)
-            picture_db.PictureDAO().insertPicture(picture)
+            hotel_db.PictureDAO().insertPicture(picture)
             println(picture)
             line = reader.readLine()
         }

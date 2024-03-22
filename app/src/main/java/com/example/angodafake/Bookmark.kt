@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.angodafake.db.BookmarkDatabase
+//import com.example.angodafake.db.BookmarkDatabase
+import com.example.angodafake.db.Hotel
+import com.example.angodafake.db.HotelDatabase
 import org.jetbrains.annotations.TestOnly
 
 // TODO: Rename parameter arguments, choose names that match
@@ -24,7 +26,7 @@ class Bookmark : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private lateinit var bookmark_db: BookmarkDatabase
+    private lateinit var hotel_db: HotelDatabase
     private lateinit var bookmarksRecyclerView : RecyclerView
     private lateinit var layoutManager: RecyclerView.LayoutManager
     private lateinit var linearAdapter: BookmarkAdapter
@@ -44,8 +46,8 @@ class Bookmark : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_bookmark, container, false)
 
-        bookmark_db = BookmarkDatabase.getInstance(requireContext())
-        val allBookmarks = bookmark_db.BookmarkDAO().getBookmarksByUserID(1)
+        hotel_db = HotelDatabase.getInstance(requireContext())
+        val allBookmarks = hotel_db.BookmarkDAO().getBookmarksByUserID(1)
 
         bookmarksRecyclerView = view.findViewById(R.id.contactsRV)
         layoutManager = LinearLayoutManager(requireContext())
@@ -60,7 +62,7 @@ class Bookmark : Fragment() {
 
     @TestOnly
     private fun testPrintAllBookmarks() {
-        val list = bookmark_db.BookmarkDAO().getBookmarkList()
+        val list = hotel_db.BookmarkDAO().getBookmarkList()
         for (bookmark in list) {
             println(bookmark.toString())
         }

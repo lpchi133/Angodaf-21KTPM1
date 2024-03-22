@@ -41,20 +41,3 @@ interface CommentDAO {
     @Delete
     fun deleteComment(comment: Comment)
 }
-
-@Database(entities = [Comment::class], version = 1)
-abstract class CommentDatabase : RoomDatabase() {
-    abstract fun CommentDAO() : CommentDAO
-    companion object {
-        private const val DB_NAME = "comment_db"
-        private var instance: CommentDatabase? = null
-        fun getInstance(context: Context): CommentDatabase {
-            return instance ?: buildDatabase(context).also { instance = it}
-        }
-
-        private fun buildDatabase(context: Context) =
-            Room.databaseBuilder(context, CommentDatabase::class.java,
-                DB_NAME
-            ).allowMainThreadQueries().build()
-    }
-}

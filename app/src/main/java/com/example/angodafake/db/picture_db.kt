@@ -36,20 +36,3 @@ interface PictureDAO {
     @Delete
     fun deletePicture(picture: Picture)
 }
-
-@Database(entities = [Picture::class], version = 1)
-abstract class PictureDatabase : RoomDatabase() {
-    abstract fun PictureDAO() : PictureDAO
-    companion object {
-        private const val DB_NAME = "picture_db"
-        private var instance: PictureDatabase? = null
-        fun getInstance(context: Context): PictureDatabase {
-            return instance ?: buildDatabase(context).also { instance = it}
-        }
-
-        private fun buildDatabase(context: Context) =
-            Room.databaseBuilder(context, PictureDatabase::class.java,
-                DB_NAME
-            ).allowMainThreadQueries().build()
-    }
-}

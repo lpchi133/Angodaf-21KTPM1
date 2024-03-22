@@ -50,9 +50,19 @@ interface HotelDAO {
     fun deleteHotel(hotel: Hotel)
 }
 
-@Database(entities = [Hotel::class], version = 1)
+@Database(entities = [Hotel::class, Bookmarks::class, Picture::class, Comment::class, Purchase::class, Rooms::class, User::class], version = 1)
 abstract class HotelDatabase : RoomDatabase() {
     abstract fun HotelDAO() : HotelDAO
+    abstract fun BookmarkDAO() : BookmarkDAO
+    abstract fun PictureDAO() : PictureDAO
+    abstract fun CommentDAO() : CommentDAO
+    abstract fun PurchaseDAO() : PurchaseDAO
+    abstract fun RoomDAO() : RoomDAO
+    abstract fun UserDAO() : UserDAO
+
+
+
+
     companion object {
         private const val DB_NAME = "hotel_db"
         private var instance: HotelDatabase? = null

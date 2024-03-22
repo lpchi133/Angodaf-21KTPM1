@@ -45,20 +45,3 @@ interface PurchaseDAO {
     @Delete
     fun deletePurchase(purchase: Purchase)
 }
-
-@Database(entities = [Purchase::class], version = 1)
-abstract class PurchaseDatabase : RoomDatabase() {
-    abstract fun PurchaseDAO() : PurchaseDAO
-    companion object {
-        private const val DB_NAME = "room_db"
-        private var instance: PurchaseDatabase? = null
-        fun getInstance(context: Context): PurchaseDatabase {
-            return instance ?: buildDatabase(context).also { instance = it}
-        }
-
-        private fun buildDatabase(context: Context) =
-            Room.databaseBuilder(context, PurchaseDatabase::class.java,
-                DB_NAME
-            ).allowMainThreadQueries().build()
-    }
-}

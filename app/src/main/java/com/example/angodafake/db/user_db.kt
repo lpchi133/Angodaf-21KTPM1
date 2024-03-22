@@ -53,20 +53,3 @@ interface UserDAO {
     @Delete
     fun deleteUser(user: User)
 }
-
-@Database(entities = [User::class], version = 1)
-abstract class UserDatabase : RoomDatabase() {
-    abstract fun UserDAO() : UserDAO
-    companion object {
-        private const val DB_NAME = "user_db"
-        private var instance: UserDatabase? = null
-        fun getInstance(context: Context): UserDatabase {
-            return instance ?: buildDatabase(context).also { instance = it}
-        }
-
-        private fun buildDatabase(context: Context) =
-            Room.databaseBuilder(context, UserDatabase::class.java,
-                DB_NAME
-            ).allowMainThreadQueries().build()
-    }
-}

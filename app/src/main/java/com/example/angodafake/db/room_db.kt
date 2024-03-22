@@ -49,20 +49,3 @@ interface RoomDAO {
     @Delete
     fun deleteRoom(room: Rooms)
 }
-
-@Database(entities = [Rooms::class], version = 1)
-abstract class RoomsDatabase : RoomDatabase() {
-    abstract fun RoomDAO() : RoomDAO
-    companion object {
-        private const val DB_NAME = "room_db"
-        private var instance: RoomsDatabase? = null
-        fun getInstance(context: Context): RoomsDatabase {
-            return instance ?: buildDatabase(context).also { instance = it}
-        }
-
-        private fun buildDatabase(context: Context) =
-            Room.databaseBuilder(context, RoomsDatabase::class.java,
-                DB_NAME
-            ).allowMainThreadQueries().build()
-    }
-}
