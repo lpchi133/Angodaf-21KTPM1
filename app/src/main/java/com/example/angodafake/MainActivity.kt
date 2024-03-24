@@ -145,4 +145,9 @@ class MainActivity : AppCompatActivity() {
         }
         reader.close()
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        hotel_db.close()
+    }
 }
