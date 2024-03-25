@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 //        ******* ADD DATABASE **********
         hotel_db = HotelDatabase.getInstance(this)
 
-        addDatabase()
+//        addDatabase()
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
         bottomNavigationView.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
@@ -78,10 +78,9 @@ class MainActivity : AppCompatActivity() {
             val cardNumber = reader.readLine()
             val cardName = reader.readLine()
             val point = reader.readLine().toInt()
-            val userName = reader.readLine()
             val password = reader.readLine()
 
-            val user = User(name, dob, gender, number, email, country, cardNumber, cardName, point, userName, password)
+            val user = User(name, dob, gender, number, email, country, cardNumber, cardName, point, password)
             hotel_db.UserDAO().insertUser(user)
             println(user)
             line = reader.readLine()

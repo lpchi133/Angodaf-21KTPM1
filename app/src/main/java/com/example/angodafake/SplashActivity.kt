@@ -18,7 +18,7 @@ class SplashActivity : AppCompatActivity() {
         hotel_db = HotelDatabase.getInstance(this)
 
         val handler = Handler()
-        handler.postDelayed(nextActivity(), 2000)
+        handler.postDelayed(nextActivity(), 1500)
 
     }
 
@@ -33,11 +33,13 @@ class SplashActivity : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("idUser", idUser.toString())
                 startActivity(intent)
+                finish()
             }
             else{
                 //Chua dang nhap, chuyen sang man hinh dang nhap
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
+                finish()
             }
         }
     }

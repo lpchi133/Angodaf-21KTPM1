@@ -7,8 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-//import com.example.angodafake.db.BookmarkDatabase
-import com.example.angodafake.db.Hotel
 import com.example.angodafake.db.HotelDatabase
 import org.jetbrains.annotations.TestOnly
 

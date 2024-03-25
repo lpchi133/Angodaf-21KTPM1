@@ -2,22 +2,17 @@ package com.example.angodafake
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
+import android.os.Handler
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
-import android.widget.EditText
-import android.widget.FrameLayout
 import android.widget.TabHost
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.view.updateLayoutParams
+import android.widget.TextView
 import com.example.angodafake.db.HotelDatabase
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
@@ -65,7 +60,6 @@ class LoginActivity : AppCompatActivity() {
         val lPass = findViewById<TextInputLayout>(R.id.lPass)
         val etPass = lPass.editText as TextInputEditText
 
-
         findViewById<Button>(R.id.btn_login_email).setOnClickListener {
             hideKeyboard(this)
             val email = etEmail.text.toString().trim()
@@ -81,14 +75,27 @@ class LoginActivity : AppCompatActivity() {
                 else{
                     //Dang nhap thanh cong
                     val user = hotel_db.UserDAO().getUserByEmail(email)
-                    val intent = Intent(this, MainActivity::class.java)
-                    intent.putExtra("idUser", user!!.id.toString())
-                    startActivity(intent)
+                    showSuccessSnackBar("Đăng nhập thành công!")
+                    val handler = Handler()
+                    handler.postDelayed({
+                        val intent = Intent(this, MainActivity::class.java)
+                        intent.putExtra("idUser", user!!.id.toString())
+                        startActivity(intent)
+                        finish()
+                    }, 1000)
                 }
 
             }
         }
+
+        findViewById<TextView>(R.id.register).setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+            intent.putExtra("with", "email")
+            startActivity(intent)
+            finish()
+        }
     }
+
     private fun setUpTabPhoneN(){
         val lPhoneN = findViewById<TextInputLayout>(R.id.lPhoneN)
         val etPhoneN = lPhoneN.editText as TextInputEditText
@@ -111,14 +118,26 @@ class LoginActivity : AppCompatActivity() {
                 else{
                     //Dang nhap thanh cong
                     val user = hotel_db.UserDAO().getUserByPhoneNumber(phoneN)
-                    val intent = Intent(this, MainActivity::class.java)
-                    intent.putExtra("idUser", user!!.id.toString())
-                    startActivity(intent)
+                    showSuccessSnackBar("Đăng nhập thành công!")
+                    val handler = Handler()
+                    handler.postDelayed({
+                        val intent = Intent(this, MainActivity::class.java)
+                        intent.putExtra("idUser", user!!.id.toString())
+                        startActivity(intent)
+                        finish()
+                    }, 1000)
                 }
 
             }
         }
+        findViewById<TextView>(R.id.register2).setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+            intent.putExtra("with", "phoneNumber")
+            startActivity(intent)
+            finish()
+        }
     }
+
     private fun checkUserWithEmail(email: String, pass: String): Boolean {
         val user = hotel_db.UserDAO().getUserByEmail(email)
         return if (user != null) {
@@ -185,6 +204,12 @@ class LoginActivity : AppCompatActivity() {
         val snackbar = Snackbar.make(findViewById(R.id.rootView), msg, Snackbar.LENGTH_LONG)
         // Đổi màu background của Snackbar
         snackbar.view.backgroundTintList = ColorStateList.valueOf(Color.RED)
+        snackbar.setTextColor(Color.WHITE)
+        snackbar.show()
+    }
+    private fun showSuccessSnackBar(msg: String) {
+        val snackbar = Snackbar.make(findViewById(R.id.rootView), msg, Snackbar.LENGTH_LONG)
+        snackbar.view.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#3193FF"))
         snackbar.setTextColor(Color.WHITE)
         snackbar.show()
     }

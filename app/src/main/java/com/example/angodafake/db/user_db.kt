@@ -33,8 +33,6 @@ data class User (
     var cardName : String,
     @ColumnInfo(name = "point")
     var point : Int,
-    @ColumnInfo(name = "userName")
-    var userName : String,
     @ColumnInfo(name = "password")
     var password : String,
 ){
