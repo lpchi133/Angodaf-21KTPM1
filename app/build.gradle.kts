@@ -42,6 +42,7 @@ android {
 }
 
 dependencies {
+    implementation("com.ToxicBakery.library.bcrypt:bcrypt:1.0.9")
     implementation("androidx.room:room-runtime:2.6.1")
     implementation ("androidx.recyclerview:recyclerview:1.3.2")
     kapt("androidx.room:room-compiler:2.6.1")

@@ -21,33 +21,36 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.angodafake.databinding.ActivitySignUpBinding
 import com.example.angodafake.db.HotelDatabase
 import com.example.angodafake.db.User
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.toxicbakery.bcrypt.Bcrypt
 
 
 class SignUpActivity : AppCompatActivity() {
     private val checkArray = BooleanArray(7) { false } //kiem tra tinh hop le thong tin nguoi dung nhap
-    lateinit var lName : TextInputLayout
-    lateinit var etName : TextInputEditText
-    lateinit var lDob : TextInputLayout
-    lateinit var etDob : TextInputEditText
-    lateinit var rgGender : RadioGroup
-    lateinit var lCountry : TextInputLayout
-    lateinit var actvCountry : MaterialAutoCompleteTextView
-    lateinit var lPass : TextInputLayout
-    lateinit var etPass : TextInputEditText
-    lateinit var lConfirmPass : TextInputLayout
-    lateinit var etConfirmPass : TextInputEditText
+    private lateinit var lName : TextInputLayout
+    private lateinit var etName : TextInputEditText
+    private lateinit var lDob : TextInputLayout
+    private lateinit var etDob : TextInputEditText
+    private lateinit var rgGender : RadioGroup
+    private lateinit var lCountry : TextInputLayout
+    private lateinit var actvCountry : MaterialAutoCompleteTextView
+    private lateinit var lPass : TextInputLayout
+    private lateinit var etPass : TextInputEditText
+    private lateinit var lConfirmPass : TextInputLayout
+    private lateinit var etConfirmPass : TextInputEditText
 
     private lateinit var hotel_db: HotelDatabase
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+
 
         hotel_db = HotelDatabase.getInstance(this)
 
@@ -236,7 +239,7 @@ class SignUpActivity : AppCompatActivity() {
             val cardNumber = ""
             val cardName = ""
             val point = 0
-            val password = etPass.text.toString().trim()
+            val password = String(Bcrypt.hash(etPass.text.toString().trim(), 10), Charsets.UTF_8)
 
             val user = User(name, dob, gender, number, email, country, cardNumber, cardName, point, password)
             hotel_db.UserDAO().insertUser(user)
@@ -268,7 +271,7 @@ class SignUpActivity : AppCompatActivity() {
             val cardNumber = ""
             val cardName = ""
             val point = 0
-            val password = etPass.text.toString().trim()
+            val password = String(Bcrypt.hash(etPass.text.toString().trim(), 10), Charsets.UTF_8)
 
             val user = User(name, dob, gender, phoneN, email, country, cardNumber, cardName, point, password)
             hotel_db.UserDAO().insertUser(user)

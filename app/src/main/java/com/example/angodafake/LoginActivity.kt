@@ -8,6 +8,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
@@ -17,6 +18,7 @@ import com.example.angodafake.db.HotelDatabase
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.toxicbakery.bcrypt.Bcrypt
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var tabHost : TabHost
@@ -141,7 +143,7 @@ class LoginActivity : AppCompatActivity() {
     private fun checkUserWithEmail(email: String, pass: String): Boolean {
         val user = hotel_db.UserDAO().getUserByEmail(email)
         return if (user != null) {
-            user.password == pass
+            Bcrypt.verify(pass, user.password.toByteArray())
         } else {
             false
         }
@@ -149,7 +151,7 @@ class LoginActivity : AppCompatActivity() {
     private fun checkUserWithPhoneN(phoneN: String, pass: String): Boolean {
         val user = hotel_db.UserDAO().getUserByPhoneNumber(phoneN)
         return if (user != null) {
-            user.password == pass
+            Bcrypt.verify(pass, user.password.toByteArray())
         } else {
             false
         }
