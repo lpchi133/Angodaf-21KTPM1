@@ -4,7 +4,7 @@
             "outputFile": "com.example.angodafake.app-mergeDebugResources-2:/values-pt/values-pt.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-3\\5e4586cedd15136f442a91f9dbe83cc3\\transformed\\core-1.13.0-beta01\\res\\values-pt\\values-pt.xml",
+                    "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-3\\0a992fb69dfaf79798dac4d49b167158\\transformed\\core-1.12.0\\res\\values-pt\\values-pt.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
