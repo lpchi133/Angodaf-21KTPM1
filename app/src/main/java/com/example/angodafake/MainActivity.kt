@@ -2,13 +2,16 @@ package com.example.angodafake
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.angodafake.databinding.ActivityMainBinding
 import com.example.angodafake.db.Bookmarks
 import com.example.angodafake.db.Hotel
 import com.example.angodafake.db.HotelDatabase
 import com.example.angodafake.db.Picture
+import com.example.angodafake.db.Rooms
 import com.example.angodafake.db.User
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.jetbrains.annotations.TestOnly
@@ -50,7 +53,6 @@ class MainActivity : AppCompatActivity() {
     private fun replaceFragment(fragment: Fragment){
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-
         fragmentTransaction.replace(R.id.frameLayout, fragment)
         fragmentTransaction.commit()
     }
@@ -61,6 +63,7 @@ class MainActivity : AppCompatActivity() {
         readHotel()
         readBookmark()
         readPicture()
+        readRooms()
     }
 
     private fun readUser(){
@@ -78,10 +81,9 @@ class MainActivity : AppCompatActivity() {
             val cardNumber = reader.readLine()
             val cardName = reader.readLine()
             val point = reader.readLine().toInt()
-            val userName = reader.readLine()
             val password = reader.readLine()
 
-            val user = User(name, dob, gender, number, email, country, cardNumber, cardName, point, userName, password)
+            val user = User(name, dob, gender, number, email, country, cardNumber, cardName, point, password)
             hotel_db.UserDAO().insertUser(user)
             println(user)
             line = reader.readLine()
@@ -144,5 +146,33 @@ class MainActivity : AppCompatActivity() {
             line = reader.readLine()
         }
         reader.close()
+    }
+    private fun readRooms() {
+        val inputStream = this.assets.open("room.txt")
+        val reader = BufferedReader(InputStreamReader(inputStream))
+
+        var line: String? = reader.readLine()
+        while (line != null) {
+            val ID_Hotel = line.toInt()
+            val quantity = reader.readLine().toInt()
+            val available = reader.readLine().toInt()
+            val type = reader.readLine()
+            val acreage = reader.readLine().toDouble()
+            val price = reader.readLine().toDouble()
+            val bedQuantity = reader.readLine().toInt()
+            val checkIn = reader.readLine()
+            val checkOut = reader.readLine()
+
+            val room = Rooms(ID_Hotel, quantity, available, type, acreage, price, bedQuantity, checkIn, checkOut)
+            hotel_db.RoomDAO().insertRoom(room)
+            println(room)
+            line = reader.readLine()
+        }
+        reader.close()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        hotel_db.close()
     }
 }

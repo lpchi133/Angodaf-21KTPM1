@@ -33,8 +33,6 @@ data class User (
     var cardName : String,
     @ColumnInfo(name = "point")
     var point : Int,
-    @ColumnInfo(name = "userName")
-    var userName : String,
     @ColumnInfo(name = "password")
     var password : String,
 ){
@@ -48,6 +46,12 @@ interface UserDAO {
     fun getUserList() : List<User>
     @Insert
     fun insertUser(user : User)
+    @Query("SELECT * FROM user_db WHERE id = :userId")
+    fun getUserById(userId: Int): User?
+    @Query("SELECT * FROM user_db WHERE email = :userEmail")
+    fun getUserByEmail(userEmail: String): User?
+    @Query("SELECT * FROM user_db WHERE number = :userNumber")
+    fun getUserByPhoneNumber(userNumber: String): User?
     @Update
     fun updateUser(user: User)
     @Delete
