@@ -42,6 +42,8 @@ data class Rooms (
 interface RoomDAO {
     @Query("Select * from room_db")
     fun getRoomList() : List<Rooms>
+    @Query("SELECT * FROM room_db WHERE ID_Hotel = :hotel_id")
+    fun getRoomsByHotelID(hotel_id: Int): List<Rooms>
     @Insert
     fun insertRoom(room : Rooms)
     @Update
@@ -49,3 +51,4 @@ interface RoomDAO {
     @Delete
     fun deleteRoom(room: Rooms)
 }
+

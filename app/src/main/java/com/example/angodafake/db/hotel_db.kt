@@ -42,6 +42,10 @@ interface HotelDAO {
     fun getHotelList() : List<Hotel>
     @Query("SELECT * FROM hotel_db WHERE id = :hotel_id")
     fun getHotelByID(hotel_id: Int): Hotel
+    @Query("SELECT * FROM hotel_db WHERE locationDetail = :hotel_location")
+    fun getHotelByLocation(hotel_location: String): Hotel
+    @Query("SELECT * FROM hotel_db WHERE name = :hotel_name")
+    fun getHotelByName(hotel_name: String): Hotel
     @Insert
     fun insertHotel(hotel : Hotel)
     @Update
