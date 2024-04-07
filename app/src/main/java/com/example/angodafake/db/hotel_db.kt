@@ -19,6 +19,8 @@ data class Hotel (
     var ID_Owner : Int,
     @ColumnInfo(name = "name" )
     var name : String,
+    @ColumnInfo(name = "phoneNumber")
+    var phoneNumber: String,
     @ColumnInfo(name = "locationDetail" )
     var locationDetail : String,
     @ColumnInfo(name = "city" )
@@ -27,6 +29,8 @@ data class Hotel (
     var description : String,
     @ColumnInfo(name = "conveniences" )
     var convenience : String,
+    @ColumnInfo(name = "star")
+    var star: Int,
     @ColumnInfo(name = "point" )
     var point : Double,
     @ColumnInfo(name = "profit" )
@@ -59,9 +63,6 @@ abstract class HotelDatabase : RoomDatabase() {
     abstract fun PurchaseDAO() : PurchaseDAO
     abstract fun RoomDAO() : RoomDAO
     abstract fun UserDAO() : UserDAO
-
-
-
 
     companion object {
         private const val DB_NAME = "hotel_db"

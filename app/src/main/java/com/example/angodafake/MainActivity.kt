@@ -97,14 +97,16 @@ class MainActivity : AppCompatActivity() {
         while (line != null) {
             val ID_Owner = line.toInt()
             val name = reader.readLine()
+            val phoneNumber = reader.readLine()
             val locationDetail = reader.readLine()
             val city = reader.readLine()
             val description = reader.readLine()
             val conveniences = reader.readLine()
+            val star = reader.readLine().toInt()
             val point = reader.readLine().toDouble()
             val profit = reader.readLine().toDouble()
 
-            val hotel = Hotel(ID_Owner, name, locationDetail,city,description, conveniences, point, profit)
+            val hotel = Hotel(ID_Owner, name, phoneNumber, locationDetail,city,description, conveniences,star, point, profit)
             hotel_db.HotelDAO().insertHotel(hotel)
             println(hotel)
             line = reader.readLine()

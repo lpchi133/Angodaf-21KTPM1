@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border">
+
+    <RelativeLayout
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#99A9CFF8"
+        android:paddingStart="10dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="120dp"
+            android:layout_height="45dp"
+            android:gravity="center"
+            android:text="@string/r_dateorder"
+            android:textColor="#3E52FA"
+            android:textSize="16sp"
+            app:drawableLeftCompat="@drawable/baseline_calendar_month_24"
+            tools:layout_editor_absoluteX="140dp"
+            tools:layout_editor_absoluteY="132dp" />
+
+        <TextView
+            android:id="@+id/date_order"
+            android:layout_width="160dp"
+            android:layout_height="45dp"
+            android:gravity="center_vertical"
+            android:layout_marginStart="0dp"
+            android:layout_toEndOf="@+id/textView"
+            android:text="Th 5, 28 thg 3"
+            android:textColor="#3E52FA"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/date">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="50dp"
+            android:layout_height="45dp"
+            android:gravity="center"
+            android:layout_marginTop="0dp"
+            android:text="@string/r_id"
+            android:textColor="@color/black"/>
+
+<!--        <TextView-->
+<!--            android:id="@+id/popup"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignBottom="@+id/textView1"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginEnd="20dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:gravity="center"-->
+<!--            android:paddingHorizontal="3dp"-->
+<!--            app:drawableLeftCompat="@drawable/baseline_more_vert_24"/>-->
+
+        <TextView
+            android:id="@+id/id_order"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:gravity="center_vertical"
+            android:layout_marginStart="0dp"
+            android:layout_toEndOf="@+id/textView1"
+            android:textColor="@color/black"
+            android:text="1190373000" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/title"
+        android:background="#A9A9A9" />
+
+    <RelativeLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line1">
+
+        <ImageView
+            android:id="@+id/image_hotel"
+            android:layout_width="130dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="0dp"
+            app:srcCompat="@drawable/beautiful_hotel" />
+
+        <TextView
+            android:id="@+id/name_hotel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/image_hotel"
+            android:text="Hotel Colline de France"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name_hotel"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/image_hotel"
+            android:text="@string/r_nhanphong" />
+
+        <TextView
+            android:id="@+id/date_come"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView4"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/image_hotel"
+            android:text="Th 5, 28 thg 3" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name_hotel"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/textView4"
+            android:text="@string/r_traphong" />
+
+        <TextView
+            android:id="@+id/date_go"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView6"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/date_come"
+            android:text="Th 6, 29 thg 3" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/content"
+        android:background="#A9A9A9" />
+
+    <RelativeLayout
+        android:id="@+id/group_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:layout_below="@+id/line2">
+
+        <Button
+            android:id="@+id/btn_reorder"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/btn_order"
+            android:text="@string/btn_reorder"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

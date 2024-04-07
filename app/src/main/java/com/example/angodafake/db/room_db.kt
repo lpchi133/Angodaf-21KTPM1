@@ -1,16 +1,12 @@
 package com.example.angodafake.db
 
-import android.content.Context
 import androidx.room.ColumnInfo
 import androidx.room.Dao
-import androidx.room.Database
 import androidx.room.Delete
 import androidx.room.Entity
 import androidx.room.Insert
 import androidx.room.PrimaryKey
 import androidx.room.Query
-import androidx.room.Room
-import androidx.room.RoomDatabase
 import androidx.room.Update
 
 @Entity(tableName = "room_db")
@@ -25,6 +21,10 @@ data class Rooms (
     var type : String,
     @ColumnInfo(name = "acreage" )
     var acreage : Double,
+    @ColumnInfo(name = "direction")
+    var direction : String,
+    @ColumnInfo(name = "benefit")
+    var benefit : String,
     @ColumnInfo(name = "price" )
     var price : Double,
     @ColumnInfo(name = "bedQuantity" )
