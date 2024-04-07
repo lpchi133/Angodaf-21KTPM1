@@ -8,37 +8,40 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="186dp"
-        android:layout_height="168dp"
-        android:layout_marginStart="10dp"
+        android:layout_width="374dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:src="@drawable/b48f9f78ec2cf2bbe745f28a2f5f5541"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <TextView
         android:id="@+id/hotelName"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
-        android:maxWidth="165dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:maxWidth="280dp"
         android:maxLines="1000"
-        android:text="Khách sạn và Căn hộsaa"
-        android:textSize="18sp"
+        android:text="Khách sạn và Căn hộ "
+        android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="30dp"
-        android:layout_height="32dp"
+        android:layout_width="18dp"
+        android:layout_height="19dp"
         android:layout_centerVertical="true"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:src="@drawable/baseline_location_on_12"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hotelName" />
 
     <TextView
@@ -47,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:maxLines="1000"
-        android:maxWidth="150dp"
+        android:maxWidth="280dp"
         android:text="Thắng Tam"
         app:layout_constraintBottom_toBottomOf="@+id/icon"
         app:layout_constraintStart_toEndOf="@+id/icon"
@@ -58,9 +61,9 @@
         android:id="@+id/rateStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
-        android:maxWidth="150dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:maxWidth="280dp"
         android:maxLines="1000"
         android:text="Tuyệt vời"
         android:textStyle="bold"
@@ -68,38 +71,47 @@
         app:layout_constraintTop_toBottomOf="@+id/Location" />
 
     <TextView
+        android:id="@+id/cmt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="628 nhận xét"
+        app:layout_constraintStart_toEndOf="@+id/rateStatus"
+        app:layout_constraintTop_toTopOf="@+id/rateStatus" />
+
+    <TextView
         android:id="@+id/point"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
         android:background="@color/blue"
-        android:padding="5dp"
+        android:padding="2dp"
         android:text="8,5"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Location" />
 
     <TextView
         android:id="@+id/quaCM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="5dp"
-        android:maxWidth="150dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:maxWidth="280dp"
         android:maxLines="1000"
         android:text="Khách sạn"
-        app:layout_constraintStart_toEndOf="@+id/point"
-        app:layout_constraintTop_toBottomOf="@+id/rateStatus" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/point" />
 
     <TextView
         android:id="@+id/convenience"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:maxWidth="390dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:maxWidth="280dp"
         android:maxLines="1000"
         android:text="Nhà nghỉ thoáng"
         app:layout_constraintStart_toStartOf="parent"
@@ -116,5 +128,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/convenience"
         app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView6"
+        app:layout_constraintHorizontal_bias="0.986"
+        app:layout_constraintStart_toEndOf="@+id/hotelName"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:srcCompat="?attr/actionModeShareDrawable" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:srcCompat="@drawable/baseline_favorite" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

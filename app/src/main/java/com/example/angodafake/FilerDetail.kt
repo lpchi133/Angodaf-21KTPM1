@@ -28,8 +28,8 @@ class FilerDetail : Fragment() {
 
     private lateinit var view: View
     private lateinit var rangeSlider: RangeSlider
-    private var startValue: Float = 0.0f
-    private var endValue: Float = 0.0f
+    private var startValue: Float = 2000.0f
+    private var endValue: Float = 9000.0f
     private var point: Double = 0.0
     private lateinit var text6Plus: TextView
     private lateinit var text7Plus: TextView
@@ -177,7 +177,7 @@ class FilerDetail : Fragment() {
         val buttonOK: Button = view.findViewById(R.id.buttonOK)
         buttonOK.setOnClickListener {
 
-            if (point == 0.0 || startValue == 0.0F || endValue == 0.0F || getSelectedCities().isEmpty()){
+            if (point == 0.0 || getSelectedCities().isEmpty()){
                 warning("Warning", "Please complete all information")
             } else{
                 val bundle = Bundle()

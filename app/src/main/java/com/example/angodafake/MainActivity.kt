@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 //        ******* ADD DATABASE **********
         hotel_db = HotelDatabase.getInstance(this)
 
-        addDatabase()
+        //addDatabase()
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
         bottomNavigationView.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
