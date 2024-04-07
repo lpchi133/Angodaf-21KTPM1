@@ -1,19 +1,22 @@
 package com.example.angodafake
 
+import android.app.Activity
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.db.Hotel
 import com.example.angodafake.db.HotelDatabase
 import com.example.angodafake.db.Picture
 
-class HotelAdapter(private val context: Context, private var hotels: List<Hotel>) : RecyclerView.Adapter<HotelAdapter.ViewHolder>() {
+class HotelAdapter(private val context: Context, private val fragmentManager: FragmentManager, private var hotels: List<Hotel>) : RecyclerView.Adapter<HotelAdapter.ViewHolder>() {
     private lateinit var hotel_db: HotelDatabase
-    private lateinit var Picture: Picture
+    //private lateinit var Picture: Picture
     private var listener: HotelAdapter.OnItemClickListener? = null
     // Interface cho sự kiện click
     interface OnItemClickListener {
@@ -28,7 +31,21 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
         val rateStatus: TextView = listItemView.findViewById(R.id.rateStatus)
         val quaCM: TextView = listItemView.findViewById(R.id.quaCM)
         val convenience: TextView = listItemView.findViewById(R.id.convenience)
+        val price_room: TextView = listItemView.findViewById(R.id.price_room)
 
+        init {
+            // Thêm sự kiện click cho itemView
+            itemView.setOnClickListener {
+                val args = Bundle()
+                val fragment = Hotel_infor()
+                fragment.arguments = args
+
+                fragmentManager.beginTransaction()
+                    .replace(R.id.frameLayout, fragment)
+                    .addToBackStack(null)
+                    .commit()
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotelAdapter.ViewHolder {
@@ -46,7 +63,9 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
         val hotel : Hotel = hotels[position]
 
         hotel_db = HotelDatabase.getInstance(context)
-        Picture = hotel_db.PictureDAO().getPictureByHotelID(hotel.id)
+        var Picture = hotel_db.PictureDAO().getPictureByHotelID(hotel.id)
+        val rooms = hotel_db.RoomDAO().getRoomsByHotelID(hotel.id)
+        val lowestPrice = rooms.minByOrNull { it.price }?.price ?: Double.MAX_VALUE
 
         val idPicture = context.resources.getIdentifier(Picture.picture, "drawable", context.packageName)
         holder.img.setImageResource(idPicture)
@@ -55,6 +74,7 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
         holder.pointView.text = hotel.point.toString()
         holder.quaCM.text = hotel.description
         holder.convenience.text = hotel.convenience
+        holder.price_room.text = lowestPrice.toString() + " đ"
 
         holder.rateStatus.text = when (hotel.point.toInt()){
             in 0 until 3 -> { "Cực tệ" }

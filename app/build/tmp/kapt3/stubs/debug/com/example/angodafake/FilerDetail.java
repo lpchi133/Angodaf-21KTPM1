@@ -13,8 +13,8 @@ public final class FilerDetail extends androidx.fragment.app.Fragment {
     private java.lang.String param2;
     private android.view.View view;
     private com.google.android.material.slider.RangeSlider rangeSlider;
-    private float startValue = 0.0F;
-    private float endValue = 0.0F;
+    private float startValue = 2000.0F;
+    private float endValue = 9000.0F;
     private double point = 0.0;
     private android.widget.TextView text6Plus;
     private android.widget.TextView text7Plus;

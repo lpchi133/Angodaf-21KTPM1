@@ -66,7 +66,8 @@ class Home : Fragment() {
 
         val hotelsRecyclerView = view.findViewById<RecyclerView>(R.id.contactsRV)
         hotelAdapter = ArrayList(listHotels)
-        adapter = HotelAdapter(requireContext(), hotelAdapter)
+        val fragmentManager = requireActivity().supportFragmentManager
+        adapter = HotelAdapter(requireContext(),fragmentManager, hotelAdapter)
         hotelsRecyclerView.adapter = adapter
         layoutManager = LinearLayoutManager(requireContext())
         hotelsRecyclerView.layoutManager = layoutManager

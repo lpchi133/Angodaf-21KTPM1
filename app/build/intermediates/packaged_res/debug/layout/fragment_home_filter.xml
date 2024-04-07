@@ -54,59 +54,57 @@
         android:id="@+id/contactsRV"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/filter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-
-    <TextView
-        android:id="@+id/filter"
-        android:layout_width="112dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/rounded_button"
-        android:text="Bộ lọc"
-        android:gravity="center"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.9" />
-
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="112dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/rounded_button"
-        android:text="Giá tiền"
-        android:gravity="center"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/sort"
-        app:layout_constraintStart_toEndOf="@+id/filter"
-        app:layout_constraintWidth_percent="0.9" />
-
-    <TextView
-        android:id="@+id/sort"
-        android:layout_width="112dp"
-        android:layout_height="41dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/rounded_button"
-        android:text="Sắp xếp"
-        android:gravity="center"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.9" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear_layout"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="376dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/rounded_button_delete"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameHotelSearch">
+
+        <TextView
+            android:id="@+id/filter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="      Bộ lọc ∨    |"
+            android:textColor="#130101"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="      Giá tiền ∨   |"
+            android:textColor="#130101"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/sort"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Sắp xếp ∨"
+            android:textColor="#130101"
+            android:textSize="18sp" />
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/imageView3"
@@ -116,5 +114,41 @@
         android:src="@drawable/baseline_find"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/HomeTittle" />
+
+    <LinearLayout
+        android:id="@+id/linear_map"
+        android:layout_width="359dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_button_delete"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/buttonMap"
+            android:layout_width="106dp"
+            android:layout_height="33dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="             🌎 Bản đồ             |"
+            android:textColor="#03A9F4"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/buttonLike"
+            android:layout_width="106dp"
+            android:layout_height="33dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text=" ❤ Yêu thích "
+            android:textColor="#03A9F4"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

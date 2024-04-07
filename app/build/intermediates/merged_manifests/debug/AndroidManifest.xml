@@ -29,10 +29,13 @@
         android:testOnly="true"
         android:theme="@style/Theme.AngodaFake" >
         <activity
-            android:name="com.example.angodafake.FilterHotel"
+            android:name="com.example.angodafake.Filter"
             android:exported="false" />
         <activity
-            android:name="com.example.angodafake.FilterHotelDetail"
+            android:name="com.example.angodafake.FilerDetail"
+            android:exported="false" />
+        <activity
+            android:name="com.example.angodafake.Hotel_infor"
             android:exported="false" />
         <activity
             android:name="com.example.angodafake.MainActivity"

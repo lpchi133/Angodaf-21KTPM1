@@ -133,11 +133,13 @@ class Filter : Fragment() {
         searchEditText.setText(searchText)
         val hotelsRecyclerView = view.findViewById<RecyclerView>(R.id.contactsRV)
         hotelAdapter = ArrayList(listHotels)
-        adapter = HotelAdapter(requireContext(), hotelAdapter)
+        val fragmentManager = requireActivity().supportFragmentManager
+        adapter = HotelAdapter(requireContext(),fragmentManager, hotelAdapter)
         hotelsRecyclerView.adapter = adapter
         layoutManager = LinearLayoutManager(requireContext())
         hotelsRecyclerView.layoutManager = layoutManager
         hotelsRecyclerView.setHasFixedSize(true)
+
 
         view.findViewById<Button>(R.id.backToMain).setOnClickListener {
             val fragmentManager = requireActivity().supportFragmentManager
@@ -253,7 +255,7 @@ class Filter : Fragment() {
         }
 
         popupWindow.setOnDismissListener {
-            // Xử lý khi PopupWindow bị đóng
+            rootView.alpha = 1.0f
         }
     }
 
@@ -421,6 +423,10 @@ class Filter : Fragment() {
             rootView.alpha = 1.0f
             adapter.updateDataGradually(listHotels)
             popupWindow.dismiss()
+        }
+
+        popupWindow.setOnDismissListener {
+            rootView.alpha = 1.0f
         }
 
     }

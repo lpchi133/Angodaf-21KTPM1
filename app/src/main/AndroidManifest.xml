@@ -14,10 +14,13 @@
         android:theme="@style/Theme.AngodaFake"
         tools:targetApi="31">
         <activity
-            android:name=".FilterHotel"
+            android:name=".Filter"
             android:exported="false" />
         <activity
-            android:name=".FilterHotelDetail"
+            android:name=".FilerDetail"
+            android:exported="false" />
+        <activity
+            android:name=".Hotel_infor"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

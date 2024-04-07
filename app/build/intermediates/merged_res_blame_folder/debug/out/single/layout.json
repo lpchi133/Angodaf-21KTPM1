@@ -20,6 +20,10 @@
         "source": "com.example.angodafake.app-main-6:/layout/fragment_home.xml"
     },
     {
+        "merged": "com.example.angodafake.app-mergeDebugResources-3:/layout/custom_hotel_detail.xml",
+        "source": "com.example.angodafake.app-main-6:/layout/custom_hotel_detail.xml"
+    },
+    {
         "merged": "com.example.angodafake.app-mergeDebugResources-3:/layout/custom_bookmark.xml",
         "source": "com.example.angodafake.app-main-6:/layout/custom_bookmark.xml"
     },
@@ -34,6 +38,10 @@
     {
         "merged": "com.example.angodafake.app-mergeDebugResources-3:/layout/activity_main.xml",
         "source": "com.example.angodafake.app-main-6:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-3:/layout/test.xml",
+        "source": "com.example.angodafake.app-main-6:/layout/test.xml"
     },
     {
         "merged": "com.example.angodafake.app-mergeDebugResources-3:/layout/fragment_bookmark.xml",

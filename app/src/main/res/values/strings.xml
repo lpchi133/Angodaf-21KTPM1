@@ -11,4 +11,6 @@
     <string name="bookmarkAds">Hãy chọn chổ nghỉ này để xem giá mới mất, thấp nhất</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title">Thông tin khách sạn</string>
+
 </resources>
