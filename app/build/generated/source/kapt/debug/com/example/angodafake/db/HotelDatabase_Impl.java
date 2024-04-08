@@ -44,15 +44,15 @@ public final class HotelDatabase_Impl extends HotelDatabase {
     final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(1) {
       @Override
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS `hotel_db` (`ID_Owner` INTEGER NOT NULL, `name` TEXT NOT NULL, `locationDetail` TEXT NOT NULL, `city` TEXT NOT NULL, `description` TEXT NOT NULL, `conveniences` TEXT NOT NULL, `point` REAL NOT NULL, `profit` REAL NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `hotel_db` (`ID_Owner` INTEGER NOT NULL, `name` TEXT NOT NULL, `locationDetail` TEXT NOT NULL, `city` TEXT NOT NULL, `description` TEXT NOT NULL, `conveniences` TEXT NOT NULL, `point` REAL NOT NULL, `profit` REAL NOT NULL, `checkIn` TEXT NOT NULL, `checkOut` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `bookmark_db` (`ID_Owner` INTEGER NOT NULL, `ID_Hotel` INTEGER NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)");
-        db.execSQL("CREATE TABLE IF NOT EXISTS `picture_db` (`ID_Hotel` INTEGER NOT NULL, `picture` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `picture_db` (`ID_Hotel` INTEGER NOT NULL, `picture` TEXT NOT NULL, `picture_onwer` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `comment_db` (`ID_Owner` INTEGER NOT NULL, `ID_Hotel` INTEGER NOT NULL, `time` TEXT NOT NULL, `point` REAL NOT NULL, `detail` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `purchase_db` (`ID_Owner` INTEGER NOT NULL, `ID_Hotel` INTEGER NOT NULL, `ID_Room` INTEGER NOT NULL, `time_booking` TEXT NOT NULL, `time_purchase` TEXT NOT NULL, `total_purchase` REAL NOT NULL, `status_purchase` INTEGER NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)");
-        db.execSQL("CREATE TABLE IF NOT EXISTS `room_db` (`ID_Hotel` INTEGER NOT NULL, `quantity` INTEGER NOT NULL, `available` INTEGER NOT NULL, `type` TEXT NOT NULL, `acreage` REAL NOT NULL, `price` REAL NOT NULL, `bedQuantity` INTEGER NOT NULL, `checkIn` TEXT NOT NULL, `checkOut` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `room_db` (`ID_Hotel` INTEGER NOT NULL, `quantity` INTEGER NOT NULL, `available` INTEGER NOT NULL, `type` TEXT NOT NULL, `acreage` REAL NOT NULL, `price` REAL NOT NULL, `bedQuantity` INTEGER NOT NULL, `checkIn` TEXT NOT NULL, `checkOut` TEXT NOT NULL, `benefit` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `user_db` (`name` TEXT NOT NULL, `dob` TEXT NOT NULL, `gender` TEXT NOT NULL, `number` TEXT NOT NULL, `email` TEXT NOT NULL, `country` TEXT NOT NULL, `cardNumber` TEXT NOT NULL, `cardName` TEXT NOT NULL, `point` INTEGER NOT NULL, `userName` TEXT NOT NULL, `password` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'dec4c6fafe9eadba59306360dcae8632')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'deef67eb6af3236f8a1a51029986e3e2')");
       }
 
       @Override
@@ -107,7 +107,7 @@ public final class HotelDatabase_Impl extends HotelDatabase {
       @NonNull
       public RoomOpenHelper.ValidationResult onValidateSchema(
           @NonNull final SupportSQLiteDatabase db) {
-        final HashMap<String, TableInfo.Column> _columnsHotelDb = new HashMap<String, TableInfo.Column>(9);
+        final HashMap<String, TableInfo.Column> _columnsHotelDb = new HashMap<String, TableInfo.Column>(11);
         _columnsHotelDb.put("ID_Owner", new TableInfo.Column("ID_Owner", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsHotelDb.put("name", new TableInfo.Column("name", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsHotelDb.put("locationDetail", new TableInfo.Column("locationDetail", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -116,6 +116,8 @@ public final class HotelDatabase_Impl extends HotelDatabase {
         _columnsHotelDb.put("conveniences", new TableInfo.Column("conveniences", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsHotelDb.put("point", new TableInfo.Column("point", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsHotelDb.put("profit", new TableInfo.Column("profit", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsHotelDb.put("checkIn", new TableInfo.Column("checkIn", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsHotelDb.put("checkOut", new TableInfo.Column("checkOut", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsHotelDb.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         final HashSet<TableInfo.ForeignKey> _foreignKeysHotelDb = new HashSet<TableInfo.ForeignKey>(0);
         final HashSet<TableInfo.Index> _indicesHotelDb = new HashSet<TableInfo.Index>(0);
@@ -139,9 +141,10 @@ public final class HotelDatabase_Impl extends HotelDatabase {
                   + " Expected:\n" + _infoBookmarkDb + "\n"
                   + " Found:\n" + _existingBookmarkDb);
         }
-        final HashMap<String, TableInfo.Column> _columnsPictureDb = new HashMap<String, TableInfo.Column>(3);
+        final HashMap<String, TableInfo.Column> _columnsPictureDb = new HashMap<String, TableInfo.Column>(4);
         _columnsPictureDb.put("ID_Hotel", new TableInfo.Column("ID_Hotel", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsPictureDb.put("picture", new TableInfo.Column("picture", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsPictureDb.put("picture_onwer", new TableInfo.Column("picture_onwer", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsPictureDb.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         final HashSet<TableInfo.ForeignKey> _foreignKeysPictureDb = new HashSet<TableInfo.ForeignKey>(0);
         final HashSet<TableInfo.Index> _indicesPictureDb = new HashSet<TableInfo.Index>(0);
@@ -186,7 +189,7 @@ public final class HotelDatabase_Impl extends HotelDatabase {
                   + " Expected:\n" + _infoPurchaseDb + "\n"
                   + " Found:\n" + _existingPurchaseDb);
         }
-        final HashMap<String, TableInfo.Column> _columnsRoomDb = new HashMap<String, TableInfo.Column>(10);
+        final HashMap<String, TableInfo.Column> _columnsRoomDb = new HashMap<String, TableInfo.Column>(11);
         _columnsRoomDb.put("ID_Hotel", new TableInfo.Column("ID_Hotel", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsRoomDb.put("quantity", new TableInfo.Column("quantity", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsRoomDb.put("available", new TableInfo.Column("available", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -196,6 +199,7 @@ public final class HotelDatabase_Impl extends HotelDatabase {
         _columnsRoomDb.put("bedQuantity", new TableInfo.Column("bedQuantity", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsRoomDb.put("checkIn", new TableInfo.Column("checkIn", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsRoomDb.put("checkOut", new TableInfo.Column("checkOut", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsRoomDb.put("benefit", new TableInfo.Column("benefit", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsRoomDb.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         final HashSet<TableInfo.ForeignKey> _foreignKeysRoomDb = new HashSet<TableInfo.ForeignKey>(0);
         final HashSet<TableInfo.Index> _indicesRoomDb = new HashSet<TableInfo.Index>(0);
@@ -230,7 +234,7 @@ public final class HotelDatabase_Impl extends HotelDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "dec4c6fafe9eadba59306360dcae8632", "d652568179e5ac753e26023cc3d6279c");
+    }, "deef67eb6af3236f8a1a51029986e3e2", "60ded5325ef2a308b662dd792bc3ba81");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;

@@ -1,10 +1,18 @@
 package com.example.angodafake
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.RatingBar
+import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.angodafake.db.Hotel
+import com.example.angodafake.db.HotelDatabase
+
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 /**
@@ -17,6 +25,8 @@ class Hotel_infor : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var hotel: Hotel
+    private lateinit var hotel_db: HotelDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -30,7 +40,75 @@ class Hotel_infor : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.custom_hotel_detail, container, false)
+        val view = inflater.inflate(R.layout.custom_hotel_detail, container, false)
+        val args = arguments
+        val itemPosition = args?.getInt("hotelPosition") ?: -1
+        val hotelIds = args?.getIntArray("hotelIds")
+        val searchText = args?.getString("searchText")
+
+        val nameTextView = view.findViewById<TextView>(R.id.hotel_name)
+        val locationTextView = view.findViewById<TextView>(R.id.address_hotel)
+        val pointView = view.findViewById<TextView>(R.id.point)
+        val img: ImageView = view.findViewById(R.id.hotel_image)
+        val rateStatus: TextView = view.findViewById(R.id.rateStatus)
+        val description: TextView = view.findViewById(R.id.description)
+        val convenience: TextView = view.findViewById(R.id.convenience)
+        val price_room: TextView = view.findViewById(R.id.price_room)
+        val nameOwner: TextView = view.findViewById(R.id.nameOwner)
+        val ratingBar: RatingBar = view.findViewById(R.id.ratingBar)
+        val checkIn: TextView = view.findViewById(R.id.time_In)
+        val checkOut: TextView = view.findViewById(R.id.time_Out)
+
+
+        hotel_db = HotelDatabase.getInstance(requireContext())
+
+        hotel =  hotel_db.HotelDAO().getHotelByID(itemPosition)
+
+        var Picture = hotel_db.PictureDAO().getPictureByHotelID(hotel.id)
+        val rooms = hotel_db.RoomDAO().getRoomsByHotelID(hotel.id)
+        val user = hotel_db.UserDAO().getUserByID(hotel.id)
+        val lowestPrice = rooms.minByOrNull { it.price }?.price ?: Double.MAX_VALUE
+
+        val idPicture = requireContext().resources.getIdentifier(Picture.picture, "drawable", requireContext().packageName)
+        img.setImageResource(idPicture)
+        nameTextView.text = hotel.name
+        locationTextView.text = hotel.locationDetail
+        pointView.text = hotel.point.toString()
+        description.text = hotel.description
+        convenience.text = hotel.convenience
+        checkIn.text = hotel.checkIn
+        checkOut.text = hotel.checkOut
+        price_room.text = lowestPrice.toString() + " đ"
+        nameOwner.text = user.name
+        ratingBar.rating = hotel.point.toFloat() / 2
+
+        rateStatus.text = when (hotel.point.toInt()){
+            in 0 until 3 -> { "Cực tệ" }
+            in 3 until 5 -> { "Tệ" }
+            in 5 until 6 -> { "Trung bình" }
+            in 6 until 8 -> { "Tốt" }
+            in 8 until 9 -> { "Rất tốt" }
+            else -> { "Tuyệt vời" }
+        }
+
+        view.findViewById<ImageView>(R.id.imageView4).setOnClickListener {
+            val arg = Bundle()
+            arg.putIntArray("hotelIds", hotelIds)
+            arg.putString("searchText", searchText)
+
+            // Khởi tạo Fragment Filter và đính kèm Bundle
+            val filterFragment = Filter()
+            filterFragment.arguments = arg
+
+            // Thay thế Fragment hiện tại bằng Fragment Filter
+            val fragmentManager = requireActivity().supportFragmentManager
+            fragmentManager.beginTransaction()
+                .replace(R.id.frameLayout, filterFragment)
+                .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
+                .commit()
+        }
+
+        return view
     }
 
     companion object {

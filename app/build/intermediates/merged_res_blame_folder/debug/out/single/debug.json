@@ -8,6 +8,10 @@
         "source": "com.example.angodafake.app-main-6:/layout/custom_hotel_detail.xml"
     },
     {
+        "merged": "com.example.angodafake.app-merged_res-4:/drawable_img_4.png.flat",
+        "source": "com.example.angodafake.app-main-6:/drawable/img_4.png"
+    },
+    {
         "merged": "com.example.angodafake.app-merged_res-4:/drawable_b48f9f78ec2cf2bbe745f28a2f5f5541.jpg.flat",
         "source": "com.example.angodafake.app-main-6:/drawable/b48f9f78ec2cf2bbe745f28a2f5f5541.jpg"
     },
@@ -96,6 +100,10 @@
         "source": "com.example.angodafake.app-main-6:/mipmap-xxxhdpi/ic_launcher_round.webp"
     },
     {
+        "merged": "com.example.angodafake.app-merged_res-4:/drawable_img_1.png.flat",
+        "source": "com.example.angodafake.app-main-6:/drawable/img_1.png"
+    },
+    {
         "merged": "com.example.angodafake.app-merged_res-4:/menu_nav_bar.xml.flat",
         "source": "com.example.angodafake.app-main-6:/menu/nav_bar.xml"
     },
@@ -114,6 +122,10 @@
     {
         "merged": "com.example.angodafake.app-merged_res-4:/layout_fragment_bookmark.xml.flat",
         "source": "com.example.angodafake.app-main-6:/layout/fragment_bookmark.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-merged_res-4:/drawable_img_2.png.flat",
+        "source": "com.example.angodafake.app-main-6:/drawable/img_2.png"
     },
     {
         "merged": "com.example.angodafake.app-merged_res-4:/layout_fragment_my_profile.xml.flat",
@@ -152,6 +164,10 @@
         "source": "com.example.angodafake.app-main-6:/layout/fragment_home_filter_detail.xml"
     },
     {
+        "merged": "com.example.angodafake.app-merged_res-4:/drawable_img_5.png.flat",
+        "source": "com.example.angodafake.app-main-6:/drawable/img_5.png"
+    },
+    {
         "merged": "com.example.angodafake.app-merged_res-4:/drawable_quang_ba_khach_san.jpeg.flat",
         "source": "com.example.angodafake.app-main-6:/drawable/quang_ba_khach_san.jpeg"
     },
@@ -162,6 +178,10 @@
     {
         "merged": "com.example.angodafake.app-merged_res-4:/layout_custom_hotel.xml.flat",
         "source": "com.example.angodafake.app-main-6:/layout/custom_hotel.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-merged_res-4:/drawable_img_3.png.flat",
+        "source": "com.example.angodafake.app-main-6:/drawable/img_3.png"
     },
     {
         "merged": "com.example.angodafake.app-merged_res-4:/drawable_rounded_button_delete.xml.flat",
@@ -214,6 +234,10 @@
     {
         "merged": "com.example.angodafake.app-merged_res-4:/layout_test.xml.flat",
         "source": "com.example.angodafake.app-main-6:/layout/test.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-merged_res-4:/drawable_img.png.flat",
+        "source": "com.example.angodafake.app-main-6:/drawable/img.png"
     },
     {
         "merged": "com.example.angodafake.app-merged_res-4:/drawable_baseline_location_on_24.xml.flat",

@@ -134,7 +134,27 @@ class Filter : Fragment() {
         val hotelsRecyclerView = view.findViewById<RecyclerView>(R.id.contactsRV)
         hotelAdapter = ArrayList(listHotels)
         val fragmentManager = requireActivity().supportFragmentManager
-        adapter = HotelAdapter(requireContext(),fragmentManager, hotelAdapter)
+        adapter = HotelAdapter(requireContext(), hotelAdapter)
+        adapter.setOnItemClickListener(object : HotelAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                val clickedHotel = hotelAdapter[position]
+
+                val arg = Bundle()
+                arg.putIntArray("hotelIds", hotelIds)
+                arg.putString("searchText", searchText)
+                arg.putInt("hotelPosition", clickedHotel.id)
+
+                // Khởi tạo Fragment Filter và đính kèm Bundle
+                val Fragment = Hotel_infor()
+                Fragment.arguments = arg
+
+                val fragmentManager = requireActivity().supportFragmentManager
+                fragmentManager.beginTransaction()
+                    .replace(R.id.frameLayout, Fragment)
+                    .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
+                    .commit()
+            }
+        })
         hotelsRecyclerView.adapter = adapter
         layoutManager = LinearLayoutManager(requireContext())
         hotelsRecyclerView.layoutManager = layoutManager

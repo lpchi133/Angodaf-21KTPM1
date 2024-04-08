@@ -33,7 +33,7 @@ public final class PictureDAO_Impl implements PictureDAO {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR ABORT INTO `picture_db` (`ID_Hotel`,`picture`,`id`) VALUES (?,?,nullif(?, 0))";
+        return "INSERT OR ABORT INTO `picture_db` (`ID_Hotel`,`picture`,`picture_onwer`,`id`) VALUES (?,?,?,nullif(?, 0))";
       }
 
       @Override
@@ -45,7 +45,12 @@ public final class PictureDAO_Impl implements PictureDAO {
         } else {
           statement.bindString(2, entity.getPicture());
         }
-        statement.bindLong(3, entity.getId());
+        if (entity.getPicture_onwer() == null) {
+          statement.bindNull(3);
+        } else {
+          statement.bindString(3, entity.getPicture_onwer());
+        }
+        statement.bindLong(4, entity.getId());
       }
     };
     this.__deletionAdapterOfPicture = new EntityDeletionOrUpdateAdapter<Picture>(__db) {
@@ -65,7 +70,7 @@ public final class PictureDAO_Impl implements PictureDAO {
       @Override
       @NonNull
       protected String createQuery() {
-        return "UPDATE OR ABORT `picture_db` SET `ID_Hotel` = ?,`picture` = ?,`id` = ? WHERE `id` = ?";
+        return "UPDATE OR ABORT `picture_db` SET `ID_Hotel` = ?,`picture` = ?,`picture_onwer` = ?,`id` = ? WHERE `id` = ?";
       }
 
       @Override
@@ -77,8 +82,13 @@ public final class PictureDAO_Impl implements PictureDAO {
         } else {
           statement.bindString(2, entity.getPicture());
         }
-        statement.bindLong(3, entity.getId());
+        if (entity.getPicture_onwer() == null) {
+          statement.bindNull(3);
+        } else {
+          statement.bindString(3, entity.getPicture_onwer());
+        }
         statement.bindLong(4, entity.getId());
+        statement.bindLong(5, entity.getId());
       }
     };
   }
@@ -128,6 +138,7 @@ public final class PictureDAO_Impl implements PictureDAO {
     try {
       final int _cursorIndexOfIDHotel = CursorUtil.getColumnIndexOrThrow(_cursor, "ID_Hotel");
       final int _cursorIndexOfPicture = CursorUtil.getColumnIndexOrThrow(_cursor, "picture");
+      final int _cursorIndexOfPictureOnwer = CursorUtil.getColumnIndexOrThrow(_cursor, "picture_onwer");
       final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
       final List<Picture> _result = new ArrayList<Picture>(_cursor.getCount());
       while (_cursor.moveToNext()) {
@@ -140,7 +151,13 @@ public final class PictureDAO_Impl implements PictureDAO {
         } else {
           _tmpPicture = _cursor.getString(_cursorIndexOfPicture);
         }
-        _item = new Picture(_tmpID_Hotel,_tmpPicture);
+        final String _tmpPicture_onwer;
+        if (_cursor.isNull(_cursorIndexOfPictureOnwer)) {
+          _tmpPicture_onwer = null;
+        } else {
+          _tmpPicture_onwer = _cursor.getString(_cursorIndexOfPictureOnwer);
+        }
+        _item = new Picture(_tmpID_Hotel,_tmpPicture,_tmpPicture_onwer);
         final int _tmpId;
         _tmpId = _cursor.getInt(_cursorIndexOfId);
         _item.setId(_tmpId);
@@ -164,6 +181,7 @@ public final class PictureDAO_Impl implements PictureDAO {
     try {
       final int _cursorIndexOfIDHotel = CursorUtil.getColumnIndexOrThrow(_cursor, "ID_Hotel");
       final int _cursorIndexOfPicture = CursorUtil.getColumnIndexOrThrow(_cursor, "picture");
+      final int _cursorIndexOfPictureOnwer = CursorUtil.getColumnIndexOrThrow(_cursor, "picture_onwer");
       final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
       final Picture _result;
       if (_cursor.moveToFirst()) {
@@ -175,7 +193,13 @@ public final class PictureDAO_Impl implements PictureDAO {
         } else {
           _tmpPicture = _cursor.getString(_cursorIndexOfPicture);
         }
-        _result = new Picture(_tmpID_Hotel,_tmpPicture);
+        final String _tmpPicture_onwer;
+        if (_cursor.isNull(_cursorIndexOfPictureOnwer)) {
+          _tmpPicture_onwer = null;
+        } else {
+          _tmpPicture_onwer = _cursor.getString(_cursorIndexOfPictureOnwer);
+        }
+        _result = new Picture(_tmpID_Hotel,_tmpPicture,_tmpPicture_onwer);
         final int _tmpId;
         _tmpId = _cursor.getInt(_cursorIndexOfId);
         _result.setId(_tmpId);

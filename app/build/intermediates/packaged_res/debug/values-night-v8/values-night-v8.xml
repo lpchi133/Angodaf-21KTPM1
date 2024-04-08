@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Base.Theme.AngodaFake" parent="Theme.AppCompat.DayNight.DarkActionBar">
-    </style>
     <style name="PopupAnimation" parent="@android:style/Animation">
         <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
         <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
     </style>
     <style name="Theme.AngodaFake" parent="Base.Theme.AngodaFake"/>
-    <style name="Theme.MyApp" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.MyApp" parent="Theme.AppCompat.DayNight.DarkActionBar">
         
         <item name="colorPrimary">@color/bluee</item>
         <item name="colorOnPrimary">@color/white</item>

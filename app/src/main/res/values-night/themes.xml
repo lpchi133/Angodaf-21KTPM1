@@ -1,7 +1,5 @@
 <resources >
-    <style name="Base.Theme.AngodaFake" parent="Theme.AppCompat.DayNight.DarkActionBar">
-    </style>
-    <style name="Theme.MyApp" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.MyApp" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <!-- ... -->
         <item name="colorPrimary">@color/bluee</item>
         <item name="colorOnPrimary">@color/white</item>

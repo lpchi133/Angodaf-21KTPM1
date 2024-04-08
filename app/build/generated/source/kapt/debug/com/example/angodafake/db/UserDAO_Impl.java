@@ -306,6 +306,105 @@ public final class UserDAO_Impl implements UserDAO {
     }
   }
 
+  @Override
+  public User getUserByID(final int user_id) {
+    final String _sql = "SELECT * FROM user_db WHERE id = ?";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
+    int _argIndex = 1;
+    _statement.bindLong(_argIndex, user_id);
+    __db.assertNotSuspendingTransaction();
+    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+    try {
+      final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
+      final int _cursorIndexOfDob = CursorUtil.getColumnIndexOrThrow(_cursor, "dob");
+      final int _cursorIndexOfGender = CursorUtil.getColumnIndexOrThrow(_cursor, "gender");
+      final int _cursorIndexOfNumber = CursorUtil.getColumnIndexOrThrow(_cursor, "number");
+      final int _cursorIndexOfEmail = CursorUtil.getColumnIndexOrThrow(_cursor, "email");
+      final int _cursorIndexOfCountry = CursorUtil.getColumnIndexOrThrow(_cursor, "country");
+      final int _cursorIndexOfCardNumber = CursorUtil.getColumnIndexOrThrow(_cursor, "cardNumber");
+      final int _cursorIndexOfCardName = CursorUtil.getColumnIndexOrThrow(_cursor, "cardName");
+      final int _cursorIndexOfPoint = CursorUtil.getColumnIndexOrThrow(_cursor, "point");
+      final int _cursorIndexOfUserName = CursorUtil.getColumnIndexOrThrow(_cursor, "userName");
+      final int _cursorIndexOfPassword = CursorUtil.getColumnIndexOrThrow(_cursor, "password");
+      final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
+      final User _result;
+      if (_cursor.moveToFirst()) {
+        final String _tmpName;
+        if (_cursor.isNull(_cursorIndexOfName)) {
+          _tmpName = null;
+        } else {
+          _tmpName = _cursor.getString(_cursorIndexOfName);
+        }
+        final String _tmpDob;
+        if (_cursor.isNull(_cursorIndexOfDob)) {
+          _tmpDob = null;
+        } else {
+          _tmpDob = _cursor.getString(_cursorIndexOfDob);
+        }
+        final String _tmpGender;
+        if (_cursor.isNull(_cursorIndexOfGender)) {
+          _tmpGender = null;
+        } else {
+          _tmpGender = _cursor.getString(_cursorIndexOfGender);
+        }
+        final String _tmpNumber;
+        if (_cursor.isNull(_cursorIndexOfNumber)) {
+          _tmpNumber = null;
+        } else {
+          _tmpNumber = _cursor.getString(_cursorIndexOfNumber);
+        }
+        final String _tmpEmail;
+        if (_cursor.isNull(_cursorIndexOfEmail)) {
+          _tmpEmail = null;
+        } else {
+          _tmpEmail = _cursor.getString(_cursorIndexOfEmail);
+        }
+        final String _tmpCountry;
+        if (_cursor.isNull(_cursorIndexOfCountry)) {
+          _tmpCountry = null;
+        } else {
+          _tmpCountry = _cursor.getString(_cursorIndexOfCountry);
+        }
+        final String _tmpCardNumber;
+        if (_cursor.isNull(_cursorIndexOfCardNumber)) {
+          _tmpCardNumber = null;
+        } else {
+          _tmpCardNumber = _cursor.getString(_cursorIndexOfCardNumber);
+        }
+        final String _tmpCardName;
+        if (_cursor.isNull(_cursorIndexOfCardName)) {
+          _tmpCardName = null;
+        } else {
+          _tmpCardName = _cursor.getString(_cursorIndexOfCardName);
+        }
+        final int _tmpPoint;
+        _tmpPoint = _cursor.getInt(_cursorIndexOfPoint);
+        final String _tmpUserName;
+        if (_cursor.isNull(_cursorIndexOfUserName)) {
+          _tmpUserName = null;
+        } else {
+          _tmpUserName = _cursor.getString(_cursorIndexOfUserName);
+        }
+        final String _tmpPassword;
+        if (_cursor.isNull(_cursorIndexOfPassword)) {
+          _tmpPassword = null;
+        } else {
+          _tmpPassword = _cursor.getString(_cursorIndexOfPassword);
+        }
+        _result = new User(_tmpName,_tmpDob,_tmpGender,_tmpNumber,_tmpEmail,_tmpCountry,_tmpCardNumber,_tmpCardName,_tmpPoint,_tmpUserName,_tmpPassword);
+        final int _tmpId;
+        _tmpId = _cursor.getInt(_cursorIndexOfId);
+        _result.setId(_tmpId);
+      } else {
+        _result = null;
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
+
   @NonNull
   public static List<Class<?>> getRequiredConverters() {
     return Collections.emptyList();

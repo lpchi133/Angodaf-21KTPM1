@@ -33,7 +33,7 @@ public final class HotelDAO_Impl implements HotelDAO {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR ABORT INTO `hotel_db` (`ID_Owner`,`name`,`locationDetail`,`city`,`description`,`conveniences`,`point`,`profit`,`id`) VALUES (?,?,?,?,?,?,?,?,nullif(?, 0))";
+        return "INSERT OR ABORT INTO `hotel_db` (`ID_Owner`,`name`,`locationDetail`,`city`,`description`,`conveniences`,`point`,`profit`,`checkIn`,`checkOut`,`id`) VALUES (?,?,?,?,?,?,?,?,?,?,nullif(?, 0))";
       }
 
       @Override
@@ -67,7 +67,17 @@ public final class HotelDAO_Impl implements HotelDAO {
         }
         statement.bindDouble(7, entity.getPoint());
         statement.bindDouble(8, entity.getProfit());
-        statement.bindLong(9, entity.getId());
+        if (entity.getCheckIn() == null) {
+          statement.bindNull(9);
+        } else {
+          statement.bindString(9, entity.getCheckIn());
+        }
+        if (entity.getCheckOut() == null) {
+          statement.bindNull(10);
+        } else {
+          statement.bindString(10, entity.getCheckOut());
+        }
+        statement.bindLong(11, entity.getId());
       }
     };
     this.__deletionAdapterOfHotel = new EntityDeletionOrUpdateAdapter<Hotel>(__db) {
@@ -87,7 +97,7 @@ public final class HotelDAO_Impl implements HotelDAO {
       @Override
       @NonNull
       protected String createQuery() {
-        return "UPDATE OR ABORT `hotel_db` SET `ID_Owner` = ?,`name` = ?,`locationDetail` = ?,`city` = ?,`description` = ?,`conveniences` = ?,`point` = ?,`profit` = ?,`id` = ? WHERE `id` = ?";
+        return "UPDATE OR ABORT `hotel_db` SET `ID_Owner` = ?,`name` = ?,`locationDetail` = ?,`city` = ?,`description` = ?,`conveniences` = ?,`point` = ?,`profit` = ?,`checkIn` = ?,`checkOut` = ?,`id` = ? WHERE `id` = ?";
       }
 
       @Override
@@ -121,8 +131,18 @@ public final class HotelDAO_Impl implements HotelDAO {
         }
         statement.bindDouble(7, entity.getPoint());
         statement.bindDouble(8, entity.getProfit());
-        statement.bindLong(9, entity.getId());
-        statement.bindLong(10, entity.getId());
+        if (entity.getCheckIn() == null) {
+          statement.bindNull(9);
+        } else {
+          statement.bindString(9, entity.getCheckIn());
+        }
+        if (entity.getCheckOut() == null) {
+          statement.bindNull(10);
+        } else {
+          statement.bindString(10, entity.getCheckOut());
+        }
+        statement.bindLong(11, entity.getId());
+        statement.bindLong(12, entity.getId());
       }
     };
   }
@@ -178,6 +198,8 @@ public final class HotelDAO_Impl implements HotelDAO {
       final int _cursorIndexOfConvenience = CursorUtil.getColumnIndexOrThrow(_cursor, "conveniences");
       final int _cursorIndexOfPoint = CursorUtil.getColumnIndexOrThrow(_cursor, "point");
       final int _cursorIndexOfProfit = CursorUtil.getColumnIndexOrThrow(_cursor, "profit");
+      final int _cursorIndexOfCheckIn = CursorUtil.getColumnIndexOrThrow(_cursor, "checkIn");
+      final int _cursorIndexOfCheckOut = CursorUtil.getColumnIndexOrThrow(_cursor, "checkOut");
       final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
       final List<Hotel> _result = new ArrayList<Hotel>(_cursor.getCount());
       while (_cursor.moveToNext()) {
@@ -218,7 +240,19 @@ public final class HotelDAO_Impl implements HotelDAO {
         _tmpPoint = _cursor.getDouble(_cursorIndexOfPoint);
         final double _tmpProfit;
         _tmpProfit = _cursor.getDouble(_cursorIndexOfProfit);
-        _item = new Hotel(_tmpID_Owner,_tmpName,_tmpLocationDetail,_tmpCity,_tmpDescription,_tmpConvenience,_tmpPoint,_tmpProfit);
+        final String _tmpCheckIn;
+        if (_cursor.isNull(_cursorIndexOfCheckIn)) {
+          _tmpCheckIn = null;
+        } else {
+          _tmpCheckIn = _cursor.getString(_cursorIndexOfCheckIn);
+        }
+        final String _tmpCheckOut;
+        if (_cursor.isNull(_cursorIndexOfCheckOut)) {
+          _tmpCheckOut = null;
+        } else {
+          _tmpCheckOut = _cursor.getString(_cursorIndexOfCheckOut);
+        }
+        _item = new Hotel(_tmpID_Owner,_tmpName,_tmpLocationDetail,_tmpCity,_tmpDescription,_tmpConvenience,_tmpPoint,_tmpProfit,_tmpCheckIn,_tmpCheckOut);
         final int _tmpId;
         _tmpId = _cursor.getInt(_cursorIndexOfId);
         _item.setId(_tmpId);
@@ -248,6 +282,8 @@ public final class HotelDAO_Impl implements HotelDAO {
       final int _cursorIndexOfConvenience = CursorUtil.getColumnIndexOrThrow(_cursor, "conveniences");
       final int _cursorIndexOfPoint = CursorUtil.getColumnIndexOrThrow(_cursor, "point");
       final int _cursorIndexOfProfit = CursorUtil.getColumnIndexOrThrow(_cursor, "profit");
+      final int _cursorIndexOfCheckIn = CursorUtil.getColumnIndexOrThrow(_cursor, "checkIn");
+      final int _cursorIndexOfCheckOut = CursorUtil.getColumnIndexOrThrow(_cursor, "checkOut");
       final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
       final Hotel _result;
       if (_cursor.moveToFirst()) {
@@ -287,7 +323,19 @@ public final class HotelDAO_Impl implements HotelDAO {
         _tmpPoint = _cursor.getDouble(_cursorIndexOfPoint);
         final double _tmpProfit;
         _tmpProfit = _cursor.getDouble(_cursorIndexOfProfit);
-        _result = new Hotel(_tmpID_Owner,_tmpName,_tmpLocationDetail,_tmpCity,_tmpDescription,_tmpConvenience,_tmpPoint,_tmpProfit);
+        final String _tmpCheckIn;
+        if (_cursor.isNull(_cursorIndexOfCheckIn)) {
+          _tmpCheckIn = null;
+        } else {
+          _tmpCheckIn = _cursor.getString(_cursorIndexOfCheckIn);
+        }
+        final String _tmpCheckOut;
+        if (_cursor.isNull(_cursorIndexOfCheckOut)) {
+          _tmpCheckOut = null;
+        } else {
+          _tmpCheckOut = _cursor.getString(_cursorIndexOfCheckOut);
+        }
+        _result = new Hotel(_tmpID_Owner,_tmpName,_tmpLocationDetail,_tmpCity,_tmpDescription,_tmpConvenience,_tmpPoint,_tmpProfit,_tmpCheckIn,_tmpCheckOut);
         final int _tmpId;
         _tmpId = _cursor.getInt(_cursorIndexOfId);
         _result.setId(_tmpId);
@@ -322,6 +370,8 @@ public final class HotelDAO_Impl implements HotelDAO {
       final int _cursorIndexOfConvenience = CursorUtil.getColumnIndexOrThrow(_cursor, "conveniences");
       final int _cursorIndexOfPoint = CursorUtil.getColumnIndexOrThrow(_cursor, "point");
       final int _cursorIndexOfProfit = CursorUtil.getColumnIndexOrThrow(_cursor, "profit");
+      final int _cursorIndexOfCheckIn = CursorUtil.getColumnIndexOrThrow(_cursor, "checkIn");
+      final int _cursorIndexOfCheckOut = CursorUtil.getColumnIndexOrThrow(_cursor, "checkOut");
       final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
       final Hotel _result;
       if (_cursor.moveToFirst()) {
@@ -361,7 +411,19 @@ public final class HotelDAO_Impl implements HotelDAO {
         _tmpPoint = _cursor.getDouble(_cursorIndexOfPoint);
         final double _tmpProfit;
         _tmpProfit = _cursor.getDouble(_cursorIndexOfProfit);
-        _result = new Hotel(_tmpID_Owner,_tmpName,_tmpLocationDetail,_tmpCity,_tmpDescription,_tmpConvenience,_tmpPoint,_tmpProfit);
+        final String _tmpCheckIn;
+        if (_cursor.isNull(_cursorIndexOfCheckIn)) {
+          _tmpCheckIn = null;
+        } else {
+          _tmpCheckIn = _cursor.getString(_cursorIndexOfCheckIn);
+        }
+        final String _tmpCheckOut;
+        if (_cursor.isNull(_cursorIndexOfCheckOut)) {
+          _tmpCheckOut = null;
+        } else {
+          _tmpCheckOut = _cursor.getString(_cursorIndexOfCheckOut);
+        }
+        _result = new Hotel(_tmpID_Owner,_tmpName,_tmpLocationDetail,_tmpCity,_tmpDescription,_tmpConvenience,_tmpPoint,_tmpProfit,_tmpCheckIn,_tmpCheckOut);
         final int _tmpId;
         _tmpId = _cursor.getInt(_cursorIndexOfId);
         _result.setId(_tmpId);
@@ -396,6 +458,8 @@ public final class HotelDAO_Impl implements HotelDAO {
       final int _cursorIndexOfConvenience = CursorUtil.getColumnIndexOrThrow(_cursor, "conveniences");
       final int _cursorIndexOfPoint = CursorUtil.getColumnIndexOrThrow(_cursor, "point");
       final int _cursorIndexOfProfit = CursorUtil.getColumnIndexOrThrow(_cursor, "profit");
+      final int _cursorIndexOfCheckIn = CursorUtil.getColumnIndexOrThrow(_cursor, "checkIn");
+      final int _cursorIndexOfCheckOut = CursorUtil.getColumnIndexOrThrow(_cursor, "checkOut");
       final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
       final Hotel _result;
       if (_cursor.moveToFirst()) {
@@ -435,7 +499,19 @@ public final class HotelDAO_Impl implements HotelDAO {
         _tmpPoint = _cursor.getDouble(_cursorIndexOfPoint);
         final double _tmpProfit;
         _tmpProfit = _cursor.getDouble(_cursorIndexOfProfit);
-        _result = new Hotel(_tmpID_Owner,_tmpName,_tmpLocationDetail,_tmpCity,_tmpDescription,_tmpConvenience,_tmpPoint,_tmpProfit);
+        final String _tmpCheckIn;
+        if (_cursor.isNull(_cursorIndexOfCheckIn)) {
+          _tmpCheckIn = null;
+        } else {
+          _tmpCheckIn = _cursor.getString(_cursorIndexOfCheckIn);
+        }
+        final String _tmpCheckOut;
+        if (_cursor.isNull(_cursorIndexOfCheckOut)) {
+          _tmpCheckOut = null;
+        } else {
+          _tmpCheckOut = _cursor.getString(_cursorIndexOfCheckOut);
+        }
+        _result = new Hotel(_tmpID_Owner,_tmpName,_tmpLocationDetail,_tmpCity,_tmpDescription,_tmpConvenience,_tmpPoint,_tmpProfit,_tmpCheckIn,_tmpCheckOut);
         final int _tmpId;
         _tmpId = _cursor.getInt(_cursorIndexOfId);
         _result.setId(_tmpId);

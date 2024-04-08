@@ -77,32 +77,35 @@
         <TextView
             android:id="@+id/filter"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:text="      Bộ lọc ∨    |"
             android:textColor="#130101"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/price"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="31dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="      Giá tiền ∨   |"
             android:textColor="#130101"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/sort"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="31dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="Sắp xếp ∨"
             android:textColor="#130101"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

@@ -24,7 +24,10 @@ public final class CustomHotelBinding implements ViewBinding {
   public final TextView Location;
 
   @NonNull
-  public final TextView convenience;
+  public final TextView cmt;
+
+  @NonNull
+  public final ImageView home;
 
   @NonNull
   public final TextView hotelName;
@@ -36,10 +39,19 @@ public final class CustomHotelBinding implements ViewBinding {
   public final ImageView imageView;
 
   @NonNull
+  public final ImageView imageView10;
+
+  @NonNull
+  public final ImageView imageView11;
+
+  @NonNull
   public final ImageView imageView5;
 
   @NonNull
   public final ImageView imageView6;
+
+  @NonNull
+  public final ImageView imageView9;
 
   @NonNull
   public final TextView point;
@@ -48,31 +60,49 @@ public final class CustomHotelBinding implements ViewBinding {
   public final TextView priceRoom;
 
   @NonNull
-  public final TextView quaCM;
+  public final TextView rateStatus;
 
   @NonNull
-  public final TextView rateStatus;
+  public final TextView text;
+
+  @NonNull
+  public final TextView text1;
+
+  @NonNull
+  public final TextView text2;
+
+  @NonNull
+  public final TextView text3;
 
   @NonNull
   public final TextView textView;
 
   private CustomHotelBinding(@NonNull ConstraintLayout rootView, @NonNull TextView Location,
-      @NonNull TextView convenience, @NonNull TextView hotelName, @NonNull ImageView icon,
-      @NonNull ImageView imageView, @NonNull ImageView imageView5, @NonNull ImageView imageView6,
-      @NonNull TextView point, @NonNull TextView priceRoom, @NonNull TextView quaCM,
-      @NonNull TextView rateStatus, @NonNull TextView textView) {
+      @NonNull TextView cmt, @NonNull ImageView home, @NonNull TextView hotelName,
+      @NonNull ImageView icon, @NonNull ImageView imageView, @NonNull ImageView imageView10,
+      @NonNull ImageView imageView11, @NonNull ImageView imageView5, @NonNull ImageView imageView6,
+      @NonNull ImageView imageView9, @NonNull TextView point, @NonNull TextView priceRoom,
+      @NonNull TextView rateStatus, @NonNull TextView text, @NonNull TextView text1,
+      @NonNull TextView text2, @NonNull TextView text3, @NonNull TextView textView) {
     this.rootView = rootView;
     this.Location = Location;
-    this.convenience = convenience;
+    this.cmt = cmt;
+    this.home = home;
     this.hotelName = hotelName;
     this.icon = icon;
     this.imageView = imageView;
+    this.imageView10 = imageView10;
+    this.imageView11 = imageView11;
     this.imageView5 = imageView5;
     this.imageView6 = imageView6;
+    this.imageView9 = imageView9;
     this.point = point;
     this.priceRoom = priceRoom;
-    this.quaCM = quaCM;
     this.rateStatus = rateStatus;
+    this.text = text;
+    this.text1 = text1;
+    this.text2 = text2;
+    this.text3 = text3;
     this.textView = textView;
   }
 
@@ -109,9 +139,15 @@ public final class CustomHotelBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.convenience;
-      TextView convenience = ViewBindings.findChildViewById(rootView, id);
-      if (convenience == null) {
+      id = R.id.cmt;
+      TextView cmt = ViewBindings.findChildViewById(rootView, id);
+      if (cmt == null) {
+        break missingId;
+      }
+
+      id = R.id.home;
+      ImageView home = ViewBindings.findChildViewById(rootView, id);
+      if (home == null) {
         break missingId;
       }
 
@@ -133,6 +169,18 @@ public final class CustomHotelBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.imageView10;
+      ImageView imageView10 = ViewBindings.findChildViewById(rootView, id);
+      if (imageView10 == null) {
+        break missingId;
+      }
+
+      id = R.id.imageView11;
+      ImageView imageView11 = ViewBindings.findChildViewById(rootView, id);
+      if (imageView11 == null) {
+        break missingId;
+      }
+
       id = R.id.imageView5;
       ImageView imageView5 = ViewBindings.findChildViewById(rootView, id);
       if (imageView5 == null) {
@@ -142,6 +190,12 @@ public final class CustomHotelBinding implements ViewBinding {
       id = R.id.imageView6;
       ImageView imageView6 = ViewBindings.findChildViewById(rootView, id);
       if (imageView6 == null) {
+        break missingId;
+      }
+
+      id = R.id.imageView9;
+      ImageView imageView9 = ViewBindings.findChildViewById(rootView, id);
+      if (imageView9 == null) {
         break missingId;
       }
 
@@ -157,15 +211,33 @@ public final class CustomHotelBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.quaCM;
-      TextView quaCM = ViewBindings.findChildViewById(rootView, id);
-      if (quaCM == null) {
-        break missingId;
-      }
-
       id = R.id.rateStatus;
       TextView rateStatus = ViewBindings.findChildViewById(rootView, id);
       if (rateStatus == null) {
+        break missingId;
+      }
+
+      id = R.id.text;
+      TextView text = ViewBindings.findChildViewById(rootView, id);
+      if (text == null) {
+        break missingId;
+      }
+
+      id = R.id.text1;
+      TextView text1 = ViewBindings.findChildViewById(rootView, id);
+      if (text1 == null) {
+        break missingId;
+      }
+
+      id = R.id.text2;
+      TextView text2 = ViewBindings.findChildViewById(rootView, id);
+      if (text2 == null) {
+        break missingId;
+      }
+
+      id = R.id.text3;
+      TextView text3 = ViewBindings.findChildViewById(rootView, id);
+      if (text3 == null) {
         break missingId;
       }
 
@@ -175,8 +247,9 @@ public final class CustomHotelBinding implements ViewBinding {
         break missingId;
       }
 
-      return new CustomHotelBinding((ConstraintLayout) rootView, Location, convenience, hotelName,
-          icon, imageView, imageView5, imageView6, point, priceRoom, quaCM, rateStatus, textView);
+      return new CustomHotelBinding((ConstraintLayout) rootView, Location, cmt, home, hotelName,
+          icon, imageView, imageView10, imageView11, imageView5, imageView6, imageView9, point,
+          priceRoom, rateStatus, text, text1, text2, text3, textView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

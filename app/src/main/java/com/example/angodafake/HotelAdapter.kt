@@ -14,7 +14,7 @@ import com.example.angodafake.db.Hotel
 import com.example.angodafake.db.HotelDatabase
 import com.example.angodafake.db.Picture
 
-class HotelAdapter(private val context: Context, private val fragmentManager: FragmentManager, private var hotels: List<Hotel>) : RecyclerView.Adapter<HotelAdapter.ViewHolder>() {
+class HotelAdapter(private val context: Context, private var hotels: List<Hotel>) : RecyclerView.Adapter<HotelAdapter.ViewHolder>() {
     private lateinit var hotel_db: HotelDatabase
     //private lateinit var Picture: Picture
     private var listener: HotelAdapter.OnItemClickListener? = null
@@ -29,21 +29,15 @@ class HotelAdapter(private val context: Context, private val fragmentManager: Fr
         val pointView = listItemView.findViewById<TextView>(R.id.point)
         val img: ImageView = listItemView.findViewById(R.id.imageView)
         val rateStatus: TextView = listItemView.findViewById(R.id.rateStatus)
-        val quaCM: TextView = listItemView.findViewById(R.id.quaCM)
-        val convenience: TextView = listItemView.findViewById(R.id.convenience)
+       // val quaCM: TextView = listItemView.findViewById(R.id.quaCM)
+        //val convenience: TextView = listItemView.findViewById(R.id.convenience)
         val price_room: TextView = listItemView.findViewById(R.id.price_room)
 
         init {
             // Thêm sự kiện click cho itemView
             itemView.setOnClickListener {
-                val args = Bundle()
-                val fragment = Hotel_infor()
-                fragment.arguments = args
 
-                fragmentManager.beginTransaction()
-                    .replace(R.id.frameLayout, fragment)
-                    .addToBackStack(null)
-                    .commit()
+                listener?.onItemClick(adapterPosition)
             }
         }
     }
@@ -72,8 +66,8 @@ class HotelAdapter(private val context: Context, private val fragmentManager: Fr
         holder.nameTextView.text = hotel.name
         holder.locationTextView.text = hotel.locationDetail
         holder.pointView.text = hotel.point.toString()
-        holder.quaCM.text = hotel.description
-        holder.convenience.text = hotel.convenience
+        //holder.quaCM.text = hotel.description
+        //holder.convenience.text = hotel.convenience
         holder.price_room.text = lowestPrice.toString() + " đ"
 
         holder.rateStatus.text = when (hotel.point.toInt()){
@@ -99,5 +93,8 @@ class HotelAdapter(private val context: Context, private val fragmentManager: Fr
         notifyDataSetChanged()
     }
 
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
+    }
 
 }

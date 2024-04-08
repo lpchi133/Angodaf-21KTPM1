@@ -33,7 +33,7 @@ public final class RoomDAO_Impl implements RoomDAO {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR ABORT INTO `room_db` (`ID_Hotel`,`quantity`,`available`,`type`,`acreage`,`price`,`bedQuantity`,`checkIn`,`checkOut`,`id`) VALUES (?,?,?,?,?,?,?,?,?,nullif(?, 0))";
+        return "INSERT OR ABORT INTO `room_db` (`ID_Hotel`,`quantity`,`available`,`type`,`acreage`,`price`,`bedQuantity`,`checkIn`,`checkOut`,`benefit`,`id`) VALUES (?,?,?,?,?,?,?,?,?,?,nullif(?, 0))";
       }
 
       @Override
@@ -60,7 +60,12 @@ public final class RoomDAO_Impl implements RoomDAO {
         } else {
           statement.bindString(9, entity.getCheckOut());
         }
-        statement.bindLong(10, entity.getId());
+        if (entity.getBenefit() == null) {
+          statement.bindNull(10);
+        } else {
+          statement.bindString(10, entity.getBenefit());
+        }
+        statement.bindLong(11, entity.getId());
       }
     };
     this.__deletionAdapterOfRooms = new EntityDeletionOrUpdateAdapter<Rooms>(__db) {
@@ -80,7 +85,7 @@ public final class RoomDAO_Impl implements RoomDAO {
       @Override
       @NonNull
       protected String createQuery() {
-        return "UPDATE OR ABORT `room_db` SET `ID_Hotel` = ?,`quantity` = ?,`available` = ?,`type` = ?,`acreage` = ?,`price` = ?,`bedQuantity` = ?,`checkIn` = ?,`checkOut` = ?,`id` = ? WHERE `id` = ?";
+        return "UPDATE OR ABORT `room_db` SET `ID_Hotel` = ?,`quantity` = ?,`available` = ?,`type` = ?,`acreage` = ?,`price` = ?,`bedQuantity` = ?,`checkIn` = ?,`checkOut` = ?,`benefit` = ?,`id` = ? WHERE `id` = ?";
       }
 
       @Override
@@ -107,8 +112,13 @@ public final class RoomDAO_Impl implements RoomDAO {
         } else {
           statement.bindString(9, entity.getCheckOut());
         }
-        statement.bindLong(10, entity.getId());
+        if (entity.getBenefit() == null) {
+          statement.bindNull(10);
+        } else {
+          statement.bindString(10, entity.getBenefit());
+        }
         statement.bindLong(11, entity.getId());
+        statement.bindLong(12, entity.getId());
       }
     };
   }
@@ -165,6 +175,7 @@ public final class RoomDAO_Impl implements RoomDAO {
       final int _cursorIndexOfBedQuantity = CursorUtil.getColumnIndexOrThrow(_cursor, "bedQuantity");
       final int _cursorIndexOfCheckIn = CursorUtil.getColumnIndexOrThrow(_cursor, "checkIn");
       final int _cursorIndexOfCheckOut = CursorUtil.getColumnIndexOrThrow(_cursor, "checkOut");
+      final int _cursorIndexOfBenefit = CursorUtil.getColumnIndexOrThrow(_cursor, "benefit");
       final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
       final List<Rooms> _result = new ArrayList<Rooms>(_cursor.getCount());
       while (_cursor.moveToNext()) {
@@ -199,7 +210,13 @@ public final class RoomDAO_Impl implements RoomDAO {
         } else {
           _tmpCheckOut = _cursor.getString(_cursorIndexOfCheckOut);
         }
-        _item = new Rooms(_tmpID_Hotel,_tmpQuantity,_tmpAvailable,_tmpType,_tmpAcreage,_tmpPrice,_tmpBedQuantity,_tmpCheckIn,_tmpCheckOut);
+        final String _tmpBenefit;
+        if (_cursor.isNull(_cursorIndexOfBenefit)) {
+          _tmpBenefit = null;
+        } else {
+          _tmpBenefit = _cursor.getString(_cursorIndexOfBenefit);
+        }
+        _item = new Rooms(_tmpID_Hotel,_tmpQuantity,_tmpAvailable,_tmpType,_tmpAcreage,_tmpPrice,_tmpBedQuantity,_tmpCheckIn,_tmpCheckOut,_tmpBenefit);
         final int _tmpId;
         _tmpId = _cursor.getInt(_cursorIndexOfId);
         _item.setId(_tmpId);
@@ -230,6 +247,7 @@ public final class RoomDAO_Impl implements RoomDAO {
       final int _cursorIndexOfBedQuantity = CursorUtil.getColumnIndexOrThrow(_cursor, "bedQuantity");
       final int _cursorIndexOfCheckIn = CursorUtil.getColumnIndexOrThrow(_cursor, "checkIn");
       final int _cursorIndexOfCheckOut = CursorUtil.getColumnIndexOrThrow(_cursor, "checkOut");
+      final int _cursorIndexOfBenefit = CursorUtil.getColumnIndexOrThrow(_cursor, "benefit");
       final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
       final List<Rooms> _result = new ArrayList<Rooms>(_cursor.getCount());
       while (_cursor.moveToNext()) {
@@ -264,7 +282,13 @@ public final class RoomDAO_Impl implements RoomDAO {
         } else {
           _tmpCheckOut = _cursor.getString(_cursorIndexOfCheckOut);
         }
-        _item = new Rooms(_tmpID_Hotel,_tmpQuantity,_tmpAvailable,_tmpType,_tmpAcreage,_tmpPrice,_tmpBedQuantity,_tmpCheckIn,_tmpCheckOut);
+        final String _tmpBenefit;
+        if (_cursor.isNull(_cursorIndexOfBenefit)) {
+          _tmpBenefit = null;
+        } else {
+          _tmpBenefit = _cursor.getString(_cursorIndexOfBenefit);
+        }
+        _item = new Rooms(_tmpID_Hotel,_tmpQuantity,_tmpAvailable,_tmpType,_tmpAcreage,_tmpPrice,_tmpBedQuantity,_tmpCheckIn,_tmpCheckOut,_tmpBenefit);
         final int _tmpId;
         _tmpId = _cursor.getInt(_cursorIndexOfId);
         _item.setId(_tmpId);

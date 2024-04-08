@@ -46,6 +46,8 @@ data class User (
 interface UserDAO {
     @Query("Select * from user_db")
     fun getUserList() : List<User>
+    @Query("SELECT * FROM user_db WHERE id = :user_id")
+    fun getUserByID(user_id: Int): User
     @Insert
     fun insertUser(user : User)
     @Update

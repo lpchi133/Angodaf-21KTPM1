@@ -2432,7 +2432,7 @@
     </style>
     <style name="Base.TextAppearance.Widget.AppCompat.Toolbar.Title" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
     </style>
-    <style name="Base.Theme.AngodaFake" parent="Theme.AppCompat.DayNight.DarkActionBar">
+    <style name="Base.Theme.AngodaFake" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
     </style>
     <style name="Base.Theme.AppCompat" parent="Base.V7.Theme.AppCompat">
     </style>
