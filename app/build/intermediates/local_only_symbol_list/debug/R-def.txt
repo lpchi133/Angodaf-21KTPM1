@@ -7,6 +7,7 @@ color Blacki
 color black
 color blue
 color bluee
+color grey
 color white
 drawable b48f9f78ec2cf2bbe745f28a2f5f5541
 drawable baseline_apartment_24
@@ -24,6 +25,10 @@ drawable baseline_location_on_24
 drawable baseline_person_24
 drawable baseline_x
 drawable border
+drawable border_color
+drawable border_color1
+drawable border_color2
+drawable border_color3
 drawable btn_circle
 drawable btn_order
 drawable ic_launcher_background
@@ -34,11 +39,13 @@ drawable img_2
 drawable img_3
 drawable img_4
 drawable img_5
+drawable img_6
 drawable khach_san
 drawable quang_ba_khach_san
 drawable room
 drawable rounded_button
 drawable rounded_button_delete
+id Agoodaa
 id HomeTittle
 id In
 id Location
@@ -68,6 +75,7 @@ id buttonLike
 id buttonMap
 id buttonOK
 id buttonReset
+id buttonSet
 id c1
 id c2
 id cbDaLat
@@ -88,6 +96,9 @@ id continuousSlider
 id convenience
 id conveniences
 id convinent
+id count
+id countBed
+id countRoom
 id description
 id descriptions
 id fav
@@ -96,6 +107,7 @@ id findButton
 id fit
 id frameLayout
 id home
+id homes
 id hotel
 id hotelName
 id hotel_image
@@ -105,8 +117,12 @@ id icon
 id imageView
 id imageView10
 id imageView11
+id imageView12
+id imageView13
+id imageView14
 id imageView15
 id imageView16
+id imageView17
 id imageView18
 id imageView2
 id imageView3
@@ -119,7 +135,6 @@ id imageView9
 id line1
 id line10
 id line11
-id line12
 id line2
 id line3
 id line8
@@ -135,6 +150,7 @@ id linear_map
 id nameHotelSearch
 id nameOwner
 id owner
+id pa
 id phone
 id point
 id price
@@ -144,6 +160,8 @@ id quaCM
 id rateStatus
 id ratingBar
 id room
+id roomName
+id roomTittle
 id scroll
 id sort
 id text
@@ -171,6 +189,7 @@ layout custom_bookmark
 layout custom_hotel
 layout custom_hotel_detail
 layout custom_price
+layout custom_room
 layout custom_sort
 layout fragment_bookmark
 layout fragment_home
@@ -179,6 +198,7 @@ layout fragment_home_filter_detail
 layout fragment_my_hotel
 layout fragment_my_profile
 layout fragment_my_room
+layout fragment_room
 layout test
 menu nav_bar
 mipmap ic_launcher
@@ -194,6 +214,7 @@ string fragment4
 string fragment5
 string hello_blank_fragment
 string homeTittle
+string roomTittle
 string title
 style Base.Theme.AngodaFake
 style PopupAnimation

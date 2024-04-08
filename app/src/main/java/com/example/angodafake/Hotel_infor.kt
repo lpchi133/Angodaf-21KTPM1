@@ -108,6 +108,20 @@ class Hotel_infor : Fragment() {
                 .commit()
         }
 
+        view.findViewById<Button>(R.id.watchRoom).setOnClickListener {
+            val arg = Bundle()
+            arg.putInt("hotelPosition", itemPosition)
+            arg.putString("hotelName", hotel.name)
+            val listRoom = ListRoom()
+            listRoom.arguments = arg
+
+            val fragmentManager = requireActivity().supportFragmentManager
+            fragmentManager.beginTransaction()
+                .replace(R.id.frameLayout, listRoom)
+                .addToBackStack(null)
+                .commit()
+        }
+
         return view
     }
 

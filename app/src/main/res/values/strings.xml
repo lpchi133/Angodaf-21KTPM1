@@ -7,6 +7,7 @@
     <string name="fragment5">My Profile</string>
     <string name="bookmarkTittle">Danh sách yêu thích</string>
     <string name="homeTittle">Tìm kiếm khách sạn</string>
+    <string name="roomTittle">Thông tin phòng</string>
     <string name="Filter">Chọn lọc</string>
     <string name="bookmarkAds">Hãy chọn chổ nghỉ này để xem giá mới mất, thấp nhất</string>
     <!-- TODO: Remove or change this placeholder text -->

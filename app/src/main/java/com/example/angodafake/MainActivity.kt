@@ -170,9 +170,10 @@ class MainActivity : AppCompatActivity() {
             val checkIn = reader.readLine()
             val checkOut = reader.readLine()
             val benefit = reader.readLine()
+            val pictureID = reader.readLine()
 
 
-            val room = Rooms(ID_Hotel, quantity, available, type, acreage, price, bedQuantity, checkIn, checkOut, benefit)
+            val room = Rooms(ID_Hotel, quantity, available, type, acreage, price, bedQuantity, checkIn, checkOut, benefit, pictureID)
             hotel_db.RoomDAO().insertRoom(room)
             println(room)
             line = reader.readLine()

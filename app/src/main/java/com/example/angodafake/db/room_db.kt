@@ -35,6 +35,8 @@ data class Rooms (
     var checkOut : String,
     @ColumnInfo(name = "benefit" )
     var benefit : String,
+    @ColumnInfo(name = "picture" )
+    var picture : String,
 ){
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0

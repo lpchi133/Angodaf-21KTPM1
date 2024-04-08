@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:2:1-36:12
+ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:2:1-39:12
+INJECTED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:2:1-39:12
+INJECTED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:2:1-39:12
+INJECTED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:2:1-39:12
 MERGED from [androidx.databinding:viewbinding:8.2.1] C:\Users\PC\.gradle\caches\transforms-3\097dd6a6d9ef86e769f0955bdf1ae03a\transformed\viewbinding-8.2.1\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\PC\.gradle\caches\transforms-3\a690b269fdae87765d7d9b2f00727dff\transformed\material-1.11.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\PC\.gradle\caches\transforms-3\4e02433abdf738f8fd561c48b0279f32\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
@@ -61,8 +61,8 @@ MERGED from [androidx.print:print:1.0.0] C:\Users\PC\.gradle\caches\transforms-3
 	xmlns:android
 		ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:2:11-69
 application
-ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:5:5-34:19
-INJECTED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:5:5-34:19
+ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:5:5-37:19
+INJECTED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:5:5-37:19
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\PC\.gradle\caches\transforms-3\a690b269fdae87765d7d9b2f00727dff\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\PC\.gradle\caches\transforms-3\a690b269fdae87765d7d9b2f00727dff\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\PC\.gradle\caches\transforms-3\4e02433abdf738f8fd561c48b0279f32\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -123,22 +123,28 @@ ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidM
 		ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:24:13-37
 	android:name
 		ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:23:13-40
-activity#com.example.angodafake.MainActivity
-ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:25:9-33:20
+activity#com.example.angodafake.ListRoom
+ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:25:9-27:40
 	android:exported
-		ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:27:13-36
+		ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:27:13-37
 	android:name
-		ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:26:13-41
+		ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:26:13-37
+activity#com.example.angodafake.MainActivity
+ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:28:9-36:20
+	android:exported
+		ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:30:13-36
+	android:name
+		ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:29:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:28:13-32:29
+ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:31:13-35:29
 action#android.intent.action.MAIN
-ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:29:17-69
+ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:32:17-69
 	android:name
-		ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:29:25-66
+		ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:32:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:31:17-77
+ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:34:17-77
 	android:name
-		ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:31:27-74
+		ADDED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml:34:27-74
 uses-sdk
 INJECTED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Bao\Mobile\Baitap\Git\Mobile-21KTPM1-Group15\app\src\main\AndroidManifest.xml

@@ -38,6 +38,9 @@
             android:name="com.example.angodafake.Hotel_infor"
             android:exported="false" />
         <activity
+            android:name="com.example.angodafake.ListRoom"
+            android:exported="false" />
+        <activity
             android:name="com.example.angodafake.MainActivity"
             android:exported="true" >
             <intent-filter>

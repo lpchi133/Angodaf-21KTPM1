@@ -8,6 +8,7 @@ Phòng Deluxe có ban công
 null
 null
 Bãi đậu xe, WiFi miễn phí, Nhận phòng nhanh
+img_6
 2
 10
 10
@@ -18,6 +19,7 @@ Phòng Deluxe cao cấp có ban công
 null
 null
 Bãi đậu xe, WiFi miễn phí, Nhận phòng nhanh
+img_6
 3
 7
 10
@@ -28,6 +30,7 @@ Phòng Deluxe cao cấp có ban công
 null
 null
 Bãi đậu xe, WiFi miễn phí, Nhận phòng nhanh
+img_6
 1
 10
 10
@@ -38,3 +41,4 @@ Phòng Deluxe cao cấp có ban công
 null
 null
 Bãi đậu xe, WiFi miễn phí, Nhận phòng nhanh
+img_6

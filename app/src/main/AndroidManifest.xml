@@ -23,6 +23,9 @@
             android:name=".Hotel_infor"
             android:exported="false" />
         <activity
+            android:name=".ListRoom"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

@@ -1421,6 +1421,7 @@ color error_color_material_dark
 color error_color_material_light
 color foreground_material_dark
 color foreground_material_light
+color grey
 color highlighted_text_material_dark
 color highlighted_text_material_light
 color m3_appbar_overlay_color
@@ -2992,6 +2993,10 @@ drawable baseline_location_on_24
 drawable baseline_person_24
 drawable baseline_x
 drawable border
+drawable border_color
+drawable border_color1
+drawable border_color2
+drawable border_color3
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -3033,6 +3038,7 @@ drawable img_2
 drawable img_3
 drawable img_4
 drawable img_5
+drawable img_6
 drawable khach_san
 drawable m3_avd_hide_password
 drawable m3_avd_show_password
@@ -3114,6 +3120,7 @@ drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 id ALT
+id Agoodaa
 id BOTTOM_END
 id BOTTOM_START
 id CTRL
@@ -3241,6 +3248,7 @@ id buttonMap
 id buttonOK
 id buttonPanel
 id buttonReset
+id buttonSet
 id c1
 id c2
 id cache_measures
@@ -3293,6 +3301,9 @@ id conveniences
 id convinent
 id coordinator
 id cos
+id count
+id countBed
+id countRoom
 id counterclockwise
 id cradle
 id currentState
@@ -3381,6 +3392,7 @@ id hide_ime_id
 id hideable
 id home
 id homeAsUp
+id homes
 id honorRequest
 id horizontal_only
 id hotel
@@ -3397,8 +3409,12 @@ id image
 id imageView
 id imageView10
 id imageView11
+id imageView12
+id imageView13
+id imageView14
 id imageView15
 id imageView16
+id imageView17
 id imageView18
 id imageView2
 id imageView3
@@ -3427,7 +3443,6 @@ id legacy
 id line1
 id line10
 id line11
-id line12
 id line2
 id line3
 id line8
@@ -3544,6 +3559,7 @@ id outline
 id outward
 id overshoot
 id owner
+id pa
 id packed
 id parallax
 id parent
@@ -3580,6 +3596,8 @@ id rightToLeft
 id right_icon
 id right_side
 id room
+id roomName
+id roomTittle
 id rounded
 id row_index_key
 id save_non_transition_alpha
@@ -3850,6 +3868,7 @@ layout custom_dialog
 layout custom_hotel
 layout custom_hotel_detail
 layout custom_price
+layout custom_room
 layout custom_sort
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -3873,6 +3892,7 @@ layout fragment_home_filter_detail
 layout fragment_my_hotel
 layout fragment_my_profile
 layout fragment_my_room
+layout fragment_room
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout m3_alert_dialog
@@ -4111,6 +4131,7 @@ string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
+string roomTittle
 string search_menu_title
 string searchbar_scrolling_view_behavior
 string searchview_clear_text_content_description

@@ -337,7 +337,7 @@
                     android:layout_height="match_parent"
                     android:layout_below="@+id/line3"
                     android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/border"
+                    android:background="@drawable/border_color"
                     android:padding="10dp"
                     android:paddingHorizontal="10dp">
 
@@ -526,16 +526,49 @@
                     android:layout_marginVertical="10dp"
                     android:background="#A9A9A9" />
 
-                <TextView
-                    android:id="@+id/line12"
+                <RelativeLayout
+                    android:id="@+id/Agoodaa"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="match_parent"
                     android:layout_below="@+id/line11"
-                    android:layout_marginVertical="10dp"
-                    android:background="#A9A9A9" />
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="60dp"
+                    android:background="@drawable/border_color1"
+                    android:padding="10dp"
+                    android:paddingHorizontal="10dp">
 
+                    <TextView
+                        android:id="@+id/homes"
+                        android:layout_width="223dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="109dp"
+                        android:layout_marginEnd="60dp"
+                        android:text="Agoodaa Homes"
+                        android:textColor="#001CDF"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/pa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/homes"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="7dp"
+                        android:text="Thêm không gian rộng rãi và nhịp sống địa phương chân thực với các chỗ ở trên Agoodaa Homes."
+                        android:textColor="#2196F3"
+                        android:textSize="18sp" />
+
+                </RelativeLayout>
 
             </RelativeLayout>
+
+
 
 
         </RelativeLayout>
