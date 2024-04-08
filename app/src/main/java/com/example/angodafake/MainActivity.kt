@@ -17,22 +17,25 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.jetbrains.annotations.TestOnly
 import java.io.BufferedReader
 import java.io.InputStreamReader
+import java.lang.reflect.Array.getInt
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var hotel_db: HotelDatabase
+    private var idUser: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        replaceFragment(Home())
+        idUser = intent.getStringExtra("idUser")?.toInt()
+        replaceFragment(Home(idUser!!))
 
 //        ******* ADD DATABASE **********
         hotel_db = HotelDatabase.getInstance(this)
 
-        //addDatabase()
+//        addDatabase()
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
         bottomNavigationView.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
@@ -40,10 +43,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when(menuItem.itemId){
-                R.id.home -> replaceFragment(Home())
+                R.id.home -> replaceFragment(Home(idUser!!))
                 R.id.room -> replaceFragment(MyRoom())
                 R.id.hotel -> replaceFragment(MyHotel())
-                R.id.bookmark -> replaceFragment(Bookmark())
+                R.id.bookmark -> replaceFragment(Bookmark(idUser!!))
                 R.id.profile -> replaceFragment(MyProfile())
             }
             true
@@ -59,7 +62,7 @@ class MainActivity : AppCompatActivity() {
 
     @TestOnly
     private fun addDatabase(){
-        readUser()
+//        readUser()
         readHotel()
         readBookmark()
         readPicture()

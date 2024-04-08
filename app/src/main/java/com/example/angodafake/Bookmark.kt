@@ -8,22 +8,23 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.db.HotelDatabase
-import org.jetbrains.annotations.TestOnly
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+private const val ARG_USER_ID = "idUser"
 
 /**
  * A simple [Fragment] subclass.
  * Use the [Bookmark.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Bookmark : Fragment() {
+class Bookmark(private var idUser: Int) : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
     private lateinit var hotel_db: HotelDatabase
     private lateinit var bookmarksRecyclerView : RecyclerView
     private lateinit var layoutManager: RecyclerView.LayoutManager
@@ -43,10 +44,9 @@ class Bookmark : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_bookmark, container, false)
-
+        println(idUser)
         hotel_db = HotelDatabase.getInstance(requireContext())
-        val allBookmarks = hotel_db.BookmarkDAO().getBookmarksByUserID(1)
-
+        val allBookmarks = hotel_db.BookmarkDAO().getBookmarksByUserID(idUser)
         bookmarksRecyclerView = view.findViewById(R.id.contactsRV)
         layoutManager = LinearLayoutManager(requireContext())
         bookmarksRecyclerView.layoutManager = layoutManager
@@ -56,14 +56,6 @@ class Bookmark : Fragment() {
         bookmarksRecyclerView.adapter = linearAdapter
 
         return view
-    }
-
-    @TestOnly
-    private fun testPrintAllBookmarks() {
-        val list = hotel_db.BookmarkDAO().getBookmarkList()
-        for (bookmark in list) {
-            println(bookmark.toString())
-        }
     }
 
     companion object {
@@ -77,8 +69,8 @@ class Bookmark : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Bookmark().apply {
+        fun newInstance(param1: String, param2: String, idUser: Int) =
+            Bookmark(idUser).apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

@@ -4,17 +4,20 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.angodafake.db.Bookmarks
 import com.example.angodafake.db.Hotel
 import com.example.angodafake.db.HotelDatabase
 import com.example.angodafake.db.Picture
 
-class HotelAdapter(private val context: Context, private var hotels: List<Hotel>) : RecyclerView.Adapter<HotelAdapter.ViewHolder>() {
+class HotelAdapter(private val context: Context, private var hotels: List<Hotel>, private var idUser: Int) : RecyclerView.Adapter<HotelAdapter.ViewHolder>() {
     private lateinit var hotel_db: HotelDatabase
     private lateinit var Picture: Picture
     private var listener: HotelAdapter.OnItemClickListener? = null
+
     // Interface cho sự kiện click
     interface OnItemClickListener {
         fun onItemClick(position: Int)
@@ -28,7 +31,7 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
         val rateStatus: TextView = listItemView.findViewById(R.id.rateStatus)
         val quaCM: TextView = listItemView.findViewById(R.id.quaCM)
         val convenience: TextView = listItemView.findViewById(R.id.convenience)
-
+        val buttonFav: Button = listItemView.findViewById(R.id.fav)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotelAdapter.ViewHolder {
@@ -56,6 +59,37 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
         holder.quaCM.text = hotel.description
         holder.convenience.text = hotel.convenience
 
+        // Khởi tạo SharedPreferences
+        val sharedPref = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        // Lấy trạng thái yêu thích từ SharedPreferences, mặc định là false
+        val isFavourite = sharedPref.getBoolean("isFavourite_${hotel.id}", false)
+        // Thiết lập trạng thái của nút từ SharedPreferences
+        holder.buttonFav.isSelected = isFavourite
+
+        if(hotel_db.BookmarkDAO().checkIfExistHotelId(hotel.id) > 0){
+            val drawableResId = context.resources.getIdentifier("baseline_favorite_24", "drawable", context.packageName)
+            holder.buttonFav.setBackgroundResource(drawableResId)
+        }
+
+        holder.buttonFav.setOnClickListener {
+            // Đảo ngược trạng thái khi nút được nhấn
+            holder.buttonFav.isSelected = !holder.buttonFav.isSelected
+            // Lưu trạng thái vào SharedPreferences
+            val editor = sharedPref.edit()
+            editor.putBoolean("isFavourite_${hotel.id}", holder.buttonFav.isSelected)
+            editor.apply()
+            if(holder.buttonFav.isSelected){
+                val drawableResId = context.resources.getIdentifier("baseline_favorite_24", "drawable", context.packageName)
+                holder.buttonFav.setBackgroundResource(drawableResId)
+                val saveBookmark = Bookmarks(idUser, hotel.id)
+                hotel_db.BookmarkDAO().insertBookmark(saveBookmark)
+            } else {
+                val drawableResId = context.resources.getIdentifier("baseline_favorite", "drawable", context.packageName)
+                holder.buttonFav.setBackgroundResource(drawableResId)
+                hotel_db.BookmarkDAO().deleteBookmarkByHotelId(hotel.id)
+            }
+        }
+
         holder.rateStatus.text = when (hotel.point.toInt()){
             in 0 until 3 -> { "Cực tệ" }
             in 3 until 5 -> { "Tệ" }
@@ -78,6 +112,4 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
         hotels = newData
         notifyDataSetChanged()
     }
-
-
 }

@@ -32,7 +32,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [Filter.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Filter : Fragment() {
+class Filter(private var idUser: Int) : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -133,7 +133,7 @@ class Filter : Fragment() {
         searchEditText.setText(searchText)
         val hotelsRecyclerView = view.findViewById<RecyclerView>(R.id.contactsRV)
         hotelAdapter = ArrayList(listHotels)
-        adapter = HotelAdapter(requireContext(), hotelAdapter)
+        adapter = HotelAdapter(requireContext(), hotelAdapter, idUser)
         hotelsRecyclerView.adapter = adapter
         layoutManager = LinearLayoutManager(requireContext())
         hotelsRecyclerView.layoutManager = layoutManager
@@ -142,9 +142,8 @@ class Filter : Fragment() {
         view.findViewById<Button>(R.id.backToMain).setOnClickListener {
             val fragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.frameLayout, Home.newInstance("param1", "param2"))
+            fragmentTransaction.replace(R.id.frameLayout, Home.newInstance("param1", "param2", idUser))
             fragmentTransaction.commit()
-
         }
 
         view.findViewById<TextView>(R.id.filter).setOnClickListener {
@@ -153,7 +152,7 @@ class Filter : Fragment() {
             arg.putString("searchText", searchText)
 
             // Khởi tạo Fragment Filter và đính kèm Bundle
-            val filterFragment = FilerDetail()
+            val filterFragment = FilerDetail(idUser)
             filterFragment.arguments = arg
 
             // Thay thế Fragment hiện tại bằng Fragment Filter
@@ -462,8 +461,8 @@ class Filter : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Filter().apply {
+        fun newInstance(param1: String, param2: String, idUser: Int) =
+            Filter(idUser).apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

@@ -32,4 +32,8 @@ interface BookmarkDAO {
     fun updateBookmark(bookmark: Bookmarks)
     @Delete
     fun deleteBookmark(bookmark: Bookmarks)
+    @Query("DELETE FROM bookmark_db WHERE ID_Hotel = :hotel_id")
+    fun deleteBookmarkByHotelId(hotel_id: Int)
+    @Query("SELECT COUNT(*) FROM bookmark_db WHERE ID_Hotel = :hotel_id")
+    fun checkIfExistHotelId(hotel_id: Int): Int
 }

@@ -28,7 +28,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [Home.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Home : Fragment() {
+class Home(private var idUser: Int) : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -51,7 +51,7 @@ class Home : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         homeLayout = inflater.inflate(R.layout.fragment_home, container, false)
 
         setupViews(homeLayout)
@@ -64,7 +64,7 @@ class Home : Fragment() {
 
         val hotelsRecyclerView = view.findViewById<RecyclerView>(R.id.contactsRV)
         hotelAdapter = ArrayList(listHotels)
-        adapter = HotelAdapter(requireContext(), hotelAdapter)
+        adapter = HotelAdapter(requireContext(), hotelAdapter, idUser)
         hotelsRecyclerView.adapter = adapter
         layoutManager = LinearLayoutManager(requireContext())
         hotelsRecyclerView.layoutManager = layoutManager
@@ -81,7 +81,7 @@ class Home : Fragment() {
             args.putString("searchText", searchText)
 
             // Khởi tạo Fragment Filter và đính kèm Bundle
-            val filterFragment = Filter()
+            val filterFragment = Filter(idUser)
             filterFragment.arguments = args
 
             // Thay thế Fragment hiện tại bằng Fragment Filter
@@ -104,8 +104,8 @@ class Home : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Home().apply {
+        fun newInstance(param1: String, param2: String, idUser: Int) =
+            Home(idUser).apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

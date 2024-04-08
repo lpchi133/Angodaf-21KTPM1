@@ -21,7 +21,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [FilerDetail.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FilerDetail : Fragment() {
+class FilerDetail(private var idUser: Int) : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -94,7 +94,7 @@ class FilerDetail : Fragment() {
             arg.putString("searchText", searchText)
 
             // Khởi tạo Fragment Filter và đính kèm Bundle
-            val filterFragment = Filter()
+            val filterFragment = Filter(idUser)
             filterFragment.arguments = arg
 
             // Thay thế Fragment hiện tại bằng Fragment Filter
@@ -188,7 +188,7 @@ class FilerDetail : Fragment() {
                 bundle.putIntArray("hotelIds", hotelIds)
                 bundle.putString("searchText", searchText)
 
-                val filterFragment = Filter()
+                val filterFragment = Filter(idUser)
                 filterFragment.arguments = bundle
 
                 val fragmentManager = requireActivity().supportFragmentManager
@@ -277,8 +277,8 @@ class FilerDetail : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FilerDetail().apply {
+        fun newInstance(param1: String, param2: String, idUser: Int) =
+            FilerDetail(idUser).apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
