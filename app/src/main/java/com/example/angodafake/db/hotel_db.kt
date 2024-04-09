@@ -54,7 +54,7 @@ interface HotelDAO {
     fun deleteHotel(hotel: Hotel)
 }
 
-@Database(entities = [Hotel::class, Bookmarks::class, Picture::class, Comment::class, Purchase::class, Rooms::class, User::class], version = 1)
+@Database(entities = [Hotel::class, Bookmarks::class, Picture::class, Comment::class, Purchase::class, Rooms::class], version = 1)
 abstract class HotelDatabase : RoomDatabase() {
     abstract fun HotelDAO() : HotelDAO
     abstract fun BookmarkDAO() : BookmarkDAO
@@ -62,7 +62,6 @@ abstract class HotelDatabase : RoomDatabase() {
     abstract fun CommentDAO() : CommentDAO
     abstract fun PurchaseDAO() : PurchaseDAO
     abstract fun RoomDAO() : RoomDAO
-    abstract fun UserDAO() : UserDAO
 
 
 

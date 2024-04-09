@@ -21,15 +21,16 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.angodafake.databinding.ActivitySignUpBinding
-import com.example.angodafake.db.HotelDatabase
 import com.example.angodafake.db.User
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import com.toxicbakery.bcrypt.Bcrypt
-
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.database
 
 class SignUpActivity : AppCompatActivity() {
     private val checkArray = BooleanArray(7) { false } //kiem tra tinh hop le thong tin nguoi dung nhap
@@ -45,14 +46,15 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var lConfirmPass : TextInputLayout
     private lateinit var etConfirmPass : TextInputEditText
 
-    private lateinit var hotel_db: HotelDatabase
+    private lateinit var auth: FirebaseAuth
+    private lateinit var database: DatabaseReference
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
-
-        hotel_db = HotelDatabase.getInstance(this)
+        auth = Firebase.auth
+        database = Firebase.database.reference
 
         lName = findViewById(R.id.lName)
         etName = lName.editText as TextInputEditText
@@ -188,6 +190,7 @@ class SignUpActivity : AppCompatActivity() {
 
             btn_register.setOnClickListener {
                 clearFocus()
+                hideKeyboard(this)
                 checkAll(etEmail)
                 if (checkArray.all { it }){
                     registerWithEmail(lEmail, etEmail)
@@ -214,6 +217,7 @@ class SignUpActivity : AppCompatActivity() {
 
             btn_register.setOnClickListener {
                 clearFocus()
+                hideKeyboard(this)
                 checkAll(etPhoneN)
                 if (checkArray.all { it }){
                     registerWithPhoneN(lPhoneN, etPhoneN)
@@ -225,66 +229,73 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun registerWithEmail(lEmail:TextInputLayout, etEmail: EditText){
         val email = etEmail.text.toString().trim()
-        if (hotel_db.UserDAO().getUserByEmail(email) != null){
-            showFailSnackBar("Người dùng đã tồn tại! Vui lòng nhập email khác.")
-            checkArray[4] = false
-            lEmail.error = "Email đã được sử dụng."
-        }
-        else{
-            val name = etName.text.toString().trim()
-            val dob = etDob.text.toString().trim()
-            val gender = findViewById<RadioButton>(rgGender.checkedRadioButtonId).text.toString().trim()
-            val number = ""
-            val country = actvCountry.text.toString()
-            val cardNumber = ""
-            val cardName = ""
-            val point = 0
-            val password = String(Bcrypt.hash(etPass.text.toString().trim(), 10), Charsets.UTF_8)
+        auth.createUserWithEmailAndPassword(email, etPass.text.toString().trim())
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    val name = etName.text.toString().trim()
+                    val dob = etDob.text.toString().trim()
+                    val gender = findViewById<RadioButton>(rgGender.checkedRadioButtonId).text.toString().trim()
+                    val number = ""
+                    val country = actvCountry.text.toString()
+                    val cardNumber = ""
+                    val cardName = ""
+                    val point = 0
 
-            val user = User(name, dob, gender, number, email, country, cardNumber, cardName, point, password)
-            hotel_db.UserDAO().insertUser(user)
-
-            showSuccessSnackBar("Tạo tài khoản thành công!")
-            val handler = Handler()
-            handler.postDelayed({
-                val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("idUser", hotel_db.UserDAO().getUserByEmail(email)!!.id.toString())
-                startActivity(intent)
-                finish()
-            }, 1000)
-        }
+                    val user = User(name, dob, gender, number, email, country, cardNumber, cardName, point)
+                    val userID = auth.currentUser!!.uid
+                    database.child("users").child(userID).setValue(user)
+                    showSuccessSnackBar("Tạo tài khoản thành công!")
+                    val handler = Handler()
+                    handler.postDelayed({
+                        val intent = Intent(this, MainActivity::class.java)
+                        intent.putExtra("idUser", userID)
+                        startActivity(intent)
+                        finish()
+                    }, 1000)
+                } else {
+                    // If sign in fails, display a message to the user.
+                    showFailSnackBar("Người dùng đã tồn tại! Vui lòng nhập email khác.")
+                    checkArray[4] = false
+                    lEmail.error = "Email đã được sử dụng."
+                }
+            }
     }
 
     private fun registerWithPhoneN(lPhoneN:TextInputLayout, etPhoneN: EditText){
         val phoneN = etPhoneN.text.toString().trim()
-        if (hotel_db.UserDAO().getUserByPhoneNumber(phoneN) != null){
-            showFailSnackBar("Người dùng đã tồn tại! Vui lòng nhập số di động khác.")
-            checkArray[4] = false
-            lPhoneN.error = "Số di động đã được sử dụng."
-        }
-        else{
-            val name = etName.text.toString().trim()
-            val dob = etDob.text.toString().trim()
-            val gender = findViewById<RadioButton>(rgGender.checkedRadioButtonId).text.toString().trim()
-            val email = ""
-            val country = actvCountry.text.toString()
-            val cardNumber = ""
-            val cardName = ""
-            val point = 0
-            val password = String(Bcrypt.hash(etPass.text.toString().trim(), 10), Charsets.UTF_8)
+        val fEmailFromPhoneN  = "$phoneN@gmail.com"
+        auth.createUserWithEmailAndPassword(fEmailFromPhoneN, etPass.text.toString().trim())
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    val name = etName.text.toString().trim()
+                    val dob = etDob.text.toString().trim()
+                    val gender = findViewById<RadioButton>(rgGender.checkedRadioButtonId).text.toString().trim()
+                    val number = fEmailFromPhoneN.substring(0, fEmailFromPhoneN.indexOf("@"))
+                    val country = actvCountry.text.toString()
+                    val cardNumber = ""
+                    val cardName = ""
+                    val point = 0
 
-            val user = User(name, dob, gender, phoneN, email, country, cardNumber, cardName, point, password)
-            hotel_db.UserDAO().insertUser(user)
-
-            showSuccessSnackBar("Tạo tài khoản thành công!")
-            val handler = Handler()
-            handler.postDelayed({
-                val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("idUser", hotel_db.UserDAO().getUserByPhoneNumber(phoneN)!!.id.toString())
-                startActivity(intent)
-                finish()
-            }, 1000)
-        }
+                    val user = User(name, dob, gender, number, "", country, cardNumber, cardName, point)
+                    val userID = auth.currentUser!!.uid
+                    database.child("users").child(userID).setValue(user)
+                    showSuccessSnackBar("Tạo tài khoản thành công!")
+                    val handler = Handler()
+                    handler.postDelayed({
+                        val intent = Intent(this, MainActivity::class.java)
+                        intent.putExtra("idUser", userID)
+                        startActivity(intent)
+                        finish()
+                    }, 1000)
+                } else {
+                    // If sign in fails, display a message to the user.
+                    showFailSnackBar("Người dùng đã tồn tại! Vui lòng nhập số di động khác.")
+                    checkArray[4] = false
+                    lPhoneN.error = "Số di động đã được sử dụng."
+                }
+            }
     }
 
     private fun showFailSnackBar(msg: String) {
@@ -418,10 +429,5 @@ class SignUpActivity : AppCompatActivity() {
         }
         // Sử dụng InputMethodManager để ẩn bàn phím
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        hotel_db.close()
     }
 }

@@ -2,17 +2,14 @@ package com.example.angodafake
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import com.example.angodafake.databinding.ActivityMainBinding
 import com.example.angodafake.db.Bookmarks
 import com.example.angodafake.db.Hotel
 import com.example.angodafake.db.HotelDatabase
 import com.example.angodafake.db.Picture
 import com.example.angodafake.db.Rooms
-import com.example.angodafake.db.User
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.jetbrains.annotations.TestOnly
 import java.io.BufferedReader
@@ -32,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 //        ******* ADD DATABASE **********
         hotel_db = HotelDatabase.getInstance(this)
 
-        addDatabase()
+//        addDatabase()
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
         bottomNavigationView.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
@@ -59,36 +56,11 @@ class MainActivity : AppCompatActivity() {
 
     @TestOnly
     private fun addDatabase(){
-        readUser()
+//        readUser()
         readHotel()
         readBookmark()
         readPicture()
         readRooms()
-    }
-
-    private fun readUser(){
-        val inputStream = this.assets.open("user.txt")
-        val reader = BufferedReader(InputStreamReader(inputStream))
-
-        var line: String? = reader.readLine()
-        while (line != null) {
-            val name = line
-            val dob = reader.readLine()
-            val gender = reader.readLine()
-            val number = reader.readLine()
-            val email = reader.readLine()
-            val country = reader.readLine()
-            val cardNumber = reader.readLine()
-            val cardName = reader.readLine()
-            val point = reader.readLine().toInt()
-            val password = reader.readLine()
-
-            val user = User(name, dob, gender, number, email, country, cardNumber, cardName, point, password)
-            hotel_db.UserDAO().insertUser(user)
-            println(user)
-            line = reader.readLine()
-        }
-        reader.close()
     }
 
     private fun readHotel(){

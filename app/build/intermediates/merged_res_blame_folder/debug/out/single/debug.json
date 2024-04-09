@@ -1,190 +1,230 @@
 [
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "com.example.angodafake.app-main-6:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "com.example.angodafake.app-merged_res-40:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.angodafake.app-main-42:/mipmap-mdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/layout_fragment_bookmark.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/layout/fragment_bookmark.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/menu_nav_bar.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/menu/nav_bar.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/drawable_baseline_arrow_back_24.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/drawable/baseline_arrow_back_24.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/layout_activity_main.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/layout/activity_main.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/layout_fragment_my_profile.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/layout/fragment_my_profile.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.angodafake.app-main-42:/mipmap-hdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/drawable_b48f9f78ec2cf2bbe745f28a2f5f5541.jpg.flat",
-        "source": "com.example.angodafake.app-main-6:/drawable/b48f9f78ec2cf2bbe745f28a2f5f5541.jpg"
+        "merged": "com.example.angodafake.app-merged_res-40:/xml_backup_rules.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/xml/backup_rules.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/drawable_ic_launcher_background.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/drawable/ic_launcher_background.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/drawable_baseline_find.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/drawable/baseline_find.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/drawable_baseline_home_24.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/drawable/baseline_home_24.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/layout_custom_bookmark.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/layout/custom_bookmark.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/layout_activity_sign_up.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/layout/activity_sign_up.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.angodafake.app-main-6:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "com.example.angodafake.app-merged_res-40:/drawable_quang_ba_khach_san.jpeg.flat",
+        "source": "com.example.angodafake.app-main-42:/drawable/quang_ba_khach_san.jpeg"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/drawable_baseline_favorite_24.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/drawable/baseline_favorite_24.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.angodafake.app-main-42:/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/anim_slide_out_bottom.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/anim/slide_out_bottom.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/layout_custom_bookmark.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/layout/custom_bookmark.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/drawable_baseline_bed_24.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/drawable/baseline_bed_24.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/layout_fragment_home_filter_detail.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/layout/fragment_home_filter_detail.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/drawable_baseline_location_on_12.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/drawable/baseline_location_on_12.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.angodafake.app-main-42:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/layout_custom_price.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/layout/custom_price.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/drawable_bottom_nav_color.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/drawable/bottom_nav_color.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.angodafake.app-main-6:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "com.example.angodafake.app-merged_res-40:/anim_slide_in_bottom.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/anim/slide_in_bottom.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "com.example.angodafake.app-main-6:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "com.example.angodafake.app-merged_res-40:/layout_fragment_my_room.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/layout/fragment_my_room.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/drawable_baseline_person_24.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/drawable/baseline_person_24.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/drawable_logo.png.flat",
+        "source": "com.example.angodafake.app-main-42:/drawable/logo.png"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/drawable_rounded_button.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/drawable/rounded_button.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/drawable_khach_san.jpeg.flat",
+        "source": "com.example.angodafake.app-main-42:/drawable/khach_san.jpeg"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/layout_fragment_home.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/layout/fragment_home.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/layout_fragment_my_hotel.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/layout/fragment_my_hotel.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/layout_fragment_home_filter_detail.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/layout/fragment_home_filter_detail.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/drawable_baseline_person_24.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/drawable/baseline_person_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/drawable_baseline_apartment_24.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/drawable/baseline_apartment_24.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/drawable_rounded_button_delete.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/drawable/rounded_button_delete.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/drawable_baseline_favorite_border_24.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/drawable/baseline_favorite_border_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/drawable_quang_ba_khach_san.jpeg.flat",
-        "source": "com.example.angodafake.app-main-6:/drawable/quang_ba_khach_san.jpeg"
+        "merged": "com.example.angodafake.app-merged_res-40:/layout_fragment_bookmark.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/layout/fragment_bookmark.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.angodafake.app-main-6:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "com.example.angodafake.app-merged_res-40:/drawable_baseline_home_24.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/drawable/baseline_home_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/drawable_baseline_bookmark_24.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/drawable/baseline_bookmark_24.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/xml/data_extraction_rules.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/layout_custom_hotel.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/layout/custom_hotel.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/layout_fragment_my_profile.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/layout/fragment_my_profile.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/drawable_rounded_button_delete.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/drawable/rounded_button_delete.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/layout_custom_price.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/layout/custom_price.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/layout_fragment_my_hotel.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/layout/fragment_my_hotel.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/layout_custom_hotel.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/layout/custom_hotel.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/drawable_baseline_favorite_border_24.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/drawable/baseline_favorite_border_24.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/drawable_gg_icon.png.flat",
+        "source": "com.example.angodafake.app-main-42:/drawable/gg_icon.png"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/drawable_baseline_favorite_24.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/drawable/baseline_favorite_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "com.example.angodafake.app-main-6:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "com.example.angodafake.app-merged_res-40:/layout_tab_login_phone.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/layout/tab_login_phone.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/xml_data_extraction_rules.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/xml/data_extraction_rules.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.angodafake.app-main-42:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.angodafake.app-main-6:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "com.example.angodafake.app-merged_res-40:/drawable_b48f9f78ec2cf2bbe745f28a2f5f5541.jpg.flat",
+        "source": "com.example.angodafake.app-main-42:/drawable/b48f9f78ec2cf2bbe745f28a2f5f5541.jpg"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/layout_activity_main.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/layout/activity_main.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/drawable_rounded_button.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/drawable/rounded_button.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/layout_fragment_home_filter.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/layout/fragment_home_filter.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/drawable_baseline_bed_24.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/drawable/baseline_bed_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/drawable/ic_launcher_foreground.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/drawable/ic_launcher_foreground.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/anim_slide_in_bottom.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/anim/slide_in_bottom.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/drawable_baseline_location_on_12.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/drawable/baseline_location_on_12.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/drawable_baseline_find.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/drawable/baseline_find.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/drawable/ic_launcher_background.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.angodafake.app-main-6:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "com.example.angodafake.app-merged_res-40:/layout_activity_splash.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/layout/activity_splash.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/layout_custom_sort.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/layout/custom_sort.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/drawable_baseline_apartment_24.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/drawable/baseline_apartment_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/layout_fragment_my_room.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/layout/fragment_my_room.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/layout_activity_login.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/layout/activity_login.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/xml_backup_rules.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/xml/backup_rules.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/layout_fragment_home_filter.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/layout/fragment_home_filter.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/drawable_khach_san.jpeg.flat",
-        "source": "com.example.angodafake.app-main-6:/drawable/khach_san.jpeg"
+        "merged": "com.example.angodafake.app-merged_res-40:/anim_slide_out_bottom.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/anim/slide_out_bottom.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/drawable_baseline_x.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/drawable/baseline_x.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.angodafake.app-main-42:/mipmap-xxxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.angodafake.app-main-6:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "com.example.angodafake.app-merged_res-40:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.angodafake.app-main-42:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/menu_nav_bar.xml.flat",
-        "source": "com.example.angodafake.app-main-6:/menu/nav_bar.xml"
+        "merged": "com.example.angodafake.app-merged_res-40:/drawable_baseline_arrow_back_24.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/drawable/baseline_arrow_back_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-4:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.angodafake.app-main-6:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "com.example.angodafake.app-merged_res-40:/layout_custom_sort.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/layout/custom_sort.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-merged_res-40:/drawable_baseline_x.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/drawable/baseline_x.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-merged_res-40:/layout_fragment_home.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/layout/fragment_home.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-merged_res-40:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-merged_res-40:/drawable_rounded_background.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/drawable/rounded_background.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-merged_res-40:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.angodafake.app-main-42:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.angodafake.app-merged_res-40:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.angodafake.app-main-42:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.angodafake.app-merged_res-40:/drawable_baseline_bookmark_24.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/drawable/baseline_bookmark_24.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-merged_res-40:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.angodafake.app-main-42:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.angodafake.app-merged_res-40:/layout_tab_login_email.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/layout/tab_login_email.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-merged_res-40:/drawable_button_selector.xml.flat",
+        "source": "com.example.angodafake.app-main-42:/drawable/button_selector.xml"
     }
 ]

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.angodafake.app-mergeDebugResources-2:/values-v22/values-v22.xml",
+            "outputFile": "com.example.angodafake.app-mergeDebugResources-38:/values-v22/values-v22.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\PC\\.gradle\\caches\\transforms-3\\dbe3962d9aec76139097d4ab0707e85b\\transformed\\appcompat-1.6.1\\res\\values-v22\\values-v22.xml",
+                    "source": "C:\\Users\\lephu\\.gradle\\caches\\transforms-3\\88be6ab6762abd66daca4d590bd1aa3c\\transformed\\appcompat-1.6.1\\res\\values-v22\\values-v22.xml",
                     "from": {
                         "startLines": "2,3,4,9",
                         "startColumns": "4,4,4,4",

@@ -36,8 +36,6 @@ public final class HotelDatabase_Impl extends HotelDatabase {
 
   private volatile RoomDAO _roomDAO;
 
-  private volatile UserDAO _userDAO;
-
   @Override
   @NonNull
   protected SupportSQLiteOpenHelper createOpenHelper(@NonNull final DatabaseConfiguration config) {
@@ -50,9 +48,8 @@ public final class HotelDatabase_Impl extends HotelDatabase {
         db.execSQL("CREATE TABLE IF NOT EXISTS `comment_db` (`ID_Owner` INTEGER NOT NULL, `ID_Hotel` INTEGER NOT NULL, `time` TEXT NOT NULL, `point` REAL NOT NULL, `detail` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `purchase_db` (`ID_Owner` INTEGER NOT NULL, `ID_Hotel` INTEGER NOT NULL, `ID_Room` INTEGER NOT NULL, `time_booking` TEXT NOT NULL, `time_purchase` TEXT NOT NULL, `total_purchase` REAL NOT NULL, `status_purchase` INTEGER NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `room_db` (`ID_Hotel` INTEGER NOT NULL, `quantity` INTEGER NOT NULL, `available` INTEGER NOT NULL, `type` TEXT NOT NULL, `acreage` REAL NOT NULL, `price` REAL NOT NULL, `bedQuantity` INTEGER NOT NULL, `checkIn` TEXT NOT NULL, `checkOut` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)");
-        db.execSQL("CREATE TABLE IF NOT EXISTS `user_db` (`name` TEXT NOT NULL, `dob` TEXT NOT NULL, `gender` TEXT NOT NULL, `number` TEXT NOT NULL, `email` TEXT NOT NULL, `country` TEXT NOT NULL, `cardNumber` TEXT NOT NULL, `cardName` TEXT NOT NULL, `point` INTEGER NOT NULL, `userName` TEXT NOT NULL, `password` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'dec4c6fafe9eadba59306360dcae8632')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd7bc64e4e230ee61c2e86bd4c9ee57d1')");
       }
 
       @Override
@@ -63,7 +60,6 @@ public final class HotelDatabase_Impl extends HotelDatabase {
         db.execSQL("DROP TABLE IF EXISTS `comment_db`");
         db.execSQL("DROP TABLE IF EXISTS `purchase_db`");
         db.execSQL("DROP TABLE IF EXISTS `room_db`");
-        db.execSQL("DROP TABLE IF EXISTS `user_db`");
         final List<? extends RoomDatabase.Callback> _callbacks = mCallbacks;
         if (_callbacks != null) {
           for (RoomDatabase.Callback _callback : _callbacks) {
@@ -206,31 +202,9 @@ public final class HotelDatabase_Impl extends HotelDatabase {
                   + " Expected:\n" + _infoRoomDb + "\n"
                   + " Found:\n" + _existingRoomDb);
         }
-        final HashMap<String, TableInfo.Column> _columnsUserDb = new HashMap<String, TableInfo.Column>(12);
-        _columnsUserDb.put("name", new TableInfo.Column("name", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsUserDb.put("dob", new TableInfo.Column("dob", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsUserDb.put("gender", new TableInfo.Column("gender", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsUserDb.put("number", new TableInfo.Column("number", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsUserDb.put("email", new TableInfo.Column("email", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsUserDb.put("country", new TableInfo.Column("country", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsUserDb.put("cardNumber", new TableInfo.Column("cardNumber", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsUserDb.put("cardName", new TableInfo.Column("cardName", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsUserDb.put("point", new TableInfo.Column("point", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsUserDb.put("userName", new TableInfo.Column("userName", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsUserDb.put("password", new TableInfo.Column("password", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsUserDb.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
-        final HashSet<TableInfo.ForeignKey> _foreignKeysUserDb = new HashSet<TableInfo.ForeignKey>(0);
-        final HashSet<TableInfo.Index> _indicesUserDb = new HashSet<TableInfo.Index>(0);
-        final TableInfo _infoUserDb = new TableInfo("user_db", _columnsUserDb, _foreignKeysUserDb, _indicesUserDb);
-        final TableInfo _existingUserDb = TableInfo.read(db, "user_db");
-        if (!_infoUserDb.equals(_existingUserDb)) {
-          return new RoomOpenHelper.ValidationResult(false, "user_db(com.example.angodafake.db.User).\n"
-                  + " Expected:\n" + _infoUserDb + "\n"
-                  + " Found:\n" + _existingUserDb);
-        }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "dec4c6fafe9eadba59306360dcae8632", "d652568179e5ac753e26023cc3d6279c");
+    }, "d7bc64e4e230ee61c2e86bd4c9ee57d1", "0f37e904d7878e8b709fdb6c780be95e");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;
@@ -241,7 +215,7 @@ public final class HotelDatabase_Impl extends HotelDatabase {
   protected InvalidationTracker createInvalidationTracker() {
     final HashMap<String, String> _shadowTablesMap = new HashMap<String, String>(0);
     final HashMap<String, Set<String>> _viewTables = new HashMap<String, Set<String>>(0);
-    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "hotel_db","bookmark_db","picture_db","comment_db","purchase_db","room_db","user_db");
+    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "hotel_db","bookmark_db","picture_db","comment_db","purchase_db","room_db");
   }
 
   @Override
@@ -256,7 +230,6 @@ public final class HotelDatabase_Impl extends HotelDatabase {
       _db.execSQL("DELETE FROM `comment_db`");
       _db.execSQL("DELETE FROM `purchase_db`");
       _db.execSQL("DELETE FROM `room_db`");
-      _db.execSQL("DELETE FROM `user_db`");
       super.setTransactionSuccessful();
     } finally {
       super.endTransaction();
@@ -277,7 +250,6 @@ public final class HotelDatabase_Impl extends HotelDatabase {
     _typeConvertersMap.put(CommentDAO.class, CommentDAO_Impl.getRequiredConverters());
     _typeConvertersMap.put(PurchaseDAO.class, PurchaseDAO_Impl.getRequiredConverters());
     _typeConvertersMap.put(RoomDAO.class, RoomDAO_Impl.getRequiredConverters());
-    _typeConvertersMap.put(UserDAO.class, UserDAO_Impl.getRequiredConverters());
     return _typeConvertersMap;
   }
 
@@ -376,20 +348,6 @@ public final class HotelDatabase_Impl extends HotelDatabase {
           _roomDAO = new RoomDAO_Impl(this);
         }
         return _roomDAO;
-      }
-    }
-  }
-
-  @Override
-  public UserDAO UserDAO() {
-    if (_userDAO != null) {
-      return _userDAO;
-    } else {
-      synchronized(this) {
-        if(_userDAO == null) {
-          _userDAO = new UserDAO_Impl(this);
-        }
-        return _userDAO;
       }
     }
   }
