@@ -80,9 +80,10 @@ class Filter : Fragment() {
 
         // lấy dữ liệu từ trang Home
         val args = arguments
-        val hotelIds = args?.getIntArray("hotelIds")
+        var hotelIds = args?.getIntArray("hotelIds")
+        val saveIds = args?.getIntArray("saveIds")
         val searchText = args?.getString("searchText")
-        Log.d("FilterDetailFragment", "Hotel IDs: ${hotelIds?.joinToString(", ")}, Search Text: $searchText")
+        Log.d("FilterDetailFragment", "Hotel IDs: ${saveIds?.joinToString(", ")}, Search Text: $searchText")
         if (hotelIds != null) {
             listHotels = hotelIds.map { hotel_db.HotelDAO().getHotelByID(it) }
         }
@@ -138,10 +139,11 @@ class Filter : Fragment() {
         adapter.setOnItemClickListener(object : HotelAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
                 val clickedHotel = hotelAdapter[position]
-
+                val ids = listHotels.map { it.id }.toIntArray()
                 val arg = Bundle()
-                arg.putIntArray("hotelIds", hotelIds)
-                arg.putString("searchText", searchText)
+                arg.putIntArray("hotelIds", ids)
+                arg.putIntArray("saveIds", saveIds)
+                arg.putString("hotelName", searchText)
                 arg.putInt("hotelPosition", clickedHotel.id)
 
                 // Khởi tạo Fragment Filter và đính kèm Bundle
@@ -171,7 +173,11 @@ class Filter : Fragment() {
 
         view.findViewById<TextView>(R.id.filter).setOnClickListener {
             val arg = Bundle()
+            if (saveIds != null) {
+                hotelIds = saveIds
+            }
             arg.putIntArray("hotelIds", hotelIds)
+            arg.putIntArray("saveIds", saveIds)
             arg.putString("searchText", searchText)
 
             // Khởi tạo Fragment Filter và đính kèm Bundle
@@ -197,7 +203,8 @@ class Filter : Fragment() {
         // Đặt alpha cho layout gốc để làm mờ
         val rootView = requireActivity().window.decorView.findViewById<View>(android.R.id.content)
         rootView.alpha = 0.5f
-
+        startValue = 1000.0F
+        endValue = 9000.0F
         // Khởi tạo PopupWindow
         popupWindow = PopupWindow(
             popupView,
@@ -470,7 +477,7 @@ class Filter : Fragment() {
         // Tính toán giá phòng cao nhất của mỗi khách sạn
         for (hotel in hotels) {
             val rooms = hotel_db.RoomDAO().getRoomsByHotelID(hotel.id)
-            val highestPrice = rooms.maxByOrNull { it.price }?.price ?: Double.MIN_VALUE
+            val highestPrice = rooms.minByOrNull { it.price }?.price ?: Double.MIN_VALUE
 
             highestRoomPrices[hotel.id] = highestPrice
         }

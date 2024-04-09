@@ -67,6 +67,7 @@ class FilerDetail : Fragment() {
         view =  inflater.inflate(R.layout.fragment_home_filter_detail, container, false)
         val args = arguments
         val hotelIds = args?.getIntArray("hotelIds")
+        val saveIds = args?.getIntArray("saveIds")
         val searchText = args?.getString("searchText")
 
         text6Plus = view.findViewById<TextView>(R.id.text_6_plus)
@@ -92,6 +93,7 @@ class FilerDetail : Fragment() {
             val arg = Bundle()
             arg.putIntArray("hotelIds", hotelIds)
             arg.putString("searchText", searchText)
+            arg.putIntArray("saveIds", saveIds)
 
             // Khởi tạo Fragment Filter và đính kèm Bundle
             val filterFragment = Filter()
@@ -187,6 +189,7 @@ class FilerDetail : Fragment() {
                 bundle.putString("selectedCities", getSelectedCities())
                 bundle.putIntArray("hotelIds", hotelIds)
                 bundle.putString("searchText", searchText)
+                bundle.putIntArray("saveIds", saveIds)
 
                 val filterFragment = Filter()
                 filterFragment.arguments = bundle

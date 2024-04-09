@@ -3,7 +3,7 @@ b48f9f78ec2cf2bbe745f28a2f5f5541
 img_3
 2
 khach_san
-img_3
+img_7
 3
 quang_ba_khach_san
-img_3
+img_8

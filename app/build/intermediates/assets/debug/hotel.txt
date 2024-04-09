@@ -1,4 +1,4 @@
-2
+1
 Khách sạn Hồng Phát
 123 Trần Mẫn Chí, f7, d8, tp HCM
 Hồ Chí Minh
@@ -8,7 +8,7 @@ Gần cầu thị nghè, có view thoáng đảng dễ nhảy/Gần trung tâm t
 0.0
 14:00
 11:30
-3
+2
 Khách sạn Mường Hoa
 142 Hùng Vương, f4, d5, tp HCM
 Hồ Chí Minh

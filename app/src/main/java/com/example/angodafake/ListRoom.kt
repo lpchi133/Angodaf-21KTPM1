@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -43,19 +44,57 @@ class ListRoom : Fragment() {
         hotel_db = HotelDatabase.getInstance(requireContext())
         var view =  inflater.inflate(R.layout.fragment_room, container, false)
         val nameTextView = view.findViewById<TextView>(R.id.nameHotelSearch)
+
         val args = arguments
         val itemPosition = args?.getInt("hotelPosition") ?: -1
         val searchText = args?.getString("hotelName")
+        val hotelIds = args?.getIntArray("hotelIds")
+        val saveIds = args?.getIntArray("saveIds")
+
         nameTextView.text = searchText
         val rooms = hotel_db.RoomDAO().getRoomsByHotelID(itemPosition)
+        val intArray = IntArray(rooms.size)
+        // Gán tất cả các phần tử của mảng intArray bằng 1
+        intArray.fill(1)
 
         val roomsRecyclerView = view.findViewById<RecyclerView>(R.id.contactsRV)
         roomAdapter = ArrayList(rooms)
-        adapter = RoomAdapter(requireContext(), roomAdapter)
+        adapter = RoomAdapter(requireContext(), roomAdapter, intArray)
         roomsRecyclerView.adapter = adapter
         layoutManager = LinearLayoutManager(requireContext())
         roomsRecyclerView.layoutManager = layoutManager
         roomsRecyclerView.setHasFixedSize(true)
+
+        view.findViewById<ImageView>(R.id.returnHotel).setOnClickListener {
+            val arg = Bundle()
+            arg.putIntArray("hotelIds", hotelIds)
+            arg.putIntArray("saveIds", saveIds)
+            arg.putString("hotelName", searchText)
+            arg.putInt("hotelPosition", itemPosition)
+
+            val filterFragment = Hotel_infor()
+            filterFragment.arguments = arg
+
+            val fragmentManager = requireActivity().supportFragmentManager
+            fragmentManager.beginTransaction()
+                .replace(R.id.frameLayout, filterFragment)
+                .addToBackStack(null)
+                .commit()
+        }
+
+        adapter.setOnItemClickListener(object : RoomAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                // Xử lý khi item được click
+            }
+
+            override fun onCountRoomClick(position: Int) {
+                intArray[position] = intArray[position] + 1
+                adapter.notifyItemChanged(position)
+            }
+        })
+
+
+
         return view
     }
 

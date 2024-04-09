@@ -127,8 +127,8 @@
                     android:layout_width="40dp"
                     android:layout_height="24dp"
                     android:layout_below="@+id/hotel_name"
-                    android:layout_marginStart="-4dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="-25dp"
+                    android:layout_marginTop="6dp"
                     android:layout_toEndOf="@+id/ratingBar"
                     android:background="@drawable/rounded_button_delete"
                     android:gravity="center"
@@ -489,8 +489,9 @@
                         android:id="@+id/avt"
                         android:layout_width="54dp"
                         android:layout_height="54dp"
-                        android:background="@drawable/btn_circle"
-                        app:srcCompat="@drawable/img_3" />
+                        android:background="@drawable/btn_avt"
+                        app:srcCompat="@drawable/img_3"
+                        android:scaleType="centerCrop"/>
 
                     <TextView
                         android:id="@+id/chunha"
@@ -600,14 +601,14 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="35dp"
-        android:layout_height="28dp"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
         android:layout_above="@+id/border1"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="18dp"
         android:layout_marginTop="21dp"
-        android:layout_marginBottom="21dp"
+        android:layout_marginBottom="24dp"
         app:srcCompat="@drawable/baseline_arrow_back_24" />
 
     <TextView

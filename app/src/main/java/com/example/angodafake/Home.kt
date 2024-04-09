@@ -80,6 +80,7 @@ class Home : Fragment() {
             val args = Bundle()
             val hotelIds = filterHotels(searchText).map { it.id }.toIntArray()
             args.putIntArray("hotelIds", hotelIds)
+            args.putIntArray("saveIds", hotelIds)
             args.putString("searchText", searchText)
 
             // Khởi tạo Fragment Filter và đính kèm Bundle

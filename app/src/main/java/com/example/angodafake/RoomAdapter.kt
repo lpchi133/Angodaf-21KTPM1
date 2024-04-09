@@ -15,13 +15,14 @@ import com.example.angodafake.db.HotelDatabase
 import com.example.angodafake.db.Picture
 import com.example.angodafake.db.Rooms
 
-class RoomAdapter(private val context: Context, private var rooms: List<Rooms>) : RecyclerView.Adapter<RoomAdapter.ViewHolder>() {
+class RoomAdapter(private val context: Context, private var rooms: List<Rooms>, private var intArray: IntArray) : RecyclerView.Adapter<RoomAdapter.ViewHolder>() {
     private lateinit var hotel_db: HotelDatabase
     //private lateinit var Picture: Picture
     private var listener: RoomAdapter.OnItemClickListener? = null
     // Interface cho sự kiện click
     interface OnItemClickListener {
         fun onItemClick(position: Int)
+        fun onCountRoomClick(position: Int)
     }
 
     inner class ViewHolder(listItemView: View) : RecyclerView.ViewHolder(listItemView) {
@@ -30,14 +31,21 @@ class RoomAdapter(private val context: Context, private var rooms: List<Rooms>) 
         val count = listItemView.findViewById<TextView>(R.id.count)
         val img: ImageView = listItemView.findViewById(R.id.imageView)
         val convenience: TextView = listItemView.findViewById(R.id.convenience)
-       val countRoom: TextView = listItemView.findViewById(R.id.countRoom)
+        val countRoom: TextView = listItemView.findViewById(R.id.countRoom)
         val price_room: TextView = listItemView.findViewById(R.id.price_room)
+        val count_Room: TextView = listItemView.findViewById(R.id.count_Room)
+
 
         init {
             // Thêm sự kiện click cho itemView
             itemView.setOnClickListener {
 
                 listener?.onItemClick(adapterPosition)
+            }
+
+            // Thêm sự kiện click cho countRoom
+            countRoom.setOnClickListener {
+                listener?.onCountRoomClick(adapterPosition)
             }
         }
     }
@@ -62,10 +70,20 @@ class RoomAdapter(private val context: Context, private var rooms: List<Rooms>) 
         holder.roomName.text = room.type
         holder.countBed.text = room.bedQuantity.toString() + " giường đôi"
         holder.count.text = "Tối đa " + (room.bedQuantity * 2).toString() + " người"
-        holder.countRoom.text = "Số phòng " + room.available.toString() + " ∨"
+        if(intArray[position] <= room.available) {
+            holder.countRoom.text = "Số phòng:         " + intArray[position].toString() + "   +"
+        }
+        else{
+            holder.countRoom.text = "Số phòng:         " + room.available.toString() + "   +"
+        }
         holder.convenience.text = room.benefit
         holder.price_room.text = room.price.toString() + " đ"
-
+        if(room.available == 0){
+            holder.count_Room.text = "Hết phòng rồi ní ơi!"
+        }
+        else {
+            holder.count_Room.text = room.available.toString() + " phòng cuối cùng!"
+        }
     }
 
     override fun getItemCount(): Int {

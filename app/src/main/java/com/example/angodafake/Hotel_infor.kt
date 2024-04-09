@@ -44,7 +44,8 @@ class Hotel_infor : Fragment() {
         val args = arguments
         val itemPosition = args?.getInt("hotelPosition") ?: -1
         val hotelIds = args?.getIntArray("hotelIds")
-        val searchText = args?.getString("searchText")
+        val saveIds = args?.getIntArray("saveIds")
+        val searchText = args?.getString("hotelName")
 
         val nameTextView = view.findViewById<TextView>(R.id.hotel_name)
         val locationTextView = view.findViewById<TextView>(R.id.address_hotel)
@@ -58,6 +59,7 @@ class Hotel_infor : Fragment() {
         val ratingBar: RatingBar = view.findViewById(R.id.ratingBar)
         val checkIn: TextView = view.findViewById(R.id.time_In)
         val checkOut: TextView = view.findViewById(R.id.time_Out)
+        val imgAvt: ImageView = view.findViewById(R.id.avt)
 
 
         hotel_db = HotelDatabase.getInstance(requireContext())
@@ -66,11 +68,13 @@ class Hotel_infor : Fragment() {
 
         var Picture = hotel_db.PictureDAO().getPictureByHotelID(hotel.id)
         val rooms = hotel_db.RoomDAO().getRoomsByHotelID(hotel.id)
-        val user = hotel_db.UserDAO().getUserByID(hotel.id)
+        val user = hotel_db.UserDAO().getUserByID(hotel.ID_Owner)
         val lowestPrice = rooms.minByOrNull { it.price }?.price ?: Double.MAX_VALUE
 
         val idPicture = requireContext().resources.getIdentifier(Picture.picture, "drawable", requireContext().packageName)
+        val idAvt = requireContext().resources.getIdentifier(Picture.picture_onwer, "drawable", requireContext().packageName)
         img.setImageResource(idPicture)
+        imgAvt.setImageResource(idAvt)
         nameTextView.text = hotel.name
         locationTextView.text = hotel.locationDetail
         pointView.text = hotel.point.toString()
@@ -94,6 +98,7 @@ class Hotel_infor : Fragment() {
         view.findViewById<ImageView>(R.id.imageView4).setOnClickListener {
             val arg = Bundle()
             arg.putIntArray("hotelIds", hotelIds)
+            arg.putIntArray("saveIds", saveIds)
             arg.putString("searchText", searchText)
 
             // Khởi tạo Fragment Filter và đính kèm Bundle
@@ -112,6 +117,9 @@ class Hotel_infor : Fragment() {
             val arg = Bundle()
             arg.putInt("hotelPosition", itemPosition)
             arg.putString("hotelName", hotel.name)
+            arg.putIntArray("hotelIds", hotelIds)
+            arg.putIntArray("saveIds", saveIds)
+
             val listRoom = ListRoom()
             listRoom.arguments = arg
 
