@@ -44,7 +44,7 @@ class Bookmark(private var idUser: Int) : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_bookmark, container, false)
-        println(idUser)
+
         hotel_db = HotelDatabase.getInstance(requireContext())
         val allBookmarks = hotel_db.BookmarkDAO().getBookmarksByUserID(idUser)
         bookmarksRecyclerView = view.findViewById(R.id.contactsRV)
@@ -52,7 +52,7 @@ class Bookmark(private var idUser: Int) : Fragment() {
         bookmarksRecyclerView.layoutManager = layoutManager
         bookmarksRecyclerView.setHasFixedSize(true)
 
-        linearAdapter = BookmarkAdapter(requireContext(), allBookmarks)
+        linearAdapter = BookmarkAdapter(requireContext(), view, allBookmarks)
         bookmarksRecyclerView.adapter = linearAdapter
 
         return view

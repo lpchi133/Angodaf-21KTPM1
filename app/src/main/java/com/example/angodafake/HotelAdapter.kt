@@ -1,6 +1,7 @@
 package com.example.angodafake
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,10 +33,10 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
         val quaCM: TextView = listItemView.findViewById(R.id.quaCM)
         val convenience: TextView = listItemView.findViewById(R.id.convenience)
         val buttonFav: Button = listItemView.findViewById(R.id.fav)
+        val buttonShare: Button = listItemView.findViewById(R.id.shareBtn)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotelAdapter.ViewHolder {
-
         val context = parent.context
         val inflater = LayoutInflater.from(context)
         // Inflate the custom layout
@@ -43,7 +44,6 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
         // Return a new holder instance
         return ViewHolder(hotelsView)
     }
-
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val hotel : Hotel = hotels[position]
@@ -98,6 +98,11 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
             in 8 until 9 -> { "Rất tốt" }
             else -> { "Tuyệt vời" }
         }
+
+        holder.buttonShare.tag = position
+        holder.buttonShare.setOnClickListener{
+            onShareButtonClick(it)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -111,5 +116,21 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
     fun updateDataGradually(newData: List<Hotel>) {
         hotels = newData
         notifyDataSetChanged()
+    }
+
+    fun onShareButtonClick(view: View) {
+        val position = view.tag as Int
+        val hotel = hotels[position]
+
+        // Tạo một Intent để chia sẻ thông tin về bookmark
+        val shareIntent = Intent(Intent.ACTION_SEND)
+        shareIntent.type = "text/plain"
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "Check out this hotel: ${hotel.name}\n" +
+                                                    "Location: ${hotel.locationDetail}\n" +
+                                                    "Description: ${hotel.description}\n" +
+                                                    "Rate: ${hotel.point}")
+
+        // Mở activity chia sẻ với Intent đã tạo
+        context.startActivity(Intent.createChooser(shareIntent, "Share bookmark via"))
     }
 }
