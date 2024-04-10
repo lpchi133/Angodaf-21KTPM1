@@ -35,15 +35,16 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
         val buttonFav: Button = listItemView.findViewById(R.id.fav)
         val buttonShare: Button = listItemView.findViewById(R.id.shareBtn)
         val price_room: TextView = listItemView.findViewById(R.id.price_room)
+
+        init {
+            // Thêm sự kiện click cho itemView
+            itemView.setOnClickListener {
+                listener?.onItemClick(adapterPosition)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotelAdapter.ViewHolder {
-//        init {
-//            // Thêm sự kiện click cho itemView
-//            itemView.setOnClickListener {
-//                listener?.onItemClick(adapterPosition)
-//            }
-//        }
         val context = parent.context
         val inflater = LayoutInflater.from(context)
         // Inflate the custom layout
