@@ -30,13 +30,20 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
         val pointView = listItemView.findViewById<TextView>(R.id.point)
         val img: ImageView = listItemView.findViewById(R.id.imageView)
         val rateStatus: TextView = listItemView.findViewById(R.id.rateStatus)
-        val quaCM: TextView = listItemView.findViewById(R.id.quaCM)
-        val convenience: TextView = listItemView.findViewById(R.id.convenience)
+//        val quaCM: TextView = listItemView.findViewById(R.id.quaCM)
+//        val convenience: TextView = listItemView.findViewById(R.id.convenience)
         val buttonFav: Button = listItemView.findViewById(R.id.fav)
         val buttonShare: Button = listItemView.findViewById(R.id.shareBtn)
+        val price_room: TextView = listItemView.findViewById(R.id.price_room)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotelAdapter.ViewHolder {
+//        init {
+//            // Thêm sự kiện click cho itemView
+//            itemView.setOnClickListener {
+//                listener?.onItemClick(adapterPosition)
+//            }
+//        }
         val context = parent.context
         val inflater = LayoutInflater.from(context)
         // Inflate the custom layout
@@ -50,14 +57,16 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
 
         hotel_db = HotelDatabase.getInstance(context)
         Picture = hotel_db.PictureDAO().getPictureByHotelID(hotel.id)
+        val rooms = hotel_db.RoomDAO().getRoomsByHotelID(hotel.id)
+        val lowestPrice = rooms.minByOrNull { it.price }?.price ?: Double.MAX_VALUE
 
         val idPicture = context.resources.getIdentifier(Picture.picture, "drawable", context.packageName)
         holder.img.setImageResource(idPicture)
         holder.nameTextView.text = hotel.name
         holder.locationTextView.text = hotel.locationDetail
         holder.pointView.text = hotel.point.toString()
-        holder.quaCM.text = hotel.description
-        holder.convenience.text = hotel.convenience
+//        holder.quaCM.text = hotel.description
+//        holder.convenience.text = hotel.convenience
 
         // Khởi tạo SharedPreferences
         val sharedPref = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
@@ -89,6 +98,7 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
                 hotel_db.BookmarkDAO().deleteBookmarkByHotelId(hotel.id)
             }
         }
+        holder.price_room.text = lowestPrice.toString() + " đ"
 
         holder.rateStatus.text = when (hotel.point.toInt()){
             in 0 until 3 -> { "Cực tệ" }
@@ -132,5 +142,8 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
 
         // Mở activity chia sẻ với Intent đã tạo
         context.startActivity(Intent.createChooser(shareIntent, "Share bookmark via"))
+    }
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
     }
 }

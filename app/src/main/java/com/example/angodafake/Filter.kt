@@ -80,9 +80,11 @@ class Filter(private var idUser: Int) : Fragment() {
 
         // lấy dữ liệu từ trang Home
         val args = arguments
-        val hotelIds = args?.getIntArray("hotelIds")
+        var hotelIds = args?.getIntArray("hotelIds")
+        val saveIds = args?.getIntArray("saveIds")
         val searchText = args?.getString("searchText")
-        Log.d("FilterDetailFragment", "Hotel IDs: ${hotelIds?.joinToString(", ")}, Search Text: $searchText")
+        Log.d("FilterDetailFragment", "Hotel IDs: ${saveIds?.joinToString(", ")}, Search Text: $searchText")
+
         if (hotelIds != null) {
             listHotels = hotelIds.map { hotel_db.HotelDAO().getHotelByID(it) }
         }
@@ -133,7 +135,30 @@ class Filter(private var idUser: Int) : Fragment() {
         searchEditText.setText(searchText)
         val hotelsRecyclerView = view.findViewById<RecyclerView>(R.id.contactsRV)
         hotelAdapter = ArrayList(listHotels)
+
+        val fragmentManager = requireActivity().supportFragmentManager
         adapter = HotelAdapter(requireContext(), hotelAdapter, idUser)
+        adapter.setOnItemClickListener(object : HotelAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                val clickedHotel = hotelAdapter[position]
+                val ids = listHotels.map { it.id }.toIntArray()
+                val arg = Bundle()
+                arg.putIntArray("hotelIds", ids)
+                arg.putIntArray("saveIds", saveIds)
+                arg.putString("hotelName", searchText)
+                arg.putInt("hotelPosition", clickedHotel.id)
+
+                // Khởi tạo Fragment Filter và đính kèm Bundle
+                val Fragment = Hotel_infor(idUser)
+                Fragment.arguments = arg
+
+                val fragmentManager = requireActivity().supportFragmentManager
+                fragmentManager.beginTransaction()
+                    .replace(R.id.frameLayout, Fragment)
+                    .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
+                    .commit()
+            }
+        })
         hotelsRecyclerView.adapter = adapter
         layoutManager = LinearLayoutManager(requireContext())
         hotelsRecyclerView.layoutManager = layoutManager
@@ -148,7 +173,12 @@ class Filter(private var idUser: Int) : Fragment() {
 
         view.findViewById<TextView>(R.id.filter).setOnClickListener {
             val arg = Bundle()
+
+            if (saveIds != null) {
+                hotelIds = saveIds
+            }
             arg.putIntArray("hotelIds", hotelIds)
+            arg.putIntArray("saveIds", saveIds)
             arg.putString("searchText", searchText)
 
             // Khởi tạo Fragment Filter và đính kèm Bundle
@@ -162,8 +192,6 @@ class Filter(private var idUser: Int) : Fragment() {
                 .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
                 .commit()
         }
-
-
         return view
     }
 
@@ -174,7 +202,8 @@ class Filter(private var idUser: Int) : Fragment() {
         // Đặt alpha cho layout gốc để làm mờ
         val rootView = requireActivity().window.decorView.findViewById<View>(android.R.id.content)
         rootView.alpha = 0.5f
-
+        startValue = 1000.0F
+        endValue = 9000.0F
         // Khởi tạo PopupWindow
         popupWindow = PopupWindow(
             popupView,
@@ -253,6 +282,7 @@ class Filter(private var idUser: Int) : Fragment() {
 
         popupWindow.setOnDismissListener {
             // Xử lý khi PopupWindow bị đóng
+            rootView.alpha = 1.0f
         }
     }
 
@@ -422,6 +452,9 @@ class Filter(private var idUser: Int) : Fragment() {
             popupWindow.dismiss()
         }
 
+        popupWindow.setOnDismissListener {
+            rootView.alpha = 1.0f
+        }
     }
 
     fun sortHotelsByLowestRoomPrice(hotels: List<Hotel>): List<Hotel> {
@@ -443,7 +476,7 @@ class Filter(private var idUser: Int) : Fragment() {
         // Tính toán giá phòng cao nhất của mỗi khách sạn
         for (hotel in hotels) {
             val rooms = hotel_db.RoomDAO().getRoomsByHotelID(hotel.id)
-            val highestPrice = rooms.maxByOrNull { it.price }?.price ?: Double.MIN_VALUE
+            val highestPrice = rooms.minByOrNull { it.price }?.price ?: Double.MIN_VALUE
 
             highestRoomPrices[hotel.id] = highestPrice
         }

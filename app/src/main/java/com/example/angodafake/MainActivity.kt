@@ -17,7 +17,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.jetbrains.annotations.TestOnly
 import java.io.BufferedReader
 import java.io.InputStreamReader
-import java.lang.reflect.Array.getInt
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -39,7 +38,6 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
         bottomNavigationView.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
-
 
         binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when(menuItem.itemId){
@@ -108,8 +106,10 @@ class MainActivity : AppCompatActivity() {
             val conveniences = reader.readLine()
             val point = reader.readLine().toDouble()
             val profit = reader.readLine().toDouble()
+            val checkIn = reader.readLine()
+            val checkOut = reader.readLine()
 
-            val hotel = Hotel(ID_Owner, name, locationDetail,city,description, conveniences, point, profit)
+            val hotel = Hotel(ID_Owner, name, locationDetail,city,description, conveniences, point, profit, checkIn, checkOut)
             hotel_db.HotelDAO().insertHotel(hotel)
             println(hotel)
             line = reader.readLine()
@@ -142,14 +142,16 @@ class MainActivity : AppCompatActivity() {
         while (line != null) {
             val ID_Hotel = line.toInt()
             val pictureID = reader.readLine()
+            val pictureOwner = reader.readLine()
 
-            val picture = Picture(ID_Hotel, pictureID)
+            val picture = Picture(ID_Hotel, pictureID, pictureOwner)
             hotel_db.PictureDAO().insertPicture(picture)
             println(picture)
             line = reader.readLine()
         }
         reader.close()
     }
+
     private fun readRooms() {
         val inputStream = this.assets.open("room.txt")
         val reader = BufferedReader(InputStreamReader(inputStream))
@@ -165,15 +167,16 @@ class MainActivity : AppCompatActivity() {
             val bedQuantity = reader.readLine().toInt()
             val checkIn = reader.readLine()
             val checkOut = reader.readLine()
+            val benefit = reader.readLine()
+            val pictureID = reader.readLine()
 
-            val room = Rooms(ID_Hotel, quantity, available, type, acreage, price, bedQuantity, checkIn, checkOut)
+            val room = Rooms(ID_Hotel, quantity, available, type, acreage, price, bedQuantity, checkIn, checkOut, benefit, pictureID)
             hotel_db.RoomDAO().insertRoom(room)
             println(room)
             line = reader.readLine()
         }
         reader.close()
     }
-
     override fun onDestroy() {
         super.onDestroy()
         hotel_db.close()

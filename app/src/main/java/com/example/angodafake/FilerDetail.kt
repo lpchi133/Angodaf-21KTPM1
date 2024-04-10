@@ -67,6 +67,7 @@ class FilerDetail(private var idUser: Int) : Fragment() {
         view =  inflater.inflate(R.layout.fragment_home_filter_detail, container, false)
         val args = arguments
         val hotelIds = args?.getIntArray("hotelIds")
+
         val searchText = args?.getString("searchText")
 
         text6Plus = view.findViewById<TextView>(R.id.text_6_plus)

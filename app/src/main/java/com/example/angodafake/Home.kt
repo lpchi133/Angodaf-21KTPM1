@@ -79,9 +79,10 @@ class Home(private var idUser: Int) : Fragment() {
             val hotelIds = filterHotels(searchText).map { it.id }.toIntArray()
             args.putIntArray("hotelIds", hotelIds)
             args.putString("searchText", searchText)
-
+            args.putIntArray("saveIds", hotelIds)
             // Khởi tạo Fragment Filter và đính kèm Bundle
             val filterFragment = Filter(idUser)
+
             filterFragment.arguments = args
 
             // Thay thế Fragment hiện tại bằng Fragment Filter
@@ -112,6 +113,7 @@ class Home(private var idUser: Int) : Fragment() {
                 }
             }
     }
+
     private fun filterHotels(query: String): List<Hotel> {
         val filteredList = mutableListOf<Hotel>()
         for (hotel in listHotels) {

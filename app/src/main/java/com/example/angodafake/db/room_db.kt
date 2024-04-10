@@ -33,6 +33,10 @@ data class Rooms (
     var checkIn : String,
     @ColumnInfo(name = "checkOut" )
     var checkOut : String,
+    @ColumnInfo(name = "benefit" )
+    var benefit : String,
+    @ColumnInfo(name = "picture" )
+    var picture : String,
 ){
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0

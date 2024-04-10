@@ -31,6 +31,10 @@ data class Hotel (
     var point : Double,
     @ColumnInfo(name = "profit" )
     var profit : Double,
+    @ColumnInfo(name = "checkIn" )
+    var checkIn : String,
+    @ColumnInfo(name = "checkOut" )
+    var checkOut : String,
 ){
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
@@ -63,9 +67,6 @@ abstract class HotelDatabase : RoomDatabase() {
     abstract fun PurchaseDAO() : PurchaseDAO
     abstract fun RoomDAO() : RoomDAO
     abstract fun UserDAO() : UserDAO
-
-
-
 
     companion object {
         private const val DB_NAME = "hotel_db"

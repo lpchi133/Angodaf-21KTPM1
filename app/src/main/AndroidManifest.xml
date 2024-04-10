@@ -32,10 +32,16 @@
             </intent-filter>
         </activity>
         <activity
-        android:name=".Filter"
-        android:exported="false" />
+            android:name=".Filter"
+            android:exported="false" />
         <activity
             android:name=".FilerDetail"
+            android:exported="false" />
+        <activity
+            android:name=".Hotel_infor"
+            android:exported="false" />
+        <activity
+            android:name=".ListRoom"
             android:exported="false" />
     </application>
 

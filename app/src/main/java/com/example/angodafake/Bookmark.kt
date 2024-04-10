@@ -13,7 +13,6 @@ import com.example.angodafake.db.HotelDatabase
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-private const val ARG_USER_ID = "idUser"
 
 /**
  * A simple [Fragment] subclass.
@@ -47,12 +46,14 @@ class Bookmark(private var idUser: Int) : Fragment() {
 
         hotel_db = HotelDatabase.getInstance(requireContext())
         val allBookmarks = hotel_db.BookmarkDAO().getBookmarksByUserID(idUser)
+
         bookmarksRecyclerView = view.findViewById(R.id.contactsRV)
         layoutManager = LinearLayoutManager(requireContext())
         bookmarksRecyclerView.layoutManager = layoutManager
         bookmarksRecyclerView.setHasFixedSize(true)
 
         linearAdapter = BookmarkAdapter(requireContext(), view, allBookmarks)
+
         bookmarksRecyclerView.adapter = linearAdapter
 
         return view

@@ -19,6 +19,8 @@ data class Picture (
     var ID_Hotel : Int,
     @ColumnInfo(name = "picture" )
     var picture : String,
+    @ColumnInfo(name = "picture_onwer" )
+    var picture_onwer : String,
 ){
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
