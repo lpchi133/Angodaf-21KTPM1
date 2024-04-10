@@ -7,7 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.angodafake.db.HotelDatabase
+import com.example.angodafake.Utilities.BookmarkUtils
+import com.google.firebase.Firebase
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.database
 import org.jetbrains.annotations.TestOnly
 
 // TODO: Rename parameter arguments, choose names that match
@@ -24,13 +27,13 @@ class Bookmark : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private lateinit var hotel_db: HotelDatabase
     private lateinit var bookmarksRecyclerView : RecyclerView
     private lateinit var layoutManager: RecyclerView.LayoutManager
     private lateinit var linearAdapter: BookmarkAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
@@ -44,15 +47,14 @@ class Bookmark : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_bookmark, container, false)
 
-        hotel_db = HotelDatabase.getInstance(requireContext())
-        val allBookmarks = hotel_db.BookmarkDAO().getBookmarksByUserID(1)
-
         bookmarksRecyclerView = view.findViewById(R.id.contactsRV)
         layoutManager = LinearLayoutManager(requireContext())
         bookmarksRecyclerView.layoutManager = layoutManager
         bookmarksRecyclerView.setHasFixedSize(true)
 
-        linearAdapter = BookmarkAdapter(requireContext(), allBookmarks)
+        BookmarkUtils.getAllBookmarks("tYw0x3oVS7gAd9wOdOszzvJMOEM2"){allBookmarks ->
+            linearAdapter = BookmarkAdapter(requireContext(), allBookmarks)
+        }
         bookmarksRecyclerView.adapter = linearAdapter
 
         return view
@@ -60,9 +62,10 @@ class Bookmark : Fragment() {
 
     @TestOnly
     private fun testPrintAllBookmarks() {
-        val list = hotel_db.BookmarkDAO().getBookmarkList()
-        for (bookmark in list) {
-            println(bookmark.toString())
+        BookmarkUtils.getAllBookmarks("tYw0x3oVS7gAd9wOdOszzvJMOEM2"){list ->
+            for (bookmark in list) {
+                println(bookmark.toString())
+            }
         }
     }
 

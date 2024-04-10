@@ -4,7 +4,7 @@
             "outputFile": "com.example.angodafake.app-mergeDebugResources-38:/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\lephu\\.gradle\\caches\\transforms-3\\32b55b3f96bc96998d6a68207f3ea36b\\transformed\\core-1.12.0\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\lephu\\.gradle\\caches\\transforms-3\\42c955fabfea9d6816fe79c0c25a3741\\transformed\\core-1.12.0\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\lephu\\.gradle\\caches\\transforms-3\\88be6ab6762abd66daca4d590bd1aa3c\\transformed\\appcompat-1.6.1\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\lephu\\.gradle\\caches\\transforms-3\\47abdd332687a1334265ed9d0e984d10\\transformed\\appcompat-1.6.1\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

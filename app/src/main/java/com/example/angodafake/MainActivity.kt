@@ -5,9 +5,9 @@ import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.angodafake.databinding.ActivityMainBinding
-import com.example.angodafake.db.Bookmarks
+//import com.example.angodafake.db.Bookmarks
 import com.example.angodafake.db.Hotel
-import com.example.angodafake.db.HotelDatabase
+//import com.example.angodafake.db.HotelDatabase
 import com.example.angodafake.db.Picture
 import com.example.angodafake.db.Rooms
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -17,7 +17,7 @@ import java.io.InputStreamReader
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var hotel_db: HotelDatabase
+//    private lateinit var hotel_db: HotelDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         replaceFragment(Home())
 
 //        ******* ADD DATABASE **********
-        hotel_db = HotelDatabase.getInstance(this)
+//        hotel_db = HotelDatabase.getInstance(this)
 
 //        addDatabase()
 
@@ -78,9 +78,9 @@ class MainActivity : AppCompatActivity() {
             val point = reader.readLine().toDouble()
             val profit = reader.readLine().toDouble()
 
-            val hotel = Hotel(ID_Owner, name, locationDetail,city,description, conveniences, point, profit)
-            hotel_db.HotelDAO().insertHotel(hotel)
-            println(hotel)
+//            val hotel = Hotel(ID_Owner, name, locationDetail,city,description, conveniences, point, profit)
+//            hotel_db.HotelDAO().insertHotel(hotel)
+//            println(hotel)
             line = reader.readLine()
         }
         reader.close()
@@ -95,9 +95,9 @@ class MainActivity : AppCompatActivity() {
             val ID_Owner = line.toInt()
             val ID_Hotel = reader.readLine().toInt()
 
-            val bookmark = Bookmarks(ID_Owner, ID_Hotel)
-            hotel_db.BookmarkDAO().insertBookmark(bookmark)
-            println(bookmark)
+//            val bookmark = Bookmarks(ID_Owner, ID_Hotel)
+//            hotel_db.BookmarkDAO().insertBookmark(bookmark)
+//            println(bookmark)
             line = reader.readLine()
         }
         reader.close()
@@ -112,9 +112,9 @@ class MainActivity : AppCompatActivity() {
             val ID_Hotel = line.toInt()
             val pictureID = reader.readLine()
 
-            val picture = Picture(ID_Hotel, pictureID)
-            hotel_db.PictureDAO().insertPicture(picture)
-            println(picture)
+//            val picture = Picture(ID_Hotel, pictureID)
+//            hotel_db.PictureDAO().insertPicture(picture)
+//            println(picture)
             line = reader.readLine()
         }
         reader.close()
@@ -135,9 +135,9 @@ class MainActivity : AppCompatActivity() {
             val checkIn = reader.readLine()
             val checkOut = reader.readLine()
 
-            val room = Rooms(ID_Hotel, quantity, available, type, acreage, price, bedQuantity, checkIn, checkOut)
-            hotel_db.RoomDAO().insertRoom(room)
-            println(room)
+//            val room = Rooms(ID_Hotel, quantity, available, type, acreage, price, bedQuantity, checkIn, checkOut)
+//            hotel_db.RoomDAO().insertRoom(room)
+//            println(room)
             line = reader.readLine()
         }
         reader.close()
@@ -145,6 +145,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        hotel_db.close()
+//        hotel_db.close()
     }
 }

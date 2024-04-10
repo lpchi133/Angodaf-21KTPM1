@@ -7,14 +7,18 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.angodafake.Utilities.PictureUtils
 import com.example.angodafake.db.Hotel
-import com.example.angodafake.db.HotelDatabase
+//import com.example.angodafake.db.HotelDatabase
 import com.example.angodafake.db.Picture
+import com.google.firebase.Firebase
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.database
 
 class HotelAdapter(private val context: Context, private var hotels: List<Hotel>) : RecyclerView.Adapter<HotelAdapter.ViewHolder>() {
-    private lateinit var hotel_db: HotelDatabase
     private lateinit var Picture: Picture
     private var listener: HotelAdapter.OnItemClickListener? = null
+    private lateinit var database: DatabaseReference
     // Interface cho sự kiện click
     interface OnItemClickListener {
         fun onItemClick(position: Int)
@@ -45,8 +49,11 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val hotel : Hotel = hotels[position]
 
-        hotel_db = HotelDatabase.getInstance(context)
-        Picture = hotel_db.PictureDAO().getPictureByHotelID(hotel.id)
+        database = Firebase.database.reference
+
+        PictureUtils.getPictureByHotelID(hotel.ID!!){picture ->{
+            Picture = picture
+        }}
 
         val idPicture = context.resources.getIdentifier(Picture.picture, "drawable", context.packageName)
         holder.img.setImageResource(idPicture)
@@ -54,9 +61,9 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
         holder.locationTextView.text = hotel.locationDetail
         holder.pointView.text = hotel.point.toString()
         holder.quaCM.text = hotel.description
-        holder.convenience.text = hotel.convenience
+        holder.convenience.text = hotel.conveniences
 
-        holder.rateStatus.text = when (hotel.point.toInt()){
+        holder.rateStatus.text = when (hotel.point?.toInt()){
             in 0 until 3 -> { "Cực tệ" }
             in 3 until 5 -> { "Tệ" }
             in 5 until 6 -> { "Trung bình" }

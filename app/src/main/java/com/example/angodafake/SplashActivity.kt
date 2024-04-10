@@ -26,7 +26,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun nextActivity(): Runnable {
-        auth.signOut()
+//        auth.signOut()
         val currentUser = auth.currentUser
 
         return Runnable {

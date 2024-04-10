@@ -19,7 +19,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.db.Hotel
-import com.example.angodafake.db.HotelDatabase
+//import com.example.angodafake.db.HotelDatabase
 import com.google.android.material.slider.RangeSlider
 
 // TODO: Rename parameter arguments, choose names that match
@@ -43,7 +43,7 @@ class Filter : Fragment() {
     private lateinit var adapter: HotelAdapter
     private lateinit var listHotels: List<Hotel>
     private var listHotelsOri: List<Hotel> = mutableListOf()
-    private lateinit var hotel_db: HotelDatabase
+//    private lateinit var hotel_db: HotelDatabase
     private lateinit var layoutManager: RecyclerView.LayoutManager
     private lateinit var popupWindow: PopupWindow
     private var startValue: Float = 1000.0f
@@ -73,7 +73,7 @@ class Filter : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         view =  inflater.inflate(R.layout.fragment_home_filter, container, false)
-        hotel_db = HotelDatabase.getInstance(requireContext())
+//        hotel_db = HotelDatabase.getInstance(requireContext())
 
 
         val searchEditText = view.findViewById<TextView>(R.id.nameHotelSearch)
@@ -84,7 +84,7 @@ class Filter : Fragment() {
         val searchText = args?.getString("searchText")
         Log.d("FilterDetailFragment", "Hotel IDs: ${hotelIds?.joinToString(", ")}, Search Text: $searchText")
         if (hotelIds != null) {
-            listHotels = hotelIds.map { hotel_db.HotelDAO().getHotelByID(it) }
+//            listHotels = hotelIds.map { hotel_db.HotelDAO().getHotelByID(it) }
         }
 
         // Lấy dữ liệu từ FilterDetail
@@ -96,23 +96,23 @@ class Filter : Fragment() {
             val selectedCities = bundle.getString("selectedCities", "")
 
             if(startValue != 0.0F){
-                listHotels = listHotels.filter { hotel ->
-                    hotel.point >= point
-                }
+//                listHotels = listHotels.filter { hotel ->
+//                    hotel.point >= point
+//                }
 
 
                 // Lọc ra danh sách các khách sạn có city thuộc selectedCities
-                listHotels = listHotels.filter { hotel ->
-                    selectedCities.contains(hotel.city)
-                }
+//                listHotels = listHotels.filter { hotel ->
+//                    selectedCities.contains(hotel.city)
+//                }
 
-                listHotels = listHotels.filter { hotel ->
-                    val rooms = hotel_db.RoomDAO().getRoomsByHotelID(hotel.id)
+//                listHotels = listHotels.filter { hotel ->
+//                    val rooms = hotel_db.RoomDAO().getRoomsByHotelID(hotel.id)
                     // Kiểm tra xem có phòng nào có giá nằm trong khoảng startValue và endValue không
-                    rooms.any { room ->
-                        room.price in startValue..endValue
-                    }
-                }
+//                    rooms.any { room ->
+//                        room.price in startValue..endValue
+//                    }
+//                }
 
             }
 
@@ -236,12 +236,12 @@ class Filter : Fragment() {
                 Log.d("FilterDetailFragment", "Hotel ${index + 1}: ${hotel.name}, Point: ${hotel.point}")
             }
 
-            listHotels = listHotels.filter { hotel ->
-                val rooms = hotel_db.RoomDAO().getRoomsByHotelID(hotel.id)
-                rooms.any { room ->
-                    room.price in startValue..endValue
-                }
-            }
+//            listHotels = listHotels.filter { hotel ->
+////                val rooms = hotel_db.RoomDAO().getRoomsByHotelID(hotel.id)
+//                rooms.any { room ->
+//                    room.price in startValue..endValue
+//                }
+//            }
             Log.d("FilterDetailFragment", "List of Hotels:")
             listHotels.forEachIndexed { index, hotel ->
                 Log.d("FilterDetailFragment", "Hotel ${index + 1}: ${hotel.name}, Point: ${hotel.point}")
@@ -377,7 +377,7 @@ class Filter : Fragment() {
             listHotels.forEachIndexed { index, hotel ->
                 Log.d("Sort", "Hotel ${index + 1}: ${hotel.name}, Point: ${hotel.point}")
             }
-            listHotels = sortHotelsByHighestRoomPrice(listHotels)
+//            listHotels = sortHotelsByHighestRoomPrice(listHotels)
             Log.d("Sort", "List of HotelsSort:")
             listHotels.forEachIndexed { index, hotel ->
                 Log.d("Sort", "Hotel ${index + 1}: ${hotel.name}, Point: ${hotel.point}")
@@ -430,26 +430,27 @@ class Filter : Fragment() {
 
         // Tính toán giá phòng thấp nhất của mỗi khách sạn
         for (hotel in hotels) {
-            val rooms = hotel_db.RoomDAO().getRoomsByHotelID(hotel.id)
-            val lowestPrice = rooms.minByOrNull { it.price }?.price ?: Double.MAX_VALUE
+//            val rooms = hotel_db.RoomDAO().getRoomsByHotelID(hotel.id)
+//            val lowestPrice = rooms.minByOrNull { it.price }?.price ?: Double.MAX_VALUE
 
-            lowestRoomPrices[hotel.id] = lowestPrice
+//            lowestRoomPrices[hotel.id] = lowestPrice
         }
-        return hotels.sortedBy { lowestRoomPrices[it.id] ?: Double.MAX_VALUE }
+//        return hotels.sortedBy { lowestRoomPrices[it.id] ?: Double.MAX_VALUE }
+        return hotels
     }
 
-    fun sortHotelsByHighestRoomPrice(hotels: List<Hotel>): List<Hotel> {
-        val highestRoomPrices = mutableMapOf<Int, Double>()
-
-        // Tính toán giá phòng cao nhất của mỗi khách sạn
-        for (hotel in hotels) {
-            val rooms = hotel_db.RoomDAO().getRoomsByHotelID(hotel.id)
-            val highestPrice = rooms.maxByOrNull { it.price }?.price ?: Double.MIN_VALUE
-
-            highestRoomPrices[hotel.id] = highestPrice
-        }
-        return hotels.sortedByDescending { highestRoomPrices[it.id] ?: Double.MIN_VALUE }
-    }
+//    fun sortHotelsByHighestRoomPrice(hotels: List<Hotel>): List<Hotel> {
+//        val highestRoomPrices = mutableMapOf<Int, Double>()
+//
+//        // Tính toán giá phòng cao nhất của mỗi khách sạn
+//        for (hotel in hotels) {
+//            val rooms = hotel_db.RoomDAO().getRoomsByHotelID(hotel.id)
+//            val highestPrice = rooms.maxByOrNull { it.price }?.price ?: Double.MIN_VALUE
+//
+//            highestRoomPrices[hotel.id] = highestPrice
+//        }
+//        return hotels.sortedByDescending { highestRoomPrices[it.id] ?: Double.MIN_VALUE }
+//    }
 
     companion object {
         /**
