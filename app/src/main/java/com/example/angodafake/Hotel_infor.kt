@@ -20,7 +20,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [Hotel_infor.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Hotel_infor : Fragment() {
+class Hotel_infor(private var idUser: Int) : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -45,7 +45,7 @@ class Hotel_infor : Fragment() {
         val itemPosition = args?.getInt("hotelPosition") ?: -1
         val hotelIds = args?.getIntArray("hotelIds")
         val saveIds = args?.getIntArray("saveIds")
-        val searchText = args?.getString("hotelName")
+        val searchText = args?.getString("searchText")
 
         val nameTextView = view.findViewById<TextView>(R.id.hotel_name)
         val locationTextView = view.findViewById<TextView>(R.id.address_hotel)
@@ -66,9 +66,11 @@ class Hotel_infor : Fragment() {
 
         hotel =  hotel_db.HotelDAO().getHotelByID(itemPosition)
 
-        var Picture = hotel_db.PictureDAO().getPictureByHotelID(hotel.id)
+        val Picture = hotel_db.PictureDAO().getPictureByHotelID(hotel.id)
         val rooms = hotel_db.RoomDAO().getRoomsByHotelID(hotel.id)
-        val user = hotel_db.UserDAO().getUserByID(hotel.ID_Owner)
+        val user = hotel_db.UserDAO().getUserById(hotel.ID_Owner)
+        Log.d("FilterFragment", "Received data - user: $user")
+
         val lowestPrice = rooms.minByOrNull { it.price }?.price ?: Double.MAX_VALUE
 
         val idPicture = requireContext().resources.getIdentifier(Picture.picture, "drawable", requireContext().packageName)
@@ -83,7 +85,7 @@ class Hotel_infor : Fragment() {
         checkIn.text = hotel.checkIn
         checkOut.text = hotel.checkOut
         price_room.text = lowestPrice.toString() + " đ"
-        nameOwner.text = user.name
+        nameOwner.text = user?.name
         ratingBar.rating = hotel.point.toFloat() / 2
 
         rateStatus.text = when (hotel.point.toInt()){
@@ -102,7 +104,7 @@ class Hotel_infor : Fragment() {
             arg.putString("searchText", searchText)
 
             // Khởi tạo Fragment Filter và đính kèm Bundle
-            val filterFragment = Filter()
+            val filterFragment = Filter(idUser)
             filterFragment.arguments = arg
 
             // Thay thế Fragment hiện tại bằng Fragment Filter
@@ -116,11 +118,12 @@ class Hotel_infor : Fragment() {
         view.findViewById<Button>(R.id.watchRoom).setOnClickListener {
             val arg = Bundle()
             arg.putInt("hotelPosition", itemPosition)
-            arg.putString("hotelName", hotel.name)
+            arg.putString("searchText", searchText)
             arg.putIntArray("hotelIds", hotelIds)
             arg.putIntArray("saveIds", saveIds)
+            arg.putString("hotelName", hotel.name)
 
-            val listRoom = ListRoom()
+            val listRoom = ListRoom(idUser)
             listRoom.arguments = arg
 
             val fragmentManager = requireActivity().supportFragmentManager
@@ -144,8 +147,8 @@ class Hotel_infor : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Hotel_infor().apply {
+        fun newInstance(param1: String, param2: String, idUser: Int) =
+            Hotel_infor(idUser).apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

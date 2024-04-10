@@ -32,7 +32,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [Filter.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Filter : Fragment() {
+class Filter(private var idUser: Int) : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -46,8 +46,8 @@ class Filter : Fragment() {
     private lateinit var hotel_db: HotelDatabase
     private lateinit var layoutManager: RecyclerView.LayoutManager
     private lateinit var popupWindow: PopupWindow
-    private var startValue: Float = 1000.0f
-    private var endValue: Float = 9000.0f
+    private var startValue: Float = 100000.0f
+    private var endValue: Float = 900000.0f
     private lateinit var rangeSlider: RangeSlider
     private var isFitTextViewSelected: Boolean = false
     private var prevPriceLowTextColor: Int = 0
@@ -83,7 +83,8 @@ class Filter : Fragment() {
         var hotelIds = args?.getIntArray("hotelIds")
         val saveIds = args?.getIntArray("saveIds")
         val searchText = args?.getString("searchText")
-        Log.d("FilterDetailFragment", "Hotel IDs: ${saveIds?.joinToString(", ")}, Search Text: $searchText")
+        Log.d("FilterDetailFragment", "Hotel IDs: ${hotelIds?.joinToString(", ")}, Search Text: $searchText")
+
         if (hotelIds != null) {
             listHotels = hotelIds.map { hotel_db.HotelDAO().getHotelByID(it) }
         }
@@ -101,7 +102,6 @@ class Filter : Fragment() {
                     hotel.point >= point
                 }
 
-
                 // Lọc ra danh sách các khách sạn có city thuộc selectedCities
                 listHotels = listHotels.filter { hotel ->
                     selectedCities.contains(hotel.city)
@@ -114,10 +114,13 @@ class Filter : Fragment() {
                         room.price in startValue..endValue
                     }
                 }
-
             }
 
             Log.d("FilterFragment", "Received data - Point: $point, Start Value: $startValue, End Value: $endValue, Selected Cities: $selectedCities")
+            Log.d("FilterDetailFragment", "List of Hotels:")
+            listHotels.forEachIndexed { index, hotel ->
+                Log.d("FilterDetailFragment", "Hotel ${index + 1}: ${hotel.name}, Point: ${hotel.point}")
+            }
         }
         val buttonShowPopup = view.findViewById<TextView>(R.id.price)
         buttonShowPopup.setOnClickListener {
@@ -134,8 +137,7 @@ class Filter : Fragment() {
         searchEditText.setText(searchText)
         val hotelsRecyclerView = view.findViewById<RecyclerView>(R.id.contactsRV)
         hotelAdapter = ArrayList(listHotels)
-        val fragmentManager = requireActivity().supportFragmentManager
-        adapter = HotelAdapter(requireContext(), hotelAdapter)
+        adapter = HotelAdapter(requireContext(), hotelAdapter, idUser)
         adapter.setOnItemClickListener(object : HotelAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
                 val clickedHotel = hotelAdapter[position]
@@ -143,11 +145,11 @@ class Filter : Fragment() {
                 val arg = Bundle()
                 arg.putIntArray("hotelIds", ids)
                 arg.putIntArray("saveIds", saveIds)
-                arg.putString("hotelName", searchText)
+                arg.putString("searchText", searchText)
                 arg.putInt("hotelPosition", clickedHotel.id)
 
                 // Khởi tạo Fragment Filter và đính kèm Bundle
-                val Fragment = Hotel_infor()
+                val Fragment = Hotel_infor(idUser)
                 Fragment.arguments = arg
 
                 val fragmentManager = requireActivity().supportFragmentManager
@@ -162,13 +164,11 @@ class Filter : Fragment() {
         hotelsRecyclerView.layoutManager = layoutManager
         hotelsRecyclerView.setHasFixedSize(true)
 
-
         view.findViewById<Button>(R.id.backToMain).setOnClickListener {
             val fragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.frameLayout, Home.newInstance("param1", "param2"))
+            fragmentTransaction.replace(R.id.frameLayout, Home.newInstance("param1", "param2", idUser))
             fragmentTransaction.commit()
-
         }
 
         view.findViewById<TextView>(R.id.filter).setOnClickListener {
@@ -181,7 +181,7 @@ class Filter : Fragment() {
             arg.putString("searchText", searchText)
 
             // Khởi tạo Fragment Filter và đính kèm Bundle
-            val filterFragment = FilerDetail()
+            val filterFragment = FilerDetail(idUser)
             filterFragment.arguments = arg
 
             // Thay thế Fragment hiện tại bằng Fragment Filter
@@ -192,6 +192,13 @@ class Filter : Fragment() {
                 .commit()
         }
 
+        view.findViewById<TextView>(R.id.buttonMap).setOnClickListener {
+            val mapFragment = MapsFragment()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.frameLayout, mapFragment)
+                .addToBackStack(null)
+                .commit()
+        }
 
         return view
     }
@@ -203,8 +210,8 @@ class Filter : Fragment() {
         // Đặt alpha cho layout gốc để làm mờ
         val rootView = requireActivity().window.decorView.findViewById<View>(android.R.id.content)
         rootView.alpha = 0.5f
-        startValue = 1000.0F
-        endValue = 9000.0F
+        startValue = 100000.0F
+        endValue = 900000.0F
         // Khởi tạo PopupWindow
         popupWindow = PopupWindow(
             popupView,
@@ -247,8 +254,8 @@ class Filter : Fragment() {
 
         val buttonReset: Button = popupView.findViewById(R.id.buttonReset)
         buttonReset.setOnClickListener {
-            startValue = 1000.0F
-            endValue = 9000.0F
+            startValue = 100000.0F
+            endValue = 900000.0F
             rangeSlider.values = mutableListOf(startValue, endValue)
         }
 
@@ -282,6 +289,7 @@ class Filter : Fragment() {
         }
 
         popupWindow.setOnDismissListener {
+            // Xử lý khi PopupWindow bị đóng
             rootView.alpha = 1.0f
         }
     }
@@ -455,7 +463,6 @@ class Filter : Fragment() {
         popupWindow.setOnDismissListener {
             rootView.alpha = 1.0f
         }
-
     }
 
     fun sortHotelsByLowestRoomPrice(hotels: List<Hotel>): List<Hotel> {
@@ -495,8 +502,8 @@ class Filter : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Filter().apply {
+        fun newInstance(param1: String, param2: String, idUser: Int) =
+            Filter(idUser).apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

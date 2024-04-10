@@ -20,7 +20,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [ListRoom.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ListRoom : Fragment() {
+class ListRoom(private val idUser: Int) : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -47,11 +47,12 @@ class ListRoom : Fragment() {
 
         val args = arguments
         val itemPosition = args?.getInt("hotelPosition") ?: -1
-        val searchText = args?.getString("hotelName")
+        val searchText = args?.getString("searchText")
+        val hotelName = args?.getString("hotelName")
         val hotelIds = args?.getIntArray("hotelIds")
         val saveIds = args?.getIntArray("saveIds")
 
-        nameTextView.text = searchText
+        nameTextView.text = hotelName
         val rooms = hotel_db.RoomDAO().getRoomsByHotelID(itemPosition)
         val intArray = IntArray(rooms.size)
         // Gán tất cả các phần tử của mảng intArray bằng 1
@@ -69,10 +70,10 @@ class ListRoom : Fragment() {
             val arg = Bundle()
             arg.putIntArray("hotelIds", hotelIds)
             arg.putIntArray("saveIds", saveIds)
-            arg.putString("hotelName", searchText)
+            arg.putString("searchText", searchText)
             arg.putInt("hotelPosition", itemPosition)
 
-            val filterFragment = Hotel_infor()
+            val filterFragment = Hotel_infor(idUser)
             filterFragment.arguments = arg
 
             val fragmentManager = requireActivity().supportFragmentManager
@@ -92,9 +93,6 @@ class ListRoom : Fragment() {
                 adapter.notifyItemChanged(position)
             }
         })
-
-
-
         return view
     }
 
@@ -109,8 +107,8 @@ class ListRoom : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ListRoom().apply {
+        fun newInstance(param1: String, param2: String, idUser: Int) =
+            ListRoom(idUser).apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

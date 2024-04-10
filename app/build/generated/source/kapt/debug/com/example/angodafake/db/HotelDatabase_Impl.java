@@ -50,9 +50,9 @@ public final class HotelDatabase_Impl extends HotelDatabase {
         db.execSQL("CREATE TABLE IF NOT EXISTS `comment_db` (`ID_Owner` INTEGER NOT NULL, `ID_Hotel` INTEGER NOT NULL, `time` TEXT NOT NULL, `point` REAL NOT NULL, `detail` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `purchase_db` (`ID_Owner` INTEGER NOT NULL, `ID_Hotel` INTEGER NOT NULL, `ID_Room` INTEGER NOT NULL, `time_booking` TEXT NOT NULL, `time_purchase` TEXT NOT NULL, `total_purchase` REAL NOT NULL, `status_purchase` INTEGER NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `room_db` (`ID_Hotel` INTEGER NOT NULL, `quantity` INTEGER NOT NULL, `available` INTEGER NOT NULL, `type` TEXT NOT NULL, `acreage` REAL NOT NULL, `price` REAL NOT NULL, `bedQuantity` INTEGER NOT NULL, `checkIn` TEXT NOT NULL, `checkOut` TEXT NOT NULL, `benefit` TEXT NOT NULL, `picture` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)");
-        db.execSQL("CREATE TABLE IF NOT EXISTS `user_db` (`name` TEXT NOT NULL, `dob` TEXT NOT NULL, `gender` TEXT NOT NULL, `number` TEXT NOT NULL, `email` TEXT NOT NULL, `country` TEXT NOT NULL, `cardNumber` TEXT NOT NULL, `cardName` TEXT NOT NULL, `point` INTEGER NOT NULL, `userName` TEXT NOT NULL, `password` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `user_db` (`name` TEXT NOT NULL, `dob` TEXT NOT NULL, `gender` TEXT NOT NULL, `number` TEXT NOT NULL, `email` TEXT NOT NULL, `country` TEXT NOT NULL, `cardNumber` TEXT NOT NULL, `cardName` TEXT NOT NULL, `point` INTEGER NOT NULL, `password` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '21b3b01e77853758dfd3938afafb4ee6')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e3859c48d4f1e1570cad3c335f462ecc')");
       }
 
       @Override
@@ -211,7 +211,7 @@ public final class HotelDatabase_Impl extends HotelDatabase {
                   + " Expected:\n" + _infoRoomDb + "\n"
                   + " Found:\n" + _existingRoomDb);
         }
-        final HashMap<String, TableInfo.Column> _columnsUserDb = new HashMap<String, TableInfo.Column>(12);
+        final HashMap<String, TableInfo.Column> _columnsUserDb = new HashMap<String, TableInfo.Column>(11);
         _columnsUserDb.put("name", new TableInfo.Column("name", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsUserDb.put("dob", new TableInfo.Column("dob", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsUserDb.put("gender", new TableInfo.Column("gender", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -221,7 +221,6 @@ public final class HotelDatabase_Impl extends HotelDatabase {
         _columnsUserDb.put("cardNumber", new TableInfo.Column("cardNumber", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsUserDb.put("cardName", new TableInfo.Column("cardName", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsUserDb.put("point", new TableInfo.Column("point", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsUserDb.put("userName", new TableInfo.Column("userName", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsUserDb.put("password", new TableInfo.Column("password", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsUserDb.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         final HashSet<TableInfo.ForeignKey> _foreignKeysUserDb = new HashSet<TableInfo.ForeignKey>(0);
@@ -235,7 +234,7 @@ public final class HotelDatabase_Impl extends HotelDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "21b3b01e77853758dfd3938afafb4ee6", "8d634f01d5edcdb9bf7f21519a21af1a");
+    }, "e3859c48d4f1e1570cad3c335f462ecc", "1b74c4d94b09d70862f4fc8f1100b25b");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;

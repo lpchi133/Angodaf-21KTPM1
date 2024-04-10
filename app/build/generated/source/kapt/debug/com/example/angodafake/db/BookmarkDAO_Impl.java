@@ -6,6 +6,7 @@ import androidx.room.EntityDeletionOrUpdateAdapter;
 import androidx.room.EntityInsertionAdapter;
 import androidx.room.RoomDatabase;
 import androidx.room.RoomSQLiteQuery;
+import androidx.room.SharedSQLiteStatement;
 import androidx.room.util.CursorUtil;
 import androidx.room.util.DBUtil;
 import androidx.sqlite.db.SupportSQLiteStatement;
@@ -26,6 +27,8 @@ public final class BookmarkDAO_Impl implements BookmarkDAO {
   private final EntityDeletionOrUpdateAdapter<Bookmarks> __deletionAdapterOfBookmarks;
 
   private final EntityDeletionOrUpdateAdapter<Bookmarks> __updateAdapterOfBookmarks;
+
+  private final SharedSQLiteStatement __preparedStmtOfDeleteBookmarkByHotelId;
 
   public BookmarkDAO_Impl(@NonNull final RoomDatabase __db) {
     this.__db = __db;
@@ -73,6 +76,14 @@ public final class BookmarkDAO_Impl implements BookmarkDAO {
         statement.bindLong(4, entity.getId());
       }
     };
+    this.__preparedStmtOfDeleteBookmarkByHotelId = new SharedSQLiteStatement(__db) {
+      @Override
+      @NonNull
+      public String createQuery() {
+        final String _query = "DELETE FROM bookmark_db WHERE ID_Hotel = ?";
+        return _query;
+      }
+    };
   }
 
   @Override
@@ -108,6 +119,25 @@ public final class BookmarkDAO_Impl implements BookmarkDAO {
       __db.setTransactionSuccessful();
     } finally {
       __db.endTransaction();
+    }
+  }
+
+  @Override
+  public void deleteBookmarkByHotelId(final int hotel_id) {
+    __db.assertNotSuspendingTransaction();
+    final SupportSQLiteStatement _stmt = __preparedStmtOfDeleteBookmarkByHotelId.acquire();
+    int _argIndex = 1;
+    _stmt.bindLong(_argIndex, hotel_id);
+    try {
+      __db.beginTransaction();
+      try {
+        _stmt.executeUpdateDelete();
+        __db.setTransactionSuccessful();
+      } finally {
+        __db.endTransaction();
+      }
+    } finally {
+      __preparedStmtOfDeleteBookmarkByHotelId.release(_stmt);
     }
   }
 
@@ -165,6 +195,28 @@ public final class BookmarkDAO_Impl implements BookmarkDAO {
         _tmpId = _cursor.getInt(_cursorIndexOfId);
         _item.setId(_tmpId);
         _result.add(_item);
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
+
+  @Override
+  public int checkIfExistHotelId(final int hotel_id) {
+    final String _sql = "SELECT COUNT(*) FROM bookmark_db WHERE ID_Hotel = ?";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
+    int _argIndex = 1;
+    _statement.bindLong(_argIndex, hotel_id);
+    __db.assertNotSuspendingTransaction();
+    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+    try {
+      final int _result;
+      if (_cursor.moveToFirst()) {
+        _result = _cursor.getInt(0);
+      } else {
+        _result = 0;
       }
       return _result;
     } finally {

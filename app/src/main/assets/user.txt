@@ -7,7 +7,6 @@ Vietnam
 null
 null
 0
-giabao
 123
 Lê Phương Chi
 01/03/2003
@@ -18,7 +17,6 @@ Vietnam
 null
 null
 0
-phuongchi
 123
 Phan Lý Bảo Hạnh
 01/01/2003
@@ -29,7 +27,6 @@ Vietnam
 null
 null
 0
-baohanh
 123
 Nguyễn Lê Tấn Thành
 19/10/2003
@@ -40,5 +37,4 @@ Vietnam
 null
 null
 0
-tanthanh
 123

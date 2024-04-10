@@ -68,9 +68,6 @@ abstract class HotelDatabase : RoomDatabase() {
     abstract fun RoomDAO() : RoomDAO
     abstract fun UserDAO() : UserDAO
 
-
-
-
     companion object {
         private const val DB_NAME = "hotel_db"
         private var instance: HotelDatabase? = null

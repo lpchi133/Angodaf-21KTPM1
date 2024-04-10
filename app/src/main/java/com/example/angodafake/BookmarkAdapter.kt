@@ -2,6 +2,8 @@ package com.example.angodafake
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +16,9 @@ import com.example.angodafake.db.Bookmarks
 import com.example.angodafake.db.Hotel
 import com.example.angodafake.db.HotelDatabase
 import com.example.angodafake.db.Picture
+import com.google.android.material.snackbar.Snackbar
 
-class BookmarkAdapter(private val context: Context, private var bookmarks: List<Bookmarks>) : RecyclerView.Adapter<BookmarkAdapter.MyViewHolder>() {
+class BookmarkAdapter(private val context: Context, private var rootView: View, private var bookmarks: List<Bookmarks>) : RecyclerView.Adapter<BookmarkAdapter.MyViewHolder>() {
     private var listener: OnItemClickListener? = null
     private lateinit var hotel_db: HotelDatabase
     private lateinit var HotelMarked: Hotel
@@ -50,7 +53,7 @@ class BookmarkAdapter(private val context: Context, private var bookmarks: List<
             val bookmarks_tmp = bookmarks.toMutableList()
             bookmarks_tmp.removeAt(position)
             updateList(bookmarks_tmp)
-            Toast.makeText(context, "Đã xoá khách sạn", Toast.LENGTH_SHORT).show()
+            showSuccessSnackBar("Đã xoá khách sạn")
         }
         holder.location.text = HotelMarked.city
         holder.rateStatus.text = when (HotelMarked.point.toInt()){
@@ -82,5 +85,11 @@ class BookmarkAdapter(private val context: Context, private var bookmarks: List<
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
         this.listener = listener
+    }
+    private fun showSuccessSnackBar(msg: String) {
+        val snackbar = Snackbar.make(rootView, msg, Snackbar.LENGTH_LONG)
+        snackbar.view.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#3193FF"))
+        snackbar.setTextColor(Color.WHITE)
+        snackbar.show()
     }
 }

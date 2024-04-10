@@ -21,30 +21,30 @@ import java.io.InputStreamReader
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var hotel_db: HotelDatabase
+    private var idUser: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        replaceFragment(Home())
+        idUser = intent.getStringExtra("idUser")?.toInt()
+        replaceFragment(Home(idUser!!))
 
 //        ******* ADD DATABASE **********
         hotel_db = HotelDatabase.getInstance(this)
-
 
         //addDatabase()
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
         bottomNavigationView.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
 
-
         binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when(menuItem.itemId){
-                R.id.home -> replaceFragment(Home())
+                R.id.home -> replaceFragment(Home(idUser!!))
                 R.id.room -> replaceFragment(MyRoom())
                 R.id.hotel -> replaceFragment(MyHotel())
-                R.id.bookmark -> replaceFragment(Bookmark())
+                R.id.bookmark -> replaceFragment(Bookmark(idUser!!))
                 R.id.profile -> replaceFragment(MyProfile())
             }
             true
@@ -58,10 +58,9 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.commit()
     }
 
-
     @TestOnly
     private fun addDatabase(){
-        readUser()
+//        readUser()
         readHotel()
         readBookmark()
         readPicture()
@@ -83,10 +82,9 @@ class MainActivity : AppCompatActivity() {
             val cardNumber = reader.readLine()
             val cardName = reader.readLine()
             val point = reader.readLine().toInt()
-            val userName = reader.readLine()
             val password = reader.readLine()
 
-            val user = User(name, dob, gender, number, email, country, cardNumber, cardName, point, userName, password)
+            val user = User(name, dob, gender, number, email, country, cardNumber, cardName, point, password)
             hotel_db.UserDAO().insertUser(user)
             println(user)
             line = reader.readLine()
@@ -172,12 +170,15 @@ class MainActivity : AppCompatActivity() {
             val benefit = reader.readLine()
             val pictureID = reader.readLine()
 
-
             val room = Rooms(ID_Hotel, quantity, available, type, acreage, price, bedQuantity, checkIn, checkOut, benefit, pictureID)
             hotel_db.RoomDAO().insertRoom(room)
             println(room)
             line = reader.readLine()
         }
         reader.close()
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        hotel_db.close()
     }
 }

@@ -21,15 +21,15 @@ private const val ARG_PARAM2 = "param2"
  * Use the [FilerDetail.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FilerDetail : Fragment() {
+class FilerDetail(private var idUser: Int) : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
     private lateinit var view: View
     private lateinit var rangeSlider: RangeSlider
-    private var startValue: Float = 2000.0f
-    private var endValue: Float = 9000.0f
+    private var startValue: Float = 200000.0f
+    private var endValue: Float = 900000.0f
     private var point: Double = 0.0
     private lateinit var text6Plus: TextView
     private lateinit var text7Plus: TextView
@@ -96,7 +96,7 @@ class FilerDetail : Fragment() {
             arg.putIntArray("saveIds", saveIds)
 
             // Khởi tạo Fragment Filter và đính kèm Bundle
-            val filterFragment = Filter()
+            val filterFragment = Filter(idUser)
             filterFragment.arguments = arg
 
             // Thay thế Fragment hiện tại bằng Fragment Filter
@@ -179,29 +179,23 @@ class FilerDetail : Fragment() {
         val buttonOK: Button = view.findViewById(R.id.buttonOK)
         buttonOK.setOnClickListener {
 
-            if (point == 0.0 || getSelectedCities().isEmpty()){
-                warning("Warning", "Please complete all information")
-            } else{
-                val bundle = Bundle()
-                bundle.putDouble("point", point)
-                bundle.putFloat("startValue", startValue)
-                bundle.putFloat("endValue", endValue)
-                bundle.putString("selectedCities", getSelectedCities())
-                bundle.putIntArray("hotelIds", hotelIds)
-                bundle.putString("searchText", searchText)
-                bundle.putIntArray("saveIds", saveIds)
+            val bundle = Bundle()
+            bundle.putDouble("point", point)
+            bundle.putFloat("startValue", startValue)
+            bundle.putFloat("endValue", endValue)
+            bundle.putString("selectedCities", getSelectedCities())
+            bundle.putIntArray("hotelIds", hotelIds)
+            bundle.putString("searchText", searchText)
+            bundle.putIntArray("saveIds", saveIds)
 
-                val filterFragment = Filter()
-                filterFragment.arguments = bundle
+            val filterFragment = Filter(idUser)
+            filterFragment.arguments = bundle
 
-                val fragmentManager = requireActivity().supportFragmentManager
-                fragmentManager.beginTransaction()
-                    .replace(R.id.frameLayout, filterFragment)
-                    .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
-                    .commit()
-            }
-
-
+            val fragmentManager = requireActivity().supportFragmentManager
+            fragmentManager.beginTransaction()
+                .replace(R.id.frameLayout, filterFragment)
+                .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
+                .commit()
         }
         return view
     }
@@ -242,8 +236,8 @@ class FilerDetail : Fragment() {
         }
 
         // Đặt lại giá trị RangeSlider về mặc định
-        startValue = 1000.0F
-        endValue = 9000.0F
+        startValue = 100000.0F
+        endValue = 900000.0F
         slider.values = mutableListOf(startValue, endValue)
 
         // Đặt lại trạng thái của CheckBox về mặc định (không được chọn)
@@ -280,8 +274,8 @@ class FilerDetail : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FilerDetail().apply {
+        fun newInstance(param1: String, param2: String, idUser: Int) =
+            FilerDetail(idUser).apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

@@ -33,7 +33,7 @@ public final class UserDAO_Impl implements UserDAO {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR ABORT INTO `user_db` (`name`,`dob`,`gender`,`number`,`email`,`country`,`cardNumber`,`cardName`,`point`,`userName`,`password`,`id`) VALUES (?,?,?,?,?,?,?,?,?,?,?,nullif(?, 0))";
+        return "INSERT OR ABORT INTO `user_db` (`name`,`dob`,`gender`,`number`,`email`,`country`,`cardNumber`,`cardName`,`point`,`password`,`id`) VALUES (?,?,?,?,?,?,?,?,?,?,nullif(?, 0))";
       }
 
       @Override
@@ -80,17 +80,12 @@ public final class UserDAO_Impl implements UserDAO {
           statement.bindString(8, entity.getCardName());
         }
         statement.bindLong(9, entity.getPoint());
-        if (entity.getUserName() == null) {
+        if (entity.getPassword() == null) {
           statement.bindNull(10);
         } else {
-          statement.bindString(10, entity.getUserName());
+          statement.bindString(10, entity.getPassword());
         }
-        if (entity.getPassword() == null) {
-          statement.bindNull(11);
-        } else {
-          statement.bindString(11, entity.getPassword());
-        }
-        statement.bindLong(12, entity.getId());
+        statement.bindLong(11, entity.getId());
       }
     };
     this.__deletionAdapterOfUser = new EntityDeletionOrUpdateAdapter<User>(__db) {
@@ -110,7 +105,7 @@ public final class UserDAO_Impl implements UserDAO {
       @Override
       @NonNull
       protected String createQuery() {
-        return "UPDATE OR ABORT `user_db` SET `name` = ?,`dob` = ?,`gender` = ?,`number` = ?,`email` = ?,`country` = ?,`cardNumber` = ?,`cardName` = ?,`point` = ?,`userName` = ?,`password` = ?,`id` = ? WHERE `id` = ?";
+        return "UPDATE OR ABORT `user_db` SET `name` = ?,`dob` = ?,`gender` = ?,`number` = ?,`email` = ?,`country` = ?,`cardNumber` = ?,`cardName` = ?,`point` = ?,`password` = ?,`id` = ? WHERE `id` = ?";
       }
 
       @Override
@@ -157,18 +152,13 @@ public final class UserDAO_Impl implements UserDAO {
           statement.bindString(8, entity.getCardName());
         }
         statement.bindLong(9, entity.getPoint());
-        if (entity.getUserName() == null) {
+        if (entity.getPassword() == null) {
           statement.bindNull(10);
         } else {
-          statement.bindString(10, entity.getUserName());
+          statement.bindString(10, entity.getPassword());
         }
-        if (entity.getPassword() == null) {
-          statement.bindNull(11);
-        } else {
-          statement.bindString(11, entity.getPassword());
-        }
+        statement.bindLong(11, entity.getId());
         statement.bindLong(12, entity.getId());
-        statement.bindLong(13, entity.getId());
       }
     };
   }
@@ -225,7 +215,6 @@ public final class UserDAO_Impl implements UserDAO {
       final int _cursorIndexOfCardNumber = CursorUtil.getColumnIndexOrThrow(_cursor, "cardNumber");
       final int _cursorIndexOfCardName = CursorUtil.getColumnIndexOrThrow(_cursor, "cardName");
       final int _cursorIndexOfPoint = CursorUtil.getColumnIndexOrThrow(_cursor, "point");
-      final int _cursorIndexOfUserName = CursorUtil.getColumnIndexOrThrow(_cursor, "userName");
       final int _cursorIndexOfPassword = CursorUtil.getColumnIndexOrThrow(_cursor, "password");
       final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
       final List<User> _result = new ArrayList<User>(_cursor.getCount());
@@ -281,19 +270,13 @@ public final class UserDAO_Impl implements UserDAO {
         }
         final int _tmpPoint;
         _tmpPoint = _cursor.getInt(_cursorIndexOfPoint);
-        final String _tmpUserName;
-        if (_cursor.isNull(_cursorIndexOfUserName)) {
-          _tmpUserName = null;
-        } else {
-          _tmpUserName = _cursor.getString(_cursorIndexOfUserName);
-        }
         final String _tmpPassword;
         if (_cursor.isNull(_cursorIndexOfPassword)) {
           _tmpPassword = null;
         } else {
           _tmpPassword = _cursor.getString(_cursorIndexOfPassword);
         }
-        _item = new User(_tmpName,_tmpDob,_tmpGender,_tmpNumber,_tmpEmail,_tmpCountry,_tmpCardNumber,_tmpCardName,_tmpPoint,_tmpUserName,_tmpPassword);
+        _item = new User(_tmpName,_tmpDob,_tmpGender,_tmpNumber,_tmpEmail,_tmpCountry,_tmpCardNumber,_tmpCardName,_tmpPoint,_tmpPassword);
         final int _tmpId;
         _tmpId = _cursor.getInt(_cursorIndexOfId);
         _item.setId(_tmpId);
@@ -307,11 +290,11 @@ public final class UserDAO_Impl implements UserDAO {
   }
 
   @Override
-  public User getUserByID(final int user_id) {
+  public User getUserById(final int userId) {
     final String _sql = "SELECT * FROM user_db WHERE id = ?";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
     int _argIndex = 1;
-    _statement.bindLong(_argIndex, user_id);
+    _statement.bindLong(_argIndex, userId);
     __db.assertNotSuspendingTransaction();
     final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
     try {
@@ -324,7 +307,6 @@ public final class UserDAO_Impl implements UserDAO {
       final int _cursorIndexOfCardNumber = CursorUtil.getColumnIndexOrThrow(_cursor, "cardNumber");
       final int _cursorIndexOfCardName = CursorUtil.getColumnIndexOrThrow(_cursor, "cardName");
       final int _cursorIndexOfPoint = CursorUtil.getColumnIndexOrThrow(_cursor, "point");
-      final int _cursorIndexOfUserName = CursorUtil.getColumnIndexOrThrow(_cursor, "userName");
       final int _cursorIndexOfPassword = CursorUtil.getColumnIndexOrThrow(_cursor, "password");
       final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
       final User _result;
@@ -379,19 +361,205 @@ public final class UserDAO_Impl implements UserDAO {
         }
         final int _tmpPoint;
         _tmpPoint = _cursor.getInt(_cursorIndexOfPoint);
-        final String _tmpUserName;
-        if (_cursor.isNull(_cursorIndexOfUserName)) {
-          _tmpUserName = null;
-        } else {
-          _tmpUserName = _cursor.getString(_cursorIndexOfUserName);
-        }
         final String _tmpPassword;
         if (_cursor.isNull(_cursorIndexOfPassword)) {
           _tmpPassword = null;
         } else {
           _tmpPassword = _cursor.getString(_cursorIndexOfPassword);
         }
-        _result = new User(_tmpName,_tmpDob,_tmpGender,_tmpNumber,_tmpEmail,_tmpCountry,_tmpCardNumber,_tmpCardName,_tmpPoint,_tmpUserName,_tmpPassword);
+        _result = new User(_tmpName,_tmpDob,_tmpGender,_tmpNumber,_tmpEmail,_tmpCountry,_tmpCardNumber,_tmpCardName,_tmpPoint,_tmpPassword);
+        final int _tmpId;
+        _tmpId = _cursor.getInt(_cursorIndexOfId);
+        _result.setId(_tmpId);
+      } else {
+        _result = null;
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
+
+  @Override
+  public User getUserByEmail(final String userEmail) {
+    final String _sql = "SELECT * FROM user_db WHERE email = ?";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
+    int _argIndex = 1;
+    if (userEmail == null) {
+      _statement.bindNull(_argIndex);
+    } else {
+      _statement.bindString(_argIndex, userEmail);
+    }
+    __db.assertNotSuspendingTransaction();
+    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+    try {
+      final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
+      final int _cursorIndexOfDob = CursorUtil.getColumnIndexOrThrow(_cursor, "dob");
+      final int _cursorIndexOfGender = CursorUtil.getColumnIndexOrThrow(_cursor, "gender");
+      final int _cursorIndexOfNumber = CursorUtil.getColumnIndexOrThrow(_cursor, "number");
+      final int _cursorIndexOfEmail = CursorUtil.getColumnIndexOrThrow(_cursor, "email");
+      final int _cursorIndexOfCountry = CursorUtil.getColumnIndexOrThrow(_cursor, "country");
+      final int _cursorIndexOfCardNumber = CursorUtil.getColumnIndexOrThrow(_cursor, "cardNumber");
+      final int _cursorIndexOfCardName = CursorUtil.getColumnIndexOrThrow(_cursor, "cardName");
+      final int _cursorIndexOfPoint = CursorUtil.getColumnIndexOrThrow(_cursor, "point");
+      final int _cursorIndexOfPassword = CursorUtil.getColumnIndexOrThrow(_cursor, "password");
+      final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
+      final User _result;
+      if (_cursor.moveToFirst()) {
+        final String _tmpName;
+        if (_cursor.isNull(_cursorIndexOfName)) {
+          _tmpName = null;
+        } else {
+          _tmpName = _cursor.getString(_cursorIndexOfName);
+        }
+        final String _tmpDob;
+        if (_cursor.isNull(_cursorIndexOfDob)) {
+          _tmpDob = null;
+        } else {
+          _tmpDob = _cursor.getString(_cursorIndexOfDob);
+        }
+        final String _tmpGender;
+        if (_cursor.isNull(_cursorIndexOfGender)) {
+          _tmpGender = null;
+        } else {
+          _tmpGender = _cursor.getString(_cursorIndexOfGender);
+        }
+        final String _tmpNumber;
+        if (_cursor.isNull(_cursorIndexOfNumber)) {
+          _tmpNumber = null;
+        } else {
+          _tmpNumber = _cursor.getString(_cursorIndexOfNumber);
+        }
+        final String _tmpEmail;
+        if (_cursor.isNull(_cursorIndexOfEmail)) {
+          _tmpEmail = null;
+        } else {
+          _tmpEmail = _cursor.getString(_cursorIndexOfEmail);
+        }
+        final String _tmpCountry;
+        if (_cursor.isNull(_cursorIndexOfCountry)) {
+          _tmpCountry = null;
+        } else {
+          _tmpCountry = _cursor.getString(_cursorIndexOfCountry);
+        }
+        final String _tmpCardNumber;
+        if (_cursor.isNull(_cursorIndexOfCardNumber)) {
+          _tmpCardNumber = null;
+        } else {
+          _tmpCardNumber = _cursor.getString(_cursorIndexOfCardNumber);
+        }
+        final String _tmpCardName;
+        if (_cursor.isNull(_cursorIndexOfCardName)) {
+          _tmpCardName = null;
+        } else {
+          _tmpCardName = _cursor.getString(_cursorIndexOfCardName);
+        }
+        final int _tmpPoint;
+        _tmpPoint = _cursor.getInt(_cursorIndexOfPoint);
+        final String _tmpPassword;
+        if (_cursor.isNull(_cursorIndexOfPassword)) {
+          _tmpPassword = null;
+        } else {
+          _tmpPassword = _cursor.getString(_cursorIndexOfPassword);
+        }
+        _result = new User(_tmpName,_tmpDob,_tmpGender,_tmpNumber,_tmpEmail,_tmpCountry,_tmpCardNumber,_tmpCardName,_tmpPoint,_tmpPassword);
+        final int _tmpId;
+        _tmpId = _cursor.getInt(_cursorIndexOfId);
+        _result.setId(_tmpId);
+      } else {
+        _result = null;
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
+
+  @Override
+  public User getUserByPhoneNumber(final String userNumber) {
+    final String _sql = "SELECT * FROM user_db WHERE number = ?";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
+    int _argIndex = 1;
+    if (userNumber == null) {
+      _statement.bindNull(_argIndex);
+    } else {
+      _statement.bindString(_argIndex, userNumber);
+    }
+    __db.assertNotSuspendingTransaction();
+    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+    try {
+      final int _cursorIndexOfName = CursorUtil.getColumnIndexOrThrow(_cursor, "name");
+      final int _cursorIndexOfDob = CursorUtil.getColumnIndexOrThrow(_cursor, "dob");
+      final int _cursorIndexOfGender = CursorUtil.getColumnIndexOrThrow(_cursor, "gender");
+      final int _cursorIndexOfNumber = CursorUtil.getColumnIndexOrThrow(_cursor, "number");
+      final int _cursorIndexOfEmail = CursorUtil.getColumnIndexOrThrow(_cursor, "email");
+      final int _cursorIndexOfCountry = CursorUtil.getColumnIndexOrThrow(_cursor, "country");
+      final int _cursorIndexOfCardNumber = CursorUtil.getColumnIndexOrThrow(_cursor, "cardNumber");
+      final int _cursorIndexOfCardName = CursorUtil.getColumnIndexOrThrow(_cursor, "cardName");
+      final int _cursorIndexOfPoint = CursorUtil.getColumnIndexOrThrow(_cursor, "point");
+      final int _cursorIndexOfPassword = CursorUtil.getColumnIndexOrThrow(_cursor, "password");
+      final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
+      final User _result;
+      if (_cursor.moveToFirst()) {
+        final String _tmpName;
+        if (_cursor.isNull(_cursorIndexOfName)) {
+          _tmpName = null;
+        } else {
+          _tmpName = _cursor.getString(_cursorIndexOfName);
+        }
+        final String _tmpDob;
+        if (_cursor.isNull(_cursorIndexOfDob)) {
+          _tmpDob = null;
+        } else {
+          _tmpDob = _cursor.getString(_cursorIndexOfDob);
+        }
+        final String _tmpGender;
+        if (_cursor.isNull(_cursorIndexOfGender)) {
+          _tmpGender = null;
+        } else {
+          _tmpGender = _cursor.getString(_cursorIndexOfGender);
+        }
+        final String _tmpNumber;
+        if (_cursor.isNull(_cursorIndexOfNumber)) {
+          _tmpNumber = null;
+        } else {
+          _tmpNumber = _cursor.getString(_cursorIndexOfNumber);
+        }
+        final String _tmpEmail;
+        if (_cursor.isNull(_cursorIndexOfEmail)) {
+          _tmpEmail = null;
+        } else {
+          _tmpEmail = _cursor.getString(_cursorIndexOfEmail);
+        }
+        final String _tmpCountry;
+        if (_cursor.isNull(_cursorIndexOfCountry)) {
+          _tmpCountry = null;
+        } else {
+          _tmpCountry = _cursor.getString(_cursorIndexOfCountry);
+        }
+        final String _tmpCardNumber;
+        if (_cursor.isNull(_cursorIndexOfCardNumber)) {
+          _tmpCardNumber = null;
+        } else {
+          _tmpCardNumber = _cursor.getString(_cursorIndexOfCardNumber);
+        }
+        final String _tmpCardName;
+        if (_cursor.isNull(_cursorIndexOfCardName)) {
+          _tmpCardName = null;
+        } else {
+          _tmpCardName = _cursor.getString(_cursorIndexOfCardName);
+        }
+        final int _tmpPoint;
+        _tmpPoint = _cursor.getInt(_cursorIndexOfPoint);
+        final String _tmpPassword;
+        if (_cursor.isNull(_cursorIndexOfPassword)) {
+          _tmpPassword = null;
+        } else {
+          _tmpPassword = _cursor.getString(_cursorIndexOfPassword);
+        }
+        _result = new User(_tmpName,_tmpDob,_tmpGender,_tmpNumber,_tmpEmail,_tmpCountry,_tmpCardNumber,_tmpCardName,_tmpPoint,_tmpPassword);
         final int _tmpId;
         _tmpId = _cursor.getInt(_cursorIndexOfId);
         _result.setId(_tmpId);
