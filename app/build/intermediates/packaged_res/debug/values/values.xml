@@ -251,8 +251,8 @@
         <item>Zimbabwe</item>
     </string-array>
     <array name="initial_slider_values">
-        <item>2000.0</item>
-        <item>9000.0</item>
+        <item>200000.0</item>
+        <item>900000.0</item>
     </array>
     <color name="Blacki">#120404</color>
     <color name="black">#FF000000</color>
@@ -279,6 +279,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="homeTittle">Tìm kiếm khách sạn</string>
     <string name="project_id" translatable="false">mobile-angodaf</string>
+    <string name="roomTittle">Thông tin phòng</string>
+    <string name="title">Thông tin khách sạn</string>
     <style name="Base.Theme.AngodaFake" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
     </style>
     <style name="PopupAnimation" parent="@android:style/Animation">

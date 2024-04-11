@@ -8,28 +8,31 @@ import com.example.angodafake.databinding.ActivityMainBinding
 //import com.example.angodafake.db.Bookmarks
 import com.example.angodafake.db.Hotel
 //import com.example.angodafake.db.HotelDatabase
-import com.example.angodafake.db.Picture
-import com.example.angodafake.db.Rooms
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.jetbrains.annotations.TestOnly
 import java.io.BufferedReader
 import java.io.InputStreamReader
+import com.google.firebase.Firebase
+import com.google.firebase.database.database
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 //    private lateinit var hotel_db: HotelDatabase
+    private var idUser: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        replaceFragment(Home())
+        //idUser = intent.getStringExtra("idUser")?.toInt()
+        idUser = 1
+        replaceFragment(Home(idUser!!))
 
 //        ******* ADD DATABASE **********
 //        hotel_db = HotelDatabase.getInstance(this)
 
-//        addDatabase()
+        //addDatabase()
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
         bottomNavigationView.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
@@ -37,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when(menuItem.itemId){
-                R.id.home -> replaceFragment(Home())
+                R.id.home -> replaceFragment(Home(idUser!!))
                 R.id.room -> replaceFragment(MyRoom())
                 R.id.hotel -> replaceFragment(MyHotel())
                 R.id.bookmark -> replaceFragment(Bookmark())
@@ -56,20 +59,23 @@ class MainActivity : AppCompatActivity() {
 
     @TestOnly
     private fun addDatabase(){
-//        readUser()
+        //readUser()
         readHotel()
-        readBookmark()
-        readPicture()
-        readRooms()
+        //readBookmark()
+        //readPicture()
+        //readRooms()
     }
 
     private fun readHotel(){
         val inputStream = this.assets.open("hotel.txt")
         val reader = BufferedReader(InputStreamReader(inputStream))
 
+        val database = Firebase.database
+        val hotelsRef = database.getReference("hotels")
+
         var line: String? = reader.readLine()
         while (line != null) {
-            val ID_Owner = line.toInt()
+            val ID_Owner = line
             val name = reader.readLine()
             val locationDetail = reader.readLine()
             val city = reader.readLine()
@@ -77,11 +83,19 @@ class MainActivity : AppCompatActivity() {
             val conveniences = reader.readLine()
             val point = reader.readLine().toDouble()
             val profit = reader.readLine().toDouble()
+            val checkIn = reader.readLine()
+            val checkOut = reader.readLine()
 
-//            val hotel = Hotel(ID_Owner, name, locationDetail,city,description, conveniences, point, profit)
-//            hotel_db.HotelDAO().insertHotel(hotel)
-//            println(hotel)
-            line = reader.readLine()
+//            val ID = hotelsRef.push().key!!
+//            //val hotel = Hotel(ID, ID_Owner.toString(), name, locationDetail, city, description, conveniences, point, profit, checkIn, checkOut)
+//
+//            // Thêm dữ liệu vào Firebase Realtime Database
+//            hotelsRef.child(ID).setValue(hotel)
+//                .addOnCompleteListener{
+//
+//                }
+//
+//            line = reader.readLine()
         }
         reader.close()
     }

@@ -21,14 +21,19 @@ public final class FragmentBookmarkBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final ConstraintLayout bookmark;
+
+  @NonNull
   public final TextView bookmarkTittle;
 
   @NonNull
   public final RecyclerView contactsRV;
 
   private FragmentBookmarkBinding(@NonNull ConstraintLayout rootView,
-      @NonNull TextView bookmarkTittle, @NonNull RecyclerView contactsRV) {
+      @NonNull ConstraintLayout bookmark, @NonNull TextView bookmarkTittle,
+      @NonNull RecyclerView contactsRV) {
     this.rootView = rootView;
+    this.bookmark = bookmark;
     this.bookmarkTittle = bookmarkTittle;
     this.contactsRV = contactsRV;
   }
@@ -60,6 +65,8 @@ public final class FragmentBookmarkBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      ConstraintLayout bookmark = (ConstraintLayout) rootView;
+
       id = R.id.bookmarkTittle;
       TextView bookmarkTittle = ViewBindings.findChildViewById(rootView, id);
       if (bookmarkTittle == null) {
@@ -72,7 +79,8 @@ public final class FragmentBookmarkBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentBookmarkBinding((ConstraintLayout) rootView, bookmarkTittle, contactsRV);
+      return new FragmentBookmarkBinding((ConstraintLayout) rootView, bookmark, bookmarkTittle,
+          contactsRV);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

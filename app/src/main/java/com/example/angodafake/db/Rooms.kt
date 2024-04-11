@@ -11,10 +11,11 @@ data class Rooms(
     val available: Int? = 0,
     val type: String? = null,
     val acreage: Double? = 0.0,
+    val direction: String? = null,
+    val benefit: String? = null,
     val price: Double? = 0.0,
     val bedQuantity: Int? = 0,
-    val checkIn: String? = null,
-    val checkOut: String? = null,
+    val picture: String? = null,
     ) {
     // Null default values create a no-argument default constructor, which is needed
     // for deserialization from a DataSnapshot.

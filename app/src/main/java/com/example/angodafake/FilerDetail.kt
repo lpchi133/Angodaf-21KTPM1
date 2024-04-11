@@ -21,15 +21,15 @@ private const val ARG_PARAM2 = "param2"
  * Use the [FilerDetail.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FilerDetail : Fragment() {
+class FilerDetail(private var idUser: Int) : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
     private lateinit var view: View
     private lateinit var rangeSlider: RangeSlider
-    private var startValue: Float = 0.0f
-    private var endValue: Float = 0.0f
+    private var startValue: Float = 200000.0f
+    private var endValue: Float = 900000.0f
     private var point: Double = 0.0
     private lateinit var text6Plus: TextView
     private lateinit var text7Plus: TextView
@@ -66,8 +66,11 @@ class FilerDetail : Fragment() {
         // Inflate the layout for this fragment
         view =  inflater.inflate(R.layout.fragment_home_filter_detail, container, false)
         val args = arguments
-        val hotelIds = args?.getIntArray("hotelIds")
+        var hotelIds = args?.getStringArray("hotelIds")
+        val saveIds = args?.getStringArray("saveIds")
         val searchText = args?.getString("searchText")
+        Log.d("FilterDetailFragment", "Hotel IDs Detail: ${hotelIds?.joinToString(", ")}, Search Text: $searchText")
+
 
         text6Plus = view.findViewById<TextView>(R.id.text_6_plus)
         text7Plus = view.findViewById<TextView>(R.id.text_7_plus)
@@ -90,11 +93,13 @@ class FilerDetail : Fragment() {
 
         view.findViewById<Button>(R.id.backToList).setOnClickListener {
             val arg = Bundle()
-            arg.putIntArray("hotelIds", hotelIds)
+
             arg.putString("searchText", searchText)
+            arg.putStringArray("hotelIds", hotelIds)
+            arg.putStringArray("saveIds", saveIds)
 
             // Khởi tạo Fragment Filter và đính kèm Bundle
-            val filterFragment = Filter()
+            val filterFragment = Filter(idUser)
             filterFragment.arguments = arg
 
             // Thay thế Fragment hiện tại bằng Fragment Filter
@@ -177,44 +182,27 @@ class FilerDetail : Fragment() {
         val buttonOK: Button = view.findViewById(R.id.buttonOK)
         buttonOK.setOnClickListener {
 
-            if (point == 0.0 || startValue == 0.0F || endValue == 0.0F || getSelectedCities().isEmpty()){
-                warning("Warning", "Please complete all information")
-            } else{
-                val bundle = Bundle()
-                bundle.putDouble("point", point)
-                bundle.putFloat("startValue", startValue)
-                bundle.putFloat("endValue", endValue)
-                bundle.putString("selectedCities", getSelectedCities())
-                bundle.putIntArray("hotelIds", hotelIds)
-                bundle.putString("searchText", searchText)
+            val bundle = Bundle()
+            bundle.putDouble("point", point)
+            bundle.putFloat("startValue", startValue)
+            bundle.putFloat("endValue", endValue)
+            bundle.putString("selectedCities", getSelectedCities())
+            bundle.putStringArray("hotelIds", hotelIds)
+            bundle.putString("searchText", searchText)
+            bundle.putStringArray("saveIds", saveIds)
 
-                val filterFragment = Filter()
-                filterFragment.arguments = bundle
+            val filterFragment = Filter(idUser)
+            filterFragment.arguments = bundle
 
-                val fragmentManager = requireActivity().supportFragmentManager
-                fragmentManager.beginTransaction()
-                    .replace(R.id.frameLayout, filterFragment)
-                    .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
-                    .commit()
-            }
-
-
+            val fragmentManager = requireActivity().supportFragmentManager
+            fragmentManager.beginTransaction()
+                .replace(R.id.frameLayout, filterFragment)
+                .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
+                .commit()
         }
         return view
     }
 
-    private fun warning(title: String, message: String){
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle(title)
-        builder.setMessage(message)
-
-        builder.setPositiveButton("EXIT") { dialog, _ ->
-            dialog.dismiss()
-        }
-
-        val dialog = builder.create()
-        dialog.show()
-    }
 
     private fun updateTextViewBackground(textView: TextView, isSelected: Boolean, selectedColor: Int) {
         if (isSelected) {
@@ -239,8 +227,8 @@ class FilerDetail : Fragment() {
         }
 
         // Đặt lại giá trị RangeSlider về mặc định
-        startValue = 1000.0F
-        endValue = 9000.0F
+        startValue = 100000.0F
+        endValue = 900000.0F
         slider.values = mutableListOf(startValue, endValue)
 
         // Đặt lại trạng thái của CheckBox về mặc định (không được chọn)
@@ -277,8 +265,8 @@ class FilerDetail : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FilerDetail().apply {
+        fun newInstance(param1: String, param2: String, idUser: Int) =
+            FilerDetail(idUser).apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

@@ -7,7 +7,8 @@ import com.google.firebase.database.IgnoreExtraProperties
 @IgnoreExtraProperties
 data class Picture(
     val ID_Hotel: String? = null,
-    val picture: String? = null) {
+    val picture: String? = null,
+    val picture_onwer: String? = null) {
     // Null default values create a no-argument default constructor, which is needed
     // for deserialization from a DataSnapshot.
 }

@@ -35,7 +35,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [Home.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Home : Fragment() {
+class Home(private var idUser: Int) : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -71,6 +71,18 @@ class Home : Fragment() {
 //        hotel_db = HotelDatabase.getInstance(requireContext())
 //        listHotels = hotel_db.HotelDAO().getHotelList()
 
+        if (!::listHotels.isInitialized) {
+            listHotels = mutableListOf()
+        }
+
+        val hotelsRecyclerView = view.findViewById<RecyclerView>(R.id.contactsRV)
+        hotelAdapter = ArrayList(listHotels)
+        adapter = HotelAdapter(requireContext(), hotelAdapter, idUser)
+        hotelsRecyclerView.adapter = adapter
+        layoutManager = LinearLayoutManager(requireContext())
+        hotelsRecyclerView.layoutManager = layoutManager
+        hotelsRecyclerView.setHasFixedSize(true)
+
         val hotelsRef = database.child("hotels")
 
         hotelsRef.addValueEventListener(object : ValueEventListener {
@@ -83,46 +95,49 @@ class Home : Fragment() {
                     Log.d("hotel", hotel.toString())
                     hotel?.let { listHotels.add(it) }
                 }
-                Log.d("list", listHotels.toString())
-
+                Log.d("FilterDetailFragment", "List of Hotels:")
+                listHotels.forEachIndexed { index, hotel ->
+                    Log.d("FilterDetailFragment", "Hotel ${index + 1}: ${hotel.name}, Point: ${hotel.point}")
+                }
+                adapter.updateDataGradually(listHotels)
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
                 // Xử lý khi có lỗi xảy ra
                 println("Failed to read value: ${databaseError.toException()}")
-//                listHotels = emptyList() // Trả về danh sách rỗng khi có lỗi
+ //               listHotels = emptyList() // Trả về danh sách rỗng khi có lỗi
             }
         })
-        Log.d("listHotels", listHotels.toString())
-        val hotelsRecyclerView = view.findViewById<RecyclerView>(R.id.contactsRV)
-        hotelAdapter = ArrayList(listHotels)
-        adapter = HotelAdapter(requireContext(), hotelAdapter)
-        hotelsRecyclerView.adapter = adapter
-        layoutManager = LinearLayoutManager(requireContext())
-        hotelsRecyclerView.layoutManager = layoutManager
-        hotelsRecyclerView.setHasFixedSize(true)
+        Log.d("FilterDetailFragment", "List of Hotels:")
+        listHotels.forEachIndexed { index, hotel ->
+            Log.d("FilterDetailFragment", "Hotel ${index + 1}: ${hotel.name}, Point: ${hotel.point}")
+        }
+
 
         val searchEditText = view.findViewById<EditText>(R.id.nameHotelSearch)
         val findButton = view.findViewById<Button>(R.id.findButton)
 
-//        findButton.setOnClickListener {
-//            val searchText = searchEditText.text.toString()
-//            val args = Bundle()
-//            val hotelIds = filterHotels(searchText).map { it.id }.toIntArray()
-//            args.putIntArray("hotelIds", hotelIds)
-//            args.putString("searchText", searchText)
-//
-//            // Khởi tạo Fragment Filter và đính kèm Bundle
-//            val filterFragment = Filter()
-//            filterFragment.arguments = args
-//
-//            // Thay thế Fragment hiện tại bằng Fragment Filter
-//            val fragmentManager = requireActivity().supportFragmentManager
-//            fragmentManager.beginTransaction()
-//                .replace(R.id.frameLayout, filterFragment)
-//                .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
-//                .commit()
-//        }
+        findButton.setOnClickListener {
+            val searchText = searchEditText.text.toString()
+            val args = Bundle()
+            val hotelIds = filterHotels(searchText).map { it.ID }
+            println("Hotel IDs: ${hotelIds.joinToString()}")
+            args.putStringArray("hotelIds", hotelIds.toTypedArray())
+            args.putStringArray("saveIds", hotelIds.toTypedArray())
+            args.putString("searchText", searchText)
+
+            // Khởi tạo Fragment Filter và đính kèm Bundle
+            val filterFragment = Filter(idUser)
+
+            filterFragment.arguments = args
+
+            // Thay thế Fragment hiện tại bằng Fragment Filter
+            val fragmentManager = requireActivity().supportFragmentManager
+            fragmentManager.beginTransaction()
+                .replace(R.id.frameLayout, filterFragment)
+                .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
+                .commit()
+        }
     }
 
     companion object {
@@ -136,8 +151,8 @@ class Home : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Home().apply {
+        fun newInstance(param1: String, param2: String, idUser: Int) =
+            Home(idUser).apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
@@ -146,17 +161,21 @@ class Home : Fragment() {
     }
     private fun filterHotels(query: String): List<Hotel> {
         val filteredList = mutableListOf<Hotel>()
-//        for (hotel in listHotels) {
-//            val hotelNameLower = hotel.name.toLowerCase(Locale.getDefault())
-//            val locationDetailLower = hotel.locationDetail.toLowerCase(Locale.getDefault())
-//
-//            // Kiểm tra xem query có tồn tại trong tên khách sạn hoặc chi tiết địa điểm không
-//            if (hotelNameLower.contains(query.toLowerCase(Locale.getDefault())) ||
-//                locationDetailLower.contains(query.toLowerCase(Locale.getDefault()))
-//            ) {
-//                filteredList.add(hotel)
-//            }
-//        }
+        for (hotel in listHotels) {
+            val hotelNameLower = hotel.name?.toLowerCase(Locale.getDefault())
+            val locationDetailLower = hotel.locationDetail?.toLowerCase(Locale.getDefault())
+
+            // Kiểm tra xem query có tồn tại trong tên khách sạn hoặc chi tiết địa điểm không
+            if (locationDetailLower != null) {
+                if (hotelNameLower != null) {
+                    if (hotelNameLower.contains(query.toLowerCase(Locale.getDefault())) ||
+                        locationDetailLower.contains(query.toLowerCase(Locale.getDefault()))
+                    ) {
+                        filteredList.add(hotel)
+                    }
+                }
+            }
+        }
         return filteredList
     }
 }

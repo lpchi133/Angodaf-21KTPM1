@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,6 +30,12 @@ public final class FragmentHomeFilterBinding implements ViewBinding {
   public final Button backToMain;
 
   @NonNull
+  public final TextView buttonLike;
+
+  @NonNull
+  public final TextView buttonMap;
+
+  @NonNull
   public final RecyclerView contactsRV;
 
   @NonNull
@@ -36,6 +43,12 @@ public final class FragmentHomeFilterBinding implements ViewBinding {
 
   @NonNull
   public final ImageView imageView3;
+
+  @NonNull
+  public final LinearLayout linearLayout;
+
+  @NonNull
+  public final LinearLayout linearMap;
 
   @NonNull
   public final TextView nameHotelSearch;
@@ -47,15 +60,21 @@ public final class FragmentHomeFilterBinding implements ViewBinding {
   public final TextView sort;
 
   private FragmentHomeFilterBinding(@NonNull ConstraintLayout rootView,
-      @NonNull TextView HomeTittle, @NonNull Button backToMain, @NonNull RecyclerView contactsRV,
-      @NonNull TextView filter, @NonNull ImageView imageView3, @NonNull TextView nameHotelSearch,
-      @NonNull TextView price, @NonNull TextView sort) {
+      @NonNull TextView HomeTittle, @NonNull Button backToMain, @NonNull TextView buttonLike,
+      @NonNull TextView buttonMap, @NonNull RecyclerView contactsRV, @NonNull TextView filter,
+      @NonNull ImageView imageView3, @NonNull LinearLayout linearLayout,
+      @NonNull LinearLayout linearMap, @NonNull TextView nameHotelSearch, @NonNull TextView price,
+      @NonNull TextView sort) {
     this.rootView = rootView;
     this.HomeTittle = HomeTittle;
     this.backToMain = backToMain;
+    this.buttonLike = buttonLike;
+    this.buttonMap = buttonMap;
     this.contactsRV = contactsRV;
     this.filter = filter;
     this.imageView3 = imageView3;
+    this.linearLayout = linearLayout;
+    this.linearMap = linearMap;
     this.nameHotelSearch = nameHotelSearch;
     this.price = price;
     this.sort = sort;
@@ -100,6 +119,18 @@ public final class FragmentHomeFilterBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.buttonLike;
+      TextView buttonLike = ViewBindings.findChildViewById(rootView, id);
+      if (buttonLike == null) {
+        break missingId;
+      }
+
+      id = R.id.buttonMap;
+      TextView buttonMap = ViewBindings.findChildViewById(rootView, id);
+      if (buttonMap == null) {
+        break missingId;
+      }
+
       id = R.id.contactsRV;
       RecyclerView contactsRV = ViewBindings.findChildViewById(rootView, id);
       if (contactsRV == null) {
@@ -115,6 +146,18 @@ public final class FragmentHomeFilterBinding implements ViewBinding {
       id = R.id.imageView3;
       ImageView imageView3 = ViewBindings.findChildViewById(rootView, id);
       if (imageView3 == null) {
+        break missingId;
+      }
+
+      id = R.id.linear_layout;
+      LinearLayout linearLayout = ViewBindings.findChildViewById(rootView, id);
+      if (linearLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.linear_map;
+      LinearLayout linearMap = ViewBindings.findChildViewById(rootView, id);
+      if (linearMap == null) {
         break missingId;
       }
 
@@ -137,7 +180,8 @@ public final class FragmentHomeFilterBinding implements ViewBinding {
       }
 
       return new FragmentHomeFilterBinding((ConstraintLayout) rootView, HomeTittle, backToMain,
-          contactsRV, filter, imageView3, nameHotelSearch, price, sort);
+          buttonLike, buttonMap, contactsRV, filter, imageView3, linearLayout, linearMap,
+          nameHotelSearch, price, sort);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

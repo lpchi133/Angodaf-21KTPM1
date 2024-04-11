@@ -1,4 +1,4 @@
-2
+1
 Khách sạn Hồng Phát
 123 Trần Mẫn Chí, f7, d8, tp HCM
 Hồ Chí Minh
@@ -6,7 +6,9 @@ Khách sạn không có nóc
 Gần cầu thị nghè, có view thoáng đảng dễ nhảy/Gần trung tâm thành phố
 4.9
 0.0
-3
+14:00
+11:30
+2
 Khách sạn Mường Hoa
 142 Hùng Vương, f4, d5, tp HCM
 Hồ Chí Minh
@@ -14,6 +16,8 @@ Khách sạn  vô cùng hoàn hảo cho người chán đời
 Nhà nghỉ thoán mát/Không có chó/Giá rẻ/Có ma share tiền phòng
 10.0
 0.0
+14:00
+12:00
 4
 Khách sạn Hoa Dương
 4/23 Phùng Thúc Kháng, phường 5, quận Hoàng Hà, tp Hà Nội
@@ -22,3 +26,5 @@ Khách sạn 4 sao lý tưởng cho các cặp đôi sắp chia tay
 View chịu đô/Gần sân bay, chợ đêm
 7.9
 0.0
+13:00
+11:00

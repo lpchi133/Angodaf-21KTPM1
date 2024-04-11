@@ -1,5 +1,6 @@
 package com.example.angodafake.Utilities
 
+import android.util.Log
 import com.example.angodafake.db.Bookmark
 import com.example.angodafake.db.Hotel
 import com.example.angodafake.db.Picture
@@ -19,8 +20,8 @@ object PictureUtils {
     }
 
     fun getPictureByHotelID(ID: String, listener: (Picture) -> Unit){
-        val pictureQuery = database.child("pictures").equalTo(ID, "ID_Hotel")
-        pictureQuery.addValueEventListener(object : ValueEventListener {
+        val pictureQuery = database.child("pictures").orderByChild("ID_Hotel").equalTo(ID)
+        pictureQuery.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // Xử lý khi dữ liệu thay đổi
                 val pictureList = mutableListOf<Picture>()
@@ -28,7 +29,11 @@ object PictureUtils {
                     val picture = pictureSnapshot.getValue(Picture::class.java)
                     picture?.let { pictureList.add(it) }
                 }
-                listener(pictureList[0])
+                if (pictureList.isNotEmpty()) {
+                    listener(pictureList[0])
+                } else {
+                    Log.d("FilterDetailFragment", "No picture found for hotel with ID $ID")
+                }
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -36,4 +41,5 @@ object PictureUtils {
             }
         })
     }
+
 }

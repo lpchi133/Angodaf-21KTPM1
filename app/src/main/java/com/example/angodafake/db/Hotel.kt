@@ -9,12 +9,16 @@ data class Hotel(
     var ID: String? = null,
     val ID_Owner: String? = null,
     val name: String? = null,
+    val phoneNumber: String? = null,
     val locationDetail: String? = null,
     val city: String? = null,
     val description: String? = null,
     val conveniences: String? = null,
-    val point: Float? = 0.0f,
-    val profit: Double? = 0.0) {
+    val star: Int? = 0,
+    val point: Double? = 0.0,
+    val profit: Double? = 0.0,
+    val checkIn: String? = null,
+    val checkOut: String? = null) {
     // Null default values create a no-argument default constructor, which is needed
     // for deserialization from a DataSnapshot.
 }

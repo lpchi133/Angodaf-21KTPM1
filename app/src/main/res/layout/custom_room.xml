@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="374dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/img_6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/roomName" />
+
+
+    <TextView
+        android:id="@+id/roomName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="8dp"
+        android:maxWidth="370dp"
+        android:text="Căn hộ Một phòng ngủ "
+        android:textColor="#0A0C13"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/countBed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:maxWidth="280dp"
+        android:maxLines="1000"
+        android:text="1 giường đôi"
+        android:textColor="#0A0C13"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imageView12"
+        app:layout_constraintTop_toTopOf="@+id/imageView12" />
+
+    <TextView
+        android:id="@+id/count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Tối đa 3 người"
+        android:textColor="#0A0C13"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imageView19"
+        app:layout_constraintTop_toTopOf="@+id/imageView19" />
+
+    <RelativeLayout
+        android:id="@+id/Agoodaa"
+        android:layout_width="410dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/grey"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView20">
+
+        <RelativeLayout
+            android:id="@+id/conveniences"
+            android:layout_width="410dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/border_color2"
+            android:padding="5dp"
+            android:paddingHorizontal="10dp"
+            tools:layout_editor_absoluteX="9dp"
+            tools:layout_editor_absoluteY="4dp">
+
+            <TextView
+                android:id="@+id/a1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Lợi ích"
+                android:textColor="#090C22"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/convenience"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/a1"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="6dp"
+                android:maxWidth="210dp"
+                android:text="Bãi đồ xe có nhận viên"
+                android:textColor="#090C22"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="181dp"
+                android:layout_toEndOf="@+id/a1"
+                android:text="Giá rẻ nhất!"
+                android:textColor="#090C22"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:id="@+id/linear_map"
+                android:layout_width="359dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/convenience"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/border"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/countRoom"
+                    android:layout_width="106dp"
+                    android:layout_height="33dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="             Số phòng       1 ∨      "
+                    android:textColor="#071115"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/buttonSet"
+                    android:layout_width="106dp"
+                    android:layout_height="33dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_color3"
+                    android:gravity="center"
+                    android:text="Đặt"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonReset"
+                android:layout_width="237dp"
+                android:layout_height="33dp"
+                android:layout_below="@+id/linear_map"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="57dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="71dp"
+                android:background="@drawable/rounded_button_delete"
+                android:text="Thêm vào Xe đẩy hàng "
+                android:textColor="#03A9F4"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/price_room"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:layout_below="@+id/text"
+                android:layout_marginStart="179dp"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@+id/a1"
+                android:background="@drawable/rounded_button_delete"
+                android:gravity="center"
+                android:text="694.444 đ"
+                android:textColor="@android:color/holo_red_dark"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="32dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/count"
+        app:srcCompat="@drawable/baseline_bed_24"
+        />
+
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="32dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:srcCompat="@drawable/baseline_person_24" />
+
+    <ImageView
+        android:id="@+id/imageView20"
+        android:layout_width="33dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView12"
+        app:srcCompat="@drawable/img" />
+
+    <TextView
+        android:id="@+id/count_Room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="3 phòng cuối cùng!"
+        android:maxWidth="280dp"
+        android:maxLines="1000"
+        android:textColor="#0A0C13"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imageView20"
+        app:layout_constraintTop_toTopOf="@+id/imageView20" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

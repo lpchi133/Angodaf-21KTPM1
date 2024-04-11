@@ -18,7 +18,10 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.angodafake.Utilities.HotelUtils
+import com.example.angodafake.Utilities.RoomUtils
 import com.example.angodafake.db.Hotel
+import com.example.angodafake.db.Rooms
 //import com.example.angodafake.db.HotelDatabase
 import com.google.android.material.slider.RangeSlider
 
@@ -32,7 +35,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [Filter.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Filter : Fragment() {
+class Filter(private var idUser: Int) : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -43,11 +46,10 @@ class Filter : Fragment() {
     private lateinit var adapter: HotelAdapter
     private lateinit var listHotels: List<Hotel>
     private var listHotelsOri: List<Hotel> = mutableListOf()
-//    private lateinit var hotel_db: HotelDatabase
     private lateinit var layoutManager: RecyclerView.LayoutManager
     private lateinit var popupWindow: PopupWindow
-    private var startValue: Float = 1000.0f
-    private var endValue: Float = 9000.0f
+    private var startValue: Float = 100000.0f
+    private var endValue: Float = 900000.0f
     private lateinit var rangeSlider: RangeSlider
     private var isFitTextViewSelected: Boolean = false
     private var prevPriceLowTextColor: Int = 0
@@ -73,97 +75,232 @@ class Filter : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         view =  inflater.inflate(R.layout.fragment_home_filter, container, false)
-//        hotel_db = HotelDatabase.getInstance(requireContext())
-
 
         val searchEditText = view.findViewById<TextView>(R.id.nameHotelSearch)
 
         // lấy dữ liệu từ trang Home
         val args = arguments
-        val hotelIds = args?.getIntArray("hotelIds")
+        var hotelIds = args?.getStringArray("hotelIds")
+        val saveIds = args?.getStringArray("saveIds")
         val searchText = args?.getString("searchText")
         Log.d("FilterDetailFragment", "Hotel IDs: ${hotelIds?.joinToString(", ")}, Search Text: $searchText")
+        val list = mutableListOf<Hotel>()
         if (hotelIds != null) {
-//            listHotels = hotelIds.map { hotel_db.HotelDAO().getHotelByID(it) }
-        }
 
-        // Lấy dữ liệu từ FilterDetail
-        val bundle = arguments
-        if (bundle != null) {
-            val point = bundle.getDouble("point", 0.0)
-            val startValue = bundle.getFloat("startValue", 0.0F)
-            val endValue = bundle.getFloat("endValue", 0.0F)
-            val selectedCities = bundle.getString("selectedCities", "")
+            HotelUtils.getHotelList() { hotelList  ->
+                listHotels = hotelList.filter { hotel ->
+                    hotel.ID in hotelIds!!
+                }
 
-            if(startValue != 0.0F){
-//                listHotels = listHotels.filter { hotel ->
-//                    hotel.point >= point
-//                }
+                Log.d("FilterDetailFragment", "Hotel IDs: ${listHotels?.joinToString(", ")}")
+                // Lấy dữ liệu từ FilterDetail
+                val bundle = arguments
+                if (bundle != null) {
+                    val point = bundle.getDouble("point", 0.0)
+                    val startValue = bundle.getFloat("startValue", 0.0F)
+                    val endValue = bundle.getFloat("endValue", 0.0F)
+                    val selectedCities = bundle.getString("selectedCities", "")
+
+                    if(startValue != 0.0F){
+                        listHotels = listHotels.filter { hotel ->
+                            hotel.point!! >= point
+                        }
+
+                        // Lọc ra danh sách các khách sạn có city thuộc selectedCities
+                        listHotels = listHotels.filter { hotel ->
+                            selectedCities.contains(hotel.city.toString())
+                        }
+
+                        var roomList: List<Rooms> = emptyList()
+                        RoomUtils.getRoomList(){ fetchedRoomList   ->
+                            roomList = fetchedRoomList
+                            roomList.any { room ->
+                                room.price!! in startValue..endValue
+                            }
+                            listHotels = listHotels.filter { hotel ->
+                                roomList.any { room ->
+                                    room.ID_Hotel == hotel.ID
+                                }
+                            }
+
+                            Log.d("FilterFragment", "Received data - Point: $point, Start Value: $startValue, End Value: $endValue, Selected Cities: $selectedCities")
+                            Log.d("FilterDetailFragment", "List of Hotels:")
+                            listHotels.forEachIndexed { index, hotel ->
+                                Log.d("FilterDetailFragment", "Hotel ${index + 1}: ${hotel.name}, Point: ${hotel.point}")
+                            }
+
+                            val buttonShowPopup = view.findViewById<TextView>(R.id.price)
+                            buttonShowPopup.setOnClickListener {
+                                showPopupPrice()
+                            }
+                            listHotelsOri = listHotels
+
+                            val buttonShowSort = view.findViewById<TextView>(R.id.sort)
+                            buttonShowSort.setOnClickListener {
+                                showPopupSort()
+                            }
 
 
-                // Lọc ra danh sách các khách sạn có city thuộc selectedCities
-//                listHotels = listHotels.filter { hotel ->
-//                    selectedCities.contains(hotel.city)
-//                }
+                            searchEditText.setText(searchText)
+                            val hotelsRecyclerView = view.findViewById<RecyclerView>(R.id.contactsRV)
+                            hotelAdapter = ArrayList(listHotels)
+                            adapter = HotelAdapter(requireContext(), hotelAdapter, idUser)
+                            adapter.setOnItemClickListener(object : HotelAdapter.OnItemClickListener {
+                                override fun onItemClick(position: Int) {
+                                    val clickedHotel = hotelAdapter[position]
+                                    val ids = listHotels.map { it.ID }
+                                    val arg = Bundle()
+                                    arg.putStringArray("hotelIds", ids.toTypedArray())
+                                    arg.putStringArray("saveIds", saveIds)
+                                    arg.putString("searchText", searchText)
+                                    arg.putString("hotelPosition", clickedHotel.ID)
 
-//                listHotels = listHotels.filter { hotel ->
-//                    val rooms = hotel_db.RoomDAO().getRoomsByHotelID(hotel.id)
-                    // Kiểm tra xem có phòng nào có giá nằm trong khoảng startValue và endValue không
-//                    rooms.any { room ->
-//                        room.price in startValue..endValue
-//                    }
-//                }
+                                    // Khởi tạo Fragment Filter và đính kèm Bundle
+                                    val Fragment = Hotel_infor(idUser)
+                                    Fragment.arguments = arg
 
+                                    val fragmentManager = requireActivity().supportFragmentManager
+                                    fragmentManager.beginTransaction()
+                                        .replace(R.id.frameLayout, Fragment)
+                                        .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
+                                        .commit()
+                                }
+                            })
+                            hotelsRecyclerView.adapter = adapter
+                            layoutManager = LinearLayoutManager(requireContext())
+                            hotelsRecyclerView.layoutManager = layoutManager
+                            hotelsRecyclerView.setHasFixedSize(true)
+
+                            view.findViewById<Button>(R.id.backToMain).setOnClickListener {
+                                val fragmentManager = requireActivity().supportFragmentManager
+                                val fragmentTransaction = fragmentManager.beginTransaction()
+                                fragmentTransaction.replace(R.id.frameLayout, Home.newInstance("param1", "param2", idUser))
+                                fragmentTransaction.commit()
+                            }
+
+                            view.findViewById<TextView>(R.id.filter).setOnClickListener {
+                                val arg = Bundle()
+                                if (saveIds != null) {
+                                    hotelIds = saveIds
+                                }
+                                Log.d("FilterDetailFragment", "Hotel ID Filter: ${hotelIds?.joinToString(", ")}, Search Text: $searchText")
+
+                                arg.putStringArray("hotelIds", hotelIds)
+                                arg.putStringArray("saveIds", saveIds)
+                                arg.putString("searchText", searchText)
+
+                                // Khởi tạo Fragment Filter và đính kèm Bundle
+                                val filterFragment = FilerDetail(idUser)
+                                filterFragment.arguments = arg
+
+                                // Thay thế Fragment hiện tại bằng Fragment Filter
+                                val fragmentManager = requireActivity().supportFragmentManager
+                                fragmentManager.beginTransaction()
+                                    .replace(R.id.frameLayout, filterFragment)
+                                    .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
+                                    .commit()
+                            }
+
+                            view.findViewById<TextView>(R.id.buttonMap).setOnClickListener {
+                                val mapFragment = MapsFragment()
+                                parentFragmentManager.beginTransaction()
+                                    .replace(R.id.frameLayout, mapFragment)
+                                    .addToBackStack(null)
+                                    .commit()
+                            }
+                        }
+
+                    }
+                    else{
+                        Log.d("FilterFragment", "Received data - Point: $point, Start Value: $startValue, End Value: $endValue, Selected Cities: $selectedCities")
+                        Log.d("FilterDetailFragment", "List of Hotels:")
+                        listHotels.forEachIndexed { index, hotel ->
+                            Log.d("FilterDetailFragment", "Hotel ${index + 1}: ${hotel.name}, Point: ${hotel.point}")
+                        }
+
+                        val buttonShowPopup = view.findViewById<TextView>(R.id.price)
+                        buttonShowPopup.setOnClickListener {
+                            showPopupPrice()
+                        }
+                        listHotelsOri = listHotels
+
+                        val buttonShowSort = view.findViewById<TextView>(R.id.sort)
+                        buttonShowSort.setOnClickListener {
+                            showPopupSort()
+                        }
+
+
+                        searchEditText.setText(searchText)
+                        val hotelsRecyclerView = view.findViewById<RecyclerView>(R.id.contactsRV)
+                        hotelAdapter = ArrayList(listHotels)
+                        adapter = HotelAdapter(requireContext(), hotelAdapter, idUser)
+                        adapter.setOnItemClickListener(object : HotelAdapter.OnItemClickListener {
+                            override fun onItemClick(position: Int) {
+                                val clickedHotel = hotelAdapter[position]
+                                val ids = listHotels.map { it.ID }
+                                val arg = Bundle()
+                                arg.putStringArray("hotelIds", ids.toTypedArray())
+                                arg.putStringArray("saveIds", saveIds)
+                                arg.putString("searchText", searchText)
+                                arg.putString("hotelPosition", clickedHotel.ID)
+
+                                // Khởi tạo Fragment Filter và đính kèm Bundle
+                                val Fragment = Hotel_infor(idUser)
+                                Fragment.arguments = arg
+
+                                val fragmentManager = requireActivity().supportFragmentManager
+                                fragmentManager.beginTransaction()
+                                    .replace(R.id.frameLayout, Fragment)
+                                    .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
+                                    .commit()
+                            }
+                        })
+                        hotelsRecyclerView.adapter = adapter
+                        layoutManager = LinearLayoutManager(requireContext())
+                        hotelsRecyclerView.layoutManager = layoutManager
+                        hotelsRecyclerView.setHasFixedSize(true)
+
+                        view.findViewById<Button>(R.id.backToMain).setOnClickListener {
+                            val fragmentManager = requireActivity().supportFragmentManager
+                            val fragmentTransaction = fragmentManager.beginTransaction()
+                            fragmentTransaction.replace(R.id.frameLayout, Home.newInstance("param1", "param2", idUser))
+                            fragmentTransaction.commit()
+                        }
+
+                        view.findViewById<TextView>(R.id.filter).setOnClickListener {
+                            val arg = Bundle()
+                            if (saveIds != null) {
+                                hotelIds = saveIds
+                            }
+                            Log.d("FilterDetailFragment", "Hotel ID Filter: ${hotelIds?.joinToString(", ")}, Search Text: $searchText")
+
+                            arg.putStringArray("hotelIds", hotelIds)
+                            arg.putStringArray("saveIds", saveIds)
+                            arg.putString("searchText", searchText)
+
+                            // Khởi tạo Fragment Filter và đính kèm Bundle
+                            val filterFragment = FilerDetail(idUser)
+                            filterFragment.arguments = arg
+
+                            // Thay thế Fragment hiện tại bằng Fragment Filter
+                            val fragmentManager = requireActivity().supportFragmentManager
+                            fragmentManager.beginTransaction()
+                                .replace(R.id.frameLayout, filterFragment)
+                                .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
+                                .commit()
+                        }
+
+                        view.findViewById<TextView>(R.id.buttonMap).setOnClickListener {
+                            val mapFragment = MapsFragment()
+                            parentFragmentManager.beginTransaction()
+                                .replace(R.id.frameLayout, mapFragment)
+                                .addToBackStack(null)
+                                .commit()
+                        }
+                    }
+                }
             }
-
-            Log.d("FilterFragment", "Received data - Point: $point, Start Value: $startValue, End Value: $endValue, Selected Cities: $selectedCities")
         }
-        val buttonShowPopup = view.findViewById<TextView>(R.id.price)
-        buttonShowPopup.setOnClickListener {
-            showPopupPrice()
-        }
-        listHotelsOri = listHotels
-
-        val buttonShowSort = view.findViewById<TextView>(R.id.sort)
-        buttonShowSort.setOnClickListener {
-            showPopupSort()
-        }
-
-
-        searchEditText.setText(searchText)
-        val hotelsRecyclerView = view.findViewById<RecyclerView>(R.id.contactsRV)
-        hotelAdapter = ArrayList(listHotels)
-        adapter = HotelAdapter(requireContext(), hotelAdapter)
-        hotelsRecyclerView.adapter = adapter
-        layoutManager = LinearLayoutManager(requireContext())
-        hotelsRecyclerView.layoutManager = layoutManager
-        hotelsRecyclerView.setHasFixedSize(true)
-
-        view.findViewById<Button>(R.id.backToMain).setOnClickListener {
-            val fragmentManager = requireActivity().supportFragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.frameLayout, Home.newInstance("param1", "param2"))
-            fragmentTransaction.commit()
-
-        }
-
-        view.findViewById<TextView>(R.id.filter).setOnClickListener {
-            val arg = Bundle()
-            arg.putIntArray("hotelIds", hotelIds)
-            arg.putString("searchText", searchText)
-
-            // Khởi tạo Fragment Filter và đính kèm Bundle
-            val filterFragment = FilerDetail()
-            filterFragment.arguments = arg
-
-            // Thay thế Fragment hiện tại bằng Fragment Filter
-            val fragmentManager = requireActivity().supportFragmentManager
-            fragmentManager.beginTransaction()
-                .replace(R.id.frameLayout, filterFragment)
-                .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
-                .commit()
-        }
-
 
         return view
     }
@@ -175,7 +312,8 @@ class Filter : Fragment() {
         // Đặt alpha cho layout gốc để làm mờ
         val rootView = requireActivity().window.decorView.findViewById<View>(android.R.id.content)
         rootView.alpha = 0.5f
-
+        startValue = 100000.0F
+        endValue = 900000.0F
         // Khởi tạo PopupWindow
         popupWindow = PopupWindow(
             popupView,
@@ -218,8 +356,8 @@ class Filter : Fragment() {
 
         val buttonReset: Button = popupView.findViewById(R.id.buttonReset)
         buttonReset.setOnClickListener {
-            startValue = 1000.0F
-            endValue = 9000.0F
+            startValue = 100000.0F
+            endValue = 900000.0F
             rangeSlider.values = mutableListOf(startValue, endValue)
         }
 
@@ -236,12 +374,21 @@ class Filter : Fragment() {
                 Log.d("FilterDetailFragment", "Hotel ${index + 1}: ${hotel.name}, Point: ${hotel.point}")
             }
 
-//            listHotels = listHotels.filter { hotel ->
-////                val rooms = hotel_db.RoomDAO().getRoomsByHotelID(hotel.id)
-//                rooms.any { room ->
-//                    room.price in startValue..endValue
-//                }
-//            }
+
+            listHotels = listHotels.filter { hotel ->
+                var roomList: List<Rooms> = emptyList()
+                // Kiểm tra xem có phòng nào có giá nằm trong khoảng startValue và endValue không
+
+                RoomUtils.getRoomByHotelID(hotel.ID!!){ fetchedRoomList   ->
+                    roomList = fetchedRoomList
+                }
+
+                roomList.any { room ->
+                    room.price!! in startValue..endValue
+                }
+
+
+            }
             Log.d("FilterDetailFragment", "List of Hotels:")
             listHotels.forEachIndexed { index, hotel ->
                 Log.d("FilterDetailFragment", "Hotel ${index + 1}: ${hotel.name}, Point: ${hotel.point}")
@@ -254,6 +401,7 @@ class Filter : Fragment() {
 
         popupWindow.setOnDismissListener {
             // Xử lý khi PopupWindow bị đóng
+            rootView.alpha = 1.0f
         }
     }
 
@@ -377,7 +525,7 @@ class Filter : Fragment() {
             listHotels.forEachIndexed { index, hotel ->
                 Log.d("Sort", "Hotel ${index + 1}: ${hotel.name}, Point: ${hotel.point}")
             }
-//            listHotels = sortHotelsByHighestRoomPrice(listHotels)
+            listHotels = sortHotelsByHighestRoomPrice(listHotels)
             Log.d("Sort", "List of HotelsSort:")
             listHotels.forEachIndexed { index, hotel ->
                 Log.d("Sort", "Hotel ${index + 1}: ${hotel.name}, Point: ${hotel.point}")
@@ -423,34 +571,42 @@ class Filter : Fragment() {
             popupWindow.dismiss()
         }
 
+        popupWindow.setOnDismissListener {
+            rootView.alpha = 1.0f
+        }
     }
 
     fun sortHotelsByLowestRoomPrice(hotels: List<Hotel>): List<Hotel> {
-        val lowestRoomPrices = mutableMapOf<Int, Double>()
+        val lowestRoomPrices = mutableMapOf<String, Double>()
 
         // Tính toán giá phòng thấp nhất của mỗi khách sạn
         for (hotel in hotels) {
-//            val rooms = hotel_db.RoomDAO().getRoomsByHotelID(hotel.id)
-//            val lowestPrice = rooms.minByOrNull { it.price }?.price ?: Double.MAX_VALUE
+            var roomList: List<Rooms> = emptyList()
+            RoomUtils.getRoomByHotelID(hotel.ID!!){ fetchedRoomList   ->
+                roomList = fetchedRoomList
+                val lowestPrice = roomList.minOfOrNull { it.price ?: Double.MAX_VALUE } ?: Double.MAX_VALUE
+                lowestRoomPrices[hotel.ID!!] = lowestPrice
+            }
 
-//            lowestRoomPrices[hotel.id] = lowestPrice
         }
-//        return hotels.sortedBy { lowestRoomPrices[it.id] ?: Double.MAX_VALUE }
-        return hotels
+        return hotels.sortedBy { lowestRoomPrices[it.ID] ?: Double.MAX_VALUE }
     }
 
-//    fun sortHotelsByHighestRoomPrice(hotels: List<Hotel>): List<Hotel> {
-//        val highestRoomPrices = mutableMapOf<Int, Double>()
-//
-//        // Tính toán giá phòng cao nhất của mỗi khách sạn
-//        for (hotel in hotels) {
-//            val rooms = hotel_db.RoomDAO().getRoomsByHotelID(hotel.id)
-//            val highestPrice = rooms.maxByOrNull { it.price }?.price ?: Double.MIN_VALUE
-//
-//            highestRoomPrices[hotel.id] = highestPrice
-//        }
-//        return hotels.sortedByDescending { highestRoomPrices[it.id] ?: Double.MIN_VALUE }
-//    }
+    fun sortHotelsByHighestRoomPrice(hotels: List<Hotel>): List<Hotel> {
+        val highestRoomPrices = mutableMapOf<String, Double>()
+
+        // Tính toán giá phòng cao nhất của mỗi khách sạn
+        for (hotel in hotels) {
+
+            var roomList: List<Rooms> = emptyList()
+            RoomUtils.getRoomByHotelID(hotel.ID!!){ fetchedRoomList   ->
+                roomList = fetchedRoomList
+                val highestPrice = roomList.minOfOrNull { it.price ?: Double.MAX_VALUE } ?: Double.MAX_VALUE
+                highestRoomPrices[hotel.ID!!] = highestPrice
+            }
+        }
+        return hotels.sortedByDescending { highestRoomPrices[it.ID] ?: Double.MIN_VALUE }
+    }
 
     companion object {
         /**
@@ -463,8 +619,8 @@ class Filter : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Filter().apply {
+        fun newInstance(param1: String, param2: String, idUser: Int) =
+            Filter(idUser).apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
