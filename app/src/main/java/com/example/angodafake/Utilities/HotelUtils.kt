@@ -1,5 +1,6 @@
 package com.example.angodafake.Utilities
 
+import android.util.Log
 import com.example.angodafake.db.Bookmark
 import com.example.angodafake.db.Hotel
 import com.google.firebase.Firebase
@@ -17,17 +18,26 @@ object HotelUtils {
     }
 
     fun getHotelByID(ID: String, listener: (Hotel) -> Unit){
-        val hotelsQuery = database.child("hotels/$ID")
-        hotelsQuery.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // Xử lý khi dữ liệu thay đổi
-                val hotel = dataSnapshot.getValue(Hotel::class.java)
-                listener(hotel!!)
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Xử lý khi có lỗi xảy ra
-            }
-        })
+        database.child("hotels").child(ID).get().addOnSuccessListener {
+            val hotel = it.getValue(Hotel::class.java)
+            hotel?.ID = ID
+            Log.d("hotelByID", "ID: $ID, hotel: ${hotel.toString()}")
+            listener(hotel!!)
+        }.addOnFailureListener{
+            Log.e("firebase", "Error getting data", it)
+        }
+//        hotelsQuery.addValueEventListener(object : ValueEventListener {
+//            override fun onDataChange(dataSnapshot: DataSnapshot) {
+//                // Xử lý khi dữ liệu thay đổi
+//                val hotel = dataSnapshot.getValue(Hotel::class.java)
+//                hotel?.ID = ID
+//                Log.d("hotelByID", "ID: $ID, hotel: ${hotel.toString()}")
+//                listener(hotel!!)
+//            }
+//
+//            override fun onCancelled(databaseError: DatabaseError) {
+//                // Xử lý khi có lỗi xảy ra
+//            }
+//        })
     }
 }

@@ -16,7 +16,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.database
 
 class HotelAdapter(private val context: Context, private var hotels: List<Hotel>) : RecyclerView.Adapter<HotelAdapter.ViewHolder>() {
-    private lateinit var Picture: Picture
+//    private lateinit var Picture: Picture
     private var listener: HotelAdapter.OnItemClickListener? = null
     private lateinit var database: DatabaseReference
     // Interface cho sự kiện click
@@ -28,7 +28,7 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
         val nameTextView = listItemView.findViewById<TextView>(R.id.hotelName)
         val locationTextView = listItemView.findViewById<TextView>(R.id.Location)
         val pointView = listItemView.findViewById<TextView>(R.id.point)
-        val img: ImageView = listItemView.findViewById(R.id.imageView)
+//        val img: ImageView = listItemView.findViewById(R.id.imageView)
         val rateStatus: TextView = listItemView.findViewById(R.id.rateStatus)
         val quaCM: TextView = listItemView.findViewById(R.id.quaCM)
         val convenience: TextView = listItemView.findViewById(R.id.convenience)
@@ -51,12 +51,6 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
 
         database = Firebase.database.reference
 
-        PictureUtils.getPictureByHotelID(hotel.ID!!){picture ->{
-            Picture = picture
-        }}
-
-        val idPicture = context.resources.getIdentifier(Picture.picture, "drawable", context.packageName)
-        holder.img.setImageResource(idPicture)
         holder.nameTextView.text = hotel.name
         holder.locationTextView.text = hotel.locationDetail
         holder.pointView.text = hotel.point.toString()
@@ -71,6 +65,12 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
             in 8 until 9 -> { "Rất tốt" }
             else -> { "Tuyệt vời" }
         }
+//        PictureUtils.getPictureByHotelID(hotel.ID!!){picture ->
+//            Picture = picture
+//            val idPicture = context.resources.getIdentifier(Picture.picture, "drawable", context.packageName)
+//            holder.img.setImageResource(idPicture)
+//
+//        }
     }
 
     override fun getItemCount(): Int {
