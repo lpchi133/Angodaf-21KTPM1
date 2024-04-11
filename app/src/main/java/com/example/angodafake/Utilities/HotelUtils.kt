@@ -28,6 +28,20 @@ object HotelUtils {
             Log.e("firebase", "Error getting data", it)
         }
 
+//        hotelsQuery.addValueEventListener(object : ValueEventListener {
+//            override fun onDataChange(dataSnapshot: DataSnapshot) {
+//                // Xử lý khi dữ liệu thay đổi
+//                val hotel = dataSnapshot.getValue(Hotel::class.java)
+//                hotel?.ID = ID
+//                Log.d("hotelByID", "ID: $ID, hotel: ${hotel.toString()}")
+//                listener(hotel!!)
+//            }
+//
+//            override fun onCancelled(databaseError: DatabaseError) {
+//                // Xử lý khi có lỗi xảy ra
+//            }
+//        })
+
     }
     fun getHotelList(listener: (List<Hotel>) -> Unit) {
         val hotelList = mutableListOf<Hotel>()

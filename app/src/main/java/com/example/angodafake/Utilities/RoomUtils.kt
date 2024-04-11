@@ -1,5 +1,6 @@
 package com.example.angodafake.Utilities
 
+
 import android.util.Log
 import com.example.angodafake.db.Bookmark
 import com.example.angodafake.db.Hotel
@@ -30,7 +31,10 @@ object RoomUtils {
                     val room = roomSnapshot.getValue(Rooms::class.java)
                     room?.let { roomList.add(it) }
                 }
-                listener(roomList)
+
+                if (!roomList.isEmpty()){
+                    listener(roomList)
+                }
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -38,6 +42,7 @@ object RoomUtils {
             }
         })
     }
+
 
     fun getRoomList(listener: (List<Rooms>) -> Unit) {
         val roomList = mutableListOf<Rooms>()

@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 //    private lateinit var hotel_db: HotelDatabase
     private var idUser: Int? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -29,10 +30,12 @@ class MainActivity : AppCompatActivity() {
         idUser = 1
         replaceFragment(Home(idUser!!))
 
+
 //        ******* ADD DATABASE **********
 //        hotel_db = HotelDatabase.getInstance(this)
 
         //addDatabase()
+
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
         bottomNavigationView.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
@@ -156,6 +159,7 @@ class MainActivity : AppCompatActivity() {
         }
         reader.close()
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

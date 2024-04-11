@@ -29,10 +29,9 @@ object PictureUtils {
                     val picture = pictureSnapshot.getValue(Picture::class.java)
                     picture?.let { pictureList.add(it) }
                 }
-                if (pictureList.isNotEmpty()) {
+
+                if (!pictureList.isEmpty()){
                     listener(pictureList[0])
-                } else {
-                    Log.d("FilterDetailFragment", "No picture found for hotel with ID $ID")
                 }
             }
 

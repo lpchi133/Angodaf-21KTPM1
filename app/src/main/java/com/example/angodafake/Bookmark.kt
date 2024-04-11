@@ -1,6 +1,7 @@
 package com.example.angodafake
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -54,9 +55,9 @@ class Bookmark : Fragment() {
 
         BookmarkUtils.getAllBookmarks("tYw0x3oVS7gAd9wOdOszzvJMOEM2"){allBookmarks ->
             linearAdapter = BookmarkAdapter(requireContext(), allBookmarks)
+            bookmarksRecyclerView.adapter = linearAdapter
+            Log.d("allBookmarks", allBookmarks.toString())
         }
-        bookmarksRecyclerView.adapter = linearAdapter
-
         return view
     }
 
