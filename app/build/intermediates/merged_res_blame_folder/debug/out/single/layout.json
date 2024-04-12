@@ -1,86 +1,198 @@
 [
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-4:/layout/fragment_my_hotel.xml",
-        "source": "com.example.angodafake.app-main-7:/layout/fragment_my_hotel.xml"
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/custom_chat_detail.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/custom_chat_detail.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-4:/layout/custom_sort.xml",
-        "source": "com.example.angodafake.app-main-7:/layout/custom_sort.xml"
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/activity_main.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/activity_main.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-4:/layout/fragment_maps.xml",
-        "source": "com.example.angodafake.app-main-7:/layout/fragment_maps.xml"
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/fragment_room.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/fragment_room.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-4:/layout/custom_price.xml",
-        "source": "com.example.angodafake.app-main-7:/layout/custom_price.xml"
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/tab_active_room.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/tab_active_room.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-4:/layout/activity_main.xml",
-        "source": "com.example.angodafake.app-main-7:/layout/activity_main.xml"
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/empty_past_room.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/empty_past_room.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-4:/layout/fragment_my_profile.xml",
-        "source": "com.example.angodafake.app-main-7:/layout/fragment_my_profile.xml"
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/fragment_home_filter.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/fragment_home_filter.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-4:/layout/fragment_bookmark.xml",
-        "source": "com.example.angodafake.app-main-7:/layout/fragment_bookmark.xml"
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/tab_canceled_room.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/tab_canceled_room.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-4:/layout/fragment_home_filter.xml",
-        "source": "com.example.angodafake.app-main-7:/layout/fragment_home_filter.xml"
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/popup2.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/popup2.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-4:/layout/activity_sign_up.xml",
-        "source": "com.example.angodafake.app-main-7:/layout/activity_sign_up.xml"
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/custom_active_purchase_detail.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/custom_active_purchase_detail.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-4:/layout/activity_login.xml",
-        "source": "com.example.angodafake.app-main-7:/layout/activity_login.xml"
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/custom_my_voucher.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/custom_my_voucher.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-4:/layout/custom_bookmark.xml",
-        "source": "com.example.angodafake.app-main-7:/layout/custom_bookmark.xml"
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/custom_past_cancel_purchase_adapter.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/custom_past_cancel_purchase_adapter.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-4:/layout/fragment_home_filter_detail.xml",
-        "source": "com.example.angodafake.app-main-7:/layout/fragment_home_filter_detail.xml"
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/custom_chat.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/custom_chat.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-4:/layout/custom_room.xml",
-        "source": "com.example.angodafake.app-main-7:/layout/custom_room.xml"
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/fragment_my_hotel.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/fragment_my_hotel.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-4:/layout/custom_hotel_detail.xml",
-        "source": "com.example.angodafake.app-main-7:/layout/custom_hotel_detail.xml"
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/custom_sort.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/custom_sort.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-4:/layout/fragment_my_room.xml",
-        "source": "com.example.angodafake.app-main-7:/layout/fragment_my_room.xml"
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/custom_room.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/custom_room.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-4:/layout/fragment_room.xml",
-        "source": "com.example.angodafake.app-main-7:/layout/fragment_room.xml"
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/custom_rating.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/custom_rating.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-4:/layout/tab_login_phone.xml",
-        "source": "com.example.angodafake.app-main-7:/layout/tab_login_phone.xml"
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/fragment_home.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/fragment_home.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-4:/layout/custom_hotel.xml",
-        "source": "com.example.angodafake.app-main-7:/layout/custom_hotel.xml"
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/custom_voucher.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/custom_voucher.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-4:/layout/activity_splash.xml",
-        "source": "com.example.angodafake.app-main-7:/layout/activity_splash.xml"
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/custom_hotel.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/custom_hotel.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-4:/layout/fragment_home.xml",
-        "source": "com.example.angodafake.app-main-7:/layout/fragment_home.xml"
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/empty_comment.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/empty_comment.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-4:/layout/tab_login_email.xml",
-        "source": "com.example.angodafake.app-main-7:/layout/tab_login_email.xml"
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/fragment_maps.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/fragment_maps.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/custom_hotel_detail.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/custom_hotel_detail.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/fragment_my_room.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/fragment_my_room.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/custom_active_purchase_adapter.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/custom_active_purchase_adapter.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/custom_comment_form.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/custom_comment_form.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/fragment_my_profile.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/fragment_my_profile.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/custom_my_voucher_detail.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/custom_my_voucher_detail.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/rating.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/rating.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/tab_past_room.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/tab_past_room.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/comment.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/comment.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/custom_comment_detail.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/custom_comment_detail.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/custom_bookmark.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/custom_bookmark.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/popup_1.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/popup_1.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/popup_2.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/popup_2.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/activity_splash.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/activity_splash.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/empty_canceled_room.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/empty_canceled_room.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/fragment_home_filter_detail.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/fragment_home_filter_detail.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/activity_login.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/activity_login.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/empty_active_room.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/empty_active_room.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/fragment_bookmark.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/fragment_bookmark.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/tab_login_phone.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/tab_login_phone.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/tab_login_email.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/tab_login_email.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/activity_sign_up.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/activity_sign_up.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/voucher.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/voucher.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/custom_price.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/custom_price.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/custome_past_cancel_purchase_detail.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/custome_past_cancel_purchase_detail.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/chat.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/chat.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/cancel_purchase.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/cancel_purchase.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/tab_comment.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/tab_comment.xml"
     }
 ]

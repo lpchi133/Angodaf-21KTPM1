@@ -1,7 +1,6 @@
 package com.example.angodafake
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.angodafake.Adapter.RoomAdapter
 import com.example.angodafake.Utilities.RoomUtils
 import com.example.angodafake.db.Rooms
 

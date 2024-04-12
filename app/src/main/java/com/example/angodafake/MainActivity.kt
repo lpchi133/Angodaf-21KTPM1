@@ -31,12 +31,6 @@ class MainActivity : AppCompatActivity() {
         replaceFragment(Home(idUser!!))
 
 
-//        ******* ADD DATABASE **********
-//        hotel_db = HotelDatabase.getInstance(this)
-
-        //addDatabase()
-
-
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
         bottomNavigationView.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
 
@@ -58,111 +52,5 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frameLayout, fragment)
         fragmentTransaction.commit()
-    }
-
-    @TestOnly
-    private fun addDatabase(){
-        //readUser()
-        readHotel()
-        //readBookmark()
-        //readPicture()
-        //readRooms()
-    }
-
-    private fun readHotel(){
-        val inputStream = this.assets.open("hotel.txt")
-        val reader = BufferedReader(InputStreamReader(inputStream))
-
-        val database = Firebase.database
-        val hotelsRef = database.getReference("hotels")
-
-        var line: String? = reader.readLine()
-        while (line != null) {
-            val ID_Owner = line
-            val name = reader.readLine()
-            val locationDetail = reader.readLine()
-            val city = reader.readLine()
-            val description = reader.readLine()
-            val conveniences = reader.readLine()
-            val point = reader.readLine().toDouble()
-            val profit = reader.readLine().toDouble()
-            val checkIn = reader.readLine()
-            val checkOut = reader.readLine()
-
-//            val ID = hotelsRef.push().key!!
-//            //val hotel = Hotel(ID, ID_Owner.toString(), name, locationDetail, city, description, conveniences, point, profit, checkIn, checkOut)
-//
-//            // Thêm dữ liệu vào Firebase Realtime Database
-//            hotelsRef.child(ID).setValue(hotel)
-//                .addOnCompleteListener{
-//
-//                }
-//
-//            line = reader.readLine()
-        }
-        reader.close()
-    }
-
-    private fun readBookmark(){
-        val inputStream = this.assets.open("bookmark.txt")
-        val reader = BufferedReader(InputStreamReader(inputStream))
-
-        var line: String? = reader.readLine()
-        while (line != null) {
-            val ID_Owner = line.toInt()
-            val ID_Hotel = reader.readLine().toInt()
-
-//            val bookmark = Bookmarks(ID_Owner, ID_Hotel)
-//            hotel_db.BookmarkDAO().insertBookmark(bookmark)
-//            println(bookmark)
-            line = reader.readLine()
-        }
-        reader.close()
-    }
-
-    private fun readPicture(){
-        val inputStream = this.assets.open("picture.txt")
-        val reader = BufferedReader(InputStreamReader(inputStream))
-
-        var line: String? = reader.readLine()
-        while (line != null) {
-            val ID_Hotel = line.toInt()
-            val pictureID = reader.readLine()
-
-//            val picture = Picture(ID_Hotel, pictureID)
-//            hotel_db.PictureDAO().insertPicture(picture)
-//            println(picture)
-            line = reader.readLine()
-        }
-        reader.close()
-    }
-    private fun readRooms() {
-        val inputStream = this.assets.open("room.txt")
-        val reader = BufferedReader(InputStreamReader(inputStream))
-
-        var line: String? = reader.readLine()
-        while (line != null) {
-            val ID_Hotel = line.toInt()
-            val quantity = reader.readLine().toInt()
-            val available = reader.readLine().toInt()
-            val type = reader.readLine()
-            val acreage = reader.readLine().toDouble()
-            val price = reader.readLine().toDouble()
-            val bedQuantity = reader.readLine().toInt()
-            val checkIn = reader.readLine()
-            val checkOut = reader.readLine()
-
-//            val room = Rooms(ID_Hotel, quantity, available, type, acreage, price, bedQuantity, checkIn, checkOut)
-//            hotel_db.RoomDAO().insertRoom(room)
-//            println(room)
-            line = reader.readLine()
-        }
-        reader.close()
-    }
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-//        hotel_db.close()
     }
 }

@@ -8,10 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.angodafake.Adapter.BookmarkAdapter
 import com.example.angodafake.Utilities.BookmarkUtils
-import com.google.firebase.Firebase
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.database
 import org.jetbrains.annotations.TestOnly
 
 // TODO: Rename parameter arguments, choose names that match

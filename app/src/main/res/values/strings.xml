@@ -10,6 +10,29 @@
     <string name="roomTittle">Thông tin phòng</string>
     <string name="Filter">Chọn lọc</string>
     <string name="bookmarkAds">Hãy chọn chổ nghỉ này để xem giá mới mất, thấp nhất</string>
+    <string name="r_title">Đơn đặt chỗ của tôi</string>
+    <string name="btn_order">Đặt phòng nào!</string>
+    <string name="content_active_room">Quý khách không có đặt chỗ sắp tới nào!</string>
+    <string name="content_past_room">Quý khách không có đặt chỗ đã hoàn thành gần đây!</string>
+    <string name="content_canceled_room">Quý khách không có đặt chỗ đã hủy gần đây!</string>
+    <string name="r_dateorder">Ngày đặt phòng:</string>
+    <string name="r_id">Mã đặt phòng:</string>
+    <string name="r_nhanphong">Nhận phòng</string>
+    <string name="r_traphong">Trả phòng</string>
+    <string name="btn_removeorder">Hủy đặt phòng</string>
+    <string name="btn_reorder">Đặt phòng lại</string>
+
+    <string name="i_title">Thông tin đặt phòng</string>
+
+    <string name="v_title">Phiếu giảm giá &amp; Ưu đãi</string>
+
+    <string name="rating_title">Đánh giá</string>
+
+    <string name="c_title">Tin nhắn</string>
+
+    <string name="mv_title">Khuyến mãi</string>
+
+    <string name="cmt_title">Nhận xét của tôi</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="countries">
