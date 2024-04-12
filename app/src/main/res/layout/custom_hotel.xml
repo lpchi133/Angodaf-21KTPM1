@@ -19,12 +19,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
         android:id="@+id/price_room"
-        android:layout_width="95dp"
-        android:layout_height="37dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
         android:layout_marginStart="200dp"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="140dp"
         android:background="@drawable/rounded_button_delete"
         android:gravity="center"
         android:text="694.444 đ"
@@ -38,7 +40,7 @@
         android:id="@+id/hotelName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:maxWidth="280dp"
         android:maxLines="1000"
@@ -128,31 +130,36 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="----------------------------------------------------------------------------------------------"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/text2"
+        app:layout_constraintVertical_bias="1.0" />
 
-    <Button
+    <ImageView
         android:id="@+id/shareBtn"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginEnd="12dp"
-        android:background="@drawable/baseline_ios_share_24"
-        app:layout_constraintBottom_toBottomOf="@+id/hotelName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toStartOf="@+id/fav"
-        app:layout_constraintTop_toTopOf="@+id/hotelName"
-        android:onClick="onShareButtonClick"/>
+        app:layout_constraintHorizontal_bias="0.986"
+        app:layout_constraintStart_toEndOf="@+id/hotelName"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:srcCompat="?attr/actionModeShareDrawable" />
 
-    <Button
+    <ImageView
         android:id="@+id/fav"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginEnd="15dp"
-        android:background="@drawable/baseline_favorite"
-        app:layout_constraintBottom_toBottomOf="@+id/hotelName"
+        android:layout_width="22dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/hotelName" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:srcCompat="@drawable/baseline_favorite" />
 
     <ImageView
         android:id="@+id/home"
@@ -220,4 +227,5 @@
         android:text="628 nhận xét"
         app:layout_constraintStart_toEndOf="@+id/rateStatus"
         app:layout_constraintTop_toTopOf="@+id/rateStatus" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

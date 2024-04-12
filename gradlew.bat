@@ -1,5 +1,4 @@
 <<<<<<< HEAD
-<<<<<<< HEAD
 @rem
 @rem Copyright 2015 the original author or authors.
 @rem
@@ -90,8 +89,6 @@ if "%OS%"=="Windows_NT" endlocal
 
 :omega
 =======
-=======
->>>>>>> origin/Bảo
 @rem
 @rem Copyright 2015 the original author or authors.
 @rem
@@ -181,7 +178,4 @@ exit /b 1
 if "%OS%"=="Windows_NT" endlocal
 
 :omega
-<<<<<<< HEAD
->>>>>>> origin/Bảo
-=======
 >>>>>>> origin/Bảo

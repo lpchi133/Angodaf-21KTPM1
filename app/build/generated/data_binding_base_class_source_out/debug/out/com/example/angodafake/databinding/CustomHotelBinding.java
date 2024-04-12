@@ -4,7 +4,6 @@ package com.example.angodafake.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -28,7 +27,7 @@ public final class CustomHotelBinding implements ViewBinding {
   public final TextView cmt;
 
   @NonNull
-  public final Button fav;
+  public final ImageView fav;
 
   @NonNull
   public final ImageView home;
@@ -61,7 +60,7 @@ public final class CustomHotelBinding implements ViewBinding {
   public final TextView rateStatus;
 
   @NonNull
-  public final Button shareBtn;
+  public final ImageView shareBtn;
 
   @NonNull
   public final TextView text;
@@ -79,11 +78,11 @@ public final class CustomHotelBinding implements ViewBinding {
   public final TextView textView;
 
   private CustomHotelBinding(@NonNull ConstraintLayout rootView, @NonNull TextView Location,
-      @NonNull TextView cmt, @NonNull Button fav, @NonNull ImageView home,
+      @NonNull TextView cmt, @NonNull ImageView fav, @NonNull ImageView home,
       @NonNull TextView hotelName, @NonNull ImageView icon, @NonNull ImageView imageView,
       @NonNull ImageView imageView10, @NonNull ImageView imageView11, @NonNull ImageView imageView9,
       @NonNull TextView point, @NonNull TextView priceRoom, @NonNull TextView rateStatus,
-      @NonNull Button shareBtn, @NonNull TextView text, @NonNull TextView text1,
+      @NonNull ImageView shareBtn, @NonNull TextView text, @NonNull TextView text1,
       @NonNull TextView text2, @NonNull TextView text3, @NonNull TextView textView) {
     this.rootView = rootView;
     this.Location = Location;
@@ -147,7 +146,7 @@ public final class CustomHotelBinding implements ViewBinding {
       }
 
       id = R.id.fav;
-      Button fav = ViewBindings.findChildViewById(rootView, id);
+      ImageView fav = ViewBindings.findChildViewById(rootView, id);
       if (fav == null) {
         break missingId;
       }
@@ -213,7 +212,7 @@ public final class CustomHotelBinding implements ViewBinding {
       }
 
       id = R.id.shareBtn;
-      Button shareBtn = ViewBindings.findChildViewById(rootView, id);
+      ImageView shareBtn = ViewBindings.findChildViewById(rootView, id);
       if (shareBtn == null) {
         break missingId;
       }
