@@ -1,0 +1,45 @@
+1
+5
+4
+Phòng Studio Tiêu chuẩn (Standard Studio)
+32
+Empty
+Bãi đậu xe, WiFi miễn phí, Hồ bơi
+775410
+1 giường lớn và 1 giường lớn
+1
+6
+4
+Deluxe Junior Suite
+35
+Hướng ngoài trời
+Bãi đậu xe, WiFi miễn phí, Hồ bơi
+862309
+1 giường lớn và 1 giường lớn
+2
+3
+2
+Căn hộ Tiêu chuẩn (Standard Apartment)
+25
+Hướng đường phố
+Nhận phòng nhanh, WiFi miễn phí
+625000
+1 giường lớn
+2
+2
+1
+Căn hộ có ban công (Apartment with Balcony)
+28
+Hướng đường phố
+Nhận phòng nhanh, WiFi miễn phí
+664063
+1 giường đôi lớn
+3
+1
+1
+Studio có ban công (Studio with Balcony)
+40
+Hướng vườn
+Nhận phòng nhanh, WiFi miễn phí
+717188
+1 giường đôi lớn và 1 giường sofa

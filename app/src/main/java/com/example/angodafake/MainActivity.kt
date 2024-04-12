@@ -10,6 +10,8 @@ import com.example.angodafake.db.Hotel
 import com.example.angodafake.db.HotelDatabase
 import com.example.angodafake.db.Picture
 import com.example.angodafake.db.User
+import com.example.angodafake.db.Rooms
+import com.example.angodafake.db.Purchase
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.jetbrains.annotations.TestOnly
 import java.io.BufferedReader
@@ -61,6 +63,8 @@ class MainActivity : AppCompatActivity() {
         readHotel()
         readBookmark()
         readPicture()
+        readRoom()
+        readPurchase()
     }
 
     private fun readUser(){
@@ -106,7 +110,7 @@ class MainActivity : AppCompatActivity() {
             val point = reader.readLine().toDouble()
             val profit = reader.readLine().toDouble()
 
-            val hotel = Hotel(ID_Owner, name, phoneNumber, locationDetail,city,description, conveniences,star, point, profit)
+            val hotel = Hotel(ID_Owner, name, phoneNumber, locationDetail, city, description, conveniences, star, point, profit)
             hotel_db.HotelDAO().insertHotel(hotel)
             println(hotel)
             line = reader.readLine()
@@ -143,6 +147,59 @@ class MainActivity : AppCompatActivity() {
             val picture = Picture(ID_Hotel, pictureID)
             hotel_db.PictureDAO().insertPicture(picture)
             println(picture)
+            line = reader.readLine()
+        }
+        reader.close()
+    }
+
+    private fun readRoom(){
+        val inputStream = this.assets.open("room.txt")
+        val reader = BufferedReader(InputStreamReader(inputStream))
+
+        var line: String? = reader.readLine()
+        while (line != null) {
+            val ID_Hotel = line.toInt()
+            val quantityRoom = reader.readLine().toInt()
+            val availableRoom = reader.readLine().toInt()
+            val typeRoom = reader.readLine()
+            val acreageRoom = reader.readLine().toDouble()
+            val directionRoom = reader.readLine()
+            val benefitRoom = reader.readLine()
+            val priceRoom = reader.readLine().toDouble()
+            val bedQuantityRoom = reader.readLine()
+
+            val room = Rooms(ID_Hotel, quantityRoom, availableRoom, typeRoom, acreageRoom, directionRoom, benefitRoom, priceRoom, bedQuantityRoom)
+            hotel_db.RoomDAO().insertRoom(room)
+            println(room)
+            line = reader.readLine()
+        }
+        reader.close()
+    }
+
+    private fun readPurchase(){
+        val inputStream = this.assets.open("purchase.txt")
+        val reader = BufferedReader(InputStreamReader(inputStream))
+
+        var line: String? = reader.readLine()
+        while (line != null) {
+            val ID_Owner = line.toInt()
+            val ID_Hotel = reader.readLine().toInt()
+            val ID_Room = reader.readLine().toInt()
+            val quantityP = reader.readLine().toInt()
+            val capacityP = reader.readLine()
+            val payment_methodP = reader.readLine()
+            val time_booking = reader.readLine()
+            val time_purchase = reader.readLine()
+            val total_purchase = reader.readLine().toDouble()
+            val agoda_money = reader.readLine().toDouble()
+            val status_order = reader.readLine()
+            val status_purchase = reader.readLine()
+            val check_in = reader.readLine()
+            val check_out = reader.readLine()
+
+            val purchase = Purchase(ID_Owner, ID_Hotel, ID_Room, quantityP, capacityP, payment_methodP, time_booking, time_purchase, total_purchase, agoda_money, status_order, status_purchase, check_in, check_out)
+            hotel_db.PurchaseDAO().insertPurchase(purchase)
+            println(purchase)
             line = reader.readLine()
         }
         reader.close()

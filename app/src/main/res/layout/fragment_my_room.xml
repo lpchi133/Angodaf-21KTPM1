@@ -9,10 +9,17 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="?attr/colorPrimary"
-        app:navigationIcon="@drawable/baseline_arrow_back_24"
-        app:title="@string/r_title" />
+        android:layout_marginStart="60dp"
+        app:title="Đơn đặt chỗ của tôi" />
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="?attr/colorPrimary"
+        app:srcCompat="@drawable/baseline_arrow_back_24" />
 
     <TextView
         android:id="@+id/border1"
@@ -63,10 +70,10 @@
         android:background="#0000FF" />
 
     <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_handler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
-        android:id="@+id/tab_handler"
+        android:layout_below="@+id/border3"
         android:layout_marginTop="0dp">
     </com.google.android.material.tabs.TabLayout>
 

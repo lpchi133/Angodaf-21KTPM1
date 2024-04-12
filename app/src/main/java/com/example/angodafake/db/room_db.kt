@@ -28,11 +28,7 @@ data class Rooms (
     @ColumnInfo(name = "price" )
     var price : Double,
     @ColumnInfo(name = "bedQuantity" )
-    var bedQuantity : Int,
-    @ColumnInfo(name = "checkIn" )
-    var checkIn : String,
-    @ColumnInfo(name = "checkOut" )
-    var checkOut : String,
+    var bedQuantity : String,
 ){
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0

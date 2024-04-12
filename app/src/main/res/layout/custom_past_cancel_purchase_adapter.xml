@@ -4,18 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
     android:background="@drawable/border">
 
     <RelativeLayout
         android:id="@+id/date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#99A9CFF8"
+        android:background="@drawable/border2"
         android:paddingStart="10dp">
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="120dp"
+            android:layout_width="150dp"
             android:layout_height="45dp"
             android:gravity="center"
             android:text="@string/r_dateorder"
@@ -26,12 +27,12 @@
             tools:layout_editor_absoluteY="132dp" />
 
         <TextView
-            android:id="@+id/date_order"
+            android:id="@+id/time_booking"
             android:layout_width="160dp"
             android:layout_height="45dp"
-            android:gravity="center_vertical"
             android:layout_marginStart="0dp"
             android:layout_toEndOf="@+id/textView"
+            android:gravity="center_vertical"
             android:text="Th 5, 28 thg 3"
             android:textColor="#3E52FA"
             android:textSize="16sp" />
@@ -46,26 +47,12 @@
 
         <TextView
             android:id="@+id/textView1"
-            android:layout_width="50dp"
+            android:layout_width="95dp"
             android:layout_height="45dp"
-            android:gravity="center"
-            android:layout_marginTop="0dp"
+            android:gravity="center_vertical"
+            android:layout_marginStart="10dp"
             android:text="@string/r_id"
             android:textColor="@color/black"/>
-
-<!--        <TextView-->
-<!--            android:id="@+id/popup"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignBottom="@+id/textView1"-->
-<!--            android:layout_alignParentTop="true"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:layout_marginEnd="20dp"-->
-<!--            android:layout_marginBottom="10dp"-->
-<!--            android:gravity="center"-->
-<!--            android:paddingHorizontal="3dp"-->
-<!--            app:drawableLeftCompat="@drawable/baseline_more_vert_24"/>-->
 
         <TextView
             android:id="@+id/id_order"
@@ -76,6 +63,39 @@
             android:layout_toEndOf="@+id/textView1"
             android:textColor="@color/black"
             android:text="1190373000" />
+
+        <TextView
+            android:id="@+id/status1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:background="#E6F1D8"
+            android:textColor="#50A625" />
+
+        <TextView
+            android:id="@+id/status2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:background="#DDDDDD"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/status3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:background="#FCDAD5"
+            android:textColor="#EE0000" />
     </RelativeLayout>
 
     <TextView
@@ -119,7 +139,7 @@
             android:text="@string/r_nhanphong" />
 
         <TextView
-            android:id="@+id/date_come"
+            android:id="@+id/check_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView4"
@@ -139,13 +159,13 @@
             android:text="@string/r_traphong" />
 
         <TextView
-            android:id="@+id/date_go"
+            android:id="@+id/check_out"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView6"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="5dp"
-            android:layout_toEndOf="@+id/date_come"
+            android:layout_toEndOf="@+id/textView4"
             android:text="Th 6, 29 thg 3" />
     </RelativeLayout>
 
@@ -164,18 +184,8 @@
         android:layout_below="@+id/line2">
 
         <Button
-            android:id="@+id/btn_removeorder"
-            android:layout_width="160dp"
-            android:layout_height="40dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="15dp"
-            android:background="@drawable/btn_removeorder"
-            android:text="@string/btn_removeorder"
-            android:textColor="@color/white" />
-
-        <Button
-            android:id="@+id/btn_reorder"
-            android:layout_width="160dp"
+            android:id="@+id/btn_reorder2"
+            android:layout_width="150dp"
             android:layout_height="40dp"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="15dp"

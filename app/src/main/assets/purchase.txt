@@ -1,0 +1,70 @@
+1
+1
+1
+1
+2 người lớn
+Thẻ tín dụng/Thẻ ghi nợ
+1/4/2024
+1/4/2024
+1000000
+1000
+Sắp tới
+Chưa thanh toán
+8/4/2024
+9/4/2024
+1
+1
+2
+2
+2 người lớn
+Thanh toán kỹ thuật số
+1/4/2024
+1/4/2024
+1000000
+1000
+Sắp tới
+Đã thanh toán
+8/4/2024
+9/4/2024
+1
+2
+3
+1
+5 người lớn
+Thanh toán trực tiếp
+1/4/2024
+Không có
+1000000
+1000
+Đã hủy
+Đã hoàn tiền
+8/4/2024
+9/4/2024
+1
+2
+4
+1
+10 người lớn và 2 trẻ em
+Thanh toán trực tiếp
+1/4/2024
+null
+1000000
+1000
+Đã hủy
+Chưa hoàn tiền
+8/4/2024
+9/4/2024
+1
+2
+4
+1
+10 người lớn và 2 trẻ em
+Thanh toán trực tiếp
+1/4/2024
+null
+1000000
+1000
+Đã hủy
+Không hoàn tiền
+8/4/2024
+9/4/2024
