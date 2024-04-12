@@ -2,9 +2,6 @@ package com.example.angodafake.Utilities
 
 
 import android.util.Log
-import com.example.angodafake.db.Bookmark
-import com.example.angodafake.db.Hotel
-import com.example.angodafake.db.Picture
 import com.example.angodafake.db.Rooms
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot

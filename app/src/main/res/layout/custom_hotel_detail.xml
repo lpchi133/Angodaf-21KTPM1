@@ -448,7 +448,7 @@
                         android:id="@+id/b1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Mô tả toàn bộ căn hộ"
+                        android:text="Mô tả toàn bộ khách sạn"
                         android:textColor="#090C22"
                         android:textSize="18sp"
                         android:textStyle="bold" />

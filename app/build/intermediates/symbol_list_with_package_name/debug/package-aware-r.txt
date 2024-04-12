@@ -4008,6 +4008,7 @@ id unlabeled
 id up
 id useLogo
 id vertical_only
+id view
 id view_offset_helper
 id view_transition
 id view_tree_lifecycle_owner

@@ -1,9 +1,6 @@
 package com.example.angodafake.Utilities
 
-import android.util.Log
-import com.example.angodafake.db.Bookmark
-import com.example.angodafake.db.Hotel
-import com.example.angodafake.db.Picture
+import com.example.angodafake.db.Picture_Hotel
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -19,19 +16,19 @@ object PictureUtils {
 
     }
 
-    fun getPictureByHotelID(ID: String, listener: (Picture) -> Unit){
+    fun getPictureByHotelID(ID: String, listener: (Picture_Hotel) -> Unit){
         val pictureQuery = database.child("pictures").orderByChild("ID_Hotel").equalTo(ID)
         pictureQuery.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // Xử lý khi dữ liệu thay đổi
-                val pictureList = mutableListOf<Picture>()
+                val pictureHotelList = mutableListOf<Picture_Hotel>()
                 for (pictureSnapshot in dataSnapshot.children) {
-                    val picture = pictureSnapshot.getValue(Picture::class.java)
-                    picture?.let { pictureList.add(it) }
+                    val pictureHotel = pictureSnapshot.getValue(Picture_Hotel::class.java)
+                    pictureHotel?.let { pictureHotelList.add(it) }
                 }
 
-                if (!pictureList.isEmpty()){
-                    listener(pictureList[0])
+                if (!pictureHotelList.isEmpty()){
+                    listener(pictureHotelList[0])
                 }
             }
 

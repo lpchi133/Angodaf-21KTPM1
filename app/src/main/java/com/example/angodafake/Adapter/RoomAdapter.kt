@@ -61,22 +61,22 @@ class RoomAdapter(private val context: Context, private var rooms: List<Rooms>, 
         val idPicture = context.resources.getIdentifier(room.picture, "drawable", context.packageName)
         holder.img.setImageResource(idPicture)
         holder.roomName.text = room.type
-        holder.countBed.text = room.bedQuantity.toString() + " giường đôi"
-        holder.count.text = "Tối đa " + (room.bedQuantity?.times(2)).toString() + " người"
-        if(intArray[position] <= room.available!!) {
-            holder.countRoom.text = "Số phòng:         " + intArray[position].toString() + "   +"
-        }
-        else{
-            holder.countRoom.text = "Số phòng:         " + room.available.toString() + "   +"
-        }
-        holder.convenience.text = room.benefit
-        holder.price_room.text = room.price.toString() + " đ"
-        if(room.available == 0){
-            holder.count_Room.text = "Hết phòng rồi ní ơi!"
-        }
-        else {
-            holder.count_Room.text = room.available.toString() + " phòng cuối cùng!"
-        }
+//        holder.countBed.text = room.bedQuantity.toString() + " giường đôi"
+//        holder.count.text = "Tối đa " + (room.bedQuantity?.times(2)).toString() + " người"
+//        if(intArray[position] <= room.available!!) {
+//            holder.countRoom.text = "Số phòng:         " + intArray[position].toString() + "   +"
+//        }
+//        else{
+//            holder.countRoom.text = "Số phòng:         " + room.available.toString() + "   +"
+//        }
+//        holder.convenience.text = room.benefit
+//        holder.price_room.text = room.price.toString() + " đ"
+//        if(room.available == 0){
+//            holder.count_Room.text = "Hết phòng rồi ní ơi!"
+//        }
+//        else {
+//            holder.count_Room.text = room.available.toString() + " phòng cuối cùng!"
+//        }
     }
 
     override fun getItemCount(): Int {

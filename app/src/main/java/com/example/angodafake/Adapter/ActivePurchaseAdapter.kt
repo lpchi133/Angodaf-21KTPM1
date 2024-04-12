@@ -11,7 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.R
 import com.example.angodafake.db.Hotel
-import com.example.angodafake.db.Picture
+import com.example.angodafake.db.Picture_Hotel
 import com.example.angodafake.db.Purchase
 
 class ActivePurchaseAdapter(private val context: Context, private var activePurchase: List<Purchase>) : RecyclerView.Adapter<ActivePurchaseAdapter.MyViewHolder>() {
@@ -19,7 +19,7 @@ class ActivePurchaseAdapter(private val context: Context, private var activePurc
     private var listener: OnItemClickListener? = null
 //    private lateinit var hotel_db: HotelDatabase
     private lateinit var HotelMarked: Hotel
-    private lateinit var Picture: Picture
+    private lateinit var Picture_Hotel: Picture_Hotel
     interface OnItemClickListener {
         fun onItemClick(purchase: Purchase)
     }

@@ -7,18 +7,25 @@ import com.google.firebase.database.IgnoreExtraProperties
 @IgnoreExtraProperties
 data class Hotel(
     var ID: String? = null,
-    val ID_Owner: String? = null,
-    val name: String? = null,
-    val phoneNumber: String? = null,
-    val locationDetail: String? = null,
-    val city: String? = null,
-    val description: String? = null,
-    val conveniences: String? = null,
-    val star: Int? = 0,
-    val point: Double? = 0.0,
-    val profit: Double? = 0.0,
-    val checkIn: String? = null,
-    val checkOut: String? = null) {
+    var ID_Owner: String? = null,
+    var name: String? = null,
+    var phoneNumber: String? = null,
+    var locationDetail: String? = null,
+    var city: String? = null,
+    var description: String? = null,
+    var conveniences: String? = null,
+    var highlight: String? = null,
+    var star: Int? = 0,
+    var point: Double? = 0.0,
+    var profit: Double? = 0.0,
+    var checkIn: String? = null,
+    var checkOut: String? = null,
+    var money: Double? = 0.0,
+    var location: Double? = 0.0,
+    var clean: Double? =  0.0,
+    var service: Double? = 0.0,
+    var convenience: Double? = 0.0,
+    var total_comments: Int = 0) {
     // Null default values create a no-argument default constructor, which is needed
     // for deserialization from a DataSnapshot.
 }

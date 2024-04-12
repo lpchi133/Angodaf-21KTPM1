@@ -14,14 +14,14 @@ import com.example.angodafake.Utilities.PictureUtils
 import com.example.angodafake.Utilities.RoomUtils
 import com.example.angodafake.db.Hotel
 //import com.example.angodafake.db.HotelDatabase
-import com.example.angodafake.db.Picture
+import com.example.angodafake.db.Picture_Hotel
 import com.example.angodafake.db.Rooms
 import com.google.firebase.Firebase
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.database
 
 class HotelAdapter(private val context: Context, private var hotels: List<Hotel>, private var idUser: Int) : RecyclerView.Adapter<HotelAdapter.ViewHolder>() {
-    private lateinit var Picture: Picture
+    private lateinit var Picture_Hotel: Picture_Hotel
     private var listener: OnItemClickListener? = null
     private lateinit var database: DatabaseReference
     // Interface cho sự kiện click
@@ -65,10 +65,10 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
         database = Firebase.database.reference
 
         PictureUtils.getPictureByHotelID(hotel.ID!!){picture ->
-            Picture = picture
-            println("Picture ID: ${Picture.ID_Hotel}, Type: ${Picture.picture}, Price: ${Picture.picture_onwer}")
-
-            val idPicture = context.resources.getIdentifier(Picture.picture, "drawable", context.packageName)
+            Picture_Hotel = picture
+//            println("Picture ID: ${Picture_Hotel.ID_Hotel}, Type: ${Picture_Hotel.picture}, Price: ${Picture_Hotel.picture_onwer}")
+//
+            val idPicture = context.resources.getIdentifier(Picture_Hotel.picture, "drawable", context.packageName)
             holder.img.setImageResource(idPicture)
             holder.nameTextView.text = hotel.name
             holder.locationTextView.text = hotel.locationDetail
@@ -81,9 +81,9 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
             roomList.forEach { room ->
                 println("Room ID: ${room.ID_Hotel}, Type: ${room.type}, Price: ${room.price}")
             }
-            val lowestPrice = roomList.minOfOrNull { it.price ?: Double.MAX_VALUE } ?: Double.MAX_VALUE
-            Log.d("lowestPrice", lowestPrice.toString())
-            holder.price_room.text = lowestPrice.toString() + " đ"
+//            val lowestPrice = roomList.minOfOrNull { it.price ?: Double.MAX_VALUE } ?: Double.MAX_VALUE
+//            Log.d("lowestPrice", lowestPrice.toString())
+//            holder.price_room.text = lowestPrice.toString() + " đ"
         }
 
 

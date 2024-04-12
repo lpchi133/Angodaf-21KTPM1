@@ -15,7 +15,7 @@ import com.example.angodafake.Utilities.PictureUtils
 import com.example.angodafake.Utilities.RoomUtils
 import com.example.angodafake.Utilities.UserUtils
 import com.example.angodafake.db.Hotel
-import com.example.angodafake.db.Picture
+import com.example.angodafake.db.Picture_Hotel
 import com.example.angodafake.db.Rooms
 import com.example.angodafake.db.User
 
@@ -32,7 +32,7 @@ class Hotel_infor(private var idUser: Int) : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private lateinit var Picture: Picture
+    private lateinit var Picture_Hotel: Picture_Hotel
     private lateinit var User: User
     private lateinit var hotel: Hotel
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,17 +75,17 @@ class Hotel_infor(private var idUser: Int) : Fragment() {
                 hotel = ho
 
                 PictureUtils.getPictureByHotelID(hotel.ID!!) { picture ->
-                    Picture = picture
-                    val idPicture = requireContext().resources.getIdentifier(Picture.picture, "drawable", requireContext().packageName)
-                    val idAvt = requireContext().resources.getIdentifier(Picture.picture_onwer, "drawable", requireContext().packageName)
+                    Picture_Hotel = picture
+                    val idPicture = requireContext().resources.getIdentifier(Picture_Hotel.picture, "drawable", requireContext().packageName)
+//                    val idAvt = requireContext().resources.getIdentifier(Picture_Hotel.picture_onwer, "drawable", requireContext().packageName)
                     img.setImageResource(idPicture)
-                    imgAvt.setImageResource(idAvt)
+//                    imgAvt.setImageResource(idAvt)
 
                     var roomList: List<Rooms> = emptyList()
                     RoomUtils.getRoomByHotelID(hotel.ID!!){ fetchedRoomList   ->
                         roomList = fetchedRoomList
 
-                        val lowestPrice = roomList.minOfOrNull { it.price ?: Double.MAX_VALUE } ?: Double.MAX_VALUE
+                        val lowestPrice = roomList.minOfOrNull { it.price ?: Int.MAX_VALUE } ?: Int.MAX_VALUE
                         price_room.text = lowestPrice.toString() + " đ"
 
                         UserUtils.getUserByID(hotel.ID_Owner!!){user ->

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.R
 import com.example.angodafake.db.Hotel
 //import com.example.angodafake.db.HotelDatabase
-import com.example.angodafake.db.Picture
+import com.example.angodafake.db.Picture_Hotel
 import com.example.angodafake.db.Purchase
 
 class PastCancelPurchaseAdapter(private val context: Context, private var past_cancelPurchase: List<Purchase>) : RecyclerView.Adapter<PastCancelPurchaseAdapter.MyViewHolder>() {
@@ -20,7 +20,7 @@ class PastCancelPurchaseAdapter(private val context: Context, private var past_c
     private var listener: OnItemClickListener? = null
 //    private lateinit var hotel_db: HotelDatabase
     private lateinit var HotelMarked: Hotel
-    private lateinit var Picture: Picture
+    private lateinit var Picture_Hotel: Picture_Hotel
     interface OnItemClickListener {
         fun onItemClick(purchase: Purchase)
     }
