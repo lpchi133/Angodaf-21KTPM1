@@ -288,6 +288,7 @@
     <string name="homeTittle">Tìm kiếm khách sạn</string>
     <string name="i_title">Thông tin đặt phòng</string>
     <string name="mv_title">Khuyến mãi</string>
+    <string name="profile_title">"Chào mừng, Name"</string>
     <string name="project_id" translatable="false">mobile-angodaf</string>
     <string name="r_dateorder">Ngày đặt phòng:</string>
     <string name="r_id">Mã đặt phòng:</string>

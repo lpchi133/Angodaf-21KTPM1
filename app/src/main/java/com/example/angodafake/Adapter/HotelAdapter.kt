@@ -20,7 +20,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.database
 
-class HotelAdapter(private val context: Context, private var hotels: List<Hotel>, private var idUser: Int) : RecyclerView.Adapter<HotelAdapter.ViewHolder>() {
+class HotelAdapter(private val context: Context, private var hotels: List<Hotel>, private var idUser: String) : RecyclerView.Adapter<HotelAdapter.ViewHolder>() {
     private lateinit var Picture_Hotel: Picture_Hotel
     private var listener: OnItemClickListener? = null
     private lateinit var database: DatabaseReference

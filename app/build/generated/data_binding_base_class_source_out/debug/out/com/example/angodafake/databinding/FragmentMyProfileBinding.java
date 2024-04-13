@@ -4,25 +4,99 @@ package com.example.angodafake.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.widget.Button;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
+import androidx.viewbinding.ViewBindings;
 import com.example.angodafake.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
+import java.lang.String;
 
 public final class FragmentMyProfileBinding implements ViewBinding {
   @NonNull
-  private final FrameLayout rootView;
+  private final ConstraintLayout rootView;
 
-  private FragmentMyProfileBinding(@NonNull FrameLayout rootView) {
+  @NonNull
+  public final TextView bookmarkTittle;
+
+  @NonNull
+  public final Button btnBookmark;
+
+  @NonNull
+  public final Button btnCard;
+
+  @NonNull
+  public final Button btnChatAsCustomer;
+
+  @NonNull
+  public final Button btnChatWithCustomer;
+
+  @NonNull
+  public final Button btnLogout;
+
+  @NonNull
+  public final Button btnMyComments;
+
+  @NonNull
+  public final Button btnMyHotel;
+
+  @NonNull
+  public final Button btnProfile;
+
+  @NonNull
+  public final ConstraintLayout myProfile;
+
+  @NonNull
+  public final TextView textView25;
+
+  @NonNull
+  public final TextView textView26;
+
+  @NonNull
+  public final TextView textView27;
+
+  @NonNull
+  public final View view;
+
+  @NonNull
+  public final View view2;
+
+  @NonNull
+  public final View view3;
+
+  private FragmentMyProfileBinding(@NonNull ConstraintLayout rootView,
+      @NonNull TextView bookmarkTittle, @NonNull Button btnBookmark, @NonNull Button btnCard,
+      @NonNull Button btnChatAsCustomer, @NonNull Button btnChatWithCustomer,
+      @NonNull Button btnLogout, @NonNull Button btnMyComments, @NonNull Button btnMyHotel,
+      @NonNull Button btnProfile, @NonNull ConstraintLayout myProfile, @NonNull TextView textView25,
+      @NonNull TextView textView26, @NonNull TextView textView27, @NonNull View view,
+      @NonNull View view2, @NonNull View view3) {
     this.rootView = rootView;
+    this.bookmarkTittle = bookmarkTittle;
+    this.btnBookmark = btnBookmark;
+    this.btnCard = btnCard;
+    this.btnChatAsCustomer = btnChatAsCustomer;
+    this.btnChatWithCustomer = btnChatWithCustomer;
+    this.btnLogout = btnLogout;
+    this.btnMyComments = btnMyComments;
+    this.btnMyHotel = btnMyHotel;
+    this.btnProfile = btnProfile;
+    this.myProfile = myProfile;
+    this.textView25 = textView25;
+    this.textView26 = textView26;
+    this.textView27 = textView27;
+    this.view = view;
+    this.view2 = view2;
+    this.view3 = view3;
   }
 
   @Override
   @NonNull
-  public FrameLayout getRoot() {
+  public ConstraintLayout getRoot() {
     return rootView;
   }
 
@@ -43,10 +117,107 @@ public final class FragmentMyProfileBinding implements ViewBinding {
 
   @NonNull
   public static FragmentMyProfileBinding bind(@NonNull View rootView) {
-    if (rootView == null) {
-      throw new NullPointerException("rootView");
-    }
+    // The body of this method is generated in a way you would not otherwise write.
+    // This is done to optimize the compiled bytecode for size and performance.
+    int id;
+    missingId: {
+      id = R.id.bookmarkTittle;
+      TextView bookmarkTittle = ViewBindings.findChildViewById(rootView, id);
+      if (bookmarkTittle == null) {
+        break missingId;
+      }
 
-    return new FragmentMyProfileBinding((FrameLayout) rootView);
+      id = R.id.btn_bookmark;
+      Button btnBookmark = ViewBindings.findChildViewById(rootView, id);
+      if (btnBookmark == null) {
+        break missingId;
+      }
+
+      id = R.id.btn_card;
+      Button btnCard = ViewBindings.findChildViewById(rootView, id);
+      if (btnCard == null) {
+        break missingId;
+      }
+
+      id = R.id.btn_chat_as_customer;
+      Button btnChatAsCustomer = ViewBindings.findChildViewById(rootView, id);
+      if (btnChatAsCustomer == null) {
+        break missingId;
+      }
+
+      id = R.id.btn_chat_with_customer;
+      Button btnChatWithCustomer = ViewBindings.findChildViewById(rootView, id);
+      if (btnChatWithCustomer == null) {
+        break missingId;
+      }
+
+      id = R.id.btn_logout;
+      Button btnLogout = ViewBindings.findChildViewById(rootView, id);
+      if (btnLogout == null) {
+        break missingId;
+      }
+
+      id = R.id.btn_my_comments;
+      Button btnMyComments = ViewBindings.findChildViewById(rootView, id);
+      if (btnMyComments == null) {
+        break missingId;
+      }
+
+      id = R.id.btn_my_hotel;
+      Button btnMyHotel = ViewBindings.findChildViewById(rootView, id);
+      if (btnMyHotel == null) {
+        break missingId;
+      }
+
+      id = R.id.btn_profile;
+      Button btnProfile = ViewBindings.findChildViewById(rootView, id);
+      if (btnProfile == null) {
+        break missingId;
+      }
+
+      ConstraintLayout myProfile = (ConstraintLayout) rootView;
+
+      id = R.id.textView25;
+      TextView textView25 = ViewBindings.findChildViewById(rootView, id);
+      if (textView25 == null) {
+        break missingId;
+      }
+
+      id = R.id.textView26;
+      TextView textView26 = ViewBindings.findChildViewById(rootView, id);
+      if (textView26 == null) {
+        break missingId;
+      }
+
+      id = R.id.textView27;
+      TextView textView27 = ViewBindings.findChildViewById(rootView, id);
+      if (textView27 == null) {
+        break missingId;
+      }
+
+      id = R.id.view;
+      View view = ViewBindings.findChildViewById(rootView, id);
+      if (view == null) {
+        break missingId;
+      }
+
+      id = R.id.view2;
+      View view2 = ViewBindings.findChildViewById(rootView, id);
+      if (view2 == null) {
+        break missingId;
+      }
+
+      id = R.id.view3;
+      View view3 = ViewBindings.findChildViewById(rootView, id);
+      if (view3 == null) {
+        break missingId;
+      }
+
+      return new FragmentMyProfileBinding((ConstraintLayout) rootView, bookmarkTittle, btnBookmark,
+          btnCard, btnChatAsCustomer, btnChatWithCustomer, btnLogout, btnMyComments, btnMyHotel,
+          btnProfile, myProfile, textView25, textView26, textView27, view, view2, view3);
+    }
+    String missingId = rootView.getResources().getResourceName(id);
+    throw new NullPointerException("Missing required view with ID: ".concat(missingId));
   }
 }

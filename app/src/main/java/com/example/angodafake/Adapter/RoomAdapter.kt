@@ -58,8 +58,8 @@ class RoomAdapter(private val context: Context, private var rooms: List<Rooms>, 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val room : Rooms = rooms[position]
 
-        val idPicture = context.resources.getIdentifier(room.picture, "drawable", context.packageName)
-        holder.img.setImageResource(idPicture)
+//        val idPicture = context.resources.getIdentifier(room.picture, "drawable", context.packageName)
+//        holder.img.setImageResource(idPicture)
         holder.roomName.text = room.type
 //        holder.countBed.text = room.bedQuantity.toString() + " giường đôi"
 //        holder.count.text = "Tối đa " + (room.bedQuantity?.times(2)).toString() + " người"

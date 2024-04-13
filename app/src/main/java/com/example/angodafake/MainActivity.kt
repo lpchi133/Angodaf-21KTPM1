@@ -17,8 +17,7 @@ import com.google.firebase.database.database
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-//    private lateinit var hotel_db: HotelDatabase
-    private var idUser: Int? = null
+    private var idUser: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,8 +25,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //idUser = intent.getStringExtra("idUser")?.toInt()
-        idUser = 1
+        idUser = intent.getStringExtra("idUser")
         replaceFragment(Home(idUser!!))
 
 
@@ -40,8 +38,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.home -> replaceFragment(Home(idUser!!))
                 R.id.room -> replaceFragment(MyRoom())
                 R.id.hotel -> replaceFragment(MyHotel())
-                R.id.bookmark -> replaceFragment(Bookmark())
-                R.id.profile -> replaceFragment(MyProfile())
+                R.id.bookmark -> replaceFragment(Bookmark(idUser!!))
+                R.id.profile -> replaceFragment(MyProfile(idUser!!))
             }
             true
         }
@@ -52,5 +50,12 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frameLayout, fragment)
         fragmentTransaction.commit()
+    }
+
+    fun navigateToBookmarkFragment() {
+        binding.bottomNavigationView.selectedItemId = R.id.bookmark
+    }
+    fun navigateToMyHotelFragment() {
+        binding.bottomNavigationView.selectedItemId = R.id.hotel
     }
 }

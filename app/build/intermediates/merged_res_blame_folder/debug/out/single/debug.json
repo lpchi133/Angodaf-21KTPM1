@@ -1,586 +1,614 @@
 [
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_cancel_purchase.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/cancel_purchase.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_x.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_x.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_custom_rating.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/custom_rating.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_activity_login.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\activity_login.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_attach_money_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_attach_money_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_btn_no.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\btn_no.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_person_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_person_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_favorite_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_favorite_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_rounded_button_delete.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\rounded_button_delete.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_custom_voucher.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/custom_voucher.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_activity_splash.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\activity_splash.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_border3.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/border3.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_fragment_bookmark.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\fragment_bookmark.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "com.example.angodafake.app-main-43:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\xml\\data_extraction_rules.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_custome_past_cancel_purchase_detail.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/custome_past_cancel_purchase_detail.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_local_phone_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_local_phone_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_more_vert_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_more_vert_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_rounded_button.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\rounded_button.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_favorite.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_favorite.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_border_color3.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\border_color3.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_button_selector.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/button_selector.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_btn_sort.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\btn_sort.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_empty_comment.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/empty_comment.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_person_24_borderless.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_person_24_borderless.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_tab_active_room.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/tab_active_room.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_tab_login_phone.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\tab_login_phone.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_card_membership_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_card_membership_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_img_2.png.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\img_2.png"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_x.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_x.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_custom_active_purchase_adapter.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\custom_active_purchase_adapter.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_room.jpg.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/room.jpg"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_custom_sort.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/custom_sort.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_arrow_back_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_arrow_back_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_find.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_find.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_rating.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\rating.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_keyboard_arrow_down_black_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_keyboard_arrow_down_black_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_more_vert_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_more_vert_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_custom_my_voucher_detail.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/custom_my_voucher_detail.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_star_outline_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_star_outline_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_btn_continue.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/btn_continue.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_fragment_my_profile.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\fragment_my_profile.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_keyboard_arrow_down_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_keyboard_arrow_down_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_calendar_month_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_calendar_month_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_btn_no.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/btn_no.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_gg_icon.png.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\gg_icon.png"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_rounded_button_delete.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/rounded_button_delete.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_bookmark_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_bookmark_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_local_phone_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_local_phone_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_cleaning_services_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_cleaning_services_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_quang_ba_khach_san.jpeg.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/quang_ba_khach_san.jpeg"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_map_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_map_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "com.example.angodafake.app-main-43:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_img_8.png.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\img_8.png"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_send_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_send_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_custom_comment_detail.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\custom_comment_detail.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_popup_2.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/popup_2.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_empty_active_room.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\empty_active_room.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_tab_canceled_room.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/tab_canceled_room.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_card_membership_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_card_membership_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_cleaning_services_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_cleaning_services_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_voucher.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/voucher.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_img_1.png.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\img_1.png"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_thumb_up_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_thumb_up_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_custom_sort.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\custom_sort.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_fragment_my_room.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/fragment_my_room.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_custom_rating.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\custom_rating.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_img_2.png.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/img_2.png"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_tab_active_room.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\tab_active_room.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.angodafake.app-main-43:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_tab_past_room.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\tab_past_room.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_btn_avt.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/btn_avt.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_border_color1.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\border_color1.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_btn_removeorder.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/btn_removeorder.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_tab_comment.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\tab_comment.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_custom_hotel.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/custom_hotel.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_local_activity_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_local_activity_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_btn_removeorder.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\btn_removeorder.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_ic_launcher_background.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/ic_launcher_background.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_location_on_12.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_location_on_12.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_fragment_maps.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/fragment_maps.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_custom_chat.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\custom_chat.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "com.example.angodafake.app-main-43:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_custom_price.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\custom_price.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_img_7.png.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/img_7.png"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_home_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_home_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_arrow_back_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_arrow_back_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_b48f9f78ec2cf2bbe745f28a2f5f5541.jpg.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\b48f9f78ec2cf2bbe745f28a2f5f5541.jpg"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_btn_circle.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/btn_circle.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_thumb_up_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_thumb_up_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_popup_1.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/popup_1.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_tab_canceled_room.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\tab_canceled_room.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_tab_login_phone.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/tab_login_phone.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_popup2.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\popup2.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_bottom_nav_color.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/bottom_nav_color.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_arrow_forward_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_arrow_forward_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/anim_slide_out_bottom.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/anim/slide_out_bottom.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_ios_share_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_ios_share_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_custom_chat_detail.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/custom_chat_detail.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_custom_bookmark.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\custom_bookmark.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_border1.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/border1.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_custom_voucher.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\custom_voucher.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_popup2.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/popup2.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_tab_login_email.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\tab_login_email.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/xml_data_extraction_rules.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/xml/data_extraction_rules.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_fragment_home_filter.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\fragment_home_filter.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_gg_icon.png.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/gg_icon.png"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_thumb_down_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_thumb_down_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_custom_room.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/custom_room.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_btn_avt.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\btn_avt.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_bed_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_bed_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_logout_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_logout_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_tab_login_email.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/tab_login_email.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_img_7.png.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\img_7.png"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_img_1.png.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/img_1.png"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\mipmap-xxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_fragment_my_profile.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/fragment_my_profile.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_fragment_my_hotel.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\fragment_my_hotel.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_btn_sort.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/btn_sort.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_favorite_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_favorite_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_img_4.png.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/img_4.png"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_popup_2.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\popup_2.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_thumb_down_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_thumb_down_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_bubble_chart_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_bubble_chart_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_rounded_background.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/rounded_background.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_empty_past_room.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\empty_past_room.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_close_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_close_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_bed_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_bed_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_border_color1.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/border_color1.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_custome_past_cancel_purchase_detail.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\custome_past_cancel_purchase_detail.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_location_on_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_location_on_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_custom_past_cancel_purchase_adapter.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\custom_past_cancel_purchase_adapter.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_btn_order.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/btn_order.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_beautiful_hotel.jpg.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\beautiful_hotel.jpg"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.angodafake.app-main-43:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_border1.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\border1.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_custom_past_cancel_purchase_adapter.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/custom_past_cancel_purchase_adapter.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_img.png.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\img.png"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_tab_past_room.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/tab_past_room.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_circle_shape.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\circle_shape.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_empty_canceled_room.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/empty_canceled_room.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_fragment_maps.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\fragment_maps.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_empty_past_room.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/empty_past_room.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_img_5.png.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\img_5.png"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_img_5.png.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/img_5.png"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_custom_comment_form.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\custom_comment_form.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_chat_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_chat_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_chat.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\chat.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_fragment_bookmark.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/fragment_bookmark.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_comment.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\comment.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_comment.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/comment.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_custom_hotel_detail.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\custom_hotel_detail.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_custom_chat.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/custom_chat.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_border.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\border.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_person_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_person_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_fragment_home.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\fragment_home.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_btn_close.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/btn_close.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_favorite_border_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_favorite_border_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_beautiful_hotel.jpg.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/beautiful_hotel.jpg"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_home_work_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_home_work_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_custom_comment_detail.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/custom_comment_detail.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\anim_slide_in_bottom.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\anim\\slide_in_bottom.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_ios_share_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_ios_share_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_btn_continue.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\btn_continue.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_rounded_button.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/rounded_button.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\mipmap-mdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_activity_splash.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/activity_splash.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_credit_card_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_credit_card_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_activity_sign_up.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/activity_sign_up.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_info_outline_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_info_outline_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_img_6.png.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/img_6.png"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\ic_launcher_background.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_empty_active_room.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/empty_active_room.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_room_service_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_room_service_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_border.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/border.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_looks_3_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_looks_3_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_empty_list.png.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/empty_list.png"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_chat_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_chat_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_border_color3.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/border_color3.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_custom_my_voucher_detail.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\custom_my_voucher_detail.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_looks_one_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_looks_one_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_img_4.png.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\img_4.png"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_fragment_home_filter.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/fragment_home_filter.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_location_on_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_location_on_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_fragment_my_hotel.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/fragment_my_hotel.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_custom_active_purchase_detail.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\custom_active_purchase_detail.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/menu_nav_bar.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/menu/nav_bar.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_attach_money_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_attach_money_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_arrow_forward_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_arrow_forward_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_keyboard_arrow_down_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_keyboard_arrow_down_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/ic_launcher_foreground.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_btn_circle.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\btn_circle.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_map_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_map_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_looks_one_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_looks_one_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_tab_comment.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/tab_comment.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_edit_text.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\edit_text.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_rating.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/rating.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_cancel_purchase.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\cancel_purchase.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_home_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_home_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_apartment_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_apartment_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.angodafake.app-main-43:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_custom_room.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\custom_room.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_custom_price.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/custom_price.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_btn_close.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\btn_close.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_border_color.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/border_color.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\mipmap-xxxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_border_color2.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/border_color2.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\menu_nav_bar.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\menu\\nav_bar.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_b48f9f78ec2cf2bbe745f28a2f5f5541.jpg.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/b48f9f78ec2cf2bbe745f28a2f5f5541.jpg"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_button_selector.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\button_selector.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_khach_san.jpeg.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/khach_san.jpeg"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_border3.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\border3.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_bubble_chart_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_bubble_chart_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\mipmap-mdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/anim_slide_in_bottom.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/anim/slide_in_bottom.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\anim_slide_out_bottom.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\anim\\slide_out_bottom.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_custom_hotel_detail.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/custom_hotel_detail.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_favorite.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_favorite.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_fragment_home.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/fragment_home.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_custom_active_purchase_detail.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/custom_active_purchase_detail.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_voucher.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\voucher.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_fragment_home_filter_detail.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/fragment_home_filter_detail.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_fragment_my_room.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\fragment_my_room.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_info_outline_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_info_outline_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_popup_1.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\popup_1.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_activity_login.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/activity_login.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_empty_canceled_room.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\empty_canceled_room.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.angodafake.app-main-43:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_khach_san.jpeg.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\khach_san.jpeg"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_edit_text.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/edit_text.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_fragment_home_filter_detail.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\fragment_home_filter_detail.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_circle_shape.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/circle_shape.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_find.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_find.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_img_3.png.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/img_3.png"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_looks_two_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_looks_two_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_logo.png.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/logo.png"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_btn_order.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\btn_order.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_apartment_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_apartment_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_img_3.png.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\img_3.png"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_custom_comment_form.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/custom_comment_form.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_nightlife_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_nightlife_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.angodafake.app-main-43:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_activity_sign_up.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\activity_sign_up.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_favorite_border_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_favorite_border_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\mipmap-xhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_looks_two_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_looks_two_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_bottom_nav_color.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\bottom_nav_color.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_btn_yes.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/btn_yes.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_fragment_room.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\fragment_room.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_calendar_month_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_calendar_month_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_chat.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/chat.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\mipmap-xhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_activity_main.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/activity_main.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\mipmap-xxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_room_service_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_room_service_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\xml\\backup_rules.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_img_8.png.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/img_8.png"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_send_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_send_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_custom_active_purchase_adapter.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/custom_active_purchase_adapter.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_quang_ba_khach_san.jpeg.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\quang_ba_khach_san.jpeg"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_looks_3_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_looks_3_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_chat_bubble_outline_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_chat_bubble_outline_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_border2.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\border2.xml"
+    },
+    {
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_close_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_close_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_custom_my_voucher.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\custom_my_voucher.xml"
+    },
+    {
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_logo.png.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\logo.png"
+    },
+    {
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_border_color.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\border_color.xml"
+    },
+    {
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_border_color2.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\border_color2.xml"
     },
     {
         "merged": "com.example.angodafake.app-merged_res-41:/layout_custom_bookmark.xml.flat",
         "source": "com.example.angodafake.app-main-43:/layout/custom_bookmark.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_location_on_12.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_location_on_12.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_custom_hotel.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\custom_hotel.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_custom_my_voucher.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/custom_my_voucher.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_room.jpg.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\room.jpg"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_local_activity_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_local_activity_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_custom_chat_detail.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\custom_chat_detail.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_bookmark_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_bookmark_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_baseline_keyboard_arrow_down_black_24.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\baseline_keyboard_arrow_down_black_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.angodafake.app-main-43:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_empty_list.png.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\empty_list.png"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.angodafake.app-main-43:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_rounded_background.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\rounded_background.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_baseline_nightlife_24.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/baseline_nightlife_24.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\layout_empty_comment.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\empty_comment.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_border2.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/border2.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/xml_backup_rules.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/xml/backup_rules.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_img_6.png.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\img_6.png"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-41:/drawable_img.png.flat",
-        "source": "com.example.angodafake.app-main-43:/drawable/img.png"
-    },
-    {
-        "merged": "com.example.angodafake.app-merged_res-41:/layout_fragment_room.xml.flat",
-        "source": "com.example.angodafake.app-main-43:/layout/fragment_room.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-41:\\drawable_btn_yes.xml.flat",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\drawable\\btn_yes.xml"
     }
 ]

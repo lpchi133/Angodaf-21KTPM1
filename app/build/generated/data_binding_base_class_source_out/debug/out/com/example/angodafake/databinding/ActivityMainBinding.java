@@ -26,11 +26,16 @@ public final class ActivityMainBinding implements ViewBinding {
   @NonNull
   public final FrameLayout frameLayout;
 
+  @NonNull
+  public final ConstraintLayout mainFrame;
+
   private ActivityMainBinding(@NonNull ConstraintLayout rootView,
-      @NonNull BottomNavigationView bottomNavigationView, @NonNull FrameLayout frameLayout) {
+      @NonNull BottomNavigationView bottomNavigationView, @NonNull FrameLayout frameLayout,
+      @NonNull ConstraintLayout mainFrame) {
     this.rootView = rootView;
     this.bottomNavigationView = bottomNavigationView;
     this.frameLayout = frameLayout;
+    this.mainFrame = mainFrame;
   }
 
   @Override
@@ -72,8 +77,10 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityMainBinding((ConstraintLayout) rootView, bottomNavigationView,
-          frameLayout);
+      ConstraintLayout mainFrame = (ConstraintLayout) rootView;
+
+      return new ActivityMainBinding((ConstraintLayout) rootView, bottomNavigationView, frameLayout,
+          mainFrame);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

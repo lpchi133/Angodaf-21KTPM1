@@ -286,4 +286,5 @@
         <item>Zimbabwe</item>
     </string-array>
     <string name="title">Thông tin khách sạn</string>
+    <string name="profile_title">"Chào mừng, Name"</string>
 </resources>
