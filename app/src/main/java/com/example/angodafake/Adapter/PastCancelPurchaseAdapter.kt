@@ -62,8 +62,8 @@ class PastCancelPurchaseAdapter(private val context: Context, private var past_c
         }
         holder.imagehotel.setImageResource(picture)
         holder.namehotel.text = HotelMarked.name
-        holder.checkin.text = currentItem.checkIn
-        holder.checkout.text = currentItem.checkOut
+        holder.checkin.text = currentItem.date_come
+        holder.checkout.text = currentItem.date_go
 
         holder.reorderbtn.setOnClickListener {
             Toast.makeText(context, "Press", Toast.LENGTH_SHORT).show()

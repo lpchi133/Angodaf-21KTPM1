@@ -62,8 +62,8 @@ class ActivePurchaseAdapter(private val context: Context, private var activePurc
         }
         holder.imagehotel.setImageResource(picture)
         holder.namehotel.text = HotelMarked.name
-        holder.checkin.text = currentItem.checkIn
-        holder.checkout.text = currentItem.checkOut
+        holder.checkin.text = currentItem.date_come
+        holder.checkout.text = currentItem.date_go
         holder.cancelbtn.setOnClickListener {
             val intent = Intent(context, CancelPurchase::class.java)
             context.startActivity(intent)

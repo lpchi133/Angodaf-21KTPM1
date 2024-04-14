@@ -16,8 +16,8 @@ data class Purchase(
     var total_purchase: Double? = 0.0,
     var status_purchase: String? = null,
     var detail: String? = null,
-    var checkIn: String? = null,
-    var checkOut: String? = null) {
+    var date_come: String? = null,
+    var date_go: String? = null) {
     // Null default values create a no-argument default constructor, which is needed
     // for deserialization from a DataSnapshot.
 }
