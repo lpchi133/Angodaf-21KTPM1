@@ -13,6 +13,7 @@
         android:layout_height="43dp"
         android:background="@color/white"
         android:gravity="center"
+        android:clickable="true"
         android:text="Đăng nhập"
         android:elevation="4dp"
         android:textAlignment="center"
