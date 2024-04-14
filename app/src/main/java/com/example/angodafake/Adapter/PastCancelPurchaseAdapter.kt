@@ -8,17 +8,18 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.R
+import com.example.angodafake.Utilities.HotelUtils
+import com.example.angodafake.Utilities.PictureUtils
 import com.example.angodafake.db.Hotel
-//import com.example.angodafake.db.HotelDatabase
 import com.example.angodafake.db.Picture_Hotel
 import com.example.angodafake.db.Purchase
 
 class PastCancelPurchaseAdapter(private val context: Context, private var past_cancelPurchase: List<Purchase>) : RecyclerView.Adapter<PastCancelPurchaseAdapter.MyViewHolder>() {
     var onItemClick: ((Purchase) -> Unit)? = null
     private var listener: OnItemClickListener? = null
-//    private lateinit var hotel_db: HotelDatabase
     private lateinit var HotelMarked: Hotel
     private lateinit var Picture_Hotel: Picture_Hotel
     interface OnItemClickListener {
@@ -40,34 +41,37 @@ class PastCancelPurchaseAdapter(private val context: Context, private var past_c
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = past_cancelPurchase[position]
 
-//        hotel_db = HotelDatabase.getInstance(context)
+        HotelUtils.getHotelByID(currentItem.ID_Hotel!!) {hotel ->
+            HotelMarked = hotel
+        }
 
-//        HotelMarked = hotel_db.HotelDAO().getHotelByID(currentItem.ID_Hotel)
-//        Picture = hotel_db.PictureDAO().getPictureByHotelID(currentItem.ID_Hotel)
-//
-//        val picture = context.resources.getIdentifier(Picture.picture, "drawable", context.packageName)
-//
-//        holder.timebooking.text = currentItem.time_booking
-//        holder.idorder.text = currentItem.id.toString()
-//        if (currentItem.status_purchase == "Đã hoàn tiền") {
-//            holder.statuspurchase1.text = currentItem.status_purchase
-//        } else if (currentItem.status_purchase == "Chưa hoàn tiền") {
-//            holder.statuspurchase2.text = currentItem.status_purchase
-//        } else {
-//            holder.statuspurchase3.text = currentItem.status_purchase
-//        }
-//        holder.imagehotel.setImageResource(picture)
-//        holder.namehotel.text = HotelMarked.name
-//        holder.checkin.text = currentItem.checkIn
-//        holder.checkout.text = currentItem.checkOut
-//
-//        holder.reorderbtn.setOnClickListener {
-//            Toast.makeText(context, "Press", Toast.LENGTH_SHORT).show()
-//        }
-//
-//        holder.itemView.setOnClickListener {
-//            onItemClick?.invoke(currentItem)
-//        }
+        PictureUtils.getPictureByHotelID(currentItem.ID_Hotel!!) {picture ->
+            Picture_Hotel = picture
+        }
+
+        val picture = context.resources.getIdentifier(Picture_Hotel.picture, "drawable", context.packageName)
+
+        holder.timebooking.text = currentItem.time_booking
+        holder.idorder.text = currentItem.ID.toString()
+        if (currentItem.status_purchase == "Đã hoàn tiền") {
+            holder.statuspurchase1.text = currentItem.status_purchase
+        } else if (currentItem.status_purchase == "Chưa hoàn tiền") {
+            holder.statuspurchase2.text = currentItem.status_purchase
+        } else {
+            holder.statuspurchase3.text = currentItem.status_purchase
+        }
+        holder.imagehotel.setImageResource(picture)
+        holder.namehotel.text = HotelMarked.name
+        holder.checkin.text = currentItem.checkIn
+        holder.checkout.text = currentItem.checkOut
+
+        holder.reorderbtn.setOnClickListener {
+            Toast.makeText(context, "Press", Toast.LENGTH_SHORT).show()
+        }
+
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(currentItem)
+        }
     }
 
     class MyViewHolder(past_cancelPurchaseItem: View) : RecyclerView.ViewHolder(past_cancelPurchaseItem) {

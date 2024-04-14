@@ -2,6 +2,7 @@ package com.example.angodafake
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.angodafake.Adapter.ActivePurchaseAdapter
 import com.example.angodafake.Adapter.PastCancelPurchaseAdapter
+import com.example.angodafake.Utilities.PurchaseUtils
 import com.example.angodafake.db.Purchase
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -26,10 +28,10 @@ private const val ARG_PARAM2 = "param2"
 private val TAB_TITLE = arrayOf("Sắp tới","Hoàn tất","Đã hủy")
 private const val ARG_OBJECT = "title_tab"
 private const val IS_AVAILABLE= "have_content"
-private var HAVE_CONTENT: MutableList<Boolean> = mutableListOf(true,true,true)
-private lateinit var upcomingList: List<Purchase>
-private lateinit var completedList: List<Purchase>
-private lateinit var canceledList: List<Purchase>
+private var HAVE_CONTENT: MutableList<Boolean> = TODO()
+private var upcomingList: MutableList<Purchase>
+private var completedList: MutableList<Purchase>
+private var canceledList: MutableList<Purchase>
 
 /**
  * A simple [Fragment] subclass.
@@ -42,51 +44,40 @@ class MyRoom : Fragment() {
     private var param2: String? = null
 
     private lateinit var collectionAdapter: CollectionAdapter
-//    private fun createData() {
-//        hotel_db = HotelDatabase.getInstance(requireContext())
-//        val allPurchases: List<Purchase> = hotel_db.PurchaseDAO().getPurchaseByUserID(1)
-////        for (purchase in allPurchases) {
-////            println(purchase.toString())
-////        }
-//
-//        upcomingList = allPurchases.filter { it.status_order == "Sắp tới" }
-//        completedList = allPurchases.filter { it.status_order == "Hoàn tất" }
-//        canceledList = allPurchases.filter { it.status_order == "Đã hủy" }
-//
-//        if (upcomingList.isEmpty()) {
-//            HAVE_CONTENT[0] = false
-//        } else {
-//            HAVE_CONTENT[0] = true
+    private fun createData() {
+        PurchaseUtils.getAllPurchases("tYw0x3oVS7gAd9wOdOszzvJMOEM2") {allPurchases ->
+            for (purchase in allPurchases) {
+                when (purchase.detail) {
+                    "Sắp tới" -> upcomingList.add(purchase)
+                    "Hoàn tất" -> completedList.add(purchase)
+                    "Đã hủy" -> canceledList.add(purchase)
+                }
+            }
+            Log.d("allPurchases",allPurchases.toString())
+        }
+
+        HAVE_CONTENT = mutableListOf(
+            upcomingList.isNotEmpty(),
+            completedList.isNotEmpty(),
+            canceledList.isNotEmpty()
+        )
+
+        // In danh sách các đối tượng trong từng danh sách con
+//        println("Upcoming List:")
+//        for (purchase in upcomingList) {
+//            println(purchase)
 //        }
 //
-//        if (completedList.isEmpty()) {
-//            HAVE_CONTENT[1] = false
-//        } else {
-//            HAVE_CONTENT[1] = true
+//        println("Completed List:")
+//        for (purchase in completedList) {
+//            println(purchase)
 //        }
 //
-//        if (canceledList.isEmpty()) {
-//            HAVE_CONTENT[2] = false
-//        } else {
-//            HAVE_CONTENT[2] = true
+//        println("Canceled List:")
+//        for (purchase in canceledList) {
+//            println(purchase)
 //        }
-//
-//        // In danh sách các đối tượng trong từng danh sách con
-////        println("Upcoming List:")
-////        for (purchase in upcomingList) {
-////            println(purchase)
-////        }
-////
-////        println("Completed List:")
-////        for (purchase in completedList) {
-////            println(purchase)
-////        }
-////
-////        println("Canceled List:")
-////        for (purchase in canceledList) {
-////            println(purchase)
-////        }
-//    }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -109,7 +100,7 @@ class MyRoom : Fragment() {
             tab.text = TAB_TITLE[position]
         }.attach()
 
-//        createData()
+        createData()
         println(HAVE_CONTENT)
     }
     override fun onCreateView(
