@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="8dp"
-        android:maxWidth="370dp"
+        android:maxWidth="360dp"
         android:text="Căn hộ Một phòng ngủ "
         android:textColor="#0A0C13"
         android:textSize="25sp"
@@ -34,7 +34,21 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/countBed"
+        android:id="@+id/countBedSingle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:maxWidth="280dp"
+        android:maxLines="1000"
+        android:text="1 giường đơn"
+        android:textColor="#0A0C13"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imageView12"
+        app:layout_constraintTop_toTopOf="@+id/imageView12" />
+
+    <TextView
+        android:id="@+id/countBedDouble"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -44,7 +58,7 @@
         android:textColor="#0A0C13"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageView12"
+        app:layout_constraintStart_toEndOf="@+id/countBedSingle"
         app:layout_constraintTop_toTopOf="@+id/imageView12" />
 
     <TextView
@@ -52,7 +66,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Tối đa 3 người"
+        android:text="Tối đa 3 người - 34 m\u00B2"
         android:textColor="#0A0C13"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -92,6 +106,57 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+            <RelativeLayout
+                android:id="@+id/price_room"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="180dp"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@+id/a1"
+                android:background="@drawable/rounded_button_price">
+
+                <TextView
+                    android:id="@+id/firstRectangle"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:background="@drawable/round_half"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="CÒN PHÒNG"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_below="@+id/firstRectangle"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="694.444 đ"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </RelativeLayout>
+
             <TextView
                 android:id="@+id/convenience"
                 android:layout_width="wrap_content"
@@ -105,21 +170,34 @@
                 android:textColor="#090C22"
                 android:textSize="16sp" />
 
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="47dp"
+                android:layout_height="42dp"
+                android:layout_below="@+id/convenience"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="12dp"
+                app:srcCompat="@android:drawable/ic_menu_directions" />
+
             <TextView
-                android:id="@+id/text"
+                android:id="@+id/direction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="181dp"
-                android:layout_toEndOf="@+id/a1"
-                android:text="Giá rẻ nhất!"
+                android:layout_alignTop="@+id/imageView9"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="7dp"
+                android:layout_toEndOf="@+id/imageView9"
+                android:text="Hướng thành phố"
                 android:textColor="#090C22"
-                android:textSize="16sp" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:id="@+id/linear_map"
                 android:layout_width="359dp"
                 android:layout_height="30dp"
-                android:layout_below="@+id/convenience"
+                android:layout_below="@+id/imageView9"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/border"
@@ -128,16 +206,30 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
+                <ImageView
+                    android:id="@+id/minus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/baseline_minus" />
+
                 <TextView
                     android:id="@+id/countRoom"
                     android:layout_width="106dp"
                     android:layout_height="33dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="             Số phòng       1 ∨      "
+                    android:text="Số phòng: 1"
                     android:textColor="#071115"
                     android:textSize="16sp"
                     android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/plus"
+                    android:layout_width="4dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/baseline_plus" />
 
                 <TextView
                     android:id="@+id/buttonSet"
@@ -152,37 +244,12 @@
                     android:textStyle="bold" />
 
 
+
+
             </LinearLayout>
 
-            <Button
-                android:id="@+id/buttonReset"
-                android:layout_width="237dp"
-                android:layout_height="33dp"
-                android:layout_below="@+id/linear_map"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="57dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="71dp"
-                android:background="@drawable/rounded_button_delete"
-                android:text="Thêm vào Xe đẩy hàng "
-                android:textColor="#03A9F4"
-                android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/price_room"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:layout_below="@+id/text"
-                android:layout_marginStart="179dp"
-                android:layout_marginTop="8dp"
-                android:layout_toEndOf="@+id/a1"
-                android:background="@drawable/rounded_button_delete"
-                android:gravity="center"
-                android:text="694.444 đ"
-                android:textColor="@android:color/holo_red_dark"
-                android:textStyle="bold" />
+
 
         </RelativeLayout>
     </RelativeLayout>

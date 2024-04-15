@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.R
@@ -24,20 +25,23 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
     private lateinit var Picture_Hotel: Picture_Hotel
     private var listener: OnItemClickListener? = null
     private lateinit var database: DatabaseReference
+
     // Interface cho sự kiện click
     interface OnItemClickListener {
         fun onItemClick(position: Int)
     }
 
     inner class ViewHolder(listItemView: View) : RecyclerView.ViewHolder(listItemView) {
-        val nameTextView = listItemView.findViewById<TextView>(R.id.hotelName)
-        val locationTextView = listItemView.findViewById<TextView>(R.id.Location)
+        val hotelName = listItemView.findViewById<TextView>(R.id.hotelName)
+        val City = listItemView.findViewById<TextView>(R.id.City)
+        val ratingBar: RatingBar = listItemView.findViewById(R.id.ratingBar)
         val pointView = listItemView.findViewById<TextView>(R.id.point)
         val img: ImageView = listItemView.findViewById(R.id.imageView)
         val rateStatus: TextView = listItemView.findViewById(R.id.rateStatus)
+        val count_cmt: TextView = listItemView.findViewById(R.id.cmt)
         val buttonFav: ImageView = listItemView.findViewById(R.id.fav)
         val buttonShare: ImageView = listItemView.findViewById(R.id.shareBtn)
-        val price_room: TextView = listItemView.findViewById(R.id.price_room)
+        val price: TextView = listItemView.findViewById(R.id.price)
 
         init {
             // Thêm sự kiện click cho itemView
@@ -62,32 +66,40 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val hotel : Hotel = hotels[position]
 
-        database = Firebase.database.reference
-
-        PictureUtils.getPictureByHotelID(hotel.ID!!){picture ->
-            Picture_Hotel = picture
+        //PictureUtils.getPictureByHotelID(hotel.ID!!){picture ->
+            //Picture_Hotel = picture
 //            println("Picture ID: ${Picture_Hotel.ID_Hotel}, Type: ${Picture_Hotel.picture}, Price: ${Picture_Hotel.picture_onwer}")
+
+            database = Firebase.database.reference
+            val hotelsRef = database.child("hotels")
 //
-            val idPicture = context.resources.getIdentifier(Picture_Hotel.picture, "drawable", context.packageName)
+            val idPicture = context.resources.getIdentifier("quang_ba_khach_san", "drawable", context.packageName)
             holder.img.setImageResource(idPicture)
-            holder.nameTextView.text = hotel.name
-            holder.locationTextView.text = hotel.locationDetail
+            holder.hotelName.text = hotel.name
+            holder.ratingBar.rating = hotel.star!!.toFloat()
+            holder.City.text = hotel.city
             holder.pointView.text = hotel.point.toString()
-
-        }
-        var roomList: List<Rooms> = emptyList()
-        RoomUtils.getRoomByHotelID(hotel.ID!!){ fetchedRoomList   ->
-            roomList = fetchedRoomList
-            roomList.forEach { room ->
-                println("Room ID: ${room.ID_Hotel}, Type: ${room.type}, Price: ${room.price}")
+            holder.count_cmt.text = hotel.total_comments.toString() + " nhận xét"
+            holder.rateStatus.text = when (hotel.point?.toInt()){
+                in 0 until 3 -> { "Cực tệ" }
+                in 3 until 5 -> { "Tệ" }
+                in 5 until 6 -> { "Trung bình" }
+                in 6 until 8 -> { "Tốt" }
+                in 8 until 9 -> { "Rất tốt" }
+                else -> { "Tuyệt vời" }
             }
-//            val lowestPrice = roomList.minOfOrNull { it.price ?: Double.MAX_VALUE } ?: Double.MAX_VALUE
-//            Log.d("lowestPrice", lowestPrice.toString())
-//            holder.price_room.text = lowestPrice.toString() + " đ"
-        }
 
+            RoomUtils.getRoomByHotelID(hotel.ID!!){ fetchedRoomList   ->
+                var roomList: List<Rooms> = emptyList()
+                roomList = fetchedRoomList
+                val lowestPrice = roomList.minOfOrNull { it.price ?: Int.MAX_VALUE } ?: Int.MAX_VALUE
+                holder.price.text = lowestPrice.toString() + " đ"
+                Log.d("Adapter", "Room: ${lowestPrice}")
 
+                hotelsRef.child(hotel.ID!!).child("money").setValue(lowestPrice)
+            }
 
+        //}
 
 //        // Khởi tạo SharedPreferences
 //        val sharedPref = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
@@ -120,14 +132,7 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
 //            }
 //        }
 
-        holder.rateStatus.text = when (hotel.point?.toInt()){
-            in 0 until 3 -> { "Cực tệ" }
-            in 3 until 5 -> { "Tệ" }
-            in 5 until 6 -> { "Trung bình" }
-            in 6 until 8 -> { "Tốt" }
-            in 8 until 9 -> { "Rất tốt" }
-            else -> { "Tuyệt vời" }
-        }
+
 
 //        holder.buttonShare.tag = position
 //        holder.buttonShare.setOnClickListener{

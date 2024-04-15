@@ -31,8 +31,9 @@
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="Khách sạn và Căn hộ "
-        android:textSize="24sp"
+        android:textSize="28sp"
         android:textStyle="bold"
+        android:textColor="#090C22"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/roomTittle" />

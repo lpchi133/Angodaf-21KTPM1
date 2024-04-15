@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.angodafake.R;
+import com.google.android.material.textfield.TextInputLayout;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -27,25 +29,73 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final TextView HomeTittle;
 
   @NonNull
+  public final TextInputLayout checkIn;
+
+  @NonNull
+  public final TextInputLayout checkOut;
+
+  @NonNull
   public final RecyclerView contactsRV;
+
+  @NonNull
+  public final RelativeLayout find;
 
   @NonNull
   public final Button findButton;
 
   @NonNull
-  public final ImageView imageView2;
+  public final ImageView imageView5;
+
+  @NonNull
+  public final ImageView imageView6;
+
+  @NonNull
+  public final ImageView imageView7;
+
+  @NonNull
+  public final ImageView imageView8;
+
+  @NonNull
+  public final TextView infor;
+
+  @NonNull
+  public final RelativeLayout lay1;
+
+  @NonNull
+  public final RelativeLayout lay2;
+
+  @NonNull
+  public final RelativeLayout lay3;
+
+  @NonNull
+  public final RelativeLayout lay4;
 
   @NonNull
   public final EditText nameHotelSearch;
 
   private FragmentHomeBinding(@NonNull ConstraintLayout rootView, @NonNull TextView HomeTittle,
-      @NonNull RecyclerView contactsRV, @NonNull Button findButton, @NonNull ImageView imageView2,
+      @NonNull TextInputLayout checkIn, @NonNull TextInputLayout checkOut,
+      @NonNull RecyclerView contactsRV, @NonNull RelativeLayout find, @NonNull Button findButton,
+      @NonNull ImageView imageView5, @NonNull ImageView imageView6, @NonNull ImageView imageView7,
+      @NonNull ImageView imageView8, @NonNull TextView infor, @NonNull RelativeLayout lay1,
+      @NonNull RelativeLayout lay2, @NonNull RelativeLayout lay3, @NonNull RelativeLayout lay4,
       @NonNull EditText nameHotelSearch) {
     this.rootView = rootView;
     this.HomeTittle = HomeTittle;
+    this.checkIn = checkIn;
+    this.checkOut = checkOut;
     this.contactsRV = contactsRV;
+    this.find = find;
     this.findButton = findButton;
-    this.imageView2 = imageView2;
+    this.imageView5 = imageView5;
+    this.imageView6 = imageView6;
+    this.imageView7 = imageView7;
+    this.imageView8 = imageView8;
+    this.infor = infor;
+    this.lay1 = lay1;
+    this.lay2 = lay2;
+    this.lay3 = lay3;
+    this.lay4 = lay4;
     this.nameHotelSearch = nameHotelSearch;
   }
 
@@ -82,9 +132,27 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.checkIn;
+      TextInputLayout checkIn = ViewBindings.findChildViewById(rootView, id);
+      if (checkIn == null) {
+        break missingId;
+      }
+
+      id = R.id.checkOut;
+      TextInputLayout checkOut = ViewBindings.findChildViewById(rootView, id);
+      if (checkOut == null) {
+        break missingId;
+      }
+
       id = R.id.contactsRV;
       RecyclerView contactsRV = ViewBindings.findChildViewById(rootView, id);
       if (contactsRV == null) {
+        break missingId;
+      }
+
+      id = R.id.find;
+      RelativeLayout find = ViewBindings.findChildViewById(rootView, id);
+      if (find == null) {
         break missingId;
       }
 
@@ -94,9 +162,57 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.imageView2;
-      ImageView imageView2 = ViewBindings.findChildViewById(rootView, id);
-      if (imageView2 == null) {
+      id = R.id.imageView5;
+      ImageView imageView5 = ViewBindings.findChildViewById(rootView, id);
+      if (imageView5 == null) {
+        break missingId;
+      }
+
+      id = R.id.imageView6;
+      ImageView imageView6 = ViewBindings.findChildViewById(rootView, id);
+      if (imageView6 == null) {
+        break missingId;
+      }
+
+      id = R.id.imageView7;
+      ImageView imageView7 = ViewBindings.findChildViewById(rootView, id);
+      if (imageView7 == null) {
+        break missingId;
+      }
+
+      id = R.id.imageView8;
+      ImageView imageView8 = ViewBindings.findChildViewById(rootView, id);
+      if (imageView8 == null) {
+        break missingId;
+      }
+
+      id = R.id.infor;
+      TextView infor = ViewBindings.findChildViewById(rootView, id);
+      if (infor == null) {
+        break missingId;
+      }
+
+      id = R.id.lay1;
+      RelativeLayout lay1 = ViewBindings.findChildViewById(rootView, id);
+      if (lay1 == null) {
+        break missingId;
+      }
+
+      id = R.id.lay2;
+      RelativeLayout lay2 = ViewBindings.findChildViewById(rootView, id);
+      if (lay2 == null) {
+        break missingId;
+      }
+
+      id = R.id.lay3;
+      RelativeLayout lay3 = ViewBindings.findChildViewById(rootView, id);
+      if (lay3 == null) {
+        break missingId;
+      }
+
+      id = R.id.lay4;
+      RelativeLayout lay4 = ViewBindings.findChildViewById(rootView, id);
+      if (lay4 == null) {
         break missingId;
       }
 
@@ -106,8 +222,9 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentHomeBinding((ConstraintLayout) rootView, HomeTittle, contactsRV,
-          findButton, imageView2, nameHotelSearch);
+      return new FragmentHomeBinding((ConstraintLayout) rootView, HomeTittle, checkIn, checkOut,
+          contactsRV, find, findButton, imageView5, imageView6, imageView7, imageView8, infor, lay1,
+          lay2, lay3, lay4, nameHotelSearch);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

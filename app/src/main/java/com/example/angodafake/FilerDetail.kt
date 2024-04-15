@@ -28,8 +28,8 @@ class FilerDetail(private var idUser: Int) : Fragment() {
 
     private lateinit var view: View
     private lateinit var rangeSlider: RangeSlider
-    private var startValue: Float = 200000.0f
-    private var endValue: Float = 900000.0f
+    private var startValue: Int = 20000000
+    private var endValue: Int = 80000000
     private var point: Double = 0.0
     private lateinit var text6Plus: TextView
     private lateinit var text7Plus: TextView
@@ -115,21 +115,21 @@ class FilerDetail(private var idUser: Int) : Fragment() {
         rangeSlider.addOnSliderTouchListener(object : RangeSlider.OnSliderTouchListener {
             override fun onStartTrackingTouch(slider: RangeSlider) {
                 // Lấy giá trị bắt đầu khi bắt đầu chạm vào slider
-                startValue = slider.values[0]
-                endValue = slider.values[1]
+                startValue = slider.values[0].toInt()
+                endValue = slider.values[1].toInt()
             }
 
             override fun onStopTrackingTouch(slider: RangeSlider) {
                 // Lấy giá trị khi kết thúc chạm vào slider
-                startValue = slider.values[0]
-                endValue = slider.values[1]
+                startValue = slider.values[0].toInt()
+                endValue = slider.values[1].toInt()
             }
         })
 
         rangeSlider.addOnChangeListener { rangeSlider, value, fromUser ->
             // Lấy giá trị khi slider thay đổi
-            startValue = rangeSlider.values[0]
-            endValue = rangeSlider.values[1]
+            startValue = rangeSlider.values[0].toInt()
+            endValue = rangeSlider.values[1].toInt()
         }
 
         val selectedColor = Color.parseColor("#FFA500")
@@ -184,8 +184,8 @@ class FilerDetail(private var idUser: Int) : Fragment() {
 
             val bundle = Bundle()
             bundle.putDouble("point", point)
-            bundle.putFloat("startValue", startValue)
-            bundle.putFloat("endValue", endValue)
+            bundle.putInt("startValue", startValue)
+            bundle.putInt("endValue", endValue)
             bundle.putString("selectedCities", getSelectedCities())
             bundle.putStringArray("hotelIds", hotelIds)
             bundle.putString("searchText", searchText)
@@ -227,9 +227,9 @@ class FilerDetail(private var idUser: Int) : Fragment() {
         }
 
         // Đặt lại giá trị RangeSlider về mặc định
-        startValue = 100000.0F
-        endValue = 900000.0F
-        slider.values = mutableListOf(startValue, endValue)
+        startValue = 20000000
+        endValue = 80000000
+        slider.values = mutableListOf(startValue.toFloat(), endValue.toFloat())
 
         // Đặt lại trạng thái của CheckBox về mặc định (không được chọn)
         cbHanoi.isChecked = false

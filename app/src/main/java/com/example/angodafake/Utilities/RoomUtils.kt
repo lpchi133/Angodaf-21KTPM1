@@ -18,27 +18,22 @@ object RoomUtils {
 
     }
 
-    fun getRoomByHotelID(ID: String, listener: (List<Rooms>) -> Unit){
-        val roomQuery = database.child("rooms").orderByChild("ID_Hotel").equalTo(ID)
-        roomQuery.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // Xử lý khi dữ liệu thay đổi
-                val roomList = mutableListOf<Rooms>()
-                for (roomSnapshot in dataSnapshot.children) {
-                    val room = roomSnapshot.getValue(Rooms::class.java)
-                    room?.let { roomList.add(it) }
-                }
-
-                if (!roomList.isEmpty()){
-                    listener(roomList)
+    fun getRoomByHotelID(ID_Hotel: String, listener: (List<Rooms>) -> Unit) {
+        val roomList = mutableListOf<Rooms>()
+        database.child("rooms").child(ID_Hotel).get().addOnSuccessListener { dataSnapshot ->
+            for (roomSnapshot in dataSnapshot.children) {
+                val room = roomSnapshot.getValue(Rooms::class.java)
+                room?.let {
+                    roomList.add(it)
                 }
             }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Xử lý khi có lỗi xảy ra
-            }
-        })
+            listener(roomList)
+        }.addOnFailureListener { exception ->
+            Log.e("firebase", "Error getting room list", exception)
+            listener(emptyList()) // Trả về danh sách rỗng nếu có lỗi xảy ra
+        }
     }
+
 
 
     fun getRoomList(listener: (List<Rooms>) -> Unit) {

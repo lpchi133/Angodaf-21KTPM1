@@ -1,23 +1,40 @@
 package com.example.angodafake
 
+import android.app.DatePickerDialog
+import android.content.Context
+import android.icu.util.Calendar
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Button
+import android.widget.DatePicker
 import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.PopupWindow
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.Adapter.HotelAdapter
+import com.example.angodafake.Utilities.RoomUtils
 import com.example.angodafake.db.Hotel
+import com.example.angodafake.db.Rooms
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
+import java.text.SimpleDateFormat
+import java.util.Date
+
 import java.util.Locale
 
 // TODO: Rename parameter arguments, choose names that match
@@ -41,6 +58,16 @@ class Home(private var idUser: Int) : Fragment() {
     private lateinit var listHotels: MutableList<Hotel>
     private lateinit var database: DatabaseReference
     private lateinit var layoutManager: RecyclerView.LayoutManager
+    private lateinit var checkIn : TextInputLayout
+    private lateinit var checkOut : TextInputLayout
+    private lateinit var checkIn_Text : TextInputEditText
+    private lateinit var checkOut_Text : TextInputEditText
+    private lateinit var popupWindow: PopupWindow
+    var inforCount: String? = null
+    private lateinit var infor: TextView
+    private val dateFormat = SimpleDateFormat("dd/MM/yyyy")
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,20 +90,20 @@ class Home(private var idUser: Int) : Fragment() {
     }
 
     private fun setupViews(view: View) {
-//        hotel_db = HotelDatabase.getInstance(requireContext())
-//        listHotels = hotel_db.HotelDAO().getHotelList()
+
+        val searchEditText = view.findViewById<EditText>(R.id.nameHotelSearch)
+        val findButton = view.findViewById<Button>(R.id.findButton)
+        infor = view.findViewById<TextView>(R.id.infor)
+
+        checkIn = view.findViewById(R.id.checkIn)
+        checkIn_Text = checkIn.editText as TextInputEditText
+        checkOut = view.findViewById(R.id.checkOut)
+        checkOut_Text = checkOut.editText as TextInputEditText
 
         if (!::listHotels.isInitialized) {
             listHotels = mutableListOf()
         }
 
-        val hotelsRecyclerView = view.findViewById<RecyclerView>(R.id.contactsRV)
-        hotelAdapter = ArrayList(listHotels)
-        adapter = HotelAdapter(requireContext(), hotelAdapter, idUser)
-        hotelsRecyclerView.adapter = adapter
-        layoutManager = LinearLayoutManager(requireContext())
-        hotelsRecyclerView.layoutManager = layoutManager
-        hotelsRecyclerView.setHasFixedSize(true)
 
         val hotelsRef = database.child("hotels")
 
@@ -84,54 +111,237 @@ class Home(private var idUser: Int) : Fragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 listHotels.clear()
                 for (hotelSnapshot in dataSnapshot.children) {
-                    Log.d("hotelSnapshot", hotelSnapshot.toString())
+                    //Log.d("hotelSnapshot", hotelSnapshot.toString())
                     var hotel = hotelSnapshot.getValue(Hotel::class.java)
                     hotel?.ID = hotelSnapshot.key
-                    Log.d("hotel", hotel.toString())
+                    //Log.d("hotel", hotel.toString())
                     hotel?.let { listHotels.add(it) }
                 }
-                Log.d("FilterDetailFragment", "List of Hotels:")
-                listHotels.forEachIndexed { index, hotel ->
-                    Log.d("FilterDetailFragment", "Hotel ${index + 1}: ${hotel.name}, Point: ${hotel.point}")
+
+
+
+                val hotelsRecyclerView = view.findViewById<RecyclerView>(R.id.contactsRV)
+                hotelAdapter = ArrayList(listHotels)
+                adapter = HotelAdapter(requireContext(), hotelAdapter, idUser)
+                hotelsRecyclerView.adapter = adapter
+                layoutManager = LinearLayoutManager(requireContext())
+                hotelsRecyclerView.layoutManager = layoutManager
+                hotelsRecyclerView.setHasFixedSize(true)
+
+                //adapter.updateDataGradually(listHotels)
+
+                //checkIn
+                checkIn_Text.setOnClickListener{
+                    val year: Int
+                    val month: Int
+                    val day: Int
+                    if (checkIn_Text.text.toString() == ""){
+                        // Lấy ngày hiện tại
+                        val calendar = Calendar.getInstance()
+                        year = calendar.get(Calendar.YEAR)
+                        month = calendar.get(Calendar.MONTH)
+                        day = calendar.get(Calendar.DAY_OF_MONTH)
+                    }
+                    else{
+                        val date = checkIn_Text.text.toString().split("/")
+                        year = date[2].toInt()
+                        month = date[1].toInt() - 1
+                        day = date[0].toInt()
+                    }
+                    val datePickerDialog = DatePickerDialog(
+                        requireContext(),
+                        { view: DatePicker, selectedYear: Int, selectedMonth: Int, selectedDayOfMonth: Int ->
+                            // Xử lý khi người dùng chọn ngày
+                            val selectedDate = "$selectedDayOfMonth/${selectedMonth + 1}/$selectedYear"
+                            val checkOutText = checkOut_Text.text.toString()
+
+                            val checkInDate: Date? = dateFormat.parse(selectedDate)
+
+                            if (checkOutText.isNotEmpty()) {
+                                val checkOutDate: Date? = dateFormat.parse(checkOutText)
+                                // Kiểm tra xem checkOutDate có phải là tương lai của checkInDate không
+                                if (checkOutDate != null && checkInDate != null) {
+                                    val isFuture = checkOutDate.after(checkInDate)
+                                    if (isFuture) {
+                                        checkIn_Text.setText(selectedDate)
+                                        checkIn_Text.error = null
+                                    } else {
+                                        checkIn_Text.error = "Vui lòng chọn lại ngày hợp lí"
+                                    }
+                                }
+                            } else {
+                                checkIn_Text.setText(selectedDate)
+                            }
+                        },
+                        year, month, day
+                    )
+                    datePickerDialog.show()
                 }
-                adapter.updateDataGradually(listHotels)
+
+                //checkOut
+                checkOut_Text.setOnClickListener{
+                    val year: Int
+                    val month: Int
+                    val day: Int
+                    if (checkOut_Text.text.toString() == ""){
+                        // Lấy ngày hiện tại
+                        val calendar = Calendar.getInstance()
+                        year = calendar.get(Calendar.YEAR)
+                        month = calendar.get(Calendar.MONTH)
+                        day = calendar.get(Calendar.DAY_OF_MONTH)
+                    }
+                    else{
+                        val date = checkOut_Text.text.toString().split("/")
+                        year = date[2].toInt()
+                        month = date[1].toInt() - 1
+                        day = date[0].toInt()
+                    }
+                    val datePickerDialog = DatePickerDialog(
+                        requireContext(),
+                        { view: DatePicker, selectedYear: Int, selectedMonth: Int, selectedDayOfMonth: Int ->
+                            // Xử lý khi người dùng chọn ngày
+                            val selectedDate = "$selectedDayOfMonth/${selectedMonth + 1}/$selectedYear"
+                            val checkInText = checkIn_Text.text.toString()
+
+
+                            val checkOutDate: Date? = dateFormat.parse(selectedDate)
+
+                            if (checkInText.isNotEmpty()) {
+                                val checkInDate: Date? = dateFormat.parse(checkInText)
+                                // Kiểm tra xem checkOutDate có phải là tương lai của checkInDate không
+                                if (checkOutDate != null && checkInDate != null) {
+                                    val isFuture = checkOutDate.after(checkInDate)
+                                    if (isFuture) {
+                                        checkOut_Text.setText(selectedDate)
+                                        checkOut_Text.error = null
+                                    } else {
+                                        checkOut_Text.error = "Vui lòng chọn lại ngày hợp lí"
+                                    }
+                                }
+                            } else {
+                                checkOut_Text.setText(selectedDate)
+                            }
+                        },
+                        year, month, day
+                    )
+                    datePickerDialog.show()
+                }
+
+                // count
+                infor.setOnClickListener {
+                    showPopup()
+                }
+
+                // Tìm kiếm
+                findButton.setOnClickListener {
+                    val searchText = searchEditText.text.toString()
+                    val args = Bundle()
+                    val hotelIds = filterHotels(searchText).map { it.ID }
+                    println("Hotel IDs: ${hotelIds.joinToString()}")
+                    args.putStringArray("hotelIds", hotelIds.toTypedArray())
+                    args.putStringArray("saveIds", hotelIds.toTypedArray())
+                    args.putString("searchText", searchText)
+
+                    // Khởi tạo Fragment Filter và đính kèm Bundle
+                    val filterFragment = Filter(idUser)
+
+                    filterFragment.arguments = args
+
+                    // Thay thế Fragment hiện tại bằng Fragment Filter
+                    val fragmentManager = requireActivity().supportFragmentManager
+                    fragmentManager.beginTransaction()
+                        .replace(R.id.frameLayout, filterFragment)
+                        .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
+                        .commit()
+                }
+
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
                 // Xử lý khi có lỗi xảy ra
                 println("Failed to read value: ${databaseError.toException()}")
- //               listHotels = emptyList() // Trả về danh sách rỗng khi có lỗi
+                //listHotels = emptyList() // Trả về danh sách rỗng khi có lỗi
             }
         })
-        Log.d("FilterDetailFragment", "List of Hotels:")
-        listHotels.forEachIndexed { index, hotel ->
-            Log.d("FilterDetailFragment", "Hotel ${index + 1}: ${hotel.name}, Point: ${hotel.point}")
+
+    }
+
+    private fun showPopup() {
+        val inflater = requireContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val popupView = inflater.inflate(R.layout.popup_find, null)
+
+        // Đặt alpha cho layout gốc để làm mờ
+        val rootView = requireActivity().window.decorView.findViewById<View>(android.R.id.content)
+        rootView.alpha = 0.5f
+
+        // Khởi tạo PopupWindow
+        popupWindow = PopupWindow(
+            popupView,
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT,
+            true
+        )
+
+        // Thiết lập animation và hiển thị PopupWindow từ dưới lên
+        popupWindow.animationStyle = R.style.PopupAnimation
+        popupWindow.showAtLocation(popupView, Gravity.BOTTOM, 0, 0)
+
+        // Xử lý sự kiện khi nhấn vào nút hoặc các thành phần trong PopupWindow
+        val closeButton = popupView.findViewById<ImageButton>(R.id.btn_close)
+        closeButton.setOnClickListener {
+            rootView.alpha = 1.0f
+            popupWindow.dismiss() // Đóng PopupWindow khi nhấn nút đóng
+
+        }
+
+        val plus_room = popupView.findViewById<ImageView>(R.id.plus_room)
+        val minus_room = popupView.findViewById<ImageView>(R.id.minus_room)
+        val minus_person = popupView.findViewById<ImageView>(R.id.minus_person)
+        val plus_person = popupView.findViewById<ImageView>(R.id.plus_person)
+        val count_room = popupView.findViewById<TextView>(R.id.count_room)
+        val count_person = popupView.findViewById<TextView>(R.id.count_person)
+
+
+        plus_room.setOnClickListener {
+            val currentCount = count_room.text.toString().toIntOrNull() ?: 0
+            count_room.text = (currentCount + 1).toString()
+        }
+
+        minus_room.setOnClickListener {
+            val currentCount = count_room.text.toString().toIntOrNull() ?: 0
+            val newCount = currentCount - 1
+            val finalCount = if (newCount < 1) 1 else newCount
+            count_room.text = finalCount.toString()
+        }
+
+        plus_person.setOnClickListener {
+            val currentCount = count_person.text.toString().toIntOrNull() ?: 0
+            count_person.text = (currentCount + 1).toString()
+        }
+
+        minus_person.setOnClickListener {
+            val currentCount = count_person.text.toString().toIntOrNull() ?: 0
+            val newCount = currentCount - 1
+            val finalCount = if (newCount < 1) 1 else newCount
+            count_person.text = finalCount.toString()
         }
 
 
-        val searchEditText = view.findViewById<EditText>(R.id.nameHotelSearch)
-        val findButton = view.findViewById<Button>(R.id.findButton)
+        val buttonOK: Button = popupView.findViewById(R.id.findButton)
+        buttonOK.setOnClickListener {
+            inforCount = count_room.text.toString() + " phòng - " + count_person.text.toString() + " người"
+            rootView.alpha = 1.0f
+            popupWindow.dismiss()
 
-        findButton.setOnClickListener {
-            val searchText = searchEditText.text.toString()
-            val args = Bundle()
-            val hotelIds = filterHotels(searchText).map { it.ID }
-            println("Hotel IDs: ${hotelIds.joinToString()}")
-            args.putStringArray("hotelIds", hotelIds.toTypedArray())
-            args.putStringArray("saveIds", hotelIds.toTypedArray())
-            args.putString("searchText", searchText)
+        }
 
-            // Khởi tạo Fragment Filter và đính kèm Bundle
-            val filterFragment = Filter(idUser)
+        popupWindow.setOnDismissListener {
+            // Xử lý khi PopupWindow bị đóng
+            if(inforCount != null){
+                infor.text = inforCount.toString()
 
-            filterFragment.arguments = args
-
-            // Thay thế Fragment hiện tại bằng Fragment Filter
-            val fragmentManager = requireActivity().supportFragmentManager
-            fragmentManager.beginTransaction()
-                .replace(R.id.frameLayout, filterFragment)
-                .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
-                .commit()
+            }
+            rootView.alpha = 1.0f
         }
     }
 

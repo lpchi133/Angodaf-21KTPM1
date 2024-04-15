@@ -16,7 +16,6 @@ data class Rooms(
     var price: Int? = 0,
     var single_bed: Int? = 0,
     var double_bed: Int? = 0,
-    var picture: String? = null,
     var capacity: Int? = 0, //so nguoi
     ) {
     // Null default values create a no-argument default constructor, which is needed

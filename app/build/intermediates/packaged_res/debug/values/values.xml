@@ -251,8 +251,8 @@
         <item>Zimbabwe</item>
     </string-array>
     <array name="initial_slider_values">
-        <item>200000.0</item>
-        <item>900000.0</item>
+        <item>20000000</item>
+        <item>80000000</item>
     </array>
     <color name="Blacki">#120404</color>
     <color name="black">#FF000000</color>

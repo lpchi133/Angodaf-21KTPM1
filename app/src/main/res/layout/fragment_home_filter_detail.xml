@@ -117,8 +117,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/Theme.MyApp"
-            android:valueFrom="0.0"
-            android:valueTo="1000000.0"
+            android:valueFrom="0"
+            android:valueTo="100000000"
             app:values="@array/initial_slider_values" />
 
 

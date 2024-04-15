@@ -16,18 +16,25 @@ class RoomAdapter(private val context: Context, private var rooms: List<Rooms>, 
     // Interface cho sự kiện click
     interface OnItemClickListener {
         fun onItemClick(position: Int)
-        fun onCountRoomClick(position: Int)
+        fun onPlusClick(position: Int)
+        fun onMinusClick(position: Int)
     }
 
     inner class ViewHolder(listItemView: View) : RecyclerView.ViewHolder(listItemView) {
         val roomName = listItemView.findViewById<TextView>(R.id.roomName)
-        val countBed = listItemView.findViewById<TextView>(R.id.countBed)
         val count = listItemView.findViewById<TextView>(R.id.count)
+        val countBedSingle = listItemView.findViewById<TextView>(R.id.countBedSingle)
+        val countBedDouble = listItemView.findViewById<TextView>(R.id.countBedDouble)
         val img: ImageView = listItemView.findViewById(R.id.imageView)
         val convenience: TextView = listItemView.findViewById(R.id.convenience)
         val countRoom: TextView = listItemView.findViewById(R.id.countRoom)
-        val price_room: TextView = listItemView.findViewById(R.id.price_room)
+        val price: TextView = listItemView.findViewById(R.id.price)
         val count_Room: TextView = listItemView.findViewById(R.id.count_Room)
+        val firstRectangle: TextView = listItemView.findViewById(R.id.firstRectangle)
+        val direction: TextView = listItemView.findViewById(R.id.direction)
+        val minus: ImageView = listItemView.findViewById(R.id.minus)
+        val plus: ImageView = listItemView.findViewById(R.id.plus)
+
 
 
         init {
@@ -38,8 +45,11 @@ class RoomAdapter(private val context: Context, private var rooms: List<Rooms>, 
             }
 
             // Thêm sự kiện click cho countRoom
-            countRoom.setOnClickListener {
-                listener?.onCountRoomClick(adapterPosition)
+            plus.setOnClickListener {
+                listener?.onPlusClick(adapterPosition)
+            }
+            minus.setOnClickListener {
+                listener?.onMinusClick(adapterPosition)
             }
         }
     }
@@ -58,25 +68,42 @@ class RoomAdapter(private val context: Context, private var rooms: List<Rooms>, 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val room : Rooms = rooms[position]
 
-        val idPicture = context.resources.getIdentifier(room.picture, "drawable", context.packageName)
-        holder.img.setImageResource(idPicture)
+//          val idPicture = context.resources.getIdentifier(room.picture, "drawable", context.packageName)
+//          holder.img.setImageResource(idPicture)
         holder.roomName.text = room.type
-//        holder.countBed.text = room.bedQuantity.toString() + " giường đôi"
-//        holder.count.text = "Tối đa " + (room.bedQuantity?.times(2)).toString() + " người"
-//        if(intArray[position] <= room.available!!) {
-//            holder.countRoom.text = "Số phòng:         " + intArray[position].toString() + "   +"
-//        }
-//        else{
-//            holder.countRoom.text = "Số phòng:         " + room.available.toString() + "   +"
-//        }
-//        holder.convenience.text = room.benefit
-//        holder.price_room.text = room.price.toString() + " đ"
-//        if(room.available == 0){
-//            holder.count_Room.text = "Hết phòng rồi ní ơi!"
-//        }
-//        else {
-//            holder.count_Room.text = room.available.toString() + " phòng cuối cùng!"
-//        }
+        holder.count.text = "Tối đa " + room.capacity.toString() + " người - " + room.acreage.toString() + " m\u00B2"
+        holder.countBedSingle.text = room.single_bed.toString() + " giường đơn   -"
+        holder.countBedDouble.text = room.double_bed.toString() + " giường đôi"
+        if(room.quantity == 0){
+            holder.count_Room.text = "Hết phòng rồi ní ơi!"
+        }
+        else {
+            holder.count_Room.text = room.quantity.toString() + " phòng cuối cùng!"
+        }
+
+        holder.direction.text = room.direction.toString()
+        holder.price.text = room.price.toString() + " đ"
+        if(room.quantity == 0) {
+            holder.firstRectangle.text = "HẾT PHÒNG"
+        }
+        else{
+            holder.firstRectangle.text = "CÒN PHÒNG"
+        }
+
+        val conveniences = room.benefit?.split("\\")
+        val formattedconveniences = conveniences?.map { "❇\uFE0F    $it" }
+        val formattedconvenience = formattedconveniences?.joinToString("\n")
+        holder.convenience.text = formattedconvenience
+        if(intArray[position] <= room.quantity!!) {
+            holder.countRoom.text = "Số phòng: " + intArray[position].toString()
+        }
+        else{
+            holder.countRoom.text = "Số phòng: " + room.quantity.toString()
+            intArray[position] = room.quantity!!
+        }
+
+
+
     }
 
     override fun getItemCount(): Int {

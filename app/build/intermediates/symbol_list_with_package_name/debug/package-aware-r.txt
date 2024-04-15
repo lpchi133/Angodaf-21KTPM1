@@ -3058,9 +3058,11 @@ drawable baseline_looks_3_24
 drawable baseline_looks_one_24
 drawable baseline_looks_two_24
 drawable baseline_map_24
+drawable baseline_minus
 drawable baseline_more_vert_24
 drawable baseline_nightlife_24
 drawable baseline_person_24
+drawable baseline_plus
 drawable baseline_room_service_24
 drawable baseline_send_24
 drawable baseline_thumb_down_24
@@ -3229,9 +3231,11 @@ drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable quang_ba_khach_san
 drawable room
+drawable round_half
 drawable rounded_background
 drawable rounded_button
 drawable rounded_button_delete
+drawable rounded_button_price
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
@@ -3240,6 +3244,7 @@ id Agoodaa
 id BOTTOM_END
 id BOTTOM_START
 id CTRL
+id City
 id FUNCTION
 id HomeTittle
 id In
@@ -3401,8 +3406,6 @@ id buttonOK
 id buttonPanel
 id buttonReset
 id buttonSet
-id c1
-id c2
 id cache_measures
 id callMeasure
 id cancel_button
@@ -3424,6 +3427,8 @@ id chain2
 id chains
 id chart
 id chat
+id checkIn
+id checkOut
 id check_in
 id check_out
 id checkbox
@@ -3467,9 +3472,12 @@ id cos
 id cost
 id costAgoda
 id count
-id countBed
+id countBedDouble
+id countBedSingle
 id countRoom
 id count_Room
+id count_person
+id count_room
 id counterclockwise
 id cradle
 id currentState
@@ -3493,9 +3501,11 @@ id design_menu_item_action_area
 id design_menu_item_action_area_stub
 id design_menu_item_text
 id design_navigation_view
+id detail
 id dialog_button
 id dimensions
 id direct
+id direction
 id disableHome
 id disableIntraAutoTransition
 id disablePostScroll
@@ -3539,6 +3549,7 @@ id filled
 id filter
 id find
 id findButton
+id firstRectangle
 id fit
 id fitCenter
 id fitEnd
@@ -3566,6 +3577,7 @@ id groups
 id header_title
 id hide_ime_id
 id hideable
+id highlight
 id home
 id homeAsUp
 id homes
@@ -3587,11 +3599,7 @@ id ignoreRequest
 id image
 id imageView
 id imageView1
-id imageView10
-id imageView11
 id imageView12
-id imageView16
-id imageView18
 id imageView19
 id imageView2
 id imageView20
@@ -3600,6 +3608,7 @@ id imageView4
 id imageView5
 id imageView6
 id imageView7
+id imageView8
 id imageView9
 id image_hotel
 id image_room
@@ -3607,6 +3616,7 @@ id immediateStop
 id included
 id indeterminate
 id info
+id infor
 id invisible
 id inward
 id is_pooling_container_tag
@@ -3624,6 +3634,10 @@ id lPass
 id lPass2
 id lPhoneN
 id labeled
+id lay1
+id lay2
+id lay3
+id lay4
 id layout
 id layout_signup_title
 id left
@@ -3683,6 +3697,9 @@ id matrix
 id message
 id middle
 id mini
+id minus
+id minus_person
+id minus_room
 id month_grid
 id month_navigation_bar
 id month_navigation_fragment_toggle
@@ -3714,6 +3731,7 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id mtrl_view_tag_bottom_padding
 id multiply
+id name
 id nameHotelSearch
 id nameOwner
 id name_client
@@ -3776,6 +3794,9 @@ id peekHeight
 id percent
 id phone
 id pin
+id plus
+id plus_person
+id plus_room
 id point
 id point_condition1
 id point_condition2
@@ -3859,6 +3880,7 @@ id sharedValueSet
 id sharedValueUnset
 id shortcut
 id showCustom
+id showDetail
 id showHome
 id showTitle
 id sign_up_title
@@ -3923,9 +3945,7 @@ id tag_window_insets_animation_callback
 id tax
 id terrain
 id text
-id text1
 id text2
-id text3
 id textEnd
 id textSpacerNoButtons
 id textSpacerNoTitle
@@ -4261,6 +4281,8 @@ layout notification_template_part_time
 layout popup2
 layout popup_1
 layout popup_2
+layout popup_description
+layout popup_find
 layout rating
 layout select_dialog_item_material
 layout select_dialog_multichoice_material

@@ -90,8 +90,18 @@ class ListRoom(private val idUser: Int) : Fragment() {
                         // Xử lý khi item được click
                     }
 
-                    override fun onCountRoomClick(position: Int) {
+                    override fun onPlusClick(position: Int) {
                         intArray[position] = intArray[position] + 1
+                        adapter.notifyItemChanged(position)
+                    }
+
+                    override fun onMinusClick(position: Int) {
+                        if(intArray[position] > 1) {
+                            intArray[position] = intArray[position] - 1
+                        }
+                        else{
+                            intArray[position] = 1
+                        }
                         adapter.notifyItemChanged(position)
                     }
                 })
