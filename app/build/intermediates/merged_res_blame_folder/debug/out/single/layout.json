@@ -1,5 +1,9 @@
 [
     {
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-40:\\layout\\fragment_edit_info.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\fragment_edit_info.xml"
+    },
+    {
         "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-40:\\layout\\fragment_home_filter.xml",
         "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\fragment_home_filter.xml"
     },
@@ -120,10 +124,6 @@
         "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\custom_chat.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/custom_bookmark.xml",
-        "source": "com.example.angodafake.app-main-43:/layout/custom_bookmark.xml"
-    },
-    {
         "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-40:\\layout\\custom_active_purchase_detail.xml",
         "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\custom_active_purchase_detail.xml"
     },
@@ -158,6 +158,14 @@
     {
         "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-40:\\layout\\tab_active_room.xml",
         "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-43:\\layout\\tab_active_room.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/tab_login_phone.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/tab_login_phone.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-40:/layout/tab_login_email.xml",
+        "source": "com.example.angodafake.app-main-43:/layout/tab_login_email.xml"
     },
     {
         "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-40:\\layout\\custome_past_cancel_purchase_detail.xml",

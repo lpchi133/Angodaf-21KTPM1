@@ -13,6 +13,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.TabHost
 import android.widget.TextView
+import com.example.angodafake.Utilities.UserUtils
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -70,7 +71,7 @@ class LoginActivity : AppCompatActivity() {
             val checkPass = validatePass(pass, lPass)
             //Thong tin nhap vao hop le
             if (checkEmail && checkPass){
-                signInWithEmail(email, pass)
+                signInWithEmail(email, pass, "Email hoặc Mật khẩu không đúng.")
             }
         }
 
@@ -108,7 +109,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun signInWithEmail(email: String, password: String, ){
+    private fun signInWithEmail(email: String, password: String, msg: String){
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -124,31 +125,26 @@ class LoginActivity : AppCompatActivity() {
                     }, 1000)
                 } else {
                     // If sign in fails, display a message to the user.
-                    showSnackBar("Số di động hoặc Mật khẩu không đúng.")
+                    showSnackBar(msg)
                 }
             }
     }
 
     private fun signInWithPhoneN(phoneN: String, password: String, ){
-        val fEmailFromPhoneN = "$phoneN @gmail.com"
-        auth.signInWithEmailAndPassword(fEmailFromPhoneN, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    val user = auth.currentUser
-                    showSuccessSnackBar("Đăng nhập thành công!")
-                    val handler = Handler()
-                    handler.postDelayed({
-                        val intent = Intent(this, MainActivity::class.java)
-                        intent.putExtra("idUser", user!!.uid)
-                        startActivity(intent)
-                        finish()
-                    }, 1000)
-                } else {
-                    // If sign in fails, display a message to the user.
-                    showSnackBar("Email hoặc Mật khẩu không đúng.")
+        UserUtils.getUserByPhoneNumber(phoneN){
+            if (it == null){
+                showSnackBar("Số di động hoặc Mật khẩu không đúng.")
+            }
+            else{
+                if (it.email == ""){
+                    val fEmailFromPhoneN = "$phoneN@gmail.com"
+                    signInWithEmail(fEmailFromPhoneN, password, "Số di động hoặc Mật khẩu không đúng.")
+                } else{
+                    signInWithEmail(it.email!!, password, "Số di động hoặc Mật khẩu không đúng.")
                 }
             }
+        }
+
     }
 
     private fun validateEmail(email: String, lEmail: TextInputLayout): Boolean {

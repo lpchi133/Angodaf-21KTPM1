@@ -287,4 +287,5 @@
     </string-array>
     <string name="title">Thông tin khách sạn</string>
     <string name="profile_title">"Chào mừng, Name"</string>
+    <string name="editInfo_title">Hồ sơ cá nhân</string>
 </resources>

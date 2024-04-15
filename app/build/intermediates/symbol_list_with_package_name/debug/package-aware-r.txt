@@ -3057,6 +3057,7 @@ drawable baseline_local_activity_24
 drawable baseline_local_phone_24
 drawable baseline_location_on_12
 drawable baseline_location_on_24
+drawable baseline_lock_24
 drawable baseline_logout_24
 drawable baseline_looks_3_24
 drawable baseline_looks_one_24
@@ -3383,6 +3384,8 @@ id btn_bookmark
 id btn_call
 id btn_cancel
 id btn_card
+id btn_changeInf
+id btn_changePw
 id btn_chat
 id btn_chat_as_customer
 id btn_chat_with_customer
@@ -3639,6 +3642,7 @@ id lPass2
 id lPhoneN
 id labeled
 id layout
+id layout_editInfo_title
 id layout_signup_title
 id left
 id leftToRight
@@ -3805,6 +3809,7 @@ id pressed
 id price
 id price_room
 id profile
+id profileTittle
 id progressBar
 id progress_circular
 id progress_horizontal
@@ -4018,6 +4023,8 @@ id triangle
 id tvCity
 id tvPrice
 id tvRating
+id tv_PhoneN
+id tv_email
 id tv_emailPhoneN
 id tym
 id type_room
@@ -4212,6 +4219,7 @@ layout empty_canceled_room
 layout empty_comment
 layout empty_past_room
 layout fragment_bookmark
+layout fragment_edit_info
 layout fragment_home
 layout fragment_home_filter
 layout fragment_home_filter_detail
@@ -4376,6 +4384,7 @@ string content_active_room
 string content_canceled_room
 string content_past_room
 string copy_toast_msg
+string editInfo_title
 string error_a11y_label
 string error_icon_content_description
 string exposed_dropdown_menu_content_description

@@ -274,6 +274,7 @@
     <string name="content_active_room">Quý khách không có đặt chỗ sắp tới nào!</string>
     <string name="content_canceled_room">Quý khách không có đặt chỗ đã hủy gần đây!</string>
     <string name="content_past_room">Quý khách không có đặt chỗ đã hoàn thành gần đây!</string>
+    <string name="editInfo_title">Hồ sơ cá nhân</string>
     <string name="fragment1">Home</string>
     <string name="fragment2">My Room</string>
     <string name="fragment3">My Hotel</string>

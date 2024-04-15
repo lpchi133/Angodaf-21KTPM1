@@ -24,8 +24,9 @@ class MyProfile(private var idUser: String) : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var btn_bookmark: Button
     private lateinit var btn_logout: Button
-    private lateinit var bookmarkTittle: TextView
+    private lateinit var profileTittle: TextView
     private lateinit var btn_myHotel: Button
+    private lateinit var btn_profile: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,17 +44,22 @@ class MyProfile(private var idUser: String) : Fragment() {
         auth = Firebase.auth
         initUI(view)
         UserUtils.getNameByID(idUser) {
-            bookmarkTittle.text = "Chào mừng, $it!"
+            profileTittle.text = "Chào mừng, $it!"
+        }
+
+        btn_profile.setOnClickListener {
+            val mainActivity = requireActivity() as MainActivity
+            mainActivity.replaceFragment(EditInfoFragment(idUser))
         }
 
         btn_bookmark.setOnClickListener {
             val mainActivity = requireActivity() as MainActivity
-            mainActivity.navigateToBookmarkFragment()
+            mainActivity.navigateToFragment("bookmark")
         }
 
         btn_myHotel.setOnClickListener {
             val mainActivity = requireActivity() as MainActivity
-            mainActivity.navigateToMyHotelFragment()
+            mainActivity.navigateToFragment("hotel")
         }
 
         btn_logout.setOnClickListener {
@@ -68,8 +74,9 @@ class MyProfile(private var idUser: String) : Fragment() {
     private fun initUI(view: View){
         btn_bookmark = view.findViewById(R.id.btn_bookmark)
         btn_logout = view.findViewById(R.id.btn_logout)
-        bookmarkTittle = view.findViewById(R.id.bookmarkTittle)
+        profileTittle = view.findViewById(R.id.profileTittle)
         btn_myHotel = view.findViewById(R.id.btn_my_hotel)
+        btn_profile = view.findViewById(R.id.btn_profile)
     }
 
 
@@ -84,7 +91,7 @@ class MyProfile(private var idUser: String) : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String, idUser: String) =
+        fun newInstance(idUser: String) =
             MyProfile(idUser).apply {
                 arguments = Bundle().apply {
                 }

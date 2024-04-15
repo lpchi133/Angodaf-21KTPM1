@@ -45,17 +45,22 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun replaceFragment(fragment: Fragment){
+    fun replaceFragment(fragment: Fragment){
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frameLayout, fragment)
         fragmentTransaction.commit()
     }
 
-    fun navigateToBookmarkFragment() {
-        binding.bottomNavigationView.selectedItemId = R.id.bookmark
-    }
-    fun navigateToMyHotelFragment() {
-        binding.bottomNavigationView.selectedItemId = R.id.hotel
+    fun navigateToFragment(fr: String) {
+        when(fr){
+            "bookmark" -> {
+                binding.bottomNavigationView.selectedItemId = R.id.bookmark
+            }
+            "hotel" -> {
+                binding.bottomNavigationView.selectedItemId = R.id.hotel
+            }
+        }
+
     }
 }

@@ -3056,6 +3056,7 @@ int drawable baseline_local_activity_24 0x7f080090
 int drawable baseline_local_phone_24 0x7f080091
 int drawable baseline_location_on_12 0x7f080092
 int drawable baseline_location_on_24 0x7f080093
+int drawable baseline_lock_24 0x7f08014f
 int drawable baseline_logout_24 0x7f08014c
 int drawable baseline_looks_3_24 0x7f080094
 int drawable baseline_looks_one_24 0x7f080095
@@ -3382,6 +3383,8 @@ int id btn_bookmark 0x7f090319
 int id btn_call 0x7f09008a
 int id btn_cancel 0x7f09008b
 int id btn_card 0x7f09031a
+int id btn_changeInf 0x7f09032b
+int id btn_changePw 0x7f09032c
 int id btn_chat 0x7f09008c
 int id btn_chat_as_customer 0x7f09031b
 int id btn_chat_with_customer 0x7f09031c
@@ -3638,6 +3641,7 @@ int id lPass2 0x7f090182
 int id lPhoneN 0x7f090183
 int id labeled 0x7f090184
 int id layout 0x7f090185
+int id layout_editInfo_title 0x7f09032d
 int id layout_signup_title 0x7f090186
 int id left 0x7f090187
 int id leftToRight 0x7f090188
@@ -3804,6 +3808,7 @@ int id pressed 0x7f090226
 int id price 0x7f090227
 int id price_room 0x7f090228
 int id profile 0x7f090229
+int id profileTittle 0x7f09032a
 int id progressBar 0x7f09022a
 int id progress_circular 0x7f09022b
 int id progress_horizontal 0x7f09022c
@@ -4017,6 +4022,8 @@ int id triangle 0x7f0902f8
 int id tvCity 0x7f0902f9
 int id tvPrice 0x7f0902fa
 int id tvRating 0x7f0902fb
+int id tv_PhoneN 0x7f09032e
+int id tv_email 0x7f09032f
 int id tv_emailPhoneN 0x7f0902fc
 int id tym 0x7f0902fd
 int id type_room 0x7f0902fe
@@ -4211,6 +4218,7 @@ int layout empty_canceled_room 0x7f0c0048
 int layout empty_comment 0x7f0c0049
 int layout empty_past_room 0x7f0c004a
 int layout fragment_bookmark 0x7f0c004b
+int layout fragment_edit_info 0x7f0c009e
 int layout fragment_home 0x7f0c004c
 int layout fragment_home_filter 0x7f0c004d
 int layout fragment_home_filter_detail 0x7f0c004e
@@ -4375,6 +4383,7 @@ int string content_active_room 0x7f120049
 int string content_canceled_room 0x7f12004a
 int string content_past_room 0x7f12004b
 int string copy_toast_msg 0x7f12004c
+int string editInfo_title 0x7f1200e1
 int string error_a11y_label 0x7f12004d
 int string error_icon_content_description 0x7f12004e
 int string exposed_dropdown_menu_content_description 0x7f12004f

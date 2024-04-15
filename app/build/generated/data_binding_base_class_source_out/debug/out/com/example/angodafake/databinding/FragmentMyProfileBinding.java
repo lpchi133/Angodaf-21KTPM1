@@ -21,13 +21,13 @@ public final class FragmentMyProfileBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final TextView bookmarkTittle;
-
-  @NonNull
   public final Button btnBookmark;
 
   @NonNull
   public final Button btnCard;
+
+  @NonNull
+  public final Button btnChangePw;
 
   @NonNull
   public final Button btnChatAsCustomer;
@@ -51,6 +51,9 @@ public final class FragmentMyProfileBinding implements ViewBinding {
   public final ConstraintLayout myProfile;
 
   @NonNull
+  public final TextView profileTittle;
+
+  @NonNull
   public final TextView textView25;
 
   @NonNull
@@ -68,17 +71,16 @@ public final class FragmentMyProfileBinding implements ViewBinding {
   @NonNull
   public final View view3;
 
-  private FragmentMyProfileBinding(@NonNull ConstraintLayout rootView,
-      @NonNull TextView bookmarkTittle, @NonNull Button btnBookmark, @NonNull Button btnCard,
-      @NonNull Button btnChatAsCustomer, @NonNull Button btnChatWithCustomer,
-      @NonNull Button btnLogout, @NonNull Button btnMyComments, @NonNull Button btnMyHotel,
-      @NonNull Button btnProfile, @NonNull ConstraintLayout myProfile, @NonNull TextView textView25,
-      @NonNull TextView textView26, @NonNull TextView textView27, @NonNull View view,
-      @NonNull View view2, @NonNull View view3) {
+  private FragmentMyProfileBinding(@NonNull ConstraintLayout rootView, @NonNull Button btnBookmark,
+      @NonNull Button btnCard, @NonNull Button btnChangePw, @NonNull Button btnChatAsCustomer,
+      @NonNull Button btnChatWithCustomer, @NonNull Button btnLogout, @NonNull Button btnMyComments,
+      @NonNull Button btnMyHotel, @NonNull Button btnProfile, @NonNull ConstraintLayout myProfile,
+      @NonNull TextView profileTittle, @NonNull TextView textView25, @NonNull TextView textView26,
+      @NonNull TextView textView27, @NonNull View view, @NonNull View view2, @NonNull View view3) {
     this.rootView = rootView;
-    this.bookmarkTittle = bookmarkTittle;
     this.btnBookmark = btnBookmark;
     this.btnCard = btnCard;
+    this.btnChangePw = btnChangePw;
     this.btnChatAsCustomer = btnChatAsCustomer;
     this.btnChatWithCustomer = btnChatWithCustomer;
     this.btnLogout = btnLogout;
@@ -86,6 +88,7 @@ public final class FragmentMyProfileBinding implements ViewBinding {
     this.btnMyHotel = btnMyHotel;
     this.btnProfile = btnProfile;
     this.myProfile = myProfile;
+    this.profileTittle = profileTittle;
     this.textView25 = textView25;
     this.textView26 = textView26;
     this.textView27 = textView27;
@@ -121,12 +124,6 @@ public final class FragmentMyProfileBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.bookmarkTittle;
-      TextView bookmarkTittle = ViewBindings.findChildViewById(rootView, id);
-      if (bookmarkTittle == null) {
-        break missingId;
-      }
-
       id = R.id.btn_bookmark;
       Button btnBookmark = ViewBindings.findChildViewById(rootView, id);
       if (btnBookmark == null) {
@@ -136,6 +133,12 @@ public final class FragmentMyProfileBinding implements ViewBinding {
       id = R.id.btn_card;
       Button btnCard = ViewBindings.findChildViewById(rootView, id);
       if (btnCard == null) {
+        break missingId;
+      }
+
+      id = R.id.btn_changePw;
+      Button btnChangePw = ViewBindings.findChildViewById(rootView, id);
+      if (btnChangePw == null) {
         break missingId;
       }
 
@@ -177,6 +180,12 @@ public final class FragmentMyProfileBinding implements ViewBinding {
 
       ConstraintLayout myProfile = (ConstraintLayout) rootView;
 
+      id = R.id.profileTittle;
+      TextView profileTittle = ViewBindings.findChildViewById(rootView, id);
+      if (profileTittle == null) {
+        break missingId;
+      }
+
       id = R.id.textView25;
       TextView textView25 = ViewBindings.findChildViewById(rootView, id);
       if (textView25 == null) {
@@ -213,9 +222,10 @@ public final class FragmentMyProfileBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentMyProfileBinding((ConstraintLayout) rootView, bookmarkTittle, btnBookmark,
-          btnCard, btnChatAsCustomer, btnChatWithCustomer, btnLogout, btnMyComments, btnMyHotel,
-          btnProfile, myProfile, textView25, textView26, textView27, view, view2, view3);
+      return new FragmentMyProfileBinding((ConstraintLayout) rootView, btnBookmark, btnCard,
+          btnChangePw, btnChatAsCustomer, btnChatWithCustomer, btnLogout, btnMyComments, btnMyHotel,
+          btnProfile, myProfile, profileTittle, textView25, textView26, textView27, view, view2,
+          view3);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
