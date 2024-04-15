@@ -28,10 +28,6 @@
         "source": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-7:\\drawable\\baseline_local_activity_24.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-5:/layout_custom_hotel.xml.flat",
-        "source": "com.example.angodafake.app-main-7:/layout/custom_hotel.xml"
-    },
-    {
         "merged": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-5:\\mipmap-mdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-7:\\mipmap-mdpi\\ic_launcher_round.webp"
     },
@@ -44,12 +40,12 @@
         "source": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-7:\\layout\\tab_comment.xml"
     },
     {
-        "merged": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-5:\\layout_voucher.xml.flat",
-        "source": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-7:\\layout\\voucher.xml"
-    },
-    {
         "merged": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-5:\\drawable_img_4.png.flat",
         "source": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-7:\\drawable\\img_4.png"
+    },
+    {
+        "merged": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-5:\\layout_voucher.xml.flat",
+        "source": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-7:\\layout\\voucher.xml"
     },
     {
         "merged": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-5:\\drawable_baseline_keyboard_arrow_down_black_24.xml.flat",
@@ -262,6 +258,10 @@
     {
         "merged": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-5:\\layout_custom_sort.xml.flat",
         "source": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-7:\\layout\\custom_sort.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-merged_res-5:/layout_custom_room.xml.flat",
+        "source": "com.example.angodafake.app-main-7:/layout/custom_room.xml"
     },
     {
         "merged": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-5:\\drawable_btn_circle.xml.flat",
@@ -526,10 +526,6 @@
     {
         "merged": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-5:\\drawable_border2.xml.flat",
         "source": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-7:\\drawable\\border2.xml"
-    },
-    {
-        "merged": "com.example.angodafake.app-merged_res-5:/layout_custom_hotel_detail.xml.flat",
-        "source": "com.example.angodafake.app-main-7:/layout/custom_hotel_detail.xml"
     },
     {
         "merged": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-5:\\drawable_baseline_home_24.xml.flat",
