@@ -12,22 +12,18 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.CancelPurchase
+import com.example.angodafake.PurchaseExtra
 import com.example.angodafake.R
-import com.example.angodafake.Utilities.HotelUtils
-import com.example.angodafake.Utilities.PictureUtils
-import com.example.angodafake.db.Hotel
-import com.example.angodafake.db.Picture_Hotel
 import com.example.angodafake.db.Purchase
+import com.squareup.picasso.Picasso
 
-class ActivePurchaseAdapter(private val context: Context, private var activePurchase: List<Purchase>) : RecyclerView.Adapter<ActivePurchaseAdapter.MyViewHolder>() {
-    var onItemClick: ((Purchase) -> Unit)? = null
+class ActivePurchaseAdapter(private val context: Context, private var activePurchase: MutableList<PurchaseExtra>) : RecyclerView.Adapter<ActivePurchaseAdapter.MyViewHolder>() {
+    var onItemClick: ((PurchaseExtra) -> Unit)? = null
     private var listener: OnItemClickListener? = null
-    private lateinit var HotelMarked: Hotel
-    private lateinit var Picture_Hotel: Picture_Hotel
+
     interface OnItemClickListener {
         fun onItemClick(purchase: Purchase)
     }
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -40,30 +36,24 @@ class ActivePurchaseAdapter(private val context: Context, private var activePurc
         return activePurchase.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = activePurchase[position]
 
-        HotelUtils.getHotelByID(currentItem.ID_Hotel!!) {hotel ->
-            HotelMarked = hotel
-        }
+        holder.namehotel.text = currentItem.nameHotel
+        Picasso.get().load(currentItem.imageHotel).into(holder.imagehotel)
+        holder.timebooking.text = currentItem.Purchase?.time_booking
+        holder.idorder.text = currentItem.Purchase?.ID.toString()
 
-        PictureUtils.getPictureByHotelID(currentItem.ID_Hotel!!) { picture ->
-            Picture_Hotel = picture
-        }
-
-        val picture = context.resources.getIdentifier(Picture_Hotel.picture, "drawable", context.packageName)
-
-        holder.timebooking.text = currentItem.time_booking
-        holder.idorder.text = currentItem.ID.toString()
-        if (currentItem.status_purchase == "Đã thanh toán") {
-            holder.statusperchase1.text = currentItem.status_purchase
+        if (currentItem.Purchase?.status_purchase == "DA_THANH_TOAN") {
+            holder.statusperchase1.text = "Đã thanh toán"
         } else {
-            holder.statusperchase2.text = currentItem.status_purchase
+            holder.statusperchase2.text = "Chưa thanh toán"
         }
-        holder.imagehotel.setImageResource(picture)
-        holder.namehotel.text = HotelMarked.name
-        holder.checkin.text = currentItem.date_come
-        holder.checkout.text = currentItem.date_go
+
+        holder.checkin.text = currentItem.Purchase?.date_come
+        holder.checkout.text = currentItem.Purchase?.date_go
+
         holder.cancelbtn.setOnClickListener {
             val intent = Intent(context, CancelPurchase::class.java)
             context.startActivity(intent)
@@ -92,12 +82,12 @@ class ActivePurchaseAdapter(private val context: Context, private var activePurc
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateList(newList: List<Purchase>) {
-        activePurchase = newList
+    fun updateList(newList: List<PurchaseExtra>) {
+        activePurchase = newList.toMutableList()
         notifyDataSetChanged()
     }
 
-    fun setOnItemClickListener(listener: OnItemClickListener) {
+    fun setOnItemClickListener(listener: ActivePurchaseAdapter.OnItemClickListener) {
         this.listener = listener
     }
 }

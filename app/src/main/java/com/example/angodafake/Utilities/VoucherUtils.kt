@@ -1,6 +1,6 @@
 package com.example.angodafake.Utilities
 
-import com.example.angodafake.db.Purchase
+import com.example.angodafake.db.Voucher
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -8,27 +8,27 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 
-object PurchaseUtils {
+object VoucherUtils {
     private lateinit var database: DatabaseReference
 
     init {
         database = Firebase.database.reference
     }
 
-    fun getAllPurchases(ownerID: String, listener: (List<Purchase>) -> Unit) {
-        val purchasesQuery = database.child("purchases")
+    fun getAllVouchers(ownerID: String, listener: (List<Voucher>) -> Unit) {
+        val vouchersQuery = database.child("vouchers")
 
-        purchasesQuery.addValueEventListener(object : ValueEventListener {
+        vouchersQuery.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val purchasesList = mutableListOf<Purchase>()
-                for (purchaseSnapshot in dataSnapshot.children) {
-                    val purchase = purchaseSnapshot.getValue(Purchase::class.java)
-                    if (purchase?.ID_Owner == ownerID) {
-                        purchase.ID = purchaseSnapshot.key
-                        purchase.let { purchasesList.add(it) }
+                val vouchersList = mutableListOf<Voucher>()
+                for (voucherSnapshot in dataSnapshot.children) {
+                    val voucher = voucherSnapshot.getValue(Voucher::class.java)
+                    if (voucher?.ID_Hotel == ownerID) {
+                        voucher.ID = voucherSnapshot.key
+                        voucher.let { vouchersList.add(it) }
                     }
                 }
-                listener(purchasesList)
+                listener(vouchersList)
             }
 
             override fun onCancelled(error: DatabaseError) {

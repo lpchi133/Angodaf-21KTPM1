@@ -2,24 +2,30 @@ package com.example.angodafake
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageButton
-import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.angodafake.Adapter.ActivePurchaseAdapter
 import com.example.angodafake.Adapter.PastCancelPurchaseAdapter
+import com.example.angodafake.Utilities.HotelUtils
+import com.example.angodafake.Utilities.PictureUtils
 import com.example.angodafake.Utilities.PurchaseUtils
 import com.example.angodafake.db.Purchase
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,10 +34,16 @@ private const val ARG_PARAM2 = "param2"
 private val TAB_TITLE = arrayOf("Sắp tới","Hoàn tất","Đã hủy")
 private const val ARG_OBJECT = "title_tab"
 private const val IS_AVAILABLE= "have_content"
-private var HAVE_CONTENT: MutableList<Boolean> = TODO()
-private var upcomingList: MutableList<Purchase>
-private var completedList: MutableList<Purchase>
-private var canceledList: MutableList<Purchase>
+private var HAVE_CONTENT: MutableList<Boolean> = mutableListOf(false,false,false)
+private var upcomingList: MutableList<PurchaseExtra> = mutableListOf()
+private var completedList: MutableList<PurchaseExtra> = mutableListOf()
+private var canceledList: MutableList<PurchaseExtra> = mutableListOf()
+
+data class PurchaseExtra(
+    var Purchase: Purchase? = null,
+    var nameHotel: String? = null,
+    var imageHotel: String? = null
+)
 
 /**
  * A simple [Fragment] subclass.
@@ -44,16 +56,51 @@ class MyRoom : Fragment() {
     private var param2: String? = null
 
     private lateinit var collectionAdapter: CollectionAdapter
-    private fun createData() {
-        PurchaseUtils.getAllPurchases("tYw0x3oVS7gAd9wOdOszzvJMOEM2") {allPurchases ->
-            for (purchase in allPurchases) {
-                when (purchase.detail) {
-                    "Sắp tới" -> upcomingList.add(purchase)
-                    "Hoàn tất" -> completedList.add(purchase)
-                    "Đã hủy" -> canceledList.add(purchase)
+    private fun loadData() {
+        collectionAdapter = CollectionAdapter(this)
+        val tabHandler = requireView().findViewById<TabLayout>(R.id.tab_handler)
+        val viewPager = requireView().findViewById<ViewPager2>(R.id.pager)
+
+        viewPager.adapter = collectionAdapter
+        TabLayoutMediator(tabHandler, viewPager) { tab, position ->
+            tab.text = TAB_TITLE[position]
+        }.attach()
+    }
+    private suspend fun createData() {
+        upcomingList.clear()
+        completedList.clear()
+        canceledList.clear()
+
+        // Suspend execution and wait for the callback to complete
+        val allPurchases = suspendCoroutine<List<Purchase>> { continuation ->
+            PurchaseUtils.getAllPurchases("tYw0x3oVS7gAd9wOdOszzvJMOEM2") { allPurchases ->
+                continuation.resume(allPurchases)
+            }
+        }
+
+        for (purchase in allPurchases) {
+            var temp: PurchaseExtra?
+
+            val hotel = suspendCoroutine { continuation ->
+                HotelUtils.getHotelByID(purchase.ID_Hotel!!) { hotel ->
+                    println(hotel.name)
+                    continuation.resume(hotel)
                 }
             }
-            Log.d("allPurchases",allPurchases.toString())
+
+            val picture = suspendCoroutine { continuation ->
+                PictureUtils.getPictureByHotelID(purchase.ID_Hotel!!) { picture ->
+                    println(picture.picture)
+                    continuation.resume(picture)
+                }
+            }
+
+            temp = PurchaseExtra(purchase,hotel.name,picture.picture)
+            when (purchase.detail) {
+                "SAP_TOI" -> upcomingList.add(temp)
+                "HOAN_TAT" -> completedList.add(temp)
+                "DA_HUY" -> canceledList.add(temp)
+            }
         }
 
         HAVE_CONTENT = mutableListOf(
@@ -61,23 +108,8 @@ class MyRoom : Fragment() {
             completedList.isNotEmpty(),
             canceledList.isNotEmpty()
         )
-
-        // In danh sách các đối tượng trong từng danh sách con
-//        println("Upcoming List:")
-//        for (purchase in upcomingList) {
-//            println(purchase)
-//        }
-//
-//        println("Completed List:")
-//        for (purchase in completedList) {
-//            println(purchase)
-//        }
-//
-//        println("Canceled List:")
-//        for (purchase in canceledList) {
-//            println(purchase)
-//        }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -86,22 +118,11 @@ class MyRoom : Fragment() {
         }
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        collectionAdapter = CollectionAdapter(this)
-        val tabHandler = view.findViewById<TabLayout>(R.id.tab_handler)
-        val viewPager = view.findViewById<ViewPager2>(R.id.pager)
-        val btnBack = view.findViewById<ImageButton>(R.id.btn_back)
-
-        btnBack.setOnClickListener {
-            Toast.makeText(requireContext(), "Press", Toast.LENGTH_SHORT).show()
+        super.onViewCreated(view, savedInstanceState)
+        lifecycleScope.launch {
+            createData()
+            loadData()
         }
-
-        viewPager.adapter = collectionAdapter
-        TabLayoutMediator(tabHandler, viewPager) { tab, position ->
-            tab.text = TAB_TITLE[position]
-        }.attach()
-
-        createData()
-        println(HAVE_CONTENT)
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -162,6 +183,7 @@ class ObjectFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             return when (getInt(ARG_OBJECT)) {
                 0 -> {
+                    println(upcomingList)
                     val view1 = if (have_content) R.layout.tab_active_room else R.layout.empty_active_room
                     val layout1 = inflater.inflate(view1, container, false)
                     if (have_content) {
@@ -174,20 +196,21 @@ class ObjectFragment : Fragment() {
 
                         linearAdapter1.onItemClick = { contact ->
                             val intent = Intent(requireContext(), ActivePurchaseDetail::class.java)
-                            println(contact.status_purchase)
-                            intent.putExtra("status_purchase", contact.status_purchase)
+                            println(contact.Purchase?.status_purchase)
+                            intent.putExtra("status_purchase", contact.Purchase?.status_purchase)
                             startActivity(intent)
                         }
                     } else {
                         val btnOrder1: Button = layout1.findViewById(R.id.btn_order1)
 
                         btnOrder1.setOnClickListener {
-                            Toast.makeText(requireContext(), "Press", Toast.LENGTH_SHORT).show()
+                            replaceFragmentToHotel()
                         }
                     }
                     return layout1
                 }
-                1 -> { val view2 = if (have_content) R.layout.tab_past_room else R.layout.empty_past_room
+                1 -> {
+                    val view2 = if (have_content) R.layout.tab_past_room else R.layout.empty_past_room
                     val layout2 = inflater.inflate(view2, container, false)
                     if (have_content) {
                         pastPurchase = layout2.findViewById(R.id.pastList)
@@ -199,20 +222,21 @@ class ObjectFragment : Fragment() {
 
                         linearAdapter2.onItemClick = { contact ->
                             val intent = Intent(requireContext(), PastCancelPurchaseDetail::class.java)
-                            println(contact.status_purchase)
-                            intent.putExtra("status_purchase", contact.status_purchase)
+                            println(contact.Purchase?.status_purchase)
+                            intent.putExtra("status_purchase", contact.Purchase?.status_purchase)
                             startActivity(intent)
                         }
                     } else {
                         val btnOrder2: Button = layout2.findViewById(R.id.btn_order2)
 
                         btnOrder2.setOnClickListener {
-                            Toast.makeText(requireContext(), "Press", Toast.LENGTH_SHORT).show()
+                            replaceFragmentToHotel()
                         }
                     }
                     return layout2
                 }
-                else -> { val view3 = if (have_content) R.layout.tab_canceled_room else R.layout.empty_canceled_room
+                else -> {
+                    val view3 = if (have_content) R.layout.tab_canceled_room else R.layout.empty_canceled_room
                     val layout3 =  inflater.inflate(view3, container, false)
                     if (have_content) {
                         cancelPurchase = layout3.findViewById(R.id.canceledList)
@@ -224,15 +248,15 @@ class ObjectFragment : Fragment() {
 
                         linearAdapter2.onItemClick = { contact ->
                             val intent = Intent(requireContext(), PastCancelPurchaseDetail::class.java)
-                            println(contact.status_purchase)
-                            intent.putExtra("status_purchase", contact.status_purchase)
+                            println(contact.Purchase?.status_purchase)
+                            intent.putExtra("status_purchase", contact.Purchase?.status_purchase)
                             startActivity(intent)
                         }
                     } else {
                         val btnOrder3: Button = layout3.findViewById(R.id.btn_order3)
 
                         btnOrder3.setOnClickListener {
-                            Toast.makeText(requireContext(), "Press", Toast.LENGTH_SHORT).show()
+                            replaceFragmentToHotel()
                         }
                     }
                     return layout3
@@ -240,5 +264,10 @@ class ObjectFragment : Fragment() {
             }
         }
         return inflater.inflate(R.layout.empty_active_room, container, false)
+    }
+
+    private fun replaceFragmentToHotel() {
+        val mainActivity = activity as MainActivity
+        mainActivity.replaceFragment(MyHotel())
     }
 }

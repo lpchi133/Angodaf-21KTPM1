@@ -9,7 +9,6 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
-
 class ActivePurchaseDetail : AppCompatActivity() {
     private lateinit var btnBack: ImageButton
     private lateinit var btnCall: ImageButton

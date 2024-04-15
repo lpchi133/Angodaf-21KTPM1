@@ -629,49 +629,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginVertical="10dp"
                     android:layout_below="@+id/textView15"
                     android:textColor="@color/black"
                     android:text="Thanh toán trực tiếp khi nhận phòng" />
-
-                <TextView
-                    android:id="@+id/line7"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@+id/payment_methods"
-                    android:layout_marginVertical="10dp"
-                    android:background="#A9A9A9" />
-
-                <TextView
-                    android:id="@+id/textView16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_below="@+id/line7"
-                    android:text="Tích lũy từ chuyến đi này" />
-
-                <TextView
-                    android:id="@+id/textView17"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_below="@+id/textView16"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:text="Tiền Agoda" />
-
-                <TextView
-                    android:id="@+id/costAgoda"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/textView16"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginVertical="10dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:text="₫347"
-                    android:textColor="@color/black" />
 
             </RelativeLayout>
 

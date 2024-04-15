@@ -12,5 +12,7 @@
         android:paddingHorizontal="15dp"
         android:paddingBottom="15dp"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp" />
+        tools:layout_editor_absoluteY="1dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"/>
 </RelativeLayout>

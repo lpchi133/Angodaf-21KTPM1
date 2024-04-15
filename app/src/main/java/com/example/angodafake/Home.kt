@@ -10,7 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.angodafake.Adapter.HotelAdapter
+//import com.example.angodafake.Adapter.HotelAdapter
 import com.example.angodafake.db.Hotel
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
@@ -37,7 +37,7 @@ class Home(private var idUser: Int) : Fragment() {
     private lateinit var homeLayout: View
 
     private lateinit var hotelAdapter: List<Hotel>
-    private lateinit var adapter: HotelAdapter
+//    private lateinit var adapter: HotelAdapter
     private lateinit var listHotels: MutableList<Hotel>
     private lateinit var database: DatabaseReference
     private lateinit var layoutManager: RecyclerView.LayoutManager
@@ -72,8 +72,8 @@ class Home(private var idUser: Int) : Fragment() {
 
         val hotelsRecyclerView = view.findViewById<RecyclerView>(R.id.contactsRV)
         hotelAdapter = ArrayList(listHotels)
-        adapter = HotelAdapter(requireContext(), hotelAdapter, idUser)
-        hotelsRecyclerView.adapter = adapter
+//        adapter = HotelAdapter(requireContext(), hotelAdapter, idUser)
+//        hotelsRecyclerView.adapter = adapter
         layoutManager = LinearLayoutManager(requireContext())
         hotelsRecyclerView.layoutManager = layoutManager
         hotelsRecyclerView.setHasFixedSize(true)
@@ -94,7 +94,7 @@ class Home(private var idUser: Int) : Fragment() {
                 listHotels.forEachIndexed { index, hotel ->
                     Log.d("FilterDetailFragment", "Hotel ${index + 1}: ${hotel.name}, Point: ${hotel.point}")
                 }
-                adapter.updateDataGradually(listHotels)
+//                adapter.updateDataGradually(listHotels)
             }
 
             override fun onCancelled(databaseError: DatabaseError) {

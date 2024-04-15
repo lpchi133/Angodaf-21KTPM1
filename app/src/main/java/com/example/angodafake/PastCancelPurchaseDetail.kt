@@ -17,14 +17,14 @@ class PastCancelPurchaseDetail : AppCompatActivity() {
     private lateinit var btnOrder: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.custome_past_cancel_purchase_detail)
+        setContentView(R.layout.custom_past_cancel_purchase_detail)
 
         val status1: TextView = findViewById(R.id.status1)
-        val status3: TextView = findViewById(R.id.status3)
         val status2: TextView = findViewById(R.id.status2)
+        val status3: TextView = findViewById(R.id.status3)
         val statusPurchase = intent.getStringExtra("status_purchase")
         println(statusPurchase)
-        if (statusPurchase == "Đã hoàn tiền") {
+        if (statusPurchase == "Đã hoàn tiền" || statusPurchase == "Đã thanh toán") {
             status2.visibility = View.GONE
             status3.visibility = View.GONE
         } else if (statusPurchase == "Chưa hoàn tiền") {
