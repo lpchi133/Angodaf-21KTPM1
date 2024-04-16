@@ -19,6 +19,7 @@ data class Hotel(
     var checkIn: String? = null,
     var checkOut: String? = null,
     var money: Int? = 0,
+    var money_rating: Double? = 0.0,
     var location: Double? = 0.0,
     var clean: Double? =  0.0,
     var service: Double? = 0.0,
