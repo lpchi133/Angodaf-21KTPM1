@@ -288,4 +288,6 @@
     </string-array>
     <string name="title">Thông tin khách sạn</string>
     <string name="timeCountingDown">00:20:00</string>
+    <string name="profile_title">"Chào mừng, Name"</string>
+    <string name="editInfo_title">Hồ sơ cá nhân</string>
 </resources>

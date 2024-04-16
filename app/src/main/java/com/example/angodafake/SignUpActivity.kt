@@ -21,6 +21,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.angodafake.Utilities.UserUtils
 import com.example.angodafake.db.User
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
@@ -263,37 +264,46 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun registerWithPhoneN(lPhoneN:TextInputLayout, etPhoneN: EditText){
         val phoneN = etPhoneN.text.toString().trim()
-        val fEmailFromPhoneN  = "$phoneN@gmail.com"
-        auth.createUserWithEmailAndPassword(fEmailFromPhoneN, etPass.text.toString().trim())
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    val name = etName.text.toString().trim()
-                    val dob = etDob.text.toString().trim()
-                    val gender = findViewById<RadioButton>(rgGender.checkedRadioButtonId).text.toString().trim()
-                    val number = fEmailFromPhoneN.substring(0, fEmailFromPhoneN.indexOf("@"))
-                    val country = actvCountry.text.toString()
-                    val cardNumber = ""
-                    val cardName = ""
-
-                    val user = User(name, dob, gender, number, "", country, cardNumber, cardName)
-                    val userID = auth.currentUser!!.uid
-                    database.child("users").child(userID).setValue(user)
-                    showSuccessSnackBar("Tạo tài khoản thành công!")
-                    val handler = Handler()
-                    handler.postDelayed({
-                        val intent = Intent(this, MainActivity::class.java)
-                        intent.putExtra("idUser", userID)
-                        startActivity(intent)
-                        finish()
-                    }, 1000)
-                } else {
-                    // If sign in fails, display a message to the user.
-                    showFailSnackBar("Người dùng đã tồn tại! Vui lòng nhập số di động khác.")
-                    checkArray[4] = false
-                    lPhoneN.error = "Số di động đã được sử dụng."
-                }
+        UserUtils.getUserByPhoneNumber(phoneN){
+            if (it != null){
+                showFailSnackBar("Người dùng đã tồn tại! Vui lòng nhập số di động khác.")
+                checkArray[4] = false
+                lPhoneN.error = "Số di động đã được sử dụng."
             }
+            else{
+                val fEmailFromPhoneN  = "$phoneN@gmail.com"
+                auth.createUserWithEmailAndPassword(fEmailFromPhoneN, etPass.text.toString().trim())
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            // Sign in success, update UI with the signed-in user's information
+                            val name = etName.text.toString().trim()
+                            val dob = etDob.text.toString().trim()
+                            val gender = findViewById<RadioButton>(rgGender.checkedRadioButtonId).text.toString().trim()
+                            val number = fEmailFromPhoneN.substring(0, fEmailFromPhoneN.indexOf("@"))
+                            val country = actvCountry.text.toString()
+                            val cardNumber = ""
+                            val cardName = ""
+
+                            val user = User(name, dob, gender, number, "", country, cardNumber, cardName)
+                            val userID = auth.currentUser!!.uid
+                            database.child("users").child(userID).setValue(user)
+                            showSuccessSnackBar("Tạo tài khoản thành công!")
+                            val handler = Handler()
+                            handler.postDelayed({
+                                val intent = Intent(this, MainActivity::class.java)
+                                intent.putExtra("idUser", userID)
+                                startActivity(intent)
+                                finish()
+                            }, 1000)
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            showFailSnackBar("Người dùng đã tồn tại! Vui lòng nhập số di động khác.")
+                            checkArray[4] = false
+                            lPhoneN.error = "Số di động đã được sử dụng."
+                        }
+                    }
+            }
+        }
     }
 
     private fun showFailSnackBar(msg: String) {
