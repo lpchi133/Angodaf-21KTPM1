@@ -55,7 +55,7 @@ class Home(private var idUser: Int) : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         homeLayout = inflater.inflate(R.layout.fragment_home, container, false)
 
         setupViews(homeLayout)
@@ -63,9 +63,6 @@ class Home(private var idUser: Int) : Fragment() {
     }
 
     private fun setupViews(view: View) {
-//        hotel_db = HotelDatabase.getInstance(requireContext())
-//        listHotels = hotel_db.HotelDAO().getHotelList()
-
         if (!::listHotels.isInitialized) {
             listHotels = mutableListOf()
         }

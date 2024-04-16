@@ -258,8 +258,12 @@
     <color name="black">#FF000000</color>
     <color name="blue">#3193FF</color>
     <color name="bluee">#00BCD4</color>
+    <color name="green">#3D6604</color>
     <color name="grey">#A5AAAF</color>
+    <color name="greyish">#DADADA</color>
+    <color name="lightGreen">#DBFFD2</color>
     <color name="light_red">#DC5454</color>
+    <color name="pink">#FFEEEE</color>
     <color name="red">#AF0C0C</color>
     <color name="white">#FFFFFFFF</color>
     <string name="Filter">Chọn lọc</string>
@@ -288,6 +292,7 @@
     <string name="homeTittle">Tìm kiếm khách sạn</string>
     <string name="i_title">Thông tin đặt phòng</string>
     <string name="mv_title">Khuyến mãi</string>
+    <string name="pleaseBuy">Đang giữ giá. Đặt ngay để không vuột mất giá tốt!</string>
     <string name="project_id" translatable="false">mobile-angodaf</string>
     <string name="r_dateorder">Ngày đặt phòng:</string>
     <string name="r_id">Mã đặt phòng:</string>
@@ -296,7 +301,9 @@
     <string name="r_traphong">Trả phòng</string>
     <string name="rating_title">Đánh giá</string>
     <string name="roomTittle">Thông tin phòng</string>
+    <string name="timeCountingDown">00:20:00</string>
     <string name="title">Thông tin khách sạn</string>
+    <string name="titlePurchase">Chi tiết thanh toán</string>
     <string name="v_title">Phiếu giảm giá &amp; Ưu đãi</string>
     <style name="Base.Theme.AngodaFake" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
     </style>

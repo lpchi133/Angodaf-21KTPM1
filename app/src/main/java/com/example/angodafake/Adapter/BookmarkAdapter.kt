@@ -2,6 +2,8 @@ package com.example.angodafake.Adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +16,9 @@ import com.example.angodafake.R
 import com.example.angodafake.Utilities.BookmarkUtils
 import com.example.angodafake.Utilities.HotelUtils
 import com.example.angodafake.db.Hotel
+import com.google.android.material.snackbar.Snackbar
 
-class BookmarkAdapter(private val context: Context, private var bookmarks: List<com.example.angodafake.db.Bookmark>) : RecyclerView.Adapter<BookmarkAdapter.MyViewHolder>() {
+class BookmarkAdapter(private val rootView: View, private val context: Context, private var bookmarks: List<com.example.angodafake.db.Bookmark>) : RecyclerView.Adapter<BookmarkAdapter.MyViewHolder>() {
     private var listener: OnItemClickListener? = null
     private lateinit var HotelMarked: Hotel
 //    private lateinit var Picture: Picture
@@ -36,11 +39,10 @@ class BookmarkAdapter(private val context: Context, private var bookmarks: List<
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = bookmarks[position]
 
-//        HotelMarked = hotel_db.HotelDAO().getHotelByID(currentItem.ID_Hotel)
         HotelUtils.getHotelByID(currentItem.ID_Hotel!!){hotel ->
             HotelMarked = hotel
-//            Picture = hotel_db.PictureDAO().getPictureByHotelID(currentItem.ID_Hotel)
-//        PictureUtils.getPictureByHotelID(currentItem.ID_Hotel){picture ->
+//          Picture = hotel_db.PictureDAO().getPictureByHotelID(currentItem.ID_Hotel)
+//          PictureUtils.getPictureByHotelID(currentItem.ID_Hotel){picture ->
 //            Picture = picture
 //        }
 //        val idPicture = context.resources.getIdentifier(Picture.picture, "drawable", context.packageName)
@@ -52,7 +54,7 @@ class BookmarkAdapter(private val context: Context, private var bookmarks: List<
                 BookmarkUtils.deleteBookmark(bookmarks_tmp[position])
                 bookmarks_tmp.removeAt(position)
                 updateList(bookmarks_tmp)
-                Toast.makeText(context, "Đã xoá khách sạn", Toast.LENGTH_SHORT).show()
+                showSuccessSnackBar("Đã xoá khách sạn")
             }
             holder.location.text = HotelMarked.city
             holder.rateStatus.text = when (HotelMarked.point!!.toInt()){
@@ -65,7 +67,6 @@ class BookmarkAdapter(private val context: Context, private var bookmarks: List<
             }
             holder.Point.text = HotelMarked.point.toString()
         }
-//
     }
 
     class MyViewHolder(bookmarkItem: View) : RecyclerView.ViewHolder(bookmarkItem) {
@@ -86,5 +87,12 @@ class BookmarkAdapter(private val context: Context, private var bookmarks: List<
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
         this.listener = listener
+    }
+
+    private fun showSuccessSnackBar(msg: String) {
+        val snackbar = Snackbar.make(rootView, msg, Snackbar.LENGTH_LONG)
+        snackbar.view.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#3193FF"))
+        snackbar.setTextColor(Color.WHITE)
+        snackbar.show()
     }
 }
