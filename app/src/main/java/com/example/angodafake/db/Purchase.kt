@@ -13,6 +13,7 @@ data class Purchase(
     var time_booking: String? = null,
     var time_purchase: String? = null,
     var time_cancel: String? = null,
+    var reason: String? = null,
     var total_purchase: Double? = 0.0,
     var status_purchase: String? = null,
     var detail: String? = null,

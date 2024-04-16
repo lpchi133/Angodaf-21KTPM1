@@ -66,6 +66,7 @@ class CancelPurchase : AppCompatActivity() {
         val notic: TextView = findViewById(R.id.notic)
 
         btnBack.setOnClickListener {
+
             finish()
         }
 
