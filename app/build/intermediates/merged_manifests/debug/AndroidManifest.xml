@@ -57,6 +57,12 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
+            android:name="com.example.angodafake.ActivePurchaseDetail"
+            android:exported="false" />
+        <activity
+            android:name="com.example.angodafake.CancelPurchase"
+            android:exported="false" />
+        <activity
             android:name="com.example.angodafake.SignUpActivity"
             android:exported="false" />
         <activity
@@ -208,6 +214,11 @@
                 <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
             </intent-filter>
         </receiver>
+
+        <provider
+            android:name="com.squareup.picasso.PicassoProvider"
+            android:authorities="com.example.angodafake.com.squareup.picasso"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -224,7 +224,6 @@ id convenience
 id conveniences
 id convinent
 id cost
-id costAgoda
 id count
 id countBedDouble
 id countBedSingle
@@ -514,12 +513,12 @@ layout custom_hotel_detail
 layout custom_my_voucher
 layout custom_my_voucher_detail
 layout custom_past_cancel_purchase_adapter
+layout custom_past_cancel_purchase_detail
 layout custom_price
 layout custom_rating
 layout custom_room
 layout custom_sort
 layout custom_voucher
-layout custome_past_cancel_purchase_detail
 layout empty_active_room
 layout empty_canceled_room
 layout empty_comment

@@ -294,7 +294,7 @@
     <string name="mv_title">Khuyến mãi</string>
     <string name="pleaseBuy">Đang giữ giá. Đặt ngay để không vuột mất giá tốt!</string>
     <string name="project_id" translatable="false">mobile-angodaf</string>
-    <string name="r_dateorder">Ngày đặt phòng:</string>
+    <string name="r_dateorder">Đặt phòng:</string>
     <string name="r_id">Mã đặt phòng:</string>
     <string name="r_nhanphong">Nhận phòng</string>
     <string name="r_title">Đơn đặt chỗ của tôi</string>
