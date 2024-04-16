@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.angodafake.app-mergeDebugResources-40:/values-et/values-et.xml",
+            "outputFile": "com.example.angodafake.app-mergeDebugResources-37:/values-et/values-et.xml",
             "map": [
                 {
                     "source": "C:\\Users\\lephu\\.gradle\\caches\\transforms-3\\8c42f27c52b47a122b25f0e4724c6074\\transformed\\play-services-basement-18.3.0\\res\\values-et\\values.xml",

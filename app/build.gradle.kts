@@ -2,7 +2,6 @@ plugins {
     id("com.google.gms.google-services")
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
@@ -55,9 +54,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx:22.3.1")
     implementation("com.google.firebase:firebase-database-ktx:20.3.1")
     implementation("com.ToxicBakery.library.bcrypt:bcrypt:1.0.9")
-    implementation("androidx.room:room-runtime:2.6.1")
     implementation ("androidx.recyclerview:recyclerview:1.3.2")
-    kapt("androidx.room:room-compiler:2.6.1")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")

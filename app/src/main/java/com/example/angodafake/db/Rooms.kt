@@ -1,7 +1,5 @@
 package com.example.angodafake.db
 
-import androidx.room.ColumnInfo
-import androidx.room.Query
 import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
