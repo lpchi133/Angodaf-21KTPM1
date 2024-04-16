@@ -348,7 +348,7 @@
                         android:text="Nhận phòng: "
                         android:textColor="#090C22"
                         android:textSize="18sp"
-                         />
+                        />
 
                     <TextView
                         android:id="@+id/time_In"
@@ -448,7 +448,7 @@
                         android:id="@+id/b1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Mô tả toàn bộ căn hộ"
+                        android:text="Mô tả toàn bộ khách sạn"
                         android:textColor="#090C22"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -575,19 +575,20 @@
         </RelativeLayout>
     </ScrollView>
 
-    <Button
+    <ImageView
         android:id="@+id/fav"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="17dp"
-        android:background="@drawable/baseline_favorite" />
+        android:layout_alignBottom="@+id/border4"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="23dp"
+        app:srcCompat="@drawable/baseline_favorite" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/shareBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/border4"
@@ -612,17 +613,16 @@
 
     <TextView
         android:id="@+id/price_room"
-        android:layout_width="95dp"
-        android:layout_height="37dp"
-        android:layout_alignParentStart="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="50dp"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="15dp"
         android:layout_toStartOf="@+id/watchRoom"
         android:background="@drawable/rounded_button_delete"
         android:gravity="center"
+        android:padding="10dp"
         android:text="694.444 đ"
         android:textColor="@android:color/holo_red_dark"
         android:textStyle="bold"
@@ -637,19 +637,20 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="26dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/rounded_button"
         android:text="Xem mọi phòng"
         android:textColor="#FFFFFF"
         android:textSize="18sp" />
 
     <ImageView
-        android:id="@+id/imageView15"
+        android:id="@+id/chat"
         android:layout_width="34dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/watchRoom"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="25dp"
+        android:padding="3dp"
         android:layout_marginBottom="12dp"
         android:background="@drawable/rounded_button"
         app:srcCompat="@android:drawable/stat_notify_chat" />

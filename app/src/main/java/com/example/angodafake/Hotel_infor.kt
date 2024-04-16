@@ -10,11 +10,19 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.angodafake.Utilities.HotelUtils
+import com.example.angodafake.Utilities.PictureUtils
+import com.example.angodafake.Utilities.RoomUtils
+import com.example.angodafake.Utilities.UserUtils
 import com.example.angodafake.db.Hotel
-import com.example.angodafake.db.HotelDatabase
+import com.example.angodafake.db.Picture_Hotel
+import com.example.angodafake.db.Rooms
+import com.example.angodafake.db.User
+
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+
 /**
  * A simple [Fragment] subclass.
  * Use the [Hotel_infor.newInstance] factory method to
@@ -24,9 +32,9 @@ class Hotel_infor(private var idUser: Int) : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
+    private lateinit var Picture_Hotel: Picture_Hotel
+    private lateinit var User: User
     private lateinit var hotel: Hotel
-    private lateinit var hotel_db: HotelDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -42,10 +50,10 @@ class Hotel_infor(private var idUser: Int) : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.custom_hotel_detail, container, false)
         val args = arguments
-        val itemPosition = args?.getInt("hotelPosition") ?: -1
-        val hotelIds = args?.getIntArray("hotelIds")
-        val saveIds = args?.getIntArray("saveIds")
-        val searchText = args?.getString("hotelName")
+        val itemPosition = args?.getString("hotelPosition")
+        val hotelIds = args?.getStringArray("hotelIds")
+        val saveIds = args?.getStringArray("saveIds")
+        val searchText = args?.getString("searchText")
 
         val nameTextView = view.findViewById<TextView>(R.id.hotel_name)
         val locationTextView = view.findViewById<TextView>(R.id.address_hotel)
@@ -62,74 +70,89 @@ class Hotel_infor(private var idUser: Int) : Fragment() {
         val imgAvt: ImageView = view.findViewById(R.id.avt)
 
 
-        hotel_db = HotelDatabase.getInstance(requireContext())
+        if (itemPosition != null) {
+            HotelUtils.getHotelByID(itemPosition) { ho ->
+                hotel = ho
 
-        hotel =  hotel_db.HotelDAO().getHotelByID(itemPosition)
+                PictureUtils.getPictureByHotelID(hotel.ID!!) { picture ->
+                    Picture_Hotel = picture
+                    val idPicture = requireContext().resources.getIdentifier(Picture_Hotel.picture, "drawable", requireContext().packageName)
+//                    val idAvt = requireContext().resources.getIdentifier(Picture_Hotel.picture_onwer, "drawable", requireContext().packageName)
+                    img.setImageResource(idPicture)
+//                    imgAvt.setImageResource(idAvt)
 
-        val Picture = hotel_db.PictureDAO().getPictureByHotelID(hotel.id)
-        val rooms = hotel_db.RoomDAO().getRoomsByHotelID(hotel.id)
-        val user = hotel_db.UserDAO().getUserById(hotel.ID_Owner)
-        val lowestPrice = rooms.minByOrNull { it.price }?.price ?: Double.MAX_VALUE
+                    var roomList: List<Rooms> = emptyList()
+                    RoomUtils.getRoomByHotelID(hotel.ID!!){ fetchedRoomList   ->
+                        roomList = fetchedRoomList
 
-        val idPicture = requireContext().resources.getIdentifier(Picture.picture, "drawable", requireContext().packageName)
-        val idAvt = requireContext().resources.getIdentifier(Picture.picture_onwer, "drawable", requireContext().packageName)
-        img.setImageResource(idPicture)
-        imgAvt.setImageResource(idAvt)
-        nameTextView.text = hotel.name
-        locationTextView.text = hotel.locationDetail
-        pointView.text = hotel.point.toString()
-        description.text = hotel.description
-        convenience.text = hotel.convenience
-        checkIn.text = hotel.checkIn
-        checkOut.text = hotel.checkOut
-        price_room.text = lowestPrice.toString() + " đ"
-        nameOwner.text = user?.name
-        ratingBar.rating = hotel.point.toFloat() / 2
+                        val lowestPrice = roomList.minOfOrNull { it.price ?: Int.MAX_VALUE } ?: Int.MAX_VALUE
+                        price_room.text = lowestPrice.toString() + " đ"
 
-        rateStatus.text = when (hotel.point.toInt()){
-            in 0 until 3 -> { "Cực tệ" }
-            in 3 until 5 -> { "Tệ" }
-            in 5 until 6 -> { "Trung bình" }
-            in 6 until 8 -> { "Tốt" }
-            in 8 until 9 -> { "Rất tốt" }
-            else -> { "Tuyệt vời" }
+                        UserUtils.getUserByID(hotel.ID_Owner!!){user ->
+                            User = user
+
+                            Log.d("FilterFragment", "Received data - user: $User")
+
+
+                            nameTextView.text = hotel.name
+                            locationTextView.text = hotel.locationDetail
+                            pointView.text = hotel.point.toString()
+                            description.text = hotel.description
+                            convenience.text = hotel.conveniences
+                            checkIn.text = hotel.checkIn
+                            checkOut.text = hotel.checkOut
+                            nameOwner.text = User?.name
+                            ratingBar.rating = hotel.point?.toFloat()!! / 2
+
+                            rateStatus.text = when (hotel.point!!.toInt()){
+                                in 0 until 3 -> { "Cực tệ" }
+                                in 3 until 5 -> { "Tệ" }
+                                in 5 until 6 -> { "Trung bình" }
+                                in 6 until 8 -> { "Tốt" }
+                                in 8 until 9 -> { "Rất tốt" }
+                                else -> { "Tuyệt vời" }
+                            }
+
+                            view.findViewById<ImageView>(R.id.imageView4).setOnClickListener {
+                                val arg = Bundle()
+                                arg.putStringArray("hotelIds", hotelIds)
+                                arg.putStringArray("saveIds", saveIds)
+                                arg.putString("searchText", searchText)
+
+                                // Khởi tạo Fragment Filter và đính kèm Bundle
+                                val filterFragment = Filter(idUser)
+                                filterFragment.arguments = arg
+
+                                // Thay thế Fragment hiện tại bằng Fragment Filter
+                                val fragmentManager = requireActivity().supportFragmentManager
+                                fragmentManager.beginTransaction()
+                                    .replace(R.id.frameLayout, filterFragment)
+                                    .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
+                                    .commit()
+                            }
+
+                            view.findViewById<Button>(R.id.watchRoom).setOnClickListener {
+                                val arg = Bundle()
+                                arg.putString("hotelPosition", itemPosition)
+                                arg.putString("searchText", searchText)
+                                arg.putStringArray("hotelIds", hotelIds)
+                                arg.putStringArray("saveIds", saveIds)
+                                arg.putString("hotelName", hotel.name)
+
+                                val listRoom = ListRoom(idUser)
+                                listRoom.arguments = arg
+
+                                val fragmentManager = requireActivity().supportFragmentManager
+                                fragmentManager.beginTransaction()
+                                    .replace(R.id.frameLayout, listRoom)
+                                    .addToBackStack(null)
+                                    .commit()
+                            }
+                        }
+                    }
+                }
+            }
         }
-
-        view.findViewById<ImageView>(R.id.imageView4).setOnClickListener {
-            val arg = Bundle()
-            arg.putIntArray("hotelIds", hotelIds)
-            arg.putIntArray("saveIds", saveIds)
-            arg.putString("searchText", searchText)
-
-            // Khởi tạo Fragment Filter và đính kèm Bundle
-            val filterFragment = Filter(idUser)
-            filterFragment.arguments = arg
-
-            // Thay thế Fragment hiện tại bằng Fragment Filter
-            val fragmentManager = requireActivity().supportFragmentManager
-            fragmentManager.beginTransaction()
-                .replace(R.id.frameLayout, filterFragment)
-                .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
-                .commit()
-        }
-
-        view.findViewById<Button>(R.id.watchRoom).setOnClickListener {
-            val arg = Bundle()
-            arg.putInt("hotelPosition", itemPosition)
-            arg.putString("hotelName", hotel.name)
-            arg.putIntArray("hotelIds", hotelIds)
-            arg.putIntArray("saveIds", saveIds)
-
-            val listRoom = ListRoom(idUser)
-            listRoom.arguments = arg
-
-            val fragmentManager = requireActivity().supportFragmentManager
-            fragmentManager.beginTransaction()
-                .replace(R.id.frameLayout, listRoom)
-                .addToBackStack(null)
-                .commit()
-        }
-
         return view
     }
 

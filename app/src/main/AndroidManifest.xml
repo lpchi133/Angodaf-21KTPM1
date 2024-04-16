@@ -4,8 +4,8 @@
 
     <application
         android:allowBackup="true"
-        android:enableOnBackInvokedCallback="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
+        android:enableOnBackInvokedCallback="true"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,6 +13,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AngodaFake"
         tools:targetApi="31">
+        <activity
+            android:name=".BookRoom"
+            android:exported="false" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAkdyZlma94xlEhyGvEsx56ccQdcU9pJ2g" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:exported="true" />
+
         <activity
             android:name=".SignUpActivity"
             android:exported="false" />
@@ -42,6 +52,9 @@
             android:exported="false" />
         <activity
             android:name=".ListRoom"
+            android:exported="false" />
+        <activity
+            android:name=".MapsFragment"
             android:exported="false" />
     </application>
 

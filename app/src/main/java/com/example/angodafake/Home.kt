@@ -1,9 +1,6 @@
 package com.example.angodafake
 
-import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,11 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.angodafake.Adapter.HotelAdapter
 import com.example.angodafake.db.Hotel
-import com.example.angodafake.db.HotelDatabase
+import com.google.firebase.Firebase
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.database
 import java.util.Locale
 
 // TODO: Rename parameter arguments, choose names that match
@@ -36,12 +38,14 @@ class Home(private var idUser: Int) : Fragment() {
 
     private lateinit var hotelAdapter: List<Hotel>
     private lateinit var adapter: HotelAdapter
-    private lateinit var listHotels: List<Hotel>
-    private lateinit var hotel_db: HotelDatabase
+    private lateinit var listHotels: MutableList<Hotel>
+    private lateinit var database: DatabaseReference
     private lateinit var layoutManager: RecyclerView.LayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        database = Firebase.database.reference
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
@@ -59,8 +63,9 @@ class Home(private var idUser: Int) : Fragment() {
     }
 
     private fun setupViews(view: View) {
-        hotel_db = HotelDatabase.getInstance(requireContext())
-        listHotels = hotel_db.HotelDAO().getHotelList()
+        if (!::listHotels.isInitialized) {
+            listHotels = mutableListOf()
+        }
 
         val hotelsRecyclerView = view.findViewById<RecyclerView>(R.id.contactsRV)
         hotelAdapter = ArrayList(listHotels)
@@ -70,16 +75,49 @@ class Home(private var idUser: Int) : Fragment() {
         hotelsRecyclerView.layoutManager = layoutManager
         hotelsRecyclerView.setHasFixedSize(true)
 
+        val hotelsRef = database.child("hotels")
+
+        hotelsRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                listHotels.clear()
+                for (hotelSnapshot in dataSnapshot.children) {
+                    Log.d("hotelSnapshot", hotelSnapshot.toString())
+                    var hotel = hotelSnapshot.getValue(Hotel::class.java)
+                    hotel?.ID = hotelSnapshot.key
+                    Log.d("hotel", hotel.toString())
+                    hotel?.let { listHotels.add(it) }
+                }
+                Log.d("FilterDetailFragment", "List of Hotels:")
+                listHotels.forEachIndexed { index, hotel ->
+                    Log.d("FilterDetailFragment", "Hotel ${index + 1}: ${hotel.name}, Point: ${hotel.point}")
+                }
+                adapter.updateDataGradually(listHotels)
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Xử lý khi có lỗi xảy ra
+                println("Failed to read value: ${databaseError.toException()}")
+ //               listHotels = emptyList() // Trả về danh sách rỗng khi có lỗi
+            }
+        })
+        Log.d("FilterDetailFragment", "List of Hotels:")
+        listHotels.forEachIndexed { index, hotel ->
+            Log.d("FilterDetailFragment", "Hotel ${index + 1}: ${hotel.name}, Point: ${hotel.point}")
+        }
+
+
         val searchEditText = view.findViewById<EditText>(R.id.nameHotelSearch)
         val findButton = view.findViewById<Button>(R.id.findButton)
 
         findButton.setOnClickListener {
             val searchText = searchEditText.text.toString()
             val args = Bundle()
-            val hotelIds = filterHotels(searchText).map { it.id }.toIntArray()
-            args.putIntArray("hotelIds", hotelIds)
+            val hotelIds = filterHotels(searchText).map { it.ID }
+            println("Hotel IDs: ${hotelIds.joinToString()}")
+            args.putStringArray("hotelIds", hotelIds.toTypedArray())
+            args.putStringArray("saveIds", hotelIds.toTypedArray())
             args.putString("searchText", searchText)
-            args.putIntArray("saveIds", hotelIds)
+
             // Khởi tạo Fragment Filter và đính kèm Bundle
             val filterFragment = Filter(idUser)
 
@@ -113,18 +151,21 @@ class Home(private var idUser: Int) : Fragment() {
                 }
             }
     }
-
     private fun filterHotels(query: String): List<Hotel> {
         val filteredList = mutableListOf<Hotel>()
         for (hotel in listHotels) {
-            val hotelNameLower = hotel.name.toLowerCase(Locale.getDefault())
-            val locationDetailLower = hotel.locationDetail.toLowerCase(Locale.getDefault())
+            val hotelNameLower = hotel.name?.toLowerCase(Locale.getDefault())
+            val locationDetailLower = hotel.locationDetail?.toLowerCase(Locale.getDefault())
 
             // Kiểm tra xem query có tồn tại trong tên khách sạn hoặc chi tiết địa điểm không
-            if (hotelNameLower.contains(query.toLowerCase(Locale.getDefault())) ||
-                locationDetailLower.contains(query.toLowerCase(Locale.getDefault()))
-            ) {
-                filteredList.add(hotel)
+            if (locationDetailLower != null) {
+                if (hotelNameLower != null) {
+                    if (hotelNameLower.contains(query.toLowerCase(Locale.getDefault())) ||
+                        locationDetailLower.contains(query.toLowerCase(Locale.getDefault()))
+                    ) {
+                        filteredList.add(hotel)
+                    }
+                }
             }
         }
         return filteredList

@@ -8,26 +8,26 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.TabHost
 import android.widget.TextView
-import com.example.angodafake.db.HotelDatabase
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import com.toxicbakery.bcrypt.Bcrypt
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var tabHost : TabHost
-    private lateinit var hotel_db: HotelDatabase
+    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        hotel_db = HotelDatabase.getInstance(this)
+        auth = Firebase.auth
 
         tabHost = findViewById(R.id.tabHost)
         tabHost.setup()
@@ -68,24 +68,9 @@ class LoginActivity : AppCompatActivity() {
             val pass = etPass.text.toString().trim()
             val checkEmail = validateEmail(email, lEmail)
             val checkPass = validatePass(pass, lPass)
+            //Thong tin nhap vao hop le
             if (checkEmail && checkPass){
-                //Thong tin nhap vao hop le
-                if (!checkUserWithEmail(email, pass)){
-                    //Thong tin sai
-                    showSnackBar("Email hoặc Mật khẩu không đúng.")
-                }
-                else{
-                    //Dang nhap thanh cong
-                    val user = hotel_db.UserDAO().getUserByEmail(email)
-                    showSuccessSnackBar("Đăng nhập thành công!")
-                    val handler = Handler()
-                    handler.postDelayed({
-                        val intent = Intent(this, MainActivity::class.java)
-                        intent.putExtra("idUser", user!!.id.toString())
-                        startActivity(intent)
-                        finish()
-                    }, 1000)
-                }
+                signInWithEmail(email, pass)
             }
         }
 
@@ -110,25 +95,9 @@ class LoginActivity : AppCompatActivity() {
             val pass = etPass2.text.toString().trim()
             val checkPhoneN = validatePhoneNumber(phoneN, lPhoneN)
             val checkPass = validatePass(pass, lPass2)
+            //Thong tin nhap vao hop le
             if (checkPhoneN && checkPass){
-                //Thong tin nhap vao hop le
-                if (!checkUserWithPhoneN(phoneN, pass)){
-                    //Thong tin sai
-                    showSnackBar("Số di động hoặc Mật khẩu không đúng.")
-                }
-                else{
-                    //Dang nhap thanh cong
-                    val user = hotel_db.UserDAO().getUserByPhoneNumber(phoneN)
-                    showSuccessSnackBar("Đăng nhập thành công!")
-                    val handler = Handler()
-                    handler.postDelayed({
-                        val intent = Intent(this, MainActivity::class.java)
-                        intent.putExtra("idUser", user!!.id.toString())
-                        startActivity(intent)
-                        finish()
-                    }, 1000)
-                }
-
+                signInWithPhoneN(phoneN, pass)
             }
         }
         findViewById<TextView>(R.id.register2).setOnClickListener {
@@ -139,21 +108,47 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkUserWithEmail(email: String, pass: String): Boolean {
-        val user = hotel_db.UserDAO().getUserByEmail(email)
-        return if (user != null) {
-            Bcrypt.verify(pass, user.password.toByteArray())
-        } else {
-            false
-        }
+    private fun signInWithEmail(email: String, password: String, ){
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    val user = auth.currentUser
+                    showSuccessSnackBar("Đăng nhập thành công!")
+                    val handler = Handler()
+                    handler.postDelayed({
+                        val intent = Intent(this, MainActivity::class.java)
+                        intent.putExtra("idUser", user!!.uid)
+                        startActivity(intent)
+                        finish()
+                    }, 1000)
+                } else {
+                    // If sign in fails, display a message to the user.
+                    showSnackBar("Số di động hoặc Mật khẩu không đúng.")
+                }
+            }
     }
-    private fun checkUserWithPhoneN(phoneN: String, pass: String): Boolean {
-        val user = hotel_db.UserDAO().getUserByPhoneNumber(phoneN)
-        return if (user != null) {
-            Bcrypt.verify(pass, user.password.toByteArray())
-        } else {
-            false
-        }
+
+    private fun signInWithPhoneN(phoneN: String, password: String, ){
+        val fEmailFromPhoneN = "$phoneN @gmail.com"
+        auth.signInWithEmailAndPassword(fEmailFromPhoneN, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    val user = auth.currentUser
+                    showSuccessSnackBar("Đăng nhập thành công!")
+                    val handler = Handler()
+                    handler.postDelayed({
+                        val intent = Intent(this, MainActivity::class.java)
+                        intent.putExtra("idUser", user!!.uid)
+                        startActivity(intent)
+                        finish()
+                    }, 1000)
+                } else {
+                    // If sign in fails, display a message to the user.
+                    showSnackBar("Email hoặc Mật khẩu không đúng.")
+                }
+            }
     }
 
     private fun validateEmail(email: String, lEmail: TextInputLayout): Boolean {
@@ -225,10 +220,4 @@ class LoginActivity : AppCompatActivity() {
         // Sử dụng InputMethodManager để ẩn bàn phím
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        hotel_db.close()
-    }
-
 }
