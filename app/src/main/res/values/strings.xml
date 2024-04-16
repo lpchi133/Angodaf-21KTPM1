@@ -21,7 +21,8 @@
     <string name="r_traphong">Trả phòng</string>
     <string name="btn_removeorder">Hủy đặt phòng</string>
     <string name="btn_reorder">Đặt phòng lại</string>
-
+    <string name="titlePurchase">Chi tiết thanh toán</string>
+    <string name="pleaseBuy">Đang giữ giá. Đặt ngay để không vuột mất giá tốt!</string>
     <string name="i_title">Thông tin đặt phòng</string>
 
     <string name="v_title">Phiếu giảm giá &amp; Ưu đãi</string>
@@ -286,4 +287,5 @@
         <item>Zimbabwe</item>
     </string-array>
     <string name="title">Thông tin khách sạn</string>
+    <string name="timeCountingDown">00:20:00</string>
 </resources>

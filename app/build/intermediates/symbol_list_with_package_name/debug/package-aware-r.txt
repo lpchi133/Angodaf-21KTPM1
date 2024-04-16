@@ -816,6 +816,24 @@ attr logo
 attr logoAdjustViewBounds
 attr logoDescription
 attr logoScaleType
+attr lottieAnimationViewStyle
+attr lottie_autoPlay
+attr lottie_cacheComposition
+attr lottie_clipToCompositionBounds
+attr lottie_colorFilter
+attr lottie_enableMergePathsForKitKatAndAbove
+attr lottie_fallbackRes
+attr lottie_fileName
+attr lottie_ignoreDisabledSystemAnimations
+attr lottie_imageAssetsFolder
+attr lottie_loop
+attr lottie_progress
+attr lottie_rawRes
+attr lottie_renderMode
+attr lottie_repeatCount
+attr lottie_repeatMode
+attr lottie_speed
+attr lottie_url
 attr mapId
 attr mapType
 attr marginHorizontal
@@ -1468,9 +1486,12 @@ color error_color_material_dark
 color error_color_material_light
 color foreground_material_dark
 color foreground_material_light
+color green
 color grey
+color greyish
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color lightGreen
 color light_red
 color m3_appbar_overlay_color
 color m3_assist_chip_icon_tint_color
@@ -2125,6 +2146,7 @@ color mtrl_textinput_focused_box_stroke_color
 color mtrl_textinput_hovered_box_stroke_color
 color notification_action_color_filter
 color notification_icon_bg_color
+color pink
 color primary_dark_material_dark
 color primary_dark_material_light
 color primary_material_dark
@@ -3029,9 +3051,13 @@ drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
 drawable b48f9f78ec2cf2bbe745f28a2f5f5541
+drawable baseline_access_time_24
+drawable baseline_admin_panel_settings_20
+drawable baseline_alarm_24
 drawable baseline_apartment_24
 drawable baseline_arrow_back_24
 drawable baseline_arrow_forward_24
+drawable baseline_attach_email_24
 drawable baseline_attach_money_24
 drawable baseline_bed_24
 drawable baseline_bookmark_24
@@ -3039,8 +3065,10 @@ drawable baseline_bubble_chart_24
 drawable baseline_calendar_month_24
 drawable baseline_card_membership_24
 drawable baseline_chat_24
+drawable baseline_check_circle_24
 drawable baseline_cleaning_services_24
 drawable baseline_close_24
+drawable baseline_directions_car_24
 drawable baseline_favorite
 drawable baseline_favorite_24
 drawable baseline_favorite_border_24
@@ -3067,6 +3095,7 @@ drawable baseline_room_service_24
 drawable baseline_send_24
 drawable baseline_thumb_down_24
 drawable baseline_thumb_up_24
+drawable baseline_verified_user_24
 drawable baseline_x
 drawable beautiful_hotel
 drawable border
@@ -3077,6 +3106,7 @@ drawable border_color
 drawable border_color1
 drawable border_color2
 drawable border_color3
+drawable border_text
 drawable bottom_nav_color
 drawable btn_avt
 drawable btn_checkbox_checked_mtrl
@@ -3178,6 +3208,7 @@ drawable material_ic_keyboard_arrow_previous_black_24dp
 drawable material_ic_keyboard_arrow_right_black_24dp
 drawable material_ic_menu_arrow_down_black_24dp
 drawable material_ic_menu_arrow_up_black_24dp
+drawable momo_mservice_logo
 drawable mtrl_bottomsheet_drag_handle
 drawable mtrl_checkbox_button
 drawable mtrl_checkbox_button_checked_unchecked
@@ -3235,14 +3266,18 @@ drawable round_half
 drawable rounded_background
 drawable rounded_button
 drawable rounded_button_delete
+drawable rounded_button_edit
 drawable rounded_button_price
+drawable rounded_layout
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable visa_logo
 id ALT
 id Agoodaa
 id BOTTOM_END
 id BOTTOM_START
+id BookingFee
 id CTRL
 id City
 id FUNCTION
@@ -3252,8 +3287,11 @@ id Location
 id META
 id NO_DEBUG
 id Out
+id Price
+id PriceAfterPromotion
 id Price_high
 id Price_low
+id Promotion
 id SHIFT
 id SHOW_ALL
 id SHOW_PATH
@@ -3342,8 +3380,10 @@ id auto
 id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
+id automatic
 id avt
 id b1
+id back
 id backToFilter
 id backToList
 id backToMain
@@ -3354,11 +3394,14 @@ id bar_condition4
 id bar_condition5
 id barrier
 id baseline
+id bedQ
 id beginOnFirstDraw
 id beginning
 id benefit
 id bestChoice
 id blocking
+id bookRoom
+id bookRoomBtn
 id bookmark
 id bookmarkTittle
 id border1
@@ -3400,6 +3443,7 @@ id btn_sendcmt
 id button
 id button2
 id button3
+id button5
 id buttonLike
 id buttonMap
 id buttonOK
@@ -3407,10 +3451,18 @@ id buttonPanel
 id buttonReset
 id buttonSet
 id cache_measures
+id calender
 id callMeasure
 id cancel_button
 id canceledList
+id cardCVV
+id cardChoice
+id cardExp
+id cardInfor
+id cardNumber
+id cardOwner
 id carryVelocity
+id cashChoice
 id cbDaLat
 id cbDaNang
 id cbHCM
@@ -3429,6 +3481,7 @@ id chart
 id chat
 id checkIn
 id checkOut
+id checkPurchase
 id check_in
 id check_out
 id checkbox
@@ -3483,15 +3536,21 @@ id cradle
 id currentState
 id custom
 id customPanel
+id customer
+id customerInfor
+id customerName
 id cut
 id dark
 id date
 id date_picker_actions
+id day
 id decelerate
 id decelerateAndComplete
 id decor_content_parent
 id default_activity_button
 id deltaRelative
+id demand
+id demandDetail
 id dependency_ordering
 id des_room
 id description
@@ -3560,6 +3619,7 @@ id fixed
 id flip
 id floating
 id forever
+id forward
 id fragment_container_view_tag
 id frameLayout
 id frost
@@ -3574,6 +3634,7 @@ id group_button
 id group_divider
 id grouping
 id groups
+id hardware
 id header_title
 id hide_ime_id
 id hideable
@@ -3588,6 +3649,7 @@ id hotelName
 id hotel_image
 id hotel_name
 id hotel_phone
+id hotline
 id hybrid
 id icon
 id icon_group
@@ -3600,6 +3662,8 @@ id image
 id imageView
 id imageView1
 id imageView12
+id imageView13
+id imageView14
 id imageView19
 id imageView2
 id imageView20
@@ -3657,6 +3721,7 @@ id line8
 id line9
 id linear
 id linearLayout
+id linearLayout2
 id linear_layout
 id linear_layout1
 id linear_layout2
@@ -3666,8 +3731,11 @@ id linear_layout_rating
 id linear_map
 id listMode
 id list_item
+id locationDetail
 id login_title
+id lottie_layer_name
 id m3_side_sheet
+id mailConfirm
 id map
 id marquee
 id masked
@@ -3700,6 +3768,7 @@ id mini
 id minus
 id minus_person
 id minus_room
+id momoChoice
 id month_grid
 id month_navigation_bar
 id month_navigation_fragment_toggle
@@ -3759,6 +3828,7 @@ id notification_main_column_container
 id off
 id on
 id onInterceptTouchReturnSwipe
+id onlineChoice
 id open_search_bar_text_view
 id open_search_view_background
 id open_search_view_clear_button
@@ -3789,11 +3859,15 @@ id password_toggle
 id pastList
 id path
 id pathRelative
+id payment
+id paymentMethod
 id payment_methods
 id peekHeight
 id percent
 id phone
+id pickMethod
 id pin
+id pleaseBuy
 id plus
 id plus_person
 id plus_room
@@ -3813,6 +3887,7 @@ id profile
 id progressBar
 id progress_circular
 id progress_horizontal
+id purchased
 id quaCM
 id quan_client
 id quan_room
@@ -3821,7 +3896,9 @@ id radioButton
 id radioButton2
 id radioButton3
 id radioGroup
+id radioGroup2
 id rateStatus
+id rating
 id ratingBar
 id ratingBar1
 id ratingBar2
@@ -3836,13 +3913,16 @@ id relativeLayout2
 id relativeLayout3
 id relativeLayoutGender
 id report_drawn
+id restart
 id returnHotel
+id reverse
 id reverseSawtooth
 id right
 id rightToLeft
 id right_icon
 id right_side
 id room
+id roomID
 id roomName
 id roomTittle
 id room_time
@@ -3874,7 +3954,6 @@ id search_voice_btn
 id select_dialog_listview
 id selected
 id selection_type
-id share
 id shareBtn
 id sharedValueSet
 id sharedValueUnset
@@ -3892,6 +3971,7 @@ id snackbar_action
 id snackbar_text
 id snap
 id snapMargins
+id software
 id sort
 id south
 id spacer
@@ -3969,9 +4049,36 @@ id textView21
 id textView22
 id textView23
 id textView24
+id textView25
+id textView26
+id textView27
+id textView28
+id textView29
 id textView3
+id textView30
+id textView31
+id textView32
+id textView33
+id textView34
+id textView35
+id textView37
+id textView38
+id textView39
 id textView4
+id textView40
+id textView41
+id textView42
+id textView43
+id textView44
+id textView45
+id textView46
+id textView47
+id textView48
+id textView49
 id textView5
+id textView50
+id textView51
+id textView54
 id textView6
 id textView7
 id textView8
@@ -3995,9 +4102,12 @@ id thong_tin_hotel
 id thong_tin_khach
 id thong_tin_phong
 id time
+id timeCheckIn
+id timeCheckOut
 id time_In
 id time_Out
 id time_booking
+id timer
 id title
 id titleDividerNoCustom
 id title_template
@@ -4006,6 +4116,7 @@ id toolbar
 id top
 id topPanel
 id total
+id totalPrice
 id touch_outside
 id transitionToEnd
 id transitionToStart
@@ -4020,7 +4131,6 @@ id tvCity
 id tvPrice
 id tvRating
 id tv_emailPhoneN
-id tym
 id type_room
 id unchecked
 id uniform
@@ -4029,6 +4139,10 @@ id up
 id useLogo
 id vertical_only
 id view
+id view2
+id view3
+id view4
+id view5
 id view_offset_helper
 id view_transition
 id view_tree_lifecycle_owner
@@ -4037,6 +4151,8 @@ id view_tree_saved_state_registry_owner
 id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
+id voucher
+id warning
 id watchRoom
 id west
 id wide
@@ -4163,6 +4279,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_book_room
 layout activity_login
 layout activity_main
 layout activity_sign_up
@@ -4283,6 +4400,7 @@ layout popup_1
 layout popup_2
 layout popup_description
 layout popup_find
+layout purchased
 layout rating
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
@@ -4507,6 +4625,7 @@ string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
+string pleaseBuy
 string project_id
 string r_dateorder
 string r_id
@@ -4522,7 +4641,9 @@ string searchview_navigation_content_description
 string side_sheet_accessibility_pane_title
 string side_sheet_behavior
 string status_bar_notification_info_overflow
+string timeCountingDown
 string title
+string titlePurchase
 string v_title
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
@@ -5721,6 +5842,7 @@ styleable LinearLayoutCompat_Layout android_layout_gravity android_layout_width 
 styleable LinearProgressIndicator indeterminateAnimationType indicatorDirectionLinear
 styleable ListPopupWindow android_dropDownHorizontalOffset android_dropDownVerticalOffset
 styleable LoadingImageView circleCrop imageAspectRatio imageAspectRatioAdjust
+styleable LottieAnimationView lottie_autoPlay lottie_cacheComposition lottie_clipToCompositionBounds lottie_colorFilter lottie_enableMergePathsForKitKatAndAbove lottie_fallbackRes lottie_fileName lottie_ignoreDisabledSystemAnimations lottie_imageAssetsFolder lottie_loop lottie_progress lottie_rawRes lottie_renderMode lottie_repeatCount lottie_repeatMode lottie_speed lottie_url
 styleable MapAttrs ambientEnabled backgroundColor cameraBearing cameraMaxZoomPreference cameraMinZoomPreference cameraTargetLat cameraTargetLng cameraTilt cameraZoom latLngBoundsNorthEastLatitude latLngBoundsNorthEastLongitude latLngBoundsSouthWestLatitude latLngBoundsSouthWestLongitude liteMode mapId mapType uiCompass uiMapToolbar uiRotateGestures uiScrollGestures uiScrollGesturesDuringRotateOrZoom uiTiltGestures uiZoomControls uiZoomGestures useViewLifecycle zOrderOnTop
 styleable MaterialAlertDialog backgroundInsetBottom backgroundInsetEnd backgroundInsetStart backgroundInsetTop backgroundTint
 styleable MaterialAlertDialogTheme materialAlertDialogBodyTextStyle materialAlertDialogButtonSpacerVisibility materialAlertDialogTheme materialAlertDialogTitleIconStyle materialAlertDialogTitlePanelStyle materialAlertDialogTitleTextStyle

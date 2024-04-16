@@ -17,9 +17,7 @@ import com.google.firebase.database.database
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-//    private lateinit var hotel_db: HotelDatabase
     private var idUser: Int? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

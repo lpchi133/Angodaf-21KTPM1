@@ -82,7 +82,7 @@ class Home(private var idUser: Int) : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         homeLayout = inflater.inflate(R.layout.fragment_home, container, false)
 
         setupViews(homeLayout)
@@ -90,7 +90,6 @@ class Home(private var idUser: Int) : Fragment() {
     }
 
     private fun setupViews(view: View) {
-
         val searchEditText = view.findViewById<EditText>(R.id.nameHotelSearch)
         val findButton = view.findViewById<Button>(R.id.findButton)
         infor = view.findViewById<TextView>(R.id.infor)

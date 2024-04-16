@@ -1,5 +1,6 @@
 package com.example.angodafake
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -103,6 +104,11 @@ class ListRoom(private val idUser: Int) : Fragment() {
                             intArray[position] = 1
                         }
                         adapter.notifyItemChanged(position)
+                    }
+
+                    override fun onBookRoomClick(position: Int) {
+                        val intent = Intent(activity, BookRoom::class.java)
+                        startActivity(intent)
                     }
                 })
             }

@@ -2,6 +2,7 @@ package com.example.angodafake.Adapter
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,14 +12,18 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.R
+import com.example.angodafake.Utilities.BookmarkUtils
 import com.example.angodafake.Utilities.PictureUtils
 import com.example.angodafake.Utilities.RoomUtils
+import com.example.angodafake.db.Bookmark
 import com.example.angodafake.db.Hotel
-//import com.example.angodafake.db.HotelDatabase
 import com.example.angodafake.db.Picture_Hotel
 import com.example.angodafake.db.Rooms
 import com.google.firebase.Firebase
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 
 class HotelAdapter(private val context: Context, private var hotels: List<Hotel>, private var idUser: Int) : RecyclerView.Adapter<HotelAdapter.ViewHolder>() {
@@ -70,74 +75,69 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
             //Picture_Hotel = picture
 //            println("Picture ID: ${Picture_Hotel.ID_Hotel}, Type: ${Picture_Hotel.picture}, Price: ${Picture_Hotel.picture_onwer}")
 
-            database = Firebase.database.reference
-            val hotelsRef = database.child("hotels")
+        database = Firebase.database.reference
+        val hotelsRef = database.child("hotels")
 //
-            val idPicture = context.resources.getIdentifier("quang_ba_khach_san", "drawable", context.packageName)
-            holder.img.setImageResource(idPicture)
-            holder.hotelName.text = hotel.name
-            holder.ratingBar.rating = hotel.star!!.toFloat()
-            holder.City.text = hotel.city
-            holder.pointView.text = hotel.point.toString()
-            holder.count_cmt.text = hotel.total_comments.toString() + " nhận xét"
-            holder.rateStatus.text = when (hotel.point?.toInt()){
-                in 0 until 3 -> { "Cực tệ" }
-                in 3 until 5 -> { "Tệ" }
-                in 5 until 6 -> { "Trung bình" }
-                in 6 until 8 -> { "Tốt" }
-                in 8 until 9 -> { "Rất tốt" }
-                else -> { "Tuyệt vời" }
+        val idPicture = context.resources.getIdentifier("quang_ba_khach_san", "drawable", context.packageName)
+
+        holder.img.setImageResource(idPicture)
+        holder.hotelName.text = hotel.name
+        holder.ratingBar.rating = hotel.star!!.toFloat()
+        holder.City.text = hotel.city
+        holder.pointView.text = hotel.point.toString()
+        holder.count_cmt.text = hotel.total_comments.toString() + " nhận xét"
+        holder.rateStatus.text = when (hotel.point?.toInt()){
+            in 0 until 3 -> { "Cực tệ" }
+            in 3 until 5 -> { "Tệ" }
+            in 5 until 6 -> { "Trung bình" }
+            in 6 until 8 -> { "Tốt" }
+            in 8 until 9 -> { "Rất tốt" }
+            else -> { "Tuyệt vời" }
+        }
+
+        RoomUtils.getRoomByHotelID(hotel.ID!!){ fetchedRoomList   ->
+            var roomList: List<Rooms> = emptyList()
+            roomList = fetchedRoomList
+            val lowestPrice = roomList.minOfOrNull { it.price ?: Int.MAX_VALUE } ?: Int.MAX_VALUE
+            holder.price.text = lowestPrice.toString() + " đ"
+            Log.d("Adapter", "Room: ${lowestPrice}")
+
+            hotelsRef.child(hotel.ID!!).child("money").setValue(lowestPrice)
+        }
+
+        BookmarkUtils.getAllBookmarks("tYw0x3oVS7gAd9wOdOszzvJMOEM2") { favList ->
+            favList.forEach { bookmark ->
+                if (bookmark.ID_Hotel == hotel.ID) {
+                    holder.buttonFav.setColorFilter(Color.RED)
+                    return@forEach
+                }
             }
+        }
 
-            RoomUtils.getRoomByHotelID(hotel.ID!!){ fetchedRoomList   ->
-                var roomList: List<Rooms> = emptyList()
-                roomList = fetchedRoomList
-                val lowestPrice = roomList.minOfOrNull { it.price ?: Int.MAX_VALUE } ?: Int.MAX_VALUE
-                holder.price.text = lowestPrice.toString() + " đ"
-                Log.d("Adapter", "Room: ${lowestPrice}")
+        holder.buttonFav.setOnClickListener {
+            if (holder.buttonFav.colorFilter == null){
+                holder.buttonFav.setColorFilter(Color.RED)
+                val newBookmark = Bookmark(ID_Hotel = hotel.ID, ID_Owner = "tYw0x3oVS7gAd9wOdOszzvJMOEM2")
 
-                hotelsRef.child(hotel.ID!!).child("money").setValue(lowestPrice)
+                BookmarkUtils.addBookmark(newBookmark) { success ->
+                    if (success) {
+                        // Bookmark đã được thêm thành công
+                        Log.d("Bookmark", "Bookmark added successfully.")
+                    } else {
+                        // Có lỗi xảy ra khi thêm bookmark
+                        Log.e("Bookmark", "Failed to add bookmark.")
+                    }
+                }
+            } else {
+                holder.buttonFav.setColorFilter(null)
+                BookmarkUtils.deleteBookmarkWithID("tYw0x3oVS7gAd9wOdOszzvJMOEM2", hotel.ID!!)
             }
+        }
 
-        //}
-
-//        // Khởi tạo SharedPreferences
-//        val sharedPref = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-//        // Lấy trạng thái yêu thích từ SharedPreferences, mặc định là false
-//        val isFavourite = sharedPref.getBoolean("isFavourite_${hotel.id}", false)
-//        // Thiết lập trạng thái của nút từ SharedPreferences
-//        holder.buttonFav.isSelected = isFavourite
-//
-//        if(hotel_db.BookmarkDAO().checkIfExistHotelId(hotel.id) > 0){
-//            val drawableResId = context.resources.getIdentifier("baseline_favorite_24", "drawable", context.packageName)
-//            holder.buttonFav.setBackgroundResource(drawableResId)
-//        }
-
-//        holder.buttonFav.setOnClickListener {
-//            // Đảo ngược trạng thái khi nút được nhấn
-//            holder.buttonFav.isSelected = !holder.buttonFav.isSelected
-//            // Lưu trạng thái vào SharedPreferences
-//            val editor = sharedPref.edit()
-//            editor.putBoolean("isFavourite_${hotel.id}", holder.buttonFav.isSelected)
-//            editor.apply()
-//            if(holder.buttonFav.isSelected){
-//                val drawableResId = context.resources.getIdentifier("baseline_favorite_24", "drawable", context.packageName)
-//                holder.buttonFav.setBackgroundResource(drawableResId)
-//                val saveBookmark = Bookmarks(idUser, hotel.id)
-//                hotel_db.BookmarkDAO().insertBookmark(saveBookmark)
-//            } else {
-//                val drawableResId = context.resources.getIdentifier("baseline_favorite", "drawable", context.packageName)
-//                holder.buttonFav.setBackgroundResource(drawableResId)
-//                hotel_db.BookmarkDAO().deleteBookmarkByHotelId(hotel.id)
-//            }
-//        }
-
-
-
-//        holder.buttonShare.tag = position
-//        holder.buttonShare.setOnClickListener{
-//            onShareButtonClick(it)
-//        }
+        holder.buttonShare.tag = position
+        holder.buttonShare.setOnClickListener{
+            onShareButtonClick(it)
+        }
     }
 
     override fun getItemCount(): Int {

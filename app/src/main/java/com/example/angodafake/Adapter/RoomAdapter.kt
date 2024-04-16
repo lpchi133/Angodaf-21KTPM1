@@ -1,6 +1,7 @@
 package com.example.angodafake.Adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,7 @@ class RoomAdapter(private val context: Context, private var rooms: List<Rooms>, 
         fun onItemClick(position: Int)
         fun onPlusClick(position: Int)
         fun onMinusClick(position: Int)
+        fun onBookRoomClick(position: Int)
     }
 
     inner class ViewHolder(listItemView: View) : RecyclerView.ViewHolder(listItemView) {
@@ -34,7 +36,7 @@ class RoomAdapter(private val context: Context, private var rooms: List<Rooms>, 
         val direction: TextView = listItemView.findViewById(R.id.direction)
         val minus: ImageView = listItemView.findViewById(R.id.minus)
         val plus: ImageView = listItemView.findViewById(R.id.plus)
-
+        val bookRoomBtn: TextView = listItemView.findViewById(R.id.buttonSet)
 
 
         init {
@@ -50,6 +52,10 @@ class RoomAdapter(private val context: Context, private var rooms: List<Rooms>, 
             }
             minus.setOnClickListener {
                 listener?.onMinusClick(adapterPosition)
+            }
+
+            bookRoomBtn.setOnClickListener {
+                listener?.onBookRoomClick(adapterPosition)
             }
         }
     }
@@ -67,9 +73,6 @@ class RoomAdapter(private val context: Context, private var rooms: List<Rooms>, 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val room : Rooms = rooms[position]
-
-//          val idPicture = context.resources.getIdentifier(room.picture, "drawable", context.packageName)
-//          holder.img.setImageResource(idPicture)
         holder.roomName.text = room.type
         holder.count.text = "Tối đa " + room.capacity.toString() + " người - " + room.acreage.toString() + " m\u00B2"
         holder.countBedSingle.text = room.single_bed.toString() + " giường đơn   -"
@@ -101,9 +104,6 @@ class RoomAdapter(private val context: Context, private var rooms: List<Rooms>, 
             holder.countRoom.text = "Số phòng: " + room.quantity.toString()
             intArray[position] = room.quantity!!
         }
-
-
-
     }
 
     override fun getItemCount(): Int {

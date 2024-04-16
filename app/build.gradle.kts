@@ -44,6 +44,9 @@ android {
 }
 
 dependencies {
+    implementation("com.airbnb.android:lottie:5.0.3")
+    implementation("com.sun.mail:android-mail:1.6.5")
+    implementation("com.sun.mail:android-activation:1.6.5")
     implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-auth-ktx:22.3.1")

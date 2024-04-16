@@ -43,6 +43,9 @@
   <component name="ChangeListManager">
     <list default="true" id="adb3461b-e271-4641-9182-72334c3c4deb" name="Changes" comment="">
 <<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/app/src/main/assets/room.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/room.txt" afterDir="false" />
+=======
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/angodafake/Hotel_infor.kt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/angodafake/ListRoom.kt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/angodafake/MapsFragment.kt" afterDir="false" />
@@ -923,6 +926,7 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/angodafake/Utilities/PictureUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/angodafake/Utilities/PictureUtils.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/angodafake/db/Bookmark.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/angodafake/db/Bookmark.kt" afterDir="false" />
 >>>>>>> 19da275956c64cfc4bac2e7707d7001ffb277dfd
+>>>>>>> main
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
