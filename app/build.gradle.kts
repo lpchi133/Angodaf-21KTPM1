@@ -44,6 +44,9 @@ android {
 }
 
 dependencies {
+    implementation("com.squareup.picasso:picasso:2.71828")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
     implementation("com.airbnb.android:lottie:5.0.3")
     implementation("com.sun.mail:android-mail:1.6.5")
     implementation("com.sun.mail:android-activation:1.6.5")

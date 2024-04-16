@@ -11,15 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="?attr/colorPrimary"
-        android:layout_marginStart="60dp"
         app:title="Đơn đặt chỗ của tôi" />
-
-    <ImageButton
-        android:id="@+id/btn_back"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:background="?attr/colorPrimary"
-        app:srcCompat="@drawable/baseline_arrow_back_24" />
 
     <TextView
         android:id="@+id/border1"

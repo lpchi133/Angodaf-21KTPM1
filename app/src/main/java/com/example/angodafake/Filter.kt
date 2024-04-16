@@ -16,7 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.angodafake.Adapter.HotelAdapter
+//import com.example.angodafake.Adapter.HotelAdapter
 import com.example.angodafake.Utilities.HotelUtils
 import com.example.angodafake.Utilities.RoomUtils
 import com.example.angodafake.db.Hotel
@@ -42,7 +42,7 @@ class Filter(private var idUser: Int) : Fragment() {
     private lateinit var view: View
 
     private lateinit var hotelAdapter: List<Hotel>
-    private lateinit var adapter: HotelAdapter
+//    private lateinit var adapter: HotelAdapter
     private lateinit var listHotels: List<Hotel>
     private var listHotelsOri: List<Hotel> = mutableListOf()
     private lateinit var layoutManager: RecyclerView.LayoutManager

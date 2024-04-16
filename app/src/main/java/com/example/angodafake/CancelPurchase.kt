@@ -5,10 +5,8 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageButton
@@ -68,6 +66,7 @@ class CancelPurchase : AppCompatActivity() {
         val notic: TextView = findViewById(R.id.notic)
 
         btnBack.setOnClickListener {
+
             finish()
         }
 

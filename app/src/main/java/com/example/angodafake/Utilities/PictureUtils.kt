@@ -1,5 +1,7 @@
 package com.example.angodafake.Utilities
 
+import android.util.Log
+import com.example.angodafake.db.Hotel
 import com.example.angodafake.db.Picture_Hotel
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
@@ -36,6 +38,22 @@ object PictureUtils {
                 // Xử lý khi có lỗi xảy ra
             }
         })
+    }
+
+    fun getPictureList(listener: (List<Picture_Hotel>) -> Unit) {
+        val pictureList = mutableListOf<Picture_Hotel>()
+        PictureUtils.database.child("pictures").get().addOnSuccessListener { dataSnapshot ->
+            for (pictureSnapshot in dataSnapshot.children) {
+                val picture = pictureSnapshot.getValue(Picture_Hotel::class.java)
+                picture?.let {
+                    pictureList.add(it)
+                }
+            }
+            listener(pictureList)
+        }.addOnFailureListener { exception ->
+            Log.e("firebase", "Error getting hotel list", exception)
+            listener(emptyList()) // Trả về danh sách rỗng nếu có lỗi xảy ra
+        }
     }
 
 }

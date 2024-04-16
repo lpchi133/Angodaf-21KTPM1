@@ -22,7 +22,11 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:exported="true" />
-
+    <activity android:name=".ActivePurchaseDetail"
+        android:exported="false"/>
+        <activity
+            android:name=".CancelPurchase"
+            android:exported="false" />
         <activity
             android:name=".SignUpActivity"
             android:exported="false" />

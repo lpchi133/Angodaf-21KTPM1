@@ -103,7 +103,6 @@ class Home(private var idUser: Int) : Fragment() {
             listHotels = mutableListOf()
         }
 
-
         val hotelsRef = database.child("hotels")
 
         hotelsRef.addValueEventListener(object : ValueEventListener {
@@ -253,7 +252,6 @@ class Home(private var idUser: Int) : Fragment() {
                         .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
                         .commit()
                 }
-
             }
 
             override fun onCancelled(databaseError: DatabaseError) {

@@ -8,19 +8,20 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.angodafake.PurchaseExtra
 import com.example.angodafake.R
+import com.example.angodafake.Utilities.HotelUtils
+import com.example.angodafake.Utilities.PictureUtils
 import com.example.angodafake.db.Hotel
-//import com.example.angodafake.db.HotelDatabase
 import com.example.angodafake.db.Picture_Hotel
 import com.example.angodafake.db.Purchase
+import com.squareup.picasso.Picasso
 
-class PastCancelPurchaseAdapter(private val context: Context, private var past_cancelPurchase: List<Purchase>) : RecyclerView.Adapter<PastCancelPurchaseAdapter.MyViewHolder>() {
-    var onItemClick: ((Purchase) -> Unit)? = null
+class PastCancelPurchaseAdapter(private val context: Context, private var past_cancelPurchase: MutableList<PurchaseExtra>) : RecyclerView.Adapter<PastCancelPurchaseAdapter.MyViewHolder>() {
+    var onItemClick: ((PurchaseExtra) -> Unit)? = null
     private var listener: OnItemClickListener? = null
-//    private lateinit var hotel_db: HotelDatabase
-    private lateinit var HotelMarked: Hotel
-    private lateinit var Picture_Hotel: Picture_Hotel
     interface OnItemClickListener {
         fun onItemClick(purchase: Purchase)
     }
@@ -37,37 +38,35 @@ class PastCancelPurchaseAdapter(private val context: Context, private var past_c
         return past_cancelPurchase.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = past_cancelPurchase[position]
 
-//        hotel_db = HotelDatabase.getInstance(context)
+        holder.namehotel.text = currentItem.nameHotel
+        Picasso.get().load(currentItem.imageHotel).into(holder.imagehotel)
+        holder.timebooking.text = currentItem.Purchase?.time_booking
+        holder.idorder.text = currentItem.Purchase?.ID.toString()
 
-//        HotelMarked = hotel_db.HotelDAO().getHotelByID(currentItem.ID_Hotel)
-//        Picture = hotel_db.PictureDAO().getPictureByHotelID(currentItem.ID_Hotel)
-//
-//        val picture = context.resources.getIdentifier(Picture.picture, "drawable", context.packageName)
-//
-//        holder.timebooking.text = currentItem.time_booking
-//        holder.idorder.text = currentItem.id.toString()
-//        if (currentItem.status_purchase == "Đã hoàn tiền") {
-//            holder.statuspurchase1.text = currentItem.status_purchase
-//        } else if (currentItem.status_purchase == "Chưa hoàn tiền") {
-//            holder.statuspurchase2.text = currentItem.status_purchase
-//        } else {
-//            holder.statuspurchase3.text = currentItem.status_purchase
-//        }
-//        holder.imagehotel.setImageResource(picture)
-//        holder.namehotel.text = HotelMarked.name
-//        holder.checkin.text = currentItem.checkIn
-//        holder.checkout.text = currentItem.checkOut
-//
-//        holder.reorderbtn.setOnClickListener {
-//            Toast.makeText(context, "Press", Toast.LENGTH_SHORT).show()
-//        }
-//
-//        holder.itemView.setOnClickListener {
-//            onItemClick?.invoke(currentItem)
-//        }
+        if (currentItem.Purchase?.status_purchase == "DA_HOAN_TIEN") {
+            holder.statuspurchase1.text = "Đã hoàn tiền"
+        } else if (currentItem.Purchase?.status_purchase == "DA_THANH_TOAN"){
+            holder.statuspurchase1.text = "Đã thanh toán"
+        } else if (currentItem.Purchase?.status_purchase == "CHUA_HOAN_TIEN") {
+            holder.statuspurchase2.text = "Chưa hoàn tiền"
+        } else {
+            holder.statuspurchase3.text = "Không hoàn tiền"
+        }
+
+        holder.checkin.text = currentItem.Purchase?.date_come
+        holder.checkout.text = currentItem.Purchase?.date_go
+
+        holder.reorderbtn.setOnClickListener {
+            Toast.makeText(context, "Press", Toast.LENGTH_SHORT).show()
+        }
+
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(currentItem)
+        }
     }
 
     class MyViewHolder(past_cancelPurchaseItem: View) : RecyclerView.ViewHolder(past_cancelPurchaseItem) {
@@ -84,8 +83,8 @@ class PastCancelPurchaseAdapter(private val context: Context, private var past_c
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateList(newList: List<Purchase>) {
-        past_cancelPurchase = newList
+    fun updateList(newList: List<PurchaseExtra>) {
+        past_cancelPurchase = newList.toMutableList()
         notifyDataSetChanged()
     }
 
