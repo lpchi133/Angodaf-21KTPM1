@@ -72,7 +72,7 @@ class Filter(private var idUser: String) : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         view =  inflater.inflate(R.layout.fragment_home_filter, container, false)
 
@@ -83,6 +83,9 @@ class Filter(private var idUser: String) : Fragment() {
         var hotelIds = args?.getStringArray("hotelIds")
         val saveIds = args?.getStringArray("saveIds")
         val searchText = args?.getString("searchText")
+        val checkInTime = args?.getString("checkInTime")
+        val checkOutTime = args?.getString("checkOutTime")
+
         Log.d("FilterDetailFragment", "Hotel IDs: ${hotelIds?.joinToString(", ")}, Search Text: $searchText")
         val list = mutableListOf<Hotel>()
         if (hotelIds != null) {
@@ -92,7 +95,7 @@ class Filter(private var idUser: String) : Fragment() {
                     hotel.ID in hotelIds!!
                 }
 
-                Log.d("FilterDetailFragment", "Hotel IDs: ${listHotels?.joinToString(", ")}")
+                Log.d("FilterDetailFragment", "Hotel IDs: ${listHotels.joinToString(", ")}")
                 // Lấy dữ liệu từ FilterDetail
                 val bundle = arguments
                 if (bundle != null) {
@@ -148,6 +151,8 @@ class Filter(private var idUser: String) : Fragment() {
                                 arg.putStringArray("saveIds", saveIds)
                                 arg.putString("searchText", searchText)
                                 arg.putString("hotelPosition", clickedHotel.ID)
+                                arg.putString("checkInTime", checkInTime)
+                                arg.putString("checkOutTime", checkOutTime)
 
                                 // Khởi tạo Fragment Filter và đính kèm Bundle
                                 val Fragment = Hotel_infor(idUser)
@@ -182,6 +187,8 @@ class Filter(private var idUser: String) : Fragment() {
                             arg.putStringArray("hotelIds", hotelIds)
                             arg.putStringArray("saveIds", saveIds)
                             arg.putString("searchText", searchText)
+                            arg.putString("checkInTime", checkInTime)
+                            arg.putString("checkOutTime", checkOutTime)
 
                             // Khởi tạo Fragment Filter và đính kèm Bundle
                             val filterFragment = FilerDetail(idUser)
@@ -236,6 +243,8 @@ class Filter(private var idUser: String) : Fragment() {
                                 arg.putStringArray("saveIds", saveIds)
                                 arg.putString("searchText", searchText)
                                 arg.putString("hotelPosition", clickedHotel.ID)
+                                arg.putString("checkInTime", checkInTime)
+                                arg.putString("checkOutTime", checkOutTime)
 
                                 // Khởi tạo Fragment Filter và đính kèm Bundle
                                 val Fragment = Hotel_infor(idUser)
@@ -270,6 +279,8 @@ class Filter(private var idUser: String) : Fragment() {
                             arg.putStringArray("hotelIds", hotelIds)
                             arg.putStringArray("saveIds", saveIds)
                             arg.putString("searchText", searchText)
+                            arg.putString("checkInTime", checkInTime)
+                            arg.putString("checkOutTime", checkOutTime)
 
                             // Khởi tạo Fragment Filter và đính kèm Bundle
                             val filterFragment = FilerDetail(idUser)

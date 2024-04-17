@@ -3994,6 +3994,7 @@ int id software 0x7f0902c7
 int id sort 0x7f0902c8
 int id south 0x7f0902c9
 int id spacer 0x7f0902ca
+int id specialDemand 0x7f09038a
 int id special_effects_controller_view_tag 0x7f0902cb
 int id spinner 0x7f0902cc
 int id spline 0x7f0902cd
@@ -4097,6 +4098,8 @@ int id textView49 0x7f09032e
 int id textView5 0x7f09032f
 int id textView50 0x7f090330
 int id textView51 0x7f090331
+int id textView52 0x7f09038b
+int id textView53 0x7f09038c
 int id textView54 0x7f090332
 int id textView6 0x7f090333
 int id textView7 0x7f090334

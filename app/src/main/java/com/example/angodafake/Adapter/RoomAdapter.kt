@@ -42,7 +42,6 @@ class RoomAdapter(private val context: Context, private var rooms: List<Rooms>, 
         init {
             // Thêm sự kiện click cho itemView
             itemView.setOnClickListener {
-
                 listener?.onItemClick(adapterPosition)
             }
 

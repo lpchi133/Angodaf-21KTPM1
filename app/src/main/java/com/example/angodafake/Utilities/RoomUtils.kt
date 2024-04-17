@@ -34,7 +34,16 @@ object RoomUtils {
         }
     }
 
-
+    fun getRoomByID(ID_Hotel: String, roomID: String, listener: (Rooms) -> Unit) {
+        database.child("rooms").child(ID_Hotel).child(roomID).get().addOnSuccessListener { dataSnapshot ->
+            val room = dataSnapshot.getValue(Rooms::class.java)
+            if (room != null) {
+                listener(room)
+            }
+        }.addOnFailureListener { exception ->
+            Log.e("firebase", "Error getting room by ID", exception)
+        }
+    }
 
     fun getRoomList(listener: (List<Rooms>) -> Unit) {
         val roomList = mutableListOf<Rooms>()

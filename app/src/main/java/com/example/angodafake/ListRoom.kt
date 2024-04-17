@@ -42,7 +42,7 @@ class ListRoom(private val idUser: String) : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var view =  inflater.inflate(R.layout.fragment_room, container, false)
+        val view =  inflater.inflate(R.layout.fragment_room, container, false)
         val nameTextView = view.findViewById<TextView>(R.id.nameHotelSearch)
 
         val args = arguments
@@ -51,6 +51,8 @@ class ListRoom(private val idUser: String) : Fragment() {
         val hotelName = args?.getString("hotelName")
         val hotelIds = args?.getStringArray("hotelIds")
         val saveIds = args?.getStringArray("saveIds")
+        val checkInTime = args?.getString("checkInTime")
+        val checkOutTime = args?.getString("checkOutTime")
 
         nameTextView.text = hotelName
 
@@ -75,6 +77,8 @@ class ListRoom(private val idUser: String) : Fragment() {
                     arg.putString("searchText", searchText)
                     arg.putStringArray("hotelIds", hotelIds)
                     arg.putStringArray("saveIds", saveIds)
+                    arg.putString("checkInTime", checkInTime)
+                    arg.putString("checkOutTime", checkOutTime)
 
                     val filterFragment = Hotel_infor(idUser)
                     filterFragment.arguments = arg
@@ -108,6 +112,12 @@ class ListRoom(private val idUser: String) : Fragment() {
 
                     override fun onBookRoomClick(position: Int) {
                         val intent = Intent(activity, BookRoom::class.java)
+                        intent.putExtra("checkInTime", checkInTime)
+                        intent.putExtra("checkOutTime", checkOutTime)
+                        intent.putExtra("hotelName", hotelName)
+                        intent.putExtra("hotelID", itemPosition)
+                        intent.putExtra("roomID", position.toString())
+                        intent.putExtra("roomQuantity", intArray[position].toString())
                         startActivity(intent)
                     }
                 })

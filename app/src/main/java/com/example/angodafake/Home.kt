@@ -239,6 +239,8 @@ class Home(private var idUser: String) : Fragment() {
                     args.putStringArray("hotelIds", hotelIds.toTypedArray())
                     args.putStringArray("saveIds", hotelIds.toTypedArray())
                     args.putString("searchText", searchText)
+                    args.putString("checkInTime", checkIn_Text.text.toString())
+                    args.putString("checkOutTime", checkOut_Text.text.toString())
 
                     // Khởi tạo Fragment Filter và đính kèm Bundle
                     val filterFragment = Filter(idUser)

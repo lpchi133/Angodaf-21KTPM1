@@ -416,6 +416,7 @@ id shareBtn
 id showDetail
 id sign_up_title
 id sort
+id specialDemand
 id spinner
 id status1
 id status2
@@ -475,6 +476,8 @@ id textView49
 id textView5
 id textView50
 id textView51
+id textView52
+id textView53
 id textView54
 id textView6
 id textView7

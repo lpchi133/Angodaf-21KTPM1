@@ -167,7 +167,7 @@
                     android:id="@+id/locationDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxWidth="220dp"
+                    android:maxWidth="200dp"
                     android:text="6/22 Bà Triệu, phường Bến Đa, Quân 1, tp.Hồ Chí Minh"
                     app:layout_constraintStart_toStartOf="@+id/hotelName"
                     app:layout_constraintTop_toBottomOf="@+id/rating" />
@@ -206,7 +206,7 @@
                     android:id="@+id/forward"
                     android:layout_width="40dp"
                     android:layout_height="20dp"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="15dp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView32"
                     app:layout_constraintStart_toEndOf="@+id/checkIn"
                     app:layout_constraintTop_toTopOf="@+id/checkIn"
@@ -216,7 +216,7 @@
                     android:id="@+id/checkOut"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="15dp"
                     android:text="T5, 4 tháng 7"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -236,11 +236,11 @@
                     android:id="@+id/day"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="45dp"
+                    android:layout_marginEnd="25dp"
                     android:text="3"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/checkOut"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/checkOut" />
 
                 <TextView
@@ -383,6 +383,25 @@
                 android:layout_margin="10dp"
                 android:background="@drawable/rounded_layout"
                 android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/textView52"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Voucher của bạn"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView53"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rất tiếc bạn chưa sở hữu voucher nào:("
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintStart_toStartOf="@+id/textView52"
+                    app:layout_constraintTop_toBottomOf="@+id/textView52" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -585,6 +604,7 @@
                     tools:layout_editor_absoluteX="15dp">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/specialDemand"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Mô tả yêu cầu" />
@@ -653,7 +673,7 @@
                         android:background="@color/lightGreen"
                         android:paddingStart="30dp"
                         android:paddingBottom="10dp"
-                        android:text="Huỷ đặt phòng trước 23:59, 30 tháng 6, 2024" />
+                        android:text="Huỷ đặt phòng trước 00:00, 30 tháng 6, 2024" />
 
                     <RadioButton
                         android:id="@+id/onlineChoice"

@@ -60,7 +60,7 @@ class FilerDetail(private var idUser: String) : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
 
         // Inflate the layout for this fragment
@@ -69,6 +69,8 @@ class FilerDetail(private var idUser: String) : Fragment() {
         var hotelIds = args?.getStringArray("hotelIds")
         val saveIds = args?.getStringArray("saveIds")
         val searchText = args?.getString("searchText")
+        val checkInTime = args?.getString("checkInTime")
+        val checkOutTime = args?.getString("checkOutTime")
         Log.d("FilterDetailFragment", "Hotel IDs Detail: ${hotelIds?.joinToString(", ")}, Search Text: $searchText")
 
 
@@ -97,6 +99,8 @@ class FilerDetail(private var idUser: String) : Fragment() {
             arg.putString("searchText", searchText)
             arg.putStringArray("hotelIds", hotelIds)
             arg.putStringArray("saveIds", saveIds)
+            arg.putString("checkInTime", checkInTime)
+            arg.putString("checkOutTime", checkOutTime)
 
             // Khởi tạo Fragment Filter và đính kèm Bundle
             val filterFragment = Filter(idUser)
@@ -190,6 +194,8 @@ class FilerDetail(private var idUser: String) : Fragment() {
             bundle.putStringArray("hotelIds", hotelIds)
             bundle.putString("searchText", searchText)
             bundle.putStringArray("saveIds", saveIds)
+            bundle.putString("checkInTime", checkInTime)
+            bundle.putString("checkOutTime", checkOutTime)
 
             val filterFragment = Filter(idUser)
             filterFragment.arguments = bundle
