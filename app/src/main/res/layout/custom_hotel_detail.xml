@@ -535,7 +535,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="109dp"
                         android:layout_marginEnd="60dp"
-                        android:text="Agoodaa Homes"
+                        android:text="Angodaf Homes"
                         android:textColor="#001CDF"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -654,7 +654,7 @@
 
     <Button
         android:id="@+id/watchRoom"
-        android:layout_width="220dp"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"

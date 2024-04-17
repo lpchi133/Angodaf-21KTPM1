@@ -53,11 +53,9 @@ class Home(private var idUser: String) : Fragment() {
     private var param2: String? = null
     private lateinit var homeLayout: View
 
-    private lateinit var hotelAdapter: List<Hotel>
-    private lateinit var adapter: HotelAdapter
     private lateinit var listHotels: MutableList<Hotel>
+    private lateinit var listHotelsFilter: MutableList<Hotel>
     private lateinit var database: DatabaseReference
-    private lateinit var layoutManager: RecyclerView.LayoutManager
     private lateinit var checkIn : TextInputLayout
     private lateinit var checkOut : TextInputLayout
     private lateinit var checkIn_Text : TextInputEditText
@@ -66,6 +64,7 @@ class Home(private var idUser: String) : Fragment() {
     var inforCount: String? = null
     private lateinit var infor: TextView
     private val dateFormat = SimpleDateFormat("dd/MM/yyyy")
+
 
 
 
@@ -115,18 +114,6 @@ class Home(private var idUser: String) : Fragment() {
                     //Log.d("hotel", hotel.toString())
                     hotel?.let { listHotels.add(it) }
                 }
-
-
-
-                val hotelsRecyclerView = view.findViewById<RecyclerView>(R.id.contactsRV)
-                hotelAdapter = ArrayList(listHotels)
-                adapter = HotelAdapter(requireContext(), hotelAdapter, idUser)
-                hotelsRecyclerView.adapter = adapter
-                layoutManager = LinearLayoutManager(requireContext())
-                hotelsRecyclerView.layoutManager = layoutManager
-                hotelsRecyclerView.setHasFixedSize(true)
-
-                //adapter.updateDataGradually(listHotels)
 
                 //checkIn
                 checkIn_Text.setOnClickListener{
@@ -233,24 +220,45 @@ class Home(private var idUser: String) : Fragment() {
                 // Tìm kiếm
                 findButton.setOnClickListener {
                     val searchText = searchEditText.text.toString()
-                    val args = Bundle()
-                    val hotelIds = filterHotels(searchText).map { it.ID }
-                    println("Hotel IDs: ${hotelIds.joinToString()}")
-                    args.putStringArray("hotelIds", hotelIds.toTypedArray())
-                    args.putStringArray("saveIds", hotelIds.toTypedArray())
-                    args.putString("searchText", searchText)
+                    var list = filterHotels(searchText)
+                    val inputString = infor.text.toString()
+                    val parts = inputString.split(" ")
 
-                    // Khởi tạo Fragment Filter và đính kèm Bundle
-                    val filterFragment = Filter(idUser)
+                    val numberOfRooms = parts[0].toIntOrNull() ?: 0
+                    val numberOfGuests = parts[3].toIntOrNull() ?: 0
+                    println("Số phòng: $numberOfRooms, Số người: $numberOfGuests")
 
-                    filterFragment.arguments = args
+                    val checkInText = checkIn_Text.text.toString()
+                    val checkOutText = checkOut_Text.text.toString()
+                    println("checkIn: $checkInText, checkOut: $checkOutText")
 
-                    // Thay thế Fragment hiện tại bằng Fragment Filter
-                    val fragmentManager = requireActivity().supportFragmentManager
-                    fragmentManager.beginTransaction()
-                        .replace(R.id.frameLayout, filterFragment)
-                        .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
-                        .commit()
+                    RoomUtils.getRoomsFromDatabase() { fetchedRoomList ->
+                        list = filterHotelsCount(fetchedRoomList, list, numberOfGuests, numberOfRooms)
+
+                        val args = Bundle()
+                        val hotelIds = list.map { it.ID }
+                        println("Hotel IDs: ${hotelIds.joinToString()}")
+                        args.putStringArray("hotelIds", hotelIds.toTypedArray())
+                        args.putStringArray("saveIds", hotelIds.toTypedArray())
+                        args.putString("searchText", searchText)
+                        args.putString("checkIn", checkInText)
+                        args.putString("checkOut", checkOutText)
+                        args.putInt("numberOfRooms", numberOfRooms)
+                        args.putInt("numberOfGuests", numberOfGuests)
+
+
+                        // Khởi tạo Fragment Filter và đính kèm Bundle
+                        val filterFragment = Filter(idUser)
+
+                        filterFragment.arguments = args
+
+                        // Thay thế Fragment hiện tại bằng Fragment Filter
+                        val fragmentManager = requireActivity().supportFragmentManager
+                        fragmentManager.beginTransaction()
+                            .replace(R.id.frameLayout, filterFragment)
+                            .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
+                            .commit()
+                    }
                 }
             }
 
@@ -260,6 +268,7 @@ class Home(private var idUser: String) : Fragment() {
                 //listHotels = emptyList() // Trả về danh sách rỗng khi có lỗi
             }
         })
+        Log.d("Check", "CheckIN: ${checkIn_Text.text}, CheckOut: ${checkOut_Text.text}")
 
     }
 
@@ -380,4 +389,26 @@ class Home(private var idUser: String) : Fragment() {
         }
         return filteredList
     }
+
+    fun filterHotelsCount(rooms: List<Rooms>, hotels: List<Hotel>, numberOfGuests: Int, numberOfRooms: Int): List<Hotel> {
+        val filteredHotels = mutableListOf<Hotel>()
+
+        for (hotel in hotels) {
+            var suitableRoomFound = false
+
+            for (room in rooms.filter { it.ID_Hotel == hotel.ID }) {
+                if (room.capacity!! >= numberOfGuests && (room.quantity!! - room.available!!) >= numberOfRooms) {
+                    suitableRoomFound = true
+                    break
+                }
+            }
+
+            if (suitableRoomFound) {
+                filteredHotels.add(hotel)
+            }
+        }
+
+        return filteredHotels
+    }
+
 }

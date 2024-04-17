@@ -12,7 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.angodafake.R;
@@ -35,13 +34,13 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final TextInputLayout checkOut;
 
   @NonNull
-  public final RecyclerView contactsRV;
-
-  @NonNull
   public final RelativeLayout find;
 
   @NonNull
   public final Button findButton;
+
+  @NonNull
+  public final ImageView imageView;
 
   @NonNull
   public final ImageView imageView5;
@@ -71,22 +70,25 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final RelativeLayout lay4;
 
   @NonNull
+  public final ImageView logo;
+
+  @NonNull
   public final EditText nameHotelSearch;
 
   private FragmentHomeBinding(@NonNull ConstraintLayout rootView, @NonNull TextView HomeTittle,
       @NonNull TextInputLayout checkIn, @NonNull TextInputLayout checkOut,
-      @NonNull RecyclerView contactsRV, @NonNull RelativeLayout find, @NonNull Button findButton,
+      @NonNull RelativeLayout find, @NonNull Button findButton, @NonNull ImageView imageView,
       @NonNull ImageView imageView5, @NonNull ImageView imageView6, @NonNull ImageView imageView7,
       @NonNull ImageView imageView8, @NonNull TextView infor, @NonNull RelativeLayout lay1,
       @NonNull RelativeLayout lay2, @NonNull RelativeLayout lay3, @NonNull RelativeLayout lay4,
-      @NonNull EditText nameHotelSearch) {
+      @NonNull ImageView logo, @NonNull EditText nameHotelSearch) {
     this.rootView = rootView;
     this.HomeTittle = HomeTittle;
     this.checkIn = checkIn;
     this.checkOut = checkOut;
-    this.contactsRV = contactsRV;
     this.find = find;
     this.findButton = findButton;
+    this.imageView = imageView;
     this.imageView5 = imageView5;
     this.imageView6 = imageView6;
     this.imageView7 = imageView7;
@@ -96,6 +98,7 @@ public final class FragmentHomeBinding implements ViewBinding {
     this.lay2 = lay2;
     this.lay3 = lay3;
     this.lay4 = lay4;
+    this.logo = logo;
     this.nameHotelSearch = nameHotelSearch;
   }
 
@@ -144,12 +147,6 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.contactsRV;
-      RecyclerView contactsRV = ViewBindings.findChildViewById(rootView, id);
-      if (contactsRV == null) {
-        break missingId;
-      }
-
       id = R.id.find;
       RelativeLayout find = ViewBindings.findChildViewById(rootView, id);
       if (find == null) {
@@ -159,6 +156,12 @@ public final class FragmentHomeBinding implements ViewBinding {
       id = R.id.findButton;
       Button findButton = ViewBindings.findChildViewById(rootView, id);
       if (findButton == null) {
+        break missingId;
+      }
+
+      id = R.id.imageView;
+      ImageView imageView = ViewBindings.findChildViewById(rootView, id);
+      if (imageView == null) {
         break missingId;
       }
 
@@ -216,6 +219,12 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.logo;
+      ImageView logo = ViewBindings.findChildViewById(rootView, id);
+      if (logo == null) {
+        break missingId;
+      }
+
       id = R.id.nameHotelSearch;
       EditText nameHotelSearch = ViewBindings.findChildViewById(rootView, id);
       if (nameHotelSearch == null) {
@@ -223,8 +232,8 @@ public final class FragmentHomeBinding implements ViewBinding {
       }
 
       return new FragmentHomeBinding((ConstraintLayout) rootView, HomeTittle, checkIn, checkOut,
-          contactsRV, find, findButton, imageView5, imageView6, imageView7, imageView8, infor, lay1,
-          lay2, lay3, lay4, nameHotelSearch);
+          find, findButton, imageView, imageView5, imageView6, imageView7, imageView8, infor, lay1,
+          lay2, lay3, lay4, logo, nameHotelSearch);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

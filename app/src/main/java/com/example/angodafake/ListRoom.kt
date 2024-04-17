@@ -2,6 +2,7 @@ package com.example.angodafake
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,23 +52,25 @@ class ListRoom(private val idUser: String) : Fragment() {
         val hotelName = args?.getString("hotelName")
         val hotelIds = args?.getStringArray("hotelIds")
         val saveIds = args?.getStringArray("saveIds")
+        val checkIn = args?.getString("checkIn")
+        val checkOut = args?.getString("checkOut")
+        val numberOfRooms = args?.getInt("numberOfRooms")
+        val numberOfGuests = args?.getInt("numberOfGuests")
+        Log.d("Check", "checkIn: ${checkIn}, checkOut: ${checkOut}")
+        Log.d("number", "numberOfRooms: ${numberOfRooms}, numberOfGuests: ${numberOfGuests}")
+
 
         nameTextView.text = hotelName
 
         if (itemPosition != null) {
             RoomUtils.getRoomByHotelID(itemPosition){ fetchedRoomList   ->
                 rooms = fetchedRoomList
+                rooms = rooms.filter { room ->
+                    room.capacity!! >= numberOfGuests!! && (room.quantity!! - room.available!!) >= numberOfRooms!!
+                }
                 val intArray = IntArray(rooms.size)
                 // Gán tất cả các phần tử của mảng intArray bằng 1
                 intArray.fill(1)
-
-                val roomsRecyclerView = view.findViewById<RecyclerView>(R.id.contactsRV)
-                roomAdapter = ArrayList(rooms)
-                adapter = RoomAdapter(requireContext(), roomAdapter, intArray)
-                roomsRecyclerView.adapter = adapter
-                layoutManager = LinearLayoutManager(requireContext())
-                roomsRecyclerView.layoutManager = layoutManager
-                roomsRecyclerView.setHasFixedSize(true)
 
                 view.findViewById<ImageView>(R.id.returnHotel).setOnClickListener {
                     val arg = Bundle()
@@ -75,6 +78,11 @@ class ListRoom(private val idUser: String) : Fragment() {
                     arg.putString("searchText", searchText)
                     arg.putStringArray("hotelIds", hotelIds)
                     arg.putStringArray("saveIds", saveIds)
+                    arg.putString("checkIn", checkIn)
+                    arg.putString("checkOut", checkOut)
+                    arg.putInt("numberOfRooms", numberOfRooms!!)
+                    arg.putInt("numberOfGuests", numberOfGuests!!)
+
 
                     val filterFragment = Hotel_infor(idUser)
                     filterFragment.arguments = arg
@@ -85,6 +93,14 @@ class ListRoom(private val idUser: String) : Fragment() {
                         .addToBackStack(null)
                         .commit()
                 }
+
+                val roomsRecyclerView = view.findViewById<RecyclerView>(R.id.contactsRV)
+                roomAdapter = ArrayList(rooms)
+                adapter = RoomAdapter(requireContext(), roomAdapter, intArray, checkIn!!, checkOut!!, itemPosition)
+                roomsRecyclerView.adapter = adapter
+                layoutManager = LinearLayoutManager(requireContext())
+                roomsRecyclerView.layoutManager = layoutManager
+                roomsRecyclerView.setHasFixedSize(true)
 
                 adapter.setOnItemClickListener(object : RoomAdapter.OnItemClickListener {
                     override fun onItemClick(position: Int) {

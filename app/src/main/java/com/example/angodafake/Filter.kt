@@ -83,8 +83,15 @@ class Filter(private var idUser: String) : Fragment() {
         var hotelIds = args?.getStringArray("hotelIds")
         val saveIds = args?.getStringArray("saveIds")
         val searchText = args?.getString("searchText")
+        val checkIn = args?.getString("checkIn")
+        val checkOut = args?.getString("checkOut")
+        val numberOfRooms = args?.getInt("numberOfRooms", 0)
+        val numberOfGuests = args?.getInt("numberOfGuests", 0)
+        Log.d("Number", "numberOfRooms: ${numberOfRooms}, numberOfGuests: ${numberOfGuests}")
+
+
+
         Log.d("FilterDetailFragment", "Hotel IDs: ${hotelIds?.joinToString(", ")}, Search Text: $searchText")
-        val list = mutableListOf<Hotel>()
         if (hotelIds != null) {
 
             HotelUtils.getHotelList() { hotelList  ->
@@ -119,9 +126,6 @@ class Filter(private var idUser: String) : Fragment() {
 
                         Log.d("FilterFragment", "Received data - Point: $point, Start Value: $startValue, End Value: $endValue, Selected Cities: $selectedCities")
                         Log.d("FilterDetailFragment", "List of Hotels:")
-                        listHotels.forEachIndexed { index, hotel ->
-                            Log.d("FilterDetailFragment", "Hotel ${index + 1}: ${hotel.name}, money: ${hotel.money}")
-                        }
 
                         val buttonShowPopup = view.findViewById<TextView>(R.id.price)
                         buttonShowPopup.setOnClickListener {
@@ -148,8 +152,12 @@ class Filter(private var idUser: String) : Fragment() {
                                 arg.putStringArray("saveIds", saveIds)
                                 arg.putString("searchText", searchText)
                                 arg.putString("hotelPosition", clickedHotel.ID)
+                                arg.putString("checkIn", checkIn)
+                                arg.putString("checkOut", checkOut)
+                                arg.putInt("numberOfRooms", numberOfRooms!!)
+                                arg.putInt("numberOfGuests", numberOfGuests!!)
+                                Log.d("number2", "numberOfRooms: ${numberOfRooms}, numberOfGuests: ${numberOfGuests}")
 
-                                // Khởi tạo Fragment Filter và đính kèm Bundle
                                 val Fragment = Hotel_infor(idUser)
                                 Fragment.arguments = arg
 
@@ -182,6 +190,10 @@ class Filter(private var idUser: String) : Fragment() {
                             arg.putStringArray("hotelIds", hotelIds)
                             arg.putStringArray("saveIds", saveIds)
                             arg.putString("searchText", searchText)
+                            arg.putString("checkIn", checkIn)
+                            arg.putString("checkOut", checkOut)
+                            arg.putInt("numberOfRooms", numberOfRooms!!)
+                            arg.putInt("numberOfGuests", numberOfGuests!!)
 
                             // Khởi tạo Fragment Filter và đính kèm Bundle
                             val filterFragment = FilerDetail(idUser)
@@ -208,7 +220,7 @@ class Filter(private var idUser: String) : Fragment() {
                         Log.d("FilterFragment", "Received data - Point: $point, Start Value: $startValue, End Value: $endValue, Selected Cities: $selectedCities")
                         Log.d("FilterDetailFragment", "List of Hotels:")
                         listHotels.forEachIndexed { index, hotel ->
-                            Log.d("FilterDetailFragment", "Hotel ${index + 1}: ${hotel.name}, Point: ${hotel.point}")
+                            Log.d("FilterDetail2", "Hotel ${index + 1}: ${hotel.name}, Point: ${hotel.point}")
                         }
 
                         val buttonShowPopup = view.findViewById<TextView>(R.id.price)
@@ -236,6 +248,11 @@ class Filter(private var idUser: String) : Fragment() {
                                 arg.putStringArray("saveIds", saveIds)
                                 arg.putString("searchText", searchText)
                                 arg.putString("hotelPosition", clickedHotel.ID)
+                                arg.putString("checkIn", checkIn)
+                                arg.putString("checkOut", checkOut)
+                                arg.putInt("numberOfRooms", numberOfRooms!!)
+                                arg.putInt("numberOfGuests", numberOfGuests!!)
+                                Log.d("number2", "numberOfRooms: ${numberOfRooms}, numberOfGuests: ${numberOfGuests}")
 
                                 // Khởi tạo Fragment Filter và đính kèm Bundle
                                 val Fragment = Hotel_infor(idUser)
@@ -270,6 +287,11 @@ class Filter(private var idUser: String) : Fragment() {
                             arg.putStringArray("hotelIds", hotelIds)
                             arg.putStringArray("saveIds", saveIds)
                             arg.putString("searchText", searchText)
+                            arg.putString("checkIn", checkIn)
+                            arg.putString("checkOut", checkOut)
+                            arg.putInt("numberOfRooms", numberOfRooms!!)
+                            arg.putInt("numberOfGuests", numberOfGuests!!)
+                            Log.d("number2", "numberOfRooms: ${numberOfRooms}, numberOfGuests: ${numberOfGuests}")
 
                             // Khởi tạo Fragment Filter và đính kèm Bundle
                             val filterFragment = FilerDetail(idUser)

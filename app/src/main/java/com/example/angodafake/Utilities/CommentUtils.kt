@@ -1,6 +1,7 @@
 package com.example.angodafake.Utilities
 
 import com.example.angodafake.db.Comment
+import com.example.angodafake.db.User
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -15,7 +16,7 @@ object CommentUtils {
      }
 
     fun getAllComments(ownerID: String, listenser: (List<Comment>) -> Unit) {
-        val commentsQuery = database.child("comments")
+        val commentsQuery = database.child("Comment")
 
         commentsQuery.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -35,4 +36,5 @@ object CommentUtils {
             }
         })
     }
+
 }

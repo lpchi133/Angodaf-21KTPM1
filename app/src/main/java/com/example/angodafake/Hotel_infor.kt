@@ -61,6 +61,13 @@ class Hotel_infor(private var idUser: String) : Fragment() {
         val hotelIds = args?.getStringArray("hotelIds")
         val saveIds = args?.getStringArray("saveIds")
         val searchText = args?.getString("searchText")
+        val checkInfind = args?.getString("checkIn")
+        val checkOutfind = args?.getString("checkOut")
+        val numberOfRooms = args?.getInt("numberOfRooms") ?: -1
+        val numberOfGuests = args?.getInt("numberOfGuests") ?: -3
+
+        Log.d("number", "numberOfRooms: ${numberOfRooms}, numberOfGuests: ${numberOfGuests}")
+
 
         val nameTextView = view.findViewById<TextView>(R.id.hotel_name)
         val locationTextView = view.findViewById<TextView>(R.id.address_hotel)
@@ -147,6 +154,10 @@ class Hotel_infor(private var idUser: String) : Fragment() {
                             arg.putStringArray("hotelIds", hotelIds)
                             arg.putStringArray("saveIds", saveIds)
                             arg.putString("searchText", searchText)
+                            arg.putString("checkIn", checkInfind)
+                            arg.putString("checkOut", checkOutfind)
+                            arg.putInt("numberOfRooms", numberOfRooms!!)
+                            arg.putInt("numberOfGuests", numberOfGuests!!)
 
                             // Khởi tạo Fragment Filter và đính kèm Bundle
                             val filterFragment = Filter(idUser)
@@ -167,6 +178,10 @@ class Hotel_infor(private var idUser: String) : Fragment() {
                             arg.putStringArray("hotelIds", hotelIds)
                             arg.putStringArray("saveIds", saveIds)
                             arg.putString("hotelName", hotel.name)
+                            arg.putString("checkIn", checkInfind)
+                            arg.putString("checkOut", checkOutfind)
+                            arg.putInt("numberOfRooms", numberOfRooms!!)
+                            arg.putInt("numberOfGuests", numberOfGuests!!)
 
                             val listRoom = ListRoom(idUser)
                             listRoom.arguments = arg
@@ -181,8 +196,6 @@ class Hotel_infor(private var idUser: String) : Fragment() {
                             showPopup()
                         }
                     }
-
-
             }
         }
         return view

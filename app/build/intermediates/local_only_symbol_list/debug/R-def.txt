@@ -106,6 +106,7 @@ drawable img_5
 drawable img_6
 drawable img_7
 drawable img_8
+drawable img_9
 drawable khach_san
 drawable logo
 drawable momo_mservice_logo
@@ -340,6 +341,7 @@ id linear_layout_rating
 id linear_map
 id locationDetail
 id login_title
+id logo
 id mailConfirm
 id main_frame
 id map

@@ -2,6 +2,7 @@ package com.example.angodafake.Adapter
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +10,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.R
+import com.example.angodafake.Utilities.PurchaseUtils
+import com.example.angodafake.db.Purchase
 import com.example.angodafake.db.Rooms
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
-class RoomAdapter(private val context: Context, private var rooms: List<Rooms>, private var intArray: IntArray) : RecyclerView.Adapter<RoomAdapter.ViewHolder>() {
+class RoomAdapter(private val context: Context, private var rooms: List<Rooms>, private var intArray: IntArray, private var checkIn: String, private var checkOut: String, private var idHotel: String) : RecyclerView.Adapter<RoomAdapter.ViewHolder>() {
     //private lateinit var Picture: Picture
     private var listener: OnItemClickListener? = null
     // Interface cho sự kiện click
@@ -77,33 +83,90 @@ class RoomAdapter(private val context: Context, private var rooms: List<Rooms>, 
         holder.count.text = "Tối đa " + room.capacity.toString() + " người - " + room.acreage.toString() + " m\u00B2"
         holder.countBedSingle.text = room.single_bed.toString() + " giường đơn   -"
         holder.countBedDouble.text = room.double_bed.toString() + " giường đôi"
-        if(room.quantity == 0){
-            holder.count_Room.text = "Hết phòng rồi ní ơi!"
-        }
-        else {
-            holder.count_Room.text = room.quantity.toString() + " phòng cuối cùng!"
-        }
-
-        holder.direction.text = room.direction.toString()
-        holder.price.text = room.price.toString() + " đ"
-        if(room.quantity == 0) {
-            holder.firstRectangle.text = "HẾT PHÒNG"
-        }
-        else{
-            holder.firstRectangle.text = "CÒN PHÒNG"
-        }
-
         val conveniences = room.benefit?.split("\\")
         val formattedconveniences = conveniences?.map { "❇\uFE0F    $it" }
         val formattedconvenience = formattedconveniences?.joinToString("\n")
         holder.convenience.text = formattedconvenience
-        if(intArray[position] <= room.quantity!!) {
-            holder.countRoom.text = "Số phòng: " + intArray[position].toString()
+        holder.direction.text = room.direction.toString()
+        holder.price.text = room.price.toString() + " đ"
+        Log.d("ID hotel", "room.ID_Hotel: ${idHotel}")
+
+
+        if(checkIn == "") {
+            var rest = room.quantity!! - room.available!!
+
+            if(rest <= 0){
+                holder.count_Room.text = "Hết phòng rồi ní ơi!"
+                holder.firstRectangle.text = "HẾT PHÒNG"
+            }
+            else {
+                holder.count_Room.text = rest.toString() + " phòng cuối cùng!"
+                holder.firstRectangle.text = "CÒN PHÒNG"
+            }
+
+            if(intArray[position] <= rest) {
+                holder.countRoom.text = "Số phòng: " + intArray[position].toString()
+            }
+            else{
+                holder.countRoom.text = "Số phòng: " + rest.toString()
+                intArray[position] = rest
+            }
         }
         else{
-            holder.countRoom.text = "Số phòng: " + room.quantity.toString()
-            intArray[position] = room.quantity!!
+            PurchaseUtils.getAllPurchasesByHotelID(idHotel) { purchaseList ->
+                var purchases: List<Purchase> = emptyList()
+                purchases = purchaseList
+                var count_room_purchase = 0
+                var rest = 0
+                if (purchases.isNotEmpty()) {
+                    for (purchase in purchases) {
+                        if (purchase.detail != "DA_HUY") {
+
+                            val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                            val dateCome = dateFormat.parse(purchase.date_come)
+                            val dateGo = dateFormat.parse(purchase.date_go)
+                            val dateCheckIn = dateFormat.parse(checkIn)
+                            val dateCheckOut = dateFormat.parse(checkOut)
+
+                            Log.d("DateCome", "Date come: ${dateFormat.format(dateCome)}")
+                            Log.d("DateGo", "Date go: ${dateFormat.format(dateGo)}")
+
+                            if ((dateCheckIn.before(dateCome) || dateCheckIn.compareTo(dateCome) == 0) && dateCheckOut.after(dateCome)) {
+                                count_room_purchase++
+                            }
+                            else if (dateCheckIn.before(dateGo) && ((dateCheckOut.after(dateGo) || dateCheckOut.compareTo(dateGo) == 0))) {
+                                count_room_purchase++
+                            }
+                            else if (dateCheckIn.compareTo(dateCome) == 0 && dateCheckOut.compareTo(dateGo) == 0) {
+                                count_room_purchase++
+                            }
+                        }
+                    }
+                    rest = room.quantity!! - count_room_purchase
+                }
+                else {
+                    rest = room.quantity!! - room.available!!
+                }
+
+                if(rest <= 0){
+                    holder.count_Room.text = "Hết phòng rồi ní ơi!"
+                    holder.firstRectangle.text = "HẾT PHÒNG"
+                }
+                else {
+                    holder.count_Room.text = rest.toString() + " phòng cuối cùng!"
+                    holder.firstRectangle.text = "CÒN PHÒNG"
+                }
+
+                if(intArray[position] <= rest) {
+                    holder.countRoom.text = "Số phòng: " + intArray[position].toString()
+                }
+                else{
+                    holder.countRoom.text = "Số phòng: " + rest.toString()
+                    intArray[position] = rest
+                }
+            }
         }
+
     }
 
     override fun getItemCount(): Int {

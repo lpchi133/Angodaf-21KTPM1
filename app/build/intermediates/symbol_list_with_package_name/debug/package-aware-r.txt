@@ -3192,6 +3192,7 @@ drawable img_5
 drawable img_6
 drawable img_7
 drawable img_8
+drawable img_9
 drawable khach_san
 drawable logo
 drawable m3_avd_hide_password
@@ -3750,6 +3751,7 @@ id listMode
 id list_item
 id locationDetail
 id login_title
+id logo
 id lottie_layer_name
 id m3_side_sheet
 id mailConfirm

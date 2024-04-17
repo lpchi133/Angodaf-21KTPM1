@@ -36,4 +36,27 @@ object PurchaseUtils {
             }
         })
     }
+
+    fun getAllPurchasesByHotelID(ownerID: String, listener: (List<Purchase>) -> Unit) {
+        val purchasesQuery = database.child("purchases")
+
+        purchasesQuery.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val purchasesList = mutableListOf<Purchase>()
+                for (purchaseSnapshot in dataSnapshot.children) {
+                    val purchase = purchaseSnapshot.getValue(Purchase::class.java)
+                    if (purchase != null && purchase.ID_Hotel == ownerID) {
+                        purchase.ID = purchaseSnapshot.key
+                        purchasesList.add(purchase)
+                    }
+                }
+                listener(purchasesList)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Xử lý khi có lỗi xảy ra
+            }
+        })
+    }
+
 }

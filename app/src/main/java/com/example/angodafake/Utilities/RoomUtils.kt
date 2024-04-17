@@ -7,6 +7,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.GenericTypeIndicator
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 
@@ -36,19 +37,51 @@ object RoomUtils {
 
 
 
-    fun getRoomList(listener: (List<Rooms>) -> Unit) {
-        val roomList = mutableListOf<Rooms>()
+    fun getRoomList(listener: (ArrayList<Rooms>) -> Unit) {
+        val roomList = ArrayList<Rooms>()
         database.child("rooms").get().addOnSuccessListener { dataSnapshot ->
             for (roomSnapshot in dataSnapshot.children) {
-                val room = roomSnapshot.getValue(Rooms::class.java)
-                room?.let {
-                    roomList.add(it)
+                val roomArrayList = roomSnapshot.getValue(object : GenericTypeIndicator<ArrayList<Rooms>>() {})
+                roomArrayList?.let {
+                    for (room in it) {
+                        roomList.add(room)
+                    }
                 }
             }
             listener(roomList)
         }.addOnFailureListener { exception ->
             Log.e("firebase", "Error getting hotel list", exception)
-            listener(emptyList()) // Trả về danh sách rỗng nếu có lỗi xảy ra
+            listener(ArrayList()) // Trả về danh sách rỗng nếu có lỗi xảy ra
         }
     }
+
+    fun getRoomsFromDatabase(listener: (List<Rooms>) -> Unit) {
+        val roomsRef = database.child("rooms")
+
+        roomsRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val roomList = mutableListOf<Rooms>()
+
+                for (roomSnapshot in dataSnapshot.children) {
+                    for (roomDataSnapshot in roomSnapshot.children) {
+                        val room = roomDataSnapshot.getValue(Rooms::class.java)
+                        room?.let {
+                            it.ID_Hotel = roomSnapshot.key
+                            it.ID = roomDataSnapshot.key
+                            roomList.add(it)
+                        }
+                    }
+                }
+
+                // Gửi danh sách phòng tới listener
+                listener(roomList)
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Xử lý khi có lỗi xảy ra
+            }
+        })
+    }
+
+
 }

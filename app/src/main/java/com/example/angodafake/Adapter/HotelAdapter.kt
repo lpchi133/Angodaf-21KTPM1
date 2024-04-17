@@ -13,9 +13,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.R
 import com.example.angodafake.Utilities.BookmarkUtils
+import com.example.angodafake.Utilities.CommentUtils
 import com.example.angodafake.Utilities.PictureUtils
+import com.example.angodafake.Utilities.PurchaseUtils
 import com.example.angodafake.Utilities.RoomUtils
 import com.example.angodafake.db.Bookmark
+import com.example.angodafake.db.Comment
 import com.example.angodafake.db.Hotel
 import com.example.angodafake.db.Picture_Hotel
 import com.example.angodafake.db.Rooms
@@ -25,6 +28,9 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class HotelAdapter(private val context: Context, private var hotels: List<Hotel>, private var idUser: String) : RecyclerView.Adapter<HotelAdapter.ViewHolder>() {
     private lateinit var Picture_Hotel: Picture_Hotel
@@ -77,6 +83,7 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
 
         database = Firebase.database.reference
         val hotelsRef = database.child("hotels")
+        val roomsRef = database.child("rooms")
 //
         val idPicture = context.resources.getIdentifier("quang_ba_khach_san", "drawable", context.packageName)
 
@@ -84,7 +91,6 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
         holder.hotelName.text = hotel.name
         holder.ratingBar.rating = hotel.star!!.toFloat()
         holder.City.text = hotel.city
-        holder.pointView.text = hotel.point.toString()
         holder.count_cmt.text = hotel.total_comments.toString() + " nhận xét"
         holder.rateStatus.text = when (hotel.point?.toInt()){
             in 0 until 3 -> { "Cực tệ" }
@@ -103,41 +109,105 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
             Log.d("Adapter", "Room: ${lowestPrice}")
 
             hotelsRef.child(hotel.ID!!).child("money").setValue(lowestPrice)
-        }
 
-        BookmarkUtils.getAllBookmarks("tYw0x3oVS7gAd9wOdOszzvJMOEM2") { favList ->
-            favList.forEach { bookmark ->
-                if (bookmark.ID_Hotel == hotel.ID) {
-                    Log.d("id_hotel", "$bookmark.ID_Hotel, ${hotel.toString()}")
-                    holder.buttonFav.setColorFilter(Color.RED)
-                    return@forEach
+
+            CommentUtils.getAllComments(hotel.ID!!) { commentList ->
+                if (commentList != null){
+                    var totalPoint = 0.0
+                    for (comment in commentList) {
+                        totalPoint += comment.point!!
+                    }
+
+                    hotelsRef.child(hotel.ID!!).child("total_comments").setValue(commentList.size)
+                    holder.count_cmt.text = hotel.total_comments.toString() + " nhận xét"
+                    val averagePoint = totalPoint / commentList.size
+                    val roundedNumber = String.format("%.1f", averagePoint).toDouble()
+                    hotelsRef.child(hotel.ID!!).child("point").setValue(roundedNumber)
+                    holder.pointView.text = hotel.point.toString()
                 }
-            }
-        }
+                else{
+                    hotelsRef.child(hotel.ID!!).child("total_comments").setValue(0)
+                    holder.count_cmt.text = hotel.total_comments.toString() + " nhận xét"
+                    hotelsRef.child(hotel.ID!!).child("point").setValue(0.0)
+                    holder.pointView.text = hotel.point.toString()
+                }
 
-        holder.buttonFav.setOnClickListener {
-            if (holder.buttonFav.colorFilter == null){
-                holder.buttonFav.setColorFilter(Color.RED)
-                val newBookmark = Bookmark(ID_Hotel = hotel.ID, ID_Owner = "tYw0x3oVS7gAd9wOdOszzvJMOEM2")
 
-                BookmarkUtils.addBookmark(newBookmark) { success ->
-                    if (success) {
-                        // Bookmark đã được thêm thành công
-                        Log.d("Bookmark", "Bookmark added successfully.")
-                    } else {
-                        // Có lỗi xảy ra khi thêm bookmark
-                        Log.e("Bookmark", "Failed to add bookmark.")
+
+                BookmarkUtils.getAllBookmarks("tYw0x3oVS7gAd9wOdOszzvJMOEM2") { favList ->
+                    favList.forEach { bookmark ->
+                        if (bookmark.ID_Hotel == hotel.ID) {
+                            Log.d("id_hotel", "$bookmark.ID_Hotel, ${hotel.toString()}")
+                            holder.buttonFav.setColorFilter(Color.RED)
+                            return@forEach
+                        }
+                    }
+
+                    PurchaseUtils.getAllPurchasesByHotelID(hotel.ID!!) { purchaseList ->
+                        var count_room_purchase = 0
+                        if (purchaseList.isNotEmpty()) {
+                            var id_room = ""
+                            for (purchase in purchaseList) {
+                                if (purchase.detail != "DA_HUY") {
+                                    val currentDate = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(
+                                        Date()
+                                    )
+                                    val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                                    val dateCome = dateFormat.parse(purchase.date_come)
+                                    val dateGo = dateFormat.parse(purchase.date_go)
+                                    val currentDateObject = dateFormat.parse(currentDate)
+                                    Log.d("DateCome", "Date come: ${dateFormat.format(dateCome)}")
+                                    Log.d("DateGo", "Date go: ${dateFormat.format(dateGo)}")
+                                    Log.d("currentDate", "currentDate: ${dateFormat.format(currentDateObject)}")
+
+
+                                    // Kiểm tra xem thời gian hiện tại có nằm trong khoảng thời gian giữa purchase.date_come và purchase.date_go không
+                                    if (currentDateObject.after(dateCome) && currentDateObject.before(dateGo)) {
+                                        count_room_purchase++
+                                    }
+                                    if (currentDateObject.compareTo(dateGo) == 0) {
+                                        // Nếu hôm nay trùng với dateGo, thì count_room_purchase cũng được tăng lên
+                                        count_room_purchase++
+                                    }
+                                }
+                                id_room = purchase.ID_Room!!
+                                Log.d("PurchaseList", "Purchase ID: ${purchase.ID}, Detail: ${purchase.detail}")
+                            }
+                            roomsRef.child(hotel.ID!!).child(id_room).child("available").setValue(count_room_purchase)
+
+                        }else {
+                            Log.d("PurchaseList", "Purchase list is null")
+                        }
+                    }
+
+
+                    holder.buttonFav.setOnClickListener {
+                        if (holder.buttonFav.colorFilter == null){
+                            holder.buttonFav.setColorFilter(Color.RED)
+                            val newBookmark = Bookmark(ID_Hotel = hotel.ID, ID_Owner = "tYw0x3oVS7gAd9wOdOszzvJMOEM2")
+
+                            BookmarkUtils.addBookmark(newBookmark) { success ->
+                                if (success) {
+                                    // Bookmark đã được thêm thành công
+                                    Log.d("Bookmark", "Bookmark added successfully.")
+                                } else {
+                                    // Có lỗi xảy ra khi thêm bookmark
+                                    Log.e("Bookmark", "Failed to add bookmark.")
+                                }
+                            }
+                        } else {
+                            holder.buttonFav.setColorFilter(null)
+                            BookmarkUtils.deleteBookmarkWithID("tYw0x3oVS7gAd9wOdOszzvJMOEM2", hotel.ID!!)
+                        }
+                    }
+
+                    holder.buttonShare.tag = position
+                    holder.buttonShare.setOnClickListener{
+                        onShareButtonClick(it)
                     }
                 }
-            } else {
-                holder.buttonFav.setColorFilter(null)
-                BookmarkUtils.deleteBookmarkWithID("tYw0x3oVS7gAd9wOdOszzvJMOEM2", hotel.ID!!)
-            }
-        }
 
-        holder.buttonShare.tag = position
-        holder.buttonShare.setOnClickListener{
-            onShareButtonClick(it)
+            }
         }
     }
 

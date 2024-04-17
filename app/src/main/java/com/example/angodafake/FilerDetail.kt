@@ -69,7 +69,12 @@ class FilerDetail(private var idUser: String) : Fragment() {
         var hotelIds = args?.getStringArray("hotelIds")
         val saveIds = args?.getStringArray("saveIds")
         val searchText = args?.getString("searchText")
+        val checkIn = args?.getString("checkIn")
+        val checkOut = args?.getString("checkOut")
+        val numberOfRooms = args?.getInt("numberOfRooms")
+        val numberOfGuests = args?.getInt("numberOfGuests")
         Log.d("FilterDetailFragment", "Hotel IDs Detail: ${hotelIds?.joinToString(", ")}, Search Text: $searchText")
+        Log.d("number", "numberOfRooms: ${numberOfRooms}, numberOfGuests: ${numberOfGuests}")
 
 
         text6Plus = view.findViewById<TextView>(R.id.text_6_plus)
@@ -97,6 +102,10 @@ class FilerDetail(private var idUser: String) : Fragment() {
             arg.putString("searchText", searchText)
             arg.putStringArray("hotelIds", hotelIds)
             arg.putStringArray("saveIds", saveIds)
+            arg.putString("checkIn", checkIn)
+            arg.putString("checkOut", checkOut)
+            arg.putInt("numberOfRooms", numberOfRooms!!)
+            arg.putInt("numberOfGuests", numberOfGuests!!)
 
             // Khởi tạo Fragment Filter và đính kèm Bundle
             val filterFragment = Filter(idUser)
@@ -190,6 +199,11 @@ class FilerDetail(private var idUser: String) : Fragment() {
             bundle.putStringArray("hotelIds", hotelIds)
             bundle.putString("searchText", searchText)
             bundle.putStringArray("saveIds", saveIds)
+            bundle.putString("checkIn", checkIn)
+            bundle.putString("checkOut", checkOut)
+            bundle.putInt("numberOfRooms", numberOfRooms!!)
+            bundle.putInt("numberOfGuests", numberOfGuests!!)
+
 
             val filterFragment = Filter(idUser)
             filterFragment.arguments = bundle

@@ -7,6 +7,7 @@ data class Rooms(
     var ID: String? = null,
     var ID_Hotel: String? = null,
     var quantity: Int? = 0,
+    var available: Int? = 0,
     var type: String? = null,
     var acreage: Double? = 0.0,
     var direction: String? = null,

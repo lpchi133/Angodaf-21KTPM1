@@ -55,10 +55,16 @@ object UserUtils {
         val usersQuery = database.child("users")
         usersQuery.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                var check = false
                 for (userSnapshort in dataSnapshot.children){
                     val user = userSnapshort.getValue(User::class.java)
-                    Log.d("user", user.toString())
-                    listener(user)
+                    if (user!!.phoneN == phoneN){
+                        check = true
+                        listener(user)
+                    }
+                }
+                if (check == false){
+                    listener(null)
                 }
             }
 
