@@ -16,7 +16,7 @@ object CommentUtils {
      }
 
     fun getAllComments(ownerID: String, listenser: (List<Comment>) -> Unit) {
-        val commentsQuery = database.child("Comment")
+        val commentsQuery = database.child("comments")
 
         commentsQuery.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
