@@ -3456,6 +3456,7 @@ int id btn_reorder1 0x7f0900ad
 int id btn_reorder2 0x7f0900ae
 int id btn_send 0x7f0900af
 int id btn_sendcmt 0x7f0900b0
+int id btn_submit 0x7f09038a
 int id button 0x7f0900b1
 int id button2 0x7f0900b2
 int id button3 0x7f0900b3
@@ -3551,6 +3552,7 @@ int id cradle 0x7f09010c
 int id currentState 0x7f09010d
 int id custom 0x7f09010e
 int id customPanel 0x7f09010f
+int id custom_password_dialog 0x7f09038b
 int id customer 0x7f090110
 int id customerInfor 0x7f090111
 int id customerName 0x7f090112
@@ -3611,6 +3613,7 @@ int id endToStart 0x7f090148
 int id enterAlways 0x7f090149
 int id enterAlwaysCollapsed 0x7f09014a
 int id errorText 0x7f09014b
+int id et_Password 0x7f09038d
 int id exitUntilCollapsed 0x7f09014c
 int id expand_activities_button 0x7f09014d
 int id expanded_menu 0x7f09014e
@@ -3676,6 +3679,7 @@ int id ignoreRequest 0x7f090189
 int id image 0x7f09018a
 int id imageView 0x7f09018b
 int id imageView1 0x7f09018c
+int id imageView10 0x7f09038e
 int id imageView12 0x7f09018d
 int id imageView13 0x7f09018e
 int id imageView14 0x7f09018f
@@ -4080,6 +4084,7 @@ int id textView32 0x7f09031d
 int id textView33 0x7f09031e
 int id textView34 0x7f09031f
 int id textView35 0x7f090320
+int id textView36 0x7f09038f
 int id textView37 0x7f090321
 int id textView38 0x7f090322
 int id textView39 0x7f090323
@@ -4097,6 +4102,7 @@ int id textView49 0x7f09032e
 int id textView5 0x7f09032f
 int id textView50 0x7f090330
 int id textView51 0x7f090331
+int id textView52 0x7f090390
 int id textView54 0x7f090332
 int id textView6 0x7f090333
 int id textView7 0x7f090334
@@ -4322,6 +4328,7 @@ int layout custom_hotel 0x7f0c002e
 int layout custom_hotel_detail 0x7f0c002f
 int layout custom_my_voucher 0x7f0c0030
 int layout custom_my_voucher_detail 0x7f0c0031
+int layout custom_password_dialog 0x7f0c00a3
 int layout custom_past_cancel_purchase_adapter 0x7f0c0032
 int layout custom_past_cancel_purchase_detail 0x7f0c0033
 int layout custom_price 0x7f0c0034

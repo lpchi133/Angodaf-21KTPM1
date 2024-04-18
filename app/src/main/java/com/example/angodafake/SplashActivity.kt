@@ -27,7 +27,6 @@ class SplashActivity : AppCompatActivity() {
 
     private fun nextActivity(): Runnable {
         val currentUser = auth.currentUser
-
         return Runnable {
             if (currentUser != null){
                 //Da dang nhap truoc do

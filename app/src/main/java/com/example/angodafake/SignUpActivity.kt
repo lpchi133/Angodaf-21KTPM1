@@ -242,7 +242,7 @@ class SignUpActivity : AppCompatActivity() {
                     val cardNumber = ""
                     val cardName = ""
 
-                    val user = User(name, dob, gender, number, email, country, cardNumber, cardName)
+                    val user = User(null,name, dob, gender, number, email, country, cardNumber, cardName)
                     val userID = auth.currentUser!!.uid
                     database.child("users").child(userID).setValue(user)
                     showSuccessSnackBar("Tạo tài khoản thành công!")
@@ -284,7 +284,7 @@ class SignUpActivity : AppCompatActivity() {
                             val cardNumber = ""
                             val cardName = ""
 
-                            val user = User(name, dob, gender, number, "", country, cardNumber, cardName)
+                            val user = User(null, name, dob, gender, number, "", country, cardNumber, cardName)
                             val userID = auth.currentUser!!.uid
                             database.child("users").child(userID).setValue(user)
                             showSuccessSnackBar("Tạo tài khoản thành công!")
