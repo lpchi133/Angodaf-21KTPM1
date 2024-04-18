@@ -376,15 +376,47 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <RelativeLayout
                 android:id="@+id/voucher"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:background="@drawable/rounded_layout"
-                android:padding="15dp">
+                android:padding="10dp">
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/voucher3" />
+
+                <TextView
+                    android:id="@+id/textView36"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thêm Hotel Voucher"
+                    android:layout_toEndOf="@+id/imageView10"
+                    android:layout_marginStart="5dp"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:layout_centerVertical="true"/>
+
+                <Button
+                    android:id="@+id/seen_voucher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="Xem và lựa chọn"
+                    android:textColor="#505050"
+                    android:textSize="14sp"
+                    android:background="@color/white"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    app:drawableRightCompat="@drawable/open_popup" />
+
+
+            </RelativeLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/totalPrice"

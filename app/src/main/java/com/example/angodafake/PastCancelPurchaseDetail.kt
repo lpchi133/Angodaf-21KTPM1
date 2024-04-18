@@ -80,11 +80,14 @@ class PastCancelPurchaseDetail : AppCompatActivity() {
         return temp.replace("\\", ", ")
     }
 
-    fun format2 (temp1: String, temp2: String, temp3: String) : Spanned? {
-        val roomDescription = "$temp1 | $temp2 &#8575;&#178; | $temp3 giường đôi"
-        val formattedDescription = Html.fromHtml(roomDescription, Html.FROM_HTML_MODE_COMPACT)
+    fun format2(temp1: String, temp2: String, single: String, Double: String): Spanned? {
+        val roomDescription: String = if (single == "0") {
+            "$temp1 | $temp2 &#8575;&#178; | $Double giường đôi"
+        } else {
+            "$temp1 | $temp2 &#8575;&#178; | $single giường đơn"
+        }
 
-        return formattedDescription
+        return Html.fromHtml(roomDescription, Html.FROM_HTML_MODE_COMPACT)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -166,11 +169,7 @@ class PastCancelPurchaseDetail : AppCompatActivity() {
                 roomCost.text = format4(room.price!!.toDouble())
                 roomTax.text = format4((room.price?.times(0.1))!!.toDouble())
 
-                if (room.single_bed == 0) {
-                    roomDes.text = format2(room.direction.toString(), room.acreage.toString(), room.double_bed.toString())
-                } else {
-                    roomDes.text = format2(room.direction.toString(), room.acreage.toString(), room.single_bed.toString())
-                }
+                roomDes.text = format2(room.direction.toString(), room.acreage.toString(), room.single_bed.toString(), room.double_bed.toString())
 
                 roomBenefit.text = format1(room.benefit.toString())
 

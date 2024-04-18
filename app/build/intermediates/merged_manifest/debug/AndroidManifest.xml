@@ -45,6 +45,9 @@
         android:testOnly="true"
         android:theme="@style/Theme.AngodaFake" >
         <activity
+            android:name="com.example.angodafake.Adapter.VoucherAdapter"
+            android:exported="false" />
+        <activity
             android:name="com.example.angodafake.BookRoom"
             android:exported="false" />
 
@@ -56,6 +59,9 @@
             android:exported="true"
             android:value="@integer/google_play_services_version" />
 
+        <activity
+            android:name="com.example.angodafake.PastCancelPurchaseDetail"
+            android:exported="false" />
         <activity
             android:name="com.example.angodafake.ActivePurchaseDetail"
             android:exported="false" />

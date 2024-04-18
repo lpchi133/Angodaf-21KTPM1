@@ -73,8 +73,11 @@
         android:layout_height="50dp"
         android:layout_below="@+id/border3"
         android:layout_alignParentStart="true"
-        android:layout_margin="10dp"
-        app:srcCompat="@drawable/beautiful_hotel" />
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        app:srcCompat="@drawable/ic_launcher_1_background" />
 
     <TextView
         android:id="@+id/textView"

@@ -3063,6 +3063,7 @@ drawable baseline_bed_24
 drawable baseline_bookmark_24
 drawable baseline_bubble_chart_24
 drawable baseline_calendar_month_24
+drawable baseline_calendar_month_24_blue
 drawable baseline_card_membership_24
 drawable baseline_chat_24
 drawable baseline_chat_bubble_outline_24
@@ -3104,11 +3105,12 @@ drawable baseline_thumb_down_24
 drawable baseline_thumb_up_24
 drawable baseline_verified_user_24
 drawable baseline_x
-drawable beautiful_hotel
 drawable border
 drawable border1
 drawable border2
 drawable border3
+drawable border4
+drawable border5
 drawable border_color
 drawable border_color1
 drawable border_color2
@@ -3131,6 +3133,7 @@ drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
 drawable btn_removeorder
 drawable btn_sort
+drawable btn_use
 drawable btn_yes
 drawable button_selector
 drawable circle_shape
@@ -3173,6 +3176,8 @@ drawable ic_call_decline_low
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
 drawable ic_keyboard_black_24dp
+drawable ic_launcher_1_background
+drawable ic_launcher_1_foreground
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_m3_chip_check
@@ -3267,6 +3272,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable open_popup
 drawable quang_ba_khach_san
 drawable room
 drawable round_half
@@ -3280,6 +3286,9 @@ drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 drawable visa_logo
+drawable voucher1
+drawable voucher2
+drawable voucher3
 id ALT
 id Agoodaa
 id BOTTOM_END
@@ -3662,6 +3671,7 @@ id honorRequest
 id horizontal_only
 id hotel
 id hotelName
+id hotel_address
 id hotel_image
 id hotel_name
 id hotel_phone
@@ -3677,6 +3687,7 @@ id ignoreRequest
 id image
 id imageView
 id imageView1
+id imageView10
 id imageView12
 id imageView13
 id imageView14
@@ -3925,6 +3936,7 @@ id ratingBar2
 id ratingBar3
 id ratingBar4
 id ratio
+id reason
 id rectangles
 id register
 id register2
@@ -3971,6 +3983,7 @@ id search_mag_icon
 id search_plate
 id search_src_text
 id search_voice_btn
+id seen_voucher
 id select_dialog_listview
 id selected
 id selection_type
@@ -4016,6 +4029,7 @@ id staticPostLayout
 id status1
 id status2
 id status3
+id status4
 id stop
 id stretch
 id submenuarrow
@@ -4081,6 +4095,7 @@ id textView32
 id textView33
 id textView34
 id textView35
+id textView36
 id textView37
 id textView38
 id textView39
@@ -4159,6 +4174,7 @@ id uniform
 id unlabeled
 id up
 id useLogo
+id usenow
 id vertical_only
 id view
 id view2
@@ -4174,6 +4190,10 @@ id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
 id voucher
+id voucher_area
+id voucher_limited
+id voucher_name
+id voucher_quantity
 id warning
 id watchRoom
 id west
@@ -4329,7 +4349,8 @@ layout custom_price
 layout custom_rating
 layout custom_room
 layout custom_sort
-layout custom_voucher
+layout custom_voucher_adapter
+layout custom_voucher_hotel_adapter
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar
@@ -4438,6 +4459,8 @@ layout tab_past_room
 layout voucher
 menu nav_bar
 mipmap ic_launcher
+mipmap ic_launcher_1
+mipmap ic_launcher_1_round
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
 raw firebase_common_keep
@@ -4958,6 +4981,8 @@ style Base_Widget_MaterialComponents_Snackbar
 style Base_Widget_MaterialComponents_TextInputEditText
 style Base_Widget_MaterialComponents_TextInputLayout
 style Base_Widget_MaterialComponents_TextView
+style BottomSheetDialogTheme
+style BottomSheetStyle
 style CardView
 style CardView_Dark
 style CardView_Light

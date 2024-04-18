@@ -29,6 +29,7 @@ drawable baseline_bed_24
 drawable baseline_bookmark_24
 drawable baseline_bubble_chart_24
 drawable baseline_calendar_month_24
+drawable baseline_calendar_month_24_blue
 drawable baseline_card_membership_24
 drawable baseline_chat_24
 drawable baseline_chat_bubble_outline_24
@@ -70,11 +71,12 @@ drawable baseline_thumb_down_24
 drawable baseline_thumb_up_24
 drawable baseline_verified_user_24
 drawable baseline_x
-drawable beautiful_hotel
 drawable border
 drawable border1
 drawable border2
 drawable border3
+drawable border4
+drawable border5
 drawable border_color
 drawable border_color1
 drawable border_color2
@@ -89,12 +91,15 @@ drawable btn_no
 drawable btn_order
 drawable btn_removeorder
 drawable btn_sort
+drawable btn_use
 drawable btn_yes
 drawable button_selector
 drawable circle_shape
 drawable edit_text
 drawable empty_list
 drawable gg_icon
+drawable ic_launcher_1_background
+drawable ic_launcher_1_foreground
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable img
@@ -109,6 +114,7 @@ drawable img_8
 drawable khach_san
 drawable logo
 drawable momo_mservice_logo
+drawable open_popup
 drawable quang_ba_khach_san
 drawable room
 drawable round_half
@@ -119,6 +125,9 @@ drawable rounded_button_edit
 drawable rounded_button_price
 drawable rounded_layout
 drawable visa_logo
+drawable voucher1
+drawable voucher2
+drawable voucher3
 id Agoodaa
 id BookingFee
 id City
@@ -279,6 +288,7 @@ id home
 id homes
 id hotel
 id hotelName
+id hotel_address
 id hotel_image
 id hotel_name
 id hotel_phone
@@ -287,6 +297,7 @@ id icon
 id id_order
 id imageView
 id imageView1
+id imageView10
 id imageView12
 id imageView13
 id imageView14
@@ -397,6 +408,7 @@ id ratingBar1
 id ratingBar2
 id ratingBar3
 id ratingBar4
+id reason
 id register
 id register2
 id relativeLayout
@@ -412,6 +424,7 @@ id room_time
 id rootView
 id scroll
 id scrollView2
+id seen_voucher
 id shareBtn
 id showDetail
 id sign_up_title
@@ -420,6 +433,7 @@ id spinner
 id status1
 id status2
 id status3
+id status4
 id tabActive
 id tabCanceled
 id tabHost
@@ -458,6 +472,7 @@ id textView32
 id textView33
 id textView34
 id textView35
+id textView36
 id textView37
 id textView38
 id textView39
@@ -508,12 +523,17 @@ id tv_PhoneN
 id tv_email
 id tv_emailPhoneN
 id type_room
+id usenow
 id view
 id view2
 id view3
 id view4
 id view5
 id voucher
+id voucher_area
+id voucher_limited
+id voucher_name
+id voucher_quantity
 id warning
 id watchRoom
 layout activity_book_room
@@ -541,7 +561,8 @@ layout custom_price
 layout custom_rating
 layout custom_room
 layout custom_sort
-layout custom_voucher
+layout custom_voucher_adapter
+layout custom_voucher_hotel_adapter
 layout empty_active_room
 layout empty_canceled_room
 layout empty_comment
@@ -572,6 +593,8 @@ layout tab_past_room
 layout voucher
 menu nav_bar
 mipmap ic_launcher
+mipmap ic_launcher_1
+mipmap ic_launcher_1_round
 mipmap ic_launcher_round
 string Filter
 string app_name
@@ -615,6 +638,8 @@ string title
 string titlePurchase
 string v_title
 style Base.Theme.AngodaFake
+style BottomSheetDialogTheme
+style BottomSheetStyle
 style PopupAnimation
 style Theme.AngodaFake
 style Theme.MyApp

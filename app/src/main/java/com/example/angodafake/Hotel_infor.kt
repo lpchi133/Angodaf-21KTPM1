@@ -15,13 +15,14 @@ import android.widget.PopupWindow
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.angodafake.Adapter.VoucherAdapter
 import com.example.angodafake.Utilities.HotelUtils
-import com.example.angodafake.Utilities.PictureUtils
-import com.example.angodafake.Utilities.RoomUtils
 import com.example.angodafake.Utilities.UserUtils
+import com.example.angodafake.Utilities.VoucherUtils
 import com.example.angodafake.db.Hotel
 import com.example.angodafake.db.Picture_Hotel
-import com.example.angodafake.db.Rooms
 import com.example.angodafake.db.User
 
 
@@ -41,6 +42,9 @@ class Hotel_infor(private var idUser: String) : Fragment() {
     private lateinit var User: User
     private lateinit var hotel: Hotel
     private lateinit var popupWindow: PopupWindow
+    private lateinit var voucherfield: RecyclerView
+    private lateinit var layoutManager: LinearLayoutManager
+    private lateinit var linearAdapter: VoucherAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,8 +86,7 @@ class Hotel_infor(private var idUser: String) : Fragment() {
         val showDetail: TextView = view.findViewById(R.id.showDetail)
         val firstRectangle: TextView = view.findViewById(R.id.firstRectangle)
 
-
-
+        layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         if (itemPosition != null) {
             HotelUtils.getHotelByID(itemPosition) { ho ->
@@ -188,7 +191,16 @@ class Hotel_infor(private var idUser: String) : Fragment() {
                         }
                     }
 
+                    VoucherUtils.getAllVouchers(itemPosition) {listVoucher ->
+//                        println(itemPosition)
+//                        println(listVoucher)
+                        voucherfield = view.findViewById(R.id.voucher)
+                        voucherfield.layoutManager = layoutManager
+                        voucherfield.setHasFixedSize(true)
 
+                        linearAdapter = VoucherAdapter(requireActivity(), listVoucher, idUser, hotel.name!!)
+                        voucherfield.adapter = linearAdapter
+                    }
             }
         }
         return view
