@@ -8,6 +8,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
+import kotlinx.coroutines.tasks.await
 
 object UserUtils {
     private lateinit var database: DatabaseReference
@@ -51,14 +52,37 @@ object UserUtils {
         })
     }
 
+//    suspend fun getUserByPhoneNumber(phoneN: String): User? {
+//        return try {
+//            val dataSnapshot = database.child("users").get().await()
+//            var user: User? = null
+//            dataSnapshot.children.forEach { userSnapshot ->
+//                val currentUser = userSnapshot.getValue(User::class.java)
+//                if (currentUser?.phoneN == phoneN) {
+//                    user = currentUser
+//                    return@forEach
+//                }
+//            }
+//            user
+//        } catch (e: Exception) {
+//            null
+//        }
+//    }
+
     fun getUserByPhoneNumber(phoneN: String, listener: (User?) -> Unit){
         val usersQuery = database.child("users")
         usersQuery.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                var check = false
                 for (userSnapshort in dataSnapshot.children){
                     val user = userSnapshort.getValue(User::class.java)
-                    Log.d("user", user.toString())
-                    listener(user)
+                    if (user!!.phoneN == phoneN){
+                        check = true
+                        listener(user)
+                    }
+                }
+                if (check == false){
+                    listener(null)
                 }
             }
 

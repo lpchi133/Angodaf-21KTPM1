@@ -36,4 +36,22 @@ object PurchaseUtils {
             }
         })
     }
+
+    fun cancelPurchase(purchaseID: String, detail: String, reason: String, status_purchase: String, time_cancel: String, callback: (String) -> Unit) {
+        val purchaseUpdate = hashMapOf<String, Any>(
+            "/purchases/$purchaseID/detail" to detail,
+            "/purchases/$purchaseID/reason" to reason,
+            "/purchases/$purchaseID/status_purchase" to status_purchase,
+            "/purchases/$purchaseID/time_cancel" to time_cancel,
+        )
+
+        database.updateChildren(purchaseUpdate)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    callback.invoke("success")
+                } else {
+                    callback.invoke("failure")
+                }
+            }
+    }
 }

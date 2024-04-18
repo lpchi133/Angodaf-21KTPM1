@@ -2,6 +2,7 @@ package com.example.angodafake.Utilities
 
 
 import android.util.Log
+import com.example.angodafake.db.Hotel
 import com.example.angodafake.db.Rooms
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
@@ -33,9 +34,6 @@ object RoomUtils {
             listener(emptyList()) // Trả về danh sách rỗng nếu có lỗi xảy ra
         }
     }
-
-
-
     fun getRoomList(listener: (List<Rooms>) -> Unit) {
         val roomList = mutableListOf<Rooms>()
         database.child("rooms").get().addOnSuccessListener { dataSnapshot ->
@@ -49,6 +47,18 @@ object RoomUtils {
         }.addOnFailureListener { exception ->
             Log.e("firebase", "Error getting hotel list", exception)
             listener(emptyList()) // Trả về danh sách rỗng nếu có lỗi xảy ra
+        }
+    }
+
+    fun getRoomByID(ID_Hotel: String, ID_Room: String, listener: (Rooms) -> Unit) {
+        database.child("rooms").child(ID_Hotel).child(ID_Room).get().addOnSuccessListener {
+            val room = it.getValue(Rooms::class.java)
+            room?.ID = ID_Room
+            if (room != null) {
+                listener(room)
+            }
+        }.addOnFailureListener {
+            Log.e("firebase", "Error getting data", it)
         }
     }
 }

@@ -1,21 +1,31 @@
 package com.example.angodafake
 
+import android.app.Activity
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import com.example.angodafake.Utilities.PurchaseUtils
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 
 class CancelPurchase : AppCompatActivity() {
-    private fun showpopup_2() {
+    private fun showpopup_2(idPurchase:String, detail:String, reason:String, statusPurchase:String, dateNow:String, idUser: String) {
         println("OK")
         val diaLog = Dialog(this)
         diaLog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -36,12 +46,27 @@ class CancelPurchase : AppCompatActivity() {
         }
 
         btnCancel.setOnClickListener {
-            Toast.makeText(this, "Đã hủy thành công đặt phòng của bạn!", Toast.LENGTH_SHORT).show()
-            finish()
+            try {
+                PurchaseUtils.cancelPurchase(idPurchase, detail, reason, statusPurchase, dateNow) { result ->
+                    println(result)
+                    Toast.makeText(baseContext, "Đã hủy thành công đặt phòng của bạn!", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) // Xóa các activity trước đó và chỉ hiển thị MainActivity
+                    intent.putExtra("replaceChannel", "myRoom")
+                    intent.putExtra("idUser", idUser)
+                    setResult(Activity.RESULT_OK, intent)
+                    startActivity(intent)
+                    finish()
+                }
+            } catch (e: Exception) {
+                Toast.makeText(baseContext, "Đã xảy ra lỗi khi hủy đặt phòng!", Toast.LENGTH_SHORT).show()
+            }
         }
 
         diaLog.show()
     }
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.cancel_purchase)
@@ -65,8 +90,27 @@ class CancelPurchase : AppCompatActivity() {
         val btnContinue: Button = findViewById(R.id.btn_continue)
         val notic: TextView = findViewById(R.id.notic)
 
-        btnBack.setOnClickListener {
+        val idUser = intent.getStringExtra("id_user")
+        val idPurchase = intent.getStringExtra("id_purchase")
+        val dateCome = intent.getStringExtra("date_come")
+        var statusPurchase = intent.getStringExtra("status_purchase")
+        var reason: String = ""
+        val detail: String = "DA_HUY"
 
+        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+        val dateNow = LocalDate.now().format(formatter)
+
+        val formattedDate = LocalDate.parse(dateNow, formatter)
+        val dateComeDate = LocalDate.parse(dateCome, formatter)
+        val daysBetween = ChronoUnit.DAYS.between(formattedDate, dateComeDate)
+
+        if (daysBetween <= 5 || statusPurchase == "CHUA_THANH_TOAN") {
+            statusPurchase = "KHONG_HOAN_TIEN"
+        } else {
+            statusPurchase = "CHUA_HOAN_TIEN"
+        }
+
+        btnBack.setOnClickListener {
             finish()
         }
 
@@ -76,7 +120,9 @@ class CancelPurchase : AppCompatActivity() {
                 notic.text = "*Vui lòng chọn lý do hủy đặt phòng"
             } else {
                 notic.text = ""
-                showpopup_2()
+                if (idPurchase != null && detail != null && dateNow != null && idUser != null) {
+                    showpopup_2(idPurchase, detail, reason, statusPurchase, dateNow, idUser)
+                }
             }
         }
 
@@ -85,5 +131,20 @@ class CancelPurchase : AppCompatActivity() {
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 spinner.adapter = adapter
             }
+
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                reason = parent?.getItemAtPosition(position).toString()
+            }
+        }
     }
 }

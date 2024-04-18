@@ -2,6 +2,8 @@ package com.example.angodafake.Adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Build
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +11,10 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.example.angodafake.Hotel_infor
 import com.example.angodafake.PurchaseExtra
 import com.example.angodafake.R
 import com.example.angodafake.Utilities.HotelUtils
@@ -18,8 +23,11 @@ import com.example.angodafake.db.Hotel
 import com.example.angodafake.db.Picture_Hotel
 import com.example.angodafake.db.Purchase
 import com.squareup.picasso.Picasso
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
-class PastCancelPurchaseAdapter(private val context: Context, private var past_cancelPurchase: MutableList<PurchaseExtra>) : RecyclerView.Adapter<PastCancelPurchaseAdapter.MyViewHolder>() {
+class PastCancelPurchaseAdapter(private val fragment: Fragment, private var past_cancelPurchase: MutableList<PurchaseExtra>) : RecyclerView.Adapter<PastCancelPurchaseAdapter.MyViewHolder>() {
     var onItemClick: ((PurchaseExtra) -> Unit)? = null
     private var listener: OnItemClickListener? = null
     interface OnItemClickListener {
@@ -38,6 +46,7 @@ class PastCancelPurchaseAdapter(private val context: Context, private var past_c
         return past_cancelPurchase.size
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = past_cancelPurchase[position]
@@ -57,16 +66,43 @@ class PastCancelPurchaseAdapter(private val context: Context, private var past_c
             holder.statuspurchase3.text = "Không hoàn tiền"
         }
 
-        holder.checkin.text = currentItem.Purchase?.date_come
-        holder.checkout.text = currentItem.Purchase?.date_go
+        holder.checkin.text = format(currentItem.Purchase?.date_come.toString())
+        holder.checkout.text = format(currentItem.Purchase?.date_go.toString())
 
         holder.reorderbtn.setOnClickListener {
-            Toast.makeText(context, "Press", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "Press", Toast.LENGTH_SHORT).show()
+            val arg = Bundle()
+            val idUser = currentItem.Purchase?.ID_Owner
+            arg.putString("Flow_1", "reorder")
+            arg.putString("hotelPosition", currentItem.Purchase?.ID_Hotel)
+
+            // Khởi tạo Fragment Filter và đính kèm Bundle
+            val Fragment = idUser?.let { it1 -> Hotel_infor(it1) }
+            Fragment?.arguments = arg
+
+            val fragmentManager = fragment.requireActivity().supportFragmentManager
+            if (Fragment != null) {
+                fragmentManager.beginTransaction()
+                    .replace(R.id.frameLayout, Fragment)
+                    .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
+                    .commit()
+            }
         }
 
         holder.itemView.setOnClickListener {
             onItemClick?.invoke(currentItem)
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun format (temp: String) : String {
+        val inputFormatter = DateTimeFormatter.ofPattern("d/M/yyyy")
+        val outputFormatter = DateTimeFormatter.ofPattern("d 'thg' M, yyyy", Locale("vi"))
+
+        val date = LocalDate.parse(temp, inputFormatter)
+        val formattedDate = date.format(outputFormatter)
+
+        return formattedDate
     }
 
     class MyViewHolder(past_cancelPurchaseItem: View) : RecyclerView.ViewHolder(past_cancelPurchaseItem) {

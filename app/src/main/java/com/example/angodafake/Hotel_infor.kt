@@ -61,6 +61,7 @@ class Hotel_infor(private var idUser: String) : Fragment() {
         val hotelIds = args?.getStringArray("hotelIds")
         val saveIds = args?.getStringArray("saveIds")
         val searchText = args?.getString("searchText")
+        val flow = args?.getString("Flow_1")
 
         val nameTextView = view.findViewById<TextView>(R.id.hotel_name)
         val locationTextView = view.findViewById<TextView>(R.id.address_hotel)
@@ -143,21 +144,26 @@ class Hotel_infor(private var idUser: String) : Fragment() {
                         description.text = initialDescription
 
                         view.findViewById<ImageView>(R.id.imageView4).setOnClickListener {
-                            val arg = Bundle()
-                            arg.putStringArray("hotelIds", hotelIds)
-                            arg.putStringArray("saveIds", saveIds)
-                            arg.putString("searchText", searchText)
+                            if (flow == null) {
 
-                            // Khởi tạo Fragment Filter và đính kèm Bundle
-                            val filterFragment = Filter(idUser)
-                            filterFragment.arguments = arg
+                                val arg = Bundle()
+                                arg.putStringArray("hotelIds", hotelIds)
+                                arg.putStringArray("saveIds", saveIds)
+                                arg.putString("searchText", searchText)
 
-                            // Thay thế Fragment hiện tại bằng Fragment Filter
-                            val fragmentManager = requireActivity().supportFragmentManager
-                            fragmentManager.beginTransaction()
-                                .replace(R.id.frameLayout, filterFragment)
-                                .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
-                                .commit()
+                                // Khởi tạo Fragment Filter và đính kèm Bundle
+                                val filterFragment = Filter(idUser)
+                                filterFragment.arguments = arg
+
+                                // Thay thế Fragment hiện tại bằng Fragment Filter
+                                val fragmentManager = requireActivity().supportFragmentManager
+                                fragmentManager.beginTransaction()
+                                    .replace(R.id.frameLayout, filterFragment)
+                                    .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
+                                    .commit()
+                            } else if (flow == "reorder") {
+                                replaceFragmentToRoom(idUser)
+                            }
                         }
 
                         view.findViewById<Button>(R.id.watchRoom).setOnClickListener {
@@ -186,6 +192,12 @@ class Hotel_infor(private var idUser: String) : Fragment() {
             }
         }
         return view
+    }
+
+    private fun replaceFragmentToRoom(idUser: String) {
+        println(idUser)
+        val mainActivity = activity as MainActivity
+        mainActivity.replaceFragment(MyRoom(idUser))
     }
 
     private fun showPopup() {

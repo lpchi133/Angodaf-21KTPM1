@@ -25,17 +25,38 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         idUser = intent.getStringExtra("idUser")
-        replaceFragment(Home(idUser!!))
+        val replaceChannel = intent.getStringExtra("replaceChannel")
+        val idOwner = intent.getStringExtra("idUser")
+        if (replaceChannel == "myRoom") {
+            replaceFragment(MyRoom(idOwner!!))
+        } else if (replaceChannel == "Hotel_infor") {
+            val idHotel = intent.getStringExtra("idHotel")
+            val arg = Bundle()
+            arg.putString("Flow_1", "reorder")
+            arg.putString("hotelPosition", idHotel)
 
+            // Khởi tạo Fragment Filter và đính kèm Bundle
+            val Fragment = idUser?.let { it1 -> Hotel_infor(it1) }
+            Fragment?.arguments = arg
+
+            val fragmentManager = supportFragmentManager
+            if (Fragment != null) {
+                fragmentManager.beginTransaction()
+                    .replace(R.id.frameLayout, Fragment)
+                    .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
+                    .commit()
+            }
+        } else {
+            replaceFragment(Home(idUser!!))
+        }
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
         bottomNavigationView.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
 
-
         binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when(menuItem.itemId){
                 R.id.home -> replaceFragment(Home(idUser!!))
-                R.id.room -> replaceFragment(MyRoom())
+                R.id.room -> replaceFragment(MyRoom(idUser!!))
                 R.id.hotel -> replaceFragment(MyHotel())
                 R.id.bookmark -> replaceFragment(Bookmark())
                 R.id.profile -> replaceFragment(MyProfile(idUser!!))
@@ -68,6 +89,9 @@ class MainActivity : AppCompatActivity() {
             }
             "hotel" -> {
                 binding.bottomNavigationView.selectedItemId = R.id.hotel
+            }
+            "home" -> {
+                binding.bottomNavigationView.selectedItemId = R.id.home
             }
         }
 

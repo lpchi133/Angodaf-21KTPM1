@@ -23,7 +23,7 @@
             android:text="@string/r_dateorder"
             android:textColor="#3E52FA"
             android:textSize="16sp"
-            app:drawableLeftCompat="@drawable/baseline_calendar_month_24"
+            app:drawableLeftCompat="@drawable/baseline_calendar_month_24_blue"
             tools:layout_editor_absoluteX="140dp"
             tools:layout_editor_absoluteY="132dp" />
 
@@ -74,7 +74,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="10dp"
-            android:background="#DDDDDD"
+            android:background="#CCCCCC"
             android:textColor="@color/black" />
 
         <TextView
