@@ -8,18 +8,23 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.TabHost
 import android.widget.TextView
 import com.example.angodafake.Utilities.UserUtils
+import com.example.angodafake.db.User
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var tabHost : TabHost
@@ -131,20 +136,22 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun signInWithPhoneN(phoneN: String, password: String, ){
-        UserUtils.getUserByPhoneNumber(phoneN){
-            if (it == null){
+        UserUtils.getUserByPhoneNumber(phoneN) {
+            if (it == null) {
                 showSnackBar("Số di động hoặc Mật khẩu không đúng.")
-            }
-            else{
-                if (it.email == ""){
+            } else {
+                if (it.email == "") {
                     val fEmailFromPhoneN = "$phoneN@gmail.com"
-                    signInWithEmail(fEmailFromPhoneN, password, "Số di động hoặc Mật khẩu không đúng.")
-                } else{
+                    signInWithEmail(
+                        fEmailFromPhoneN,
+                        password,
+                        "Số di động hoặc Mật khẩu không đúng."
+                    )
+                } else {
                     signInWithEmail(it.email!!, password, "Số di động hoặc Mật khẩu không đúng.")
                 }
             }
         }
-
     }
 
     private fun validateEmail(email: String, lEmail: TextInputLayout): Boolean {
