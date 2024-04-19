@@ -5,15 +5,7 @@ import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.angodafake.databinding.ActivityMainBinding
-//import com.example.angodafake.db.Bookmarks
-import com.example.angodafake.db.Hotel
-//import com.example.angodafake.db.HotelDatabase
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import org.jetbrains.annotations.TestOnly
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import com.google.firebase.Firebase
-import com.google.firebase.database.database
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

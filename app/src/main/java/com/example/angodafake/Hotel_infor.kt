@@ -66,9 +66,6 @@ class Hotel_infor(private var idUser: String) : Fragment() {
         val numberOfRooms = args?.getInt("numberOfRooms") ?: -1
         val numberOfGuests = args?.getInt("numberOfGuests") ?: -3
 
-        Log.d("number", "numberOfRooms: ${numberOfRooms}, numberOfGuests: ${numberOfGuests}")
-
-
         val nameTextView = view.findViewById<TextView>(R.id.hotel_name)
         val locationTextView = view.findViewById<TextView>(R.id.address_hotel)
         val pointView = view.findViewById<TextView>(R.id.point)
@@ -89,8 +86,6 @@ class Hotel_infor(private var idUser: String) : Fragment() {
         val firstRectangle: TextView = view.findViewById(R.id.firstRectangle)
 
 
-
-
         if (itemPosition != null) {
             HotelUtils.getHotelByID(itemPosition) { ho ->
                 hotel = ho
@@ -102,100 +97,97 @@ class Hotel_infor(private var idUser: String) : Fragment() {
 //                    img.setImageResource(idPicture)
 //                    imgAvt.setImageResource(idAvt)
 
+                price_room.text = hotel.money.toString() + " đ"
 
+                UserUtils.getUserByID(hotel.ID_Owner!!){user ->
+                    User = user
 
-                    price_room.text = hotel.money.toString() + " đ"
+                    Log.d("FilterFragment", "Received data - user: $User")
 
-                    UserUtils.getUserByID(hotel.ID_Owner!!){user ->
-                        User = user
+                    nameTextView.text = hotel.name
+                    locationTextView.text = hotel.locationDetail
+                    pointView.text = hotel.point.toString()
+                    //description.text = hotel.description
+                    //convenience.text = hotel.conveniences
+                    checkIn.text = hotel.checkIn
+                    checkOut.text = hotel.checkOut
+                    nameOwner.text = User.name
+                    ratingBar.rating = hotel.star!!.toFloat()
+                    hotel_phone.text = hotel.phoneNumber
+                    count_cmt.text = hotel.total_comments.toString() + " nhận xét"
 
-                        Log.d("FilterFragment", "Received data - user: $User")
+                    val conveniences = hotel.highlight?.split("\\")
+                    val formattedconveniences = conveniences?.map { "✅    $it" }
+                    val formattedconvenience = formattedconveniences?.joinToString("\n")
+                    convenience.text = formattedconvenience
 
+                    val highlights = hotel.highlight?.split("\\")
+                    val formattedHighlights = highlights?.map { "\uD83D\uDCA0    $it" }
+                    val formattedHighlight = formattedHighlights?.joinToString("\n")
+                    highlight.text = formattedHighlight
 
-                        nameTextView.text = hotel.name
-                        locationTextView.text = hotel.locationDetail
-                        pointView.text = hotel.point.toString()
-                        //description.text = hotel.description
-                        //convenience.text = hotel.conveniences
-                        checkIn.text = hotel.checkIn
-                        checkOut.text = hotel.checkOut
-                        nameOwner.text = User?.name
-                        ratingBar.rating = hotel.star!!.toFloat()
-                        hotel_phone.text = hotel.phoneNumber
-                        count_cmt.text = hotel.total_comments.toString() + " nhận xét"
-
-                        val conveniences = hotel.highlight?.split("\\")
-                        val formattedconveniences = conveniences?.map { "✅    $it" }
-                        val formattedconvenience = formattedconveniences?.joinToString("\n")
-                        convenience.text = formattedconvenience
-
-                        val highlights = hotel.highlight?.split("\\")
-                        val formattedHighlights = highlights?.map { "\uD83D\uDCA0    $it" }
-                        val formattedHighlight = formattedHighlights?.joinToString("\n")
-                        highlight.text = formattedHighlight
-
-                        rateStatus.text = when (hotel.point!!.toInt()){
-                            in 0 until 3 -> { "Cực tệ" }
-                            in 3 until 5 -> { "Tệ" }
-                            in 5 until 6 -> { "Trung bình" }
-                            in 6 until 8 -> { "Tốt" }
-                            in 8 until 9 -> { "Rất tốt" }
-                            else -> { "Tuyệt vời" }
-                        }
-
-                        val fullDescription = hotel.description
-                        val initialLinesToShow = 3
-                        val lines = fullDescription?.split("\\n")
-                        val initialDescription = lines?.take(initialLinesToShow)?.joinToString("\n")
-                        description.text = initialDescription
-
-                        view.findViewById<ImageView>(R.id.imageView4).setOnClickListener {
-                            val arg = Bundle()
-                            arg.putStringArray("hotelIds", hotelIds)
-                            arg.putStringArray("saveIds", saveIds)
-                            arg.putString("searchText", searchText)
-                            arg.putString("checkIn", checkInfind)
-                            arg.putString("checkOut", checkOutfind)
-                            arg.putInt("numberOfRooms", numberOfRooms!!)
-                            arg.putInt("numberOfGuests", numberOfGuests!!)
-
-                            // Khởi tạo Fragment Filter và đính kèm Bundle
-                            val filterFragment = Filter(idUser)
-                            filterFragment.arguments = arg
-
-                            // Thay thế Fragment hiện tại bằng Fragment Filter
-                            val fragmentManager = requireActivity().supportFragmentManager
-                            fragmentManager.beginTransaction()
-                                .replace(R.id.frameLayout, filterFragment)
-                                .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
-                                .commit()
-                        }
-
-                        view.findViewById<Button>(R.id.watchRoom).setOnClickListener {
-                            val arg = Bundle()
-                            arg.putString("hotelPosition", itemPosition)
-                            arg.putString("searchText", searchText)
-                            arg.putStringArray("hotelIds", hotelIds)
-                            arg.putStringArray("saveIds", saveIds)
-                            arg.putString("hotelName", hotel.name)
-                            arg.putString("checkIn", checkInfind)
-                            arg.putString("checkOut", checkOutfind)
-                            arg.putInt("numberOfRooms", numberOfRooms!!)
-                            arg.putInt("numberOfGuests", numberOfGuests!!)
-
-                            val listRoom = ListRoom(idUser)
-                            listRoom.arguments = arg
-
-                            val fragmentManager = requireActivity().supportFragmentManager
-                            fragmentManager.beginTransaction()
-                                .replace(R.id.frameLayout, listRoom)
-                                .addToBackStack(null)
-                                .commit()
-                        }
-                        showDetail.setOnClickListener {
-                            showPopup()
-                        }
+                    rateStatus.text = when (hotel.point!!.toInt()){
+                        in 0 until 3 -> { "Cực tệ" }
+                        in 3 until 5 -> { "Tệ" }
+                        in 5 until 6 -> { "Trung bình" }
+                        in 6 until 8 -> { "Tốt" }
+                        in 8 until 9 -> { "Rất tốt" }
+                        else -> { "Tuyệt vời" }
                     }
+
+                    val fullDescription = hotel.description
+                    val initialLinesToShow = 3
+                    val lines = fullDescription?.split("\\n")
+                    val initialDescription = lines?.take(initialLinesToShow)?.joinToString("\n")
+                    description.text = initialDescription
+
+                    view.findViewById<ImageView>(R.id.imageView4).setOnClickListener {
+                        val arg = Bundle()
+                        arg.putStringArray("hotelIds", hotelIds)
+                        arg.putStringArray("saveIds", saveIds)
+                        arg.putString("searchText", searchText)
+                        arg.putString("checkIn", checkInfind)
+                        arg.putString("checkOut", checkOutfind)
+                        arg.putInt("numberOfRooms", numberOfRooms)
+                        arg.putInt("numberOfGuests", numberOfGuests)
+
+                        // Khởi tạo Fragment Filter và đính kèm Bundle
+                        val filterFragment = Filter(idUser)
+                        filterFragment.arguments = arg
+
+                        // Thay thế Fragment hiện tại bằng Fragment Filter
+                        val fragmentManager = requireActivity().supportFragmentManager
+                        fragmentManager.beginTransaction()
+                            .replace(R.id.frameLayout, filterFragment)
+                            .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
+                            .commit()
+                    }
+
+                    view.findViewById<Button>(R.id.watchRoom).setOnClickListener {
+                        val arg = Bundle()
+                        arg.putString("hotelPosition", itemPosition)
+                        arg.putString("searchText", searchText)
+                        arg.putStringArray("hotelIds", hotelIds)
+                        arg.putStringArray("saveIds", saveIds)
+                        arg.putString("hotelName", hotel.name)
+                        arg.putString("checkIn", checkInfind)
+                        arg.putString("checkOut", checkOutfind)
+                        arg.putInt("numberOfRooms", numberOfRooms)
+                        arg.putInt("numberOfGuests", numberOfGuests)
+
+                        val listRoom = ListRoom(idUser)
+                        listRoom.arguments = arg
+
+                        val fragmentManager = requireActivity().supportFragmentManager
+                        fragmentManager.beginTransaction()
+                            .replace(R.id.frameLayout, listRoom)
+                            .addToBackStack(null)
+                            .commit()
+                    }
+                    showDetail.setOnClickListener {
+                        showPopup()
+                    }
+                }
             }
         }
         return view

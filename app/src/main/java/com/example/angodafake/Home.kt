@@ -66,8 +66,6 @@ class Home(private var idUser: String) : Fragment() {
     private val dateFormat = SimpleDateFormat("dd/MM/yyyy")
 
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -226,11 +224,9 @@ class Home(private var idUser: String) : Fragment() {
 
                     val numberOfRooms = parts[0].toIntOrNull() ?: 0
                     val numberOfGuests = parts[3].toIntOrNull() ?: 0
-                    println("Số phòng: $numberOfRooms, Số người: $numberOfGuests")
 
                     val checkInText = checkIn_Text.text.toString()
                     val checkOutText = checkOut_Text.text.toString()
-                    println("checkIn: $checkInText, checkOut: $checkOutText")
 
                     RoomUtils.getRoomsFromDatabase() { fetchedRoomList ->
                         list = filterHotelsCount(fetchedRoomList, list, numberOfGuests, numberOfRooms)
@@ -245,7 +241,6 @@ class Home(private var idUser: String) : Fragment() {
                         args.putString("checkOut", checkOutText)
                         args.putInt("numberOfRooms", numberOfRooms)
                         args.putInt("numberOfGuests", numberOfGuests)
-
 
                         // Khởi tạo Fragment Filter và đính kèm Bundle
                         val filterFragment = Filter(idUser)
@@ -268,8 +263,6 @@ class Home(private var idUser: String) : Fragment() {
                 //listHotels = emptyList() // Trả về danh sách rỗng khi có lỗi
             }
         })
-        Log.d("Check", "CheckIN: ${checkIn_Text.text}, CheckOut: ${checkOut_Text.text}")
-
     }
 
     private fun showPopup() {

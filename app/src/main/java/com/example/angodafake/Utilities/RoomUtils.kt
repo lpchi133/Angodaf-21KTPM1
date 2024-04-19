@@ -12,12 +12,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 
 object RoomUtils {
-    private lateinit var database: DatabaseReference
-
-    init {
-        database = Firebase.database.reference
-
-    }
+    private var database: DatabaseReference = Firebase.database.reference
 
     fun getRoomByHotelID(ID_Hotel: String, listener: (List<Rooms>) -> Unit) {
         val roomList = mutableListOf<Rooms>()
@@ -35,7 +30,16 @@ object RoomUtils {
         }
     }
 
-
+    fun getRoomByID(ID_Hotel: String, roomID: String, listener: (Rooms) -> Unit) {
+        database.child("rooms").child(ID_Hotel).child(roomID).get().addOnSuccessListener { dataSnapshot ->
+            val room = dataSnapshot.getValue(Rooms::class.java)
+            if (room != null) {
+                listener(room)
+            }
+        }.addOnFailureListener { exception ->
+            Log.e("firebase", "Error getting room by ID", exception)
+        }
+    }
 
     fun getRoomList(listener: (ArrayList<Rooms>) -> Unit) {
         val roomList = ArrayList<Rooms>()
@@ -82,6 +86,4 @@ object RoomUtils {
             }
         })
     }
-
-
 }

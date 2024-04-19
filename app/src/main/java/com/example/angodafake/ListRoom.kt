@@ -43,7 +43,7 @@ class ListRoom(private val idUser: String) : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var view =  inflater.inflate(R.layout.fragment_room, container, false)
+        val view =  inflater.inflate(R.layout.fragment_room, container, false)
         val nameTextView = view.findViewById<TextView>(R.id.nameHotelSearch)
 
         val args = arguments
@@ -56,9 +56,6 @@ class ListRoom(private val idUser: String) : Fragment() {
         val checkOut = args?.getString("checkOut")
         val numberOfRooms = args?.getInt("numberOfRooms")
         val numberOfGuests = args?.getInt("numberOfGuests")
-        Log.d("Check", "checkIn: ${checkIn}, checkOut: ${checkOut}")
-        Log.d("number", "numberOfRooms: ${numberOfRooms}, numberOfGuests: ${numberOfGuests}")
-
 
         nameTextView.text = hotelName
 
@@ -82,7 +79,6 @@ class ListRoom(private val idUser: String) : Fragment() {
                     arg.putString("checkOut", checkOut)
                     arg.putInt("numberOfRooms", numberOfRooms!!)
                     arg.putInt("numberOfGuests", numberOfGuests!!)
-
 
                     val filterFragment = Hotel_infor(idUser)
                     filterFragment.arguments = arg
@@ -124,6 +120,12 @@ class ListRoom(private val idUser: String) : Fragment() {
 
                     override fun onBookRoomClick(position: Int) {
                         val intent = Intent(activity, BookRoom::class.java)
+                        intent.putExtra("checkInTime", checkIn)
+                        intent.putExtra("checkOutTime", checkOut)
+                        intent.putExtra("hotelName", hotelName)
+                        intent.putExtra("hotelID", itemPosition)
+                        intent.putExtra("roomID", position.toString())
+                        intent.putExtra("roomQuantity", intArray[position].toString())
                         startActivity(intent)
                     }
                 })

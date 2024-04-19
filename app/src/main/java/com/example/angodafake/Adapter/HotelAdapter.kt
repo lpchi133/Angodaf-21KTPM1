@@ -121,7 +121,7 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
                     hotelsRef.child(hotel.ID!!).child("total_comments").setValue(commentList.size)
                     holder.count_cmt.text = hotel.total_comments.toString() + " nhận xét"
                     val averagePoint = totalPoint / commentList.size
-                    val roundedNumber = String.format("%.1f", averagePoint).toDouble()
+                    val roundedNumber = String.format(Locale.US, "%.1f", averagePoint).toDouble()
                     hotelsRef.child(hotel.ID!!).child("point").setValue(roundedNumber)
                     holder.pointView.text = hotel.point.toString()
                 }

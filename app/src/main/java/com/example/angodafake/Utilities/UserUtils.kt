@@ -1,6 +1,5 @@
 package com.example.angodafake.Utilities
 
-import android.util.Log
 import com.example.angodafake.db.User
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
@@ -10,11 +9,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 
 object UserUtils {
-    private lateinit var database: DatabaseReference
-
-    init {
-        database = Firebase.database.reference
-    }
+    private var database: DatabaseReference = Firebase.database.reference
 
     fun getUserByID(ID: String, listener: (User) -> Unit){
         val usersQuery = database.child("users/$ID")
@@ -63,11 +58,10 @@ object UserUtils {
                         listener(user)
                     }
                 }
-                if (check == false){
+                if (!check){
                     listener(null)
                 }
             }
-
             override fun onCancelled(databaseError: DatabaseError) {
                 // Xử lý khi có lỗi xảy ra
             }

@@ -72,7 +72,7 @@ class Filter(private var idUser: String) : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         view =  inflater.inflate(R.layout.fragment_home_filter, container, false)
 
@@ -87,9 +87,6 @@ class Filter(private var idUser: String) : Fragment() {
         val checkOut = args?.getString("checkOut")
         val numberOfRooms = args?.getInt("numberOfRooms", 0)
         val numberOfGuests = args?.getInt("numberOfGuests", 0)
-        Log.d("Number", "numberOfRooms: ${numberOfRooms}, numberOfGuests: ${numberOfGuests}")
-
-
 
         Log.d("FilterDetailFragment", "Hotel IDs: ${hotelIds?.joinToString(", ")}, Search Text: $searchText")
         if (hotelIds != null) {
@@ -99,7 +96,7 @@ class Filter(private var idUser: String) : Fragment() {
                     hotel.ID in hotelIds!!
                 }
 
-                Log.d("FilterDetailFragment", "Hotel IDs: ${listHotels?.joinToString(", ")}")
+                Log.d("FilterDetailFragment", "Hotel IDs: ${listHotels.joinToString(", ")}")
                 // Lấy dữ liệu từ FilterDetail
                 val bundle = arguments
                 if (bundle != null) {
@@ -122,10 +119,6 @@ class Filter(private var idUser: String) : Fragment() {
                             val money = hotel.money ?: Int.MAX_VALUE
                             money in startValue..endValue
                         }
-
-
-                        Log.d("FilterFragment", "Received data - Point: $point, Start Value: $startValue, End Value: $endValue, Selected Cities: $selectedCities")
-                        Log.d("FilterDetailFragment", "List of Hotels:")
 
                         val buttonShowPopup = view.findViewById<TextView>(R.id.price)
                         buttonShowPopup.setOnClickListener {
@@ -156,7 +149,6 @@ class Filter(private var idUser: String) : Fragment() {
                                 arg.putString("checkOut", checkOut)
                                 arg.putInt("numberOfRooms", numberOfRooms!!)
                                 arg.putInt("numberOfGuests", numberOfGuests!!)
-                                Log.d("number2", "numberOfRooms: ${numberOfRooms}, numberOfGuests: ${numberOfGuests}")
 
                                 val Fragment = Hotel_infor(idUser)
                                 Fragment.arguments = arg
@@ -252,7 +244,6 @@ class Filter(private var idUser: String) : Fragment() {
                                 arg.putString("checkOut", checkOut)
                                 arg.putInt("numberOfRooms", numberOfRooms!!)
                                 arg.putInt("numberOfGuests", numberOfGuests!!)
-                                Log.d("number2", "numberOfRooms: ${numberOfRooms}, numberOfGuests: ${numberOfGuests}")
 
                                 // Khởi tạo Fragment Filter và đính kèm Bundle
                                 val Fragment = Hotel_infor(idUser)

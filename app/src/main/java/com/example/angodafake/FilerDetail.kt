@@ -60,19 +60,20 @@ class FilerDetail(private var idUser: String) : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
 
         // Inflate the layout for this fragment
         view =  inflater.inflate(R.layout.fragment_home_filter_detail, container, false)
         val args = arguments
-        var hotelIds = args?.getStringArray("hotelIds")
+        val hotelIds = args?.getStringArray("hotelIds")
         val saveIds = args?.getStringArray("saveIds")
         val searchText = args?.getString("searchText")
         val checkIn = args?.getString("checkIn")
         val checkOut = args?.getString("checkOut")
         val numberOfRooms = args?.getInt("numberOfRooms")
         val numberOfGuests = args?.getInt("numberOfGuests")
+
         Log.d("FilterDetailFragment", "Hotel IDs Detail: ${hotelIds?.joinToString(", ")}, Search Text: $searchText")
         Log.d("number", "numberOfRooms: ${numberOfRooms}, numberOfGuests: ${numberOfGuests}")
 
@@ -203,7 +204,6 @@ class FilerDetail(private var idUser: String) : Fragment() {
             bundle.putString("checkOut", checkOut)
             bundle.putInt("numberOfRooms", numberOfRooms!!)
             bundle.putInt("numberOfGuests", numberOfGuests!!)
-
 
             val filterFragment = Filter(idUser)
             filterFragment.arguments = bundle
