@@ -108,7 +108,7 @@ class ListRoom(private val idUser: String) : Fragment() {
 
                     override fun onBookRoomClick(position: Int) {
                         val intent = Intent(activity, BookRoom::class.java)
-//                        intent.putExtra("hotel_ID", itemPosition)
+                        intent.putExtra("hotel_ID", itemPosition)
                         startActivity(intent)
                     }
                 })

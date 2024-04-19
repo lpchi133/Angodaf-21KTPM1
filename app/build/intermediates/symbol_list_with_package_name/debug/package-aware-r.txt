@@ -3111,6 +3111,7 @@ drawable border2
 drawable border3
 drawable border4
 drawable border5
+drawable border_6
 drawable border_color
 drawable border_color1
 drawable border_color2
@@ -3132,6 +3133,7 @@ drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
 drawable btn_removeorder
+drawable btn_see_detail
 drawable btn_sort
 drawable btn_use
 drawable btn_yes
@@ -3626,6 +3628,7 @@ id expand_activities_button
 id expanded_menu
 id fade
 id fav
+id fieldvoucher
 id fill
 id fill_horizontal
 id fill_vertical
@@ -3736,6 +3739,7 @@ id left
 id leftToRight
 id legacy
 id light
+id limited_price
 id line1
 id line10
 id line11
@@ -3791,6 +3795,7 @@ id material_timepicker_ok_button
 id material_timepicker_view
 id material_value_index
 id matrix
+id max_discount
 id message
 id middle
 id mini
@@ -3894,6 +3899,7 @@ id paymentMethod
 id payment_methods
 id peekHeight
 id percent
+id percentage
 id phone
 id pickMethod
 id pin
@@ -3922,6 +3928,7 @@ id purchased
 id quaCM
 id quan_client
 id quan_room
+id quantity
 id radio
 id radioButton
 id radioButton2
@@ -3983,6 +3990,7 @@ id search_mag_icon
 id search_plate
 id search_src_text
 id search_voice_btn
+id seedetail
 id seen_voucher
 id select_dialog_listview
 id selected
@@ -4082,7 +4090,6 @@ id textView20
 id textView21
 id textView22
 id textView23
-id textView24
 id textView25
 id textView26
 id textView27
@@ -4190,7 +4197,6 @@ id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
 id voucher
-id voucher_area
 id voucher_limited
 id voucher_name
 id voucher_quantity
@@ -4341,7 +4347,6 @@ layout custom_comment_form
 layout custom_dialog
 layout custom_hotel
 layout custom_hotel_detail
-layout custom_my_voucher
 layout custom_my_voucher_detail
 layout custom_past_cancel_purchase_adapter
 layout custom_past_cancel_purchase_detail

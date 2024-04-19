@@ -170,8 +170,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/ratingBar"
-                    android:layout_margin="10dp"
-                    android:paddingEnd="10dp"
+                    android:layout_marginVertical="10dp"
                     android:background="@drawable/border4"
                     android:orientation="horizontal" />
 

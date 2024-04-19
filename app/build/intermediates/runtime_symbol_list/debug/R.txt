@@ -3110,6 +3110,7 @@ int drawable border2 0x7f0800b4
 int drawable border3 0x7f0800b5
 int drawable border4 0x7f0800b6
 int drawable border5 0x7f0800b7
+int drawable border_6 0x7f08016a
 int drawable border_color 0x7f0800b8
 int drawable border_color1 0x7f0800b9
 int drawable border_color2 0x7f0800ba
@@ -3131,6 +3132,7 @@ int drawable btn_radio_off_to_on_mtrl_animation 0x7f0800c9
 int drawable btn_radio_on_mtrl 0x7f0800ca
 int drawable btn_radio_on_to_off_mtrl_animation 0x7f0800cb
 int drawable btn_removeorder 0x7f0800cc
+int drawable btn_see_detail 0x7f08016b
 int drawable btn_sort 0x7f0800cd
 int drawable btn_use 0x7f0800ce
 int drawable btn_yes 0x7f0800cf
@@ -3625,6 +3627,7 @@ int id expand_activities_button 0x7f09014d
 int id expanded_menu 0x7f09014e
 int id fade 0x7f09014f
 int id fav 0x7f090150
+int id fieldvoucher 0x7f090395
 int id fill 0x7f090151
 int id fill_horizontal 0x7f090152
 int id fill_vertical 0x7f090153
@@ -3735,6 +3738,7 @@ int id left 0x7f0901bb
 int id leftToRight 0x7f0901bc
 int id legacy 0x7f0901bd
 int id light 0x7f0901be
+int id limited_price 0x7f090397
 int id line1 0x7f0901bf
 int id line10 0x7f0901c0
 int id line11 0x7f0901c1
@@ -3790,6 +3794,7 @@ int id material_timepicker_ok_button 0x7f0901f2
 int id material_timepicker_view 0x7f0901f3
 int id material_value_index 0x7f0901f4
 int id matrix 0x7f0901f5
+int id max_discount 0x7f090398
 int id message 0x7f0901f6
 int id middle 0x7f0901f7
 int id mini 0x7f0901f8
@@ -3893,6 +3898,7 @@ int id paymentMethod 0x7f090259
 int id payment_methods 0x7f09025a
 int id peekHeight 0x7f09025b
 int id percent 0x7f09025c
+int id percentage 0x7f090399
 int id phone 0x7f09025d
 int id pickMethod 0x7f09025e
 int id pin 0x7f09025f
@@ -3921,6 +3927,7 @@ int id purchased 0x7f090275
 int id quaCM 0x7f090276
 int id quan_client 0x7f090277
 int id quan_room 0x7f090278
+int id quantity 0x7f09039a
 int id radio 0x7f090279
 int id radioButton 0x7f09027a
 int id radioButton2 0x7f09027b
@@ -3982,6 +3989,7 @@ int id search_mag_icon 0x7f0902b2
 int id search_plate 0x7f0902b3
 int id search_src_text 0x7f0902b4
 int id search_voice_btn 0x7f0902b5
+int id seedetail 0x7f090396
 int id seen_voucher 0x7f0902b6
 int id select_dialog_listview 0x7f0902b7
 int id selected 0x7f0902b8
@@ -4081,7 +4089,6 @@ int id textView20 0x7f090315
 int id textView21 0x7f090316
 int id textView22 0x7f090317
 int id textView23 0x7f090318
-int id textView24 0x7f090319
 int id textView25 0x7f09031a
 int id textView26 0x7f09031b
 int id textView27 0x7f09031c
@@ -4189,7 +4196,6 @@ int id view_tree_view_model_store_owner 0x7f090381
 int id visible 0x7f090382
 int id visible_removing_fragment_view_tag 0x7f090383
 int id voucher 0x7f090384
-int id voucher_area 0x7f090394
 int id voucher_limited 0x7f090385
 int id voucher_name 0x7f090386
 int id voucher_quantity 0x7f090387
@@ -4340,7 +4346,6 @@ int layout custom_comment_form 0x7f0c002c
 int layout custom_dialog 0x7f0c002d
 int layout custom_hotel 0x7f0c002e
 int layout custom_hotel_detail 0x7f0c002f
-int layout custom_my_voucher 0x7f0c0030
 int layout custom_my_voucher_detail 0x7f0c0031
 int layout custom_past_cancel_purchase_adapter 0x7f0c0032
 int layout custom_past_cancel_purchase_detail 0x7f0c0033

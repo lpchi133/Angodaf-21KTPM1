@@ -16,8 +16,16 @@
         "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\fragment_bookmark.xml"
     },
     {
+        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_my_voucher_detail.xml",
+        "source": "com.example.angodafake.app-main-41:/layout/custom_my_voucher_detail.xml"
+    },
+    {
         "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\tab_active_room.xml",
         "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\tab_active_room.xml"
+    },
+    {
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\custome_hotel_voucher.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custome_hotel_voucher.xml"
     },
     {
         "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\fragment_my_hotel.xml",
@@ -106,10 +114,6 @@
     {
         "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\custom_voucher_adapter.xml",
         "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_voucher_adapter.xml"
-    },
-    {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_my_voucher.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/custom_my_voucher.xml"
     },
     {
         "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\chat.xml",

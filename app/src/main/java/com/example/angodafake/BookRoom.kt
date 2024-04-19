@@ -2,6 +2,7 @@ package com.example.angodafake
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -13,11 +14,15 @@ import android.os.Handler
 import android.os.Looper
 import android.text.Html
 import android.text.Spanned
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.view.Window
+import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.PopupWindow
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -43,20 +48,28 @@ class BookRoom : AppCompatActivity() {
     private lateinit var bookRoomBtn: Button
 
     private lateinit var seenVoucherBtn: Button
-    private lateinit var closeDialog: ImageButton
     private lateinit var recyclerView: RecyclerView
     private lateinit var layoutManager: LinearLayoutManager
     private lateinit var linearAdapter: VoucherHotelAdapter
     private var listVoucher: MutableList<Voucher> = mutableListOf()
 
+    private lateinit var textView: TextView
+    private lateinit var price: TextView
     private lateinit var promotion: TextView
     private lateinit var priceAfterPromotion: TextView
+    private lateinit var idVoucher: String
+    private var quantity: Int = 0
+    private var newPrice: Double = 0.0
 
     private fun createData(hotel_ID: String) {
         listVoucher.clear()
 
         VoucherUtils.getAllVouchers(hotel_ID) {vouchers ->
-            listVoucher = vouchers
+            for (voucher in vouchers) {
+                if (voucher.quantity!! > 0) {
+                    listVoucher.add(voucher)
+                }
+            }
         }
     }
 
@@ -112,17 +125,24 @@ class BookRoom : AppCompatActivity() {
                 anim.visibility = View.VISIBLE
                 anim.playAnimation()
             }, 300)
-            VoucherUtils.minusVoucher("1",10) {result ->
+            VoucherUtils.minusVoucher(idVoucher,quantity) {result ->
                 println(result)
             }
         }
 
-        createData("1")
+        createData(intent.getStringExtra("hotel_ID")!!)
 
-        layoutManager = LinearLayoutManager(this)
+        layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
         seenVoucherBtn = findViewById(R.id.seen_voucher)
+        textView = findViewById(R.id.textView39)
+        price = findViewById(R.id.Price)
         promotion = findViewById(R.id.Promotion)
         priceAfterPromotion = findViewById(R.id.PriceAfterPromotion)
+
+        priceAfterPromotion.text = price.text
+
+        recyclerView = findViewById(R.id.fieldvoucher)
 
         seenVoucherBtn.setOnClickListener {
             showBottomSheet()
@@ -130,15 +150,8 @@ class BookRoom : AppCompatActivity() {
     }
 
     private fun showBottomSheet() {
-        var newPrice: Double
-        val fieldVoucher = BottomSheetDialog(this)
+        recyclerView.visibility = View.VISIBLE
 
-        fieldVoucher.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        fieldVoucher.setCancelable(false)
-        fieldVoucher.setContentView(R.layout.custom_my_voucher)
-        fieldVoucher.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-        recyclerView = fieldVoucher.findViewById(R.id.voucher_area)!!
         recyclerView.layoutManager = layoutManager
         recyclerView.setHasFixedSize(true)
 
@@ -146,37 +159,38 @@ class BookRoom : AppCompatActivity() {
         recyclerView.adapter = linearAdapter
 
         linearAdapter.onItemClick = { contact ->
+            idVoucher = contact.ID.toString()
+            quantity = contact.quantity!!
             if (contact.money_discount == 0.0) {
-                newPrice = calculatePrice2(1200000.0, contact.max_discount!!, contact.percentage!!)
+                calculatePrice2(744000.0, contact.limit_price!!, contact.max_discount!!, contact.percentage!!)
             } else {
-                newPrice = calculatePrice1(1200000.0, contact.money_discount!!)
+                calculatePrice1(744000.0, contact.limit_price!!, contact.money_discount!!)
             }
+
             priceAfterPromotion.text = format(newPrice)
-            fieldVoucher.dismiss()
-        }
 
-        closeDialog = fieldVoucher.findViewById(R.id.btn_back)!!
-        closeDialog.setOnClickListener {
-            fieldVoucher.dismiss()
+            recyclerView.visibility = View.GONE
         }
-
-        fieldVoucher.show()
     }
 
     @SuppressLint("SetTextI18n")
-    private fun calculatePrice1(olePrice: Double, money_discount: Double): Double {
-        promotion.text = "- ${format(money_discount)}"
-        return olePrice - money_discount
+    private fun calculatePrice1(olePrice: Double, limit_price: Double, money_discount: Double) {
+        if (olePrice >= limit_price) {
+            promotion.text = "- ${format(money_discount)}"
+            newPrice = olePrice - money_discount
+        }
     }
 
     @SuppressLint("SetTextI18n")
-    private fun calculatePrice2(olePrice: Double, max_discount: Double, percentage: Int): Double {
-        val money_discount = olePrice * percentage * 0.01
-        promotion.text = "- ${format(money_discount)}"
-        return if (money_discount >= max_discount) {
-            olePrice - max_discount
-        } else {
-            olePrice - money_discount
+    private fun calculatePrice2(olePrice: Double, limit_price: Double, max_discount: Double, percentage: Int){
+        if (olePrice >= limit_price) {
+            val money_discount = olePrice * percentage * 0.01
+            promotion.text = "- ${format(money_discount)}"
+            newPrice = if (money_discount >= max_discount) {
+                olePrice - max_discount
+            } else {
+                olePrice - money_discount
+            }
         }
     }
 

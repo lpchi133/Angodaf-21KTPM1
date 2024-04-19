@@ -24,6 +24,7 @@ import com.example.angodafake.Utilities.VoucherUtils
 import com.example.angodafake.db.Hotel
 import com.example.angodafake.db.Picture_Hotel
 import com.example.angodafake.db.User
+import com.example.angodafake.db.Voucher
 
 
 private const val ARG_PARAM1 = "param1"
@@ -191,9 +192,17 @@ class Hotel_infor(private var idUser: String) : Fragment() {
                         }
                     }
 
-                    VoucherUtils.getAllVouchers(itemPosition) {listVoucher ->
+                    VoucherUtils.getAllVouchers(itemPosition) {vouchers ->
 //                        println(itemPosition)
 //                        println(listVoucher)
+                        val listVoucher = mutableListOf<Voucher>()
+
+                        for (voucher in vouchers) {
+                            if (voucher.quantity!! > 0) {
+                                listVoucher.add(voucher)
+                            }
+                        }
+
                         voucherfield = view.findViewById(R.id.voucher)
                         voucherfield.layoutManager = layoutManager
                         voucherfield.setHasFixedSize(true)

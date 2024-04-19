@@ -77,6 +77,7 @@ drawable border2
 drawable border3
 drawable border4
 drawable border5
+drawable border_6
 drawable border_color
 drawable border_color1
 drawable border_color2
@@ -90,6 +91,7 @@ drawable btn_continue
 drawable btn_no
 drawable btn_order
 drawable btn_removeorder
+drawable btn_see_detail
 drawable btn_sort
 drawable btn_use
 drawable btn_yes
@@ -274,6 +276,7 @@ id editTextText1
 id editTextTextMultiLine
 id errorText
 id fav
+id fieldvoucher
 id filter
 id find
 id findButton
@@ -329,6 +332,7 @@ id lay3
 id lay4
 id layout_editInfo_title
 id layout_signup_title
+id limited_price
 id line1
 id line10
 id line11
@@ -354,6 +358,7 @@ id login_title
 id mailConfirm
 id main_frame
 id map
+id max_discount
 id message
 id minus
 id minus_person
@@ -375,6 +380,7 @@ id pastList
 id payment
 id paymentMethod
 id payment_methods
+id percentage
 id phone
 id pickMethod
 id pleaseBuy
@@ -396,6 +402,7 @@ id purchased
 id quaCM
 id quan_client
 id quan_room
+id quantity
 id radioButton
 id radioButton2
 id radioButton3
@@ -424,6 +431,7 @@ id room_time
 id rootView
 id scroll
 id scrollView2
+id seedetail
 id seen_voucher
 id shareBtn
 id showDetail
@@ -459,7 +467,6 @@ id textView20
 id textView21
 id textView22
 id textView23
-id textView24
 id textView25
 id textView26
 id textView27
@@ -530,7 +537,6 @@ id view3
 id view4
 id view5
 id voucher
-id voucher_area
 id voucher_limited
 id voucher_name
 id voucher_quantity
@@ -553,7 +559,6 @@ layout custom_comment_detail
 layout custom_comment_form
 layout custom_hotel
 layout custom_hotel_detail
-layout custom_my_voucher
 layout custom_my_voucher_detail
 layout custom_past_cancel_purchase_adapter
 layout custom_past_cancel_purchase_detail
