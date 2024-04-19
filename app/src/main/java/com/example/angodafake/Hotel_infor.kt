@@ -68,8 +68,8 @@ class Hotel_infor(private var idUser: String) : Fragment() {
         val searchText = args?.getString("searchText")
         val checkInfind = args?.getString("checkIn")
         val checkOutfind = args?.getString("checkOut")
-        val numberOfRooms = args?.getInt("numberOfRooms") ?: -1
-        val numberOfGuests = args?.getInt("numberOfGuests") ?: -3
+        val numberOfRooms = args?.getInt("numberOfRooms")
+        val numberOfGuests = args?.getInt("numberOfGuests")
         val flow = args?.getString("Flow_1")
 
         val nameTextView = view.findViewById<TextView>(R.id.hotel_name)
@@ -180,8 +180,8 @@ class Hotel_infor(private var idUser: String) : Fragment() {
                         arg.putString("hotelName", hotel.name)
                         arg.putString("checkIn", checkInfind)
                         arg.putString("checkOut", checkOutfind)
-                        arg.putInt("numberOfRooms", numberOfRooms)
-                        arg.putInt("numberOfGuests", numberOfGuests)
+                        arg.putInt("numberOfRooms", numberOfRooms!!)
+                        arg.putInt("numberOfGuests", numberOfGuests!!)
 
                         val listRoom = ListRoom(idUser)
                         listRoom.arguments = arg

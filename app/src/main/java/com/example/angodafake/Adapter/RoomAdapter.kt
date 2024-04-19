@@ -139,6 +139,9 @@ class RoomAdapter(private val context: Context, private var rooms: List<Rooms>, 
                             else if (dateCheckIn.compareTo(dateCome) == 0 && dateCheckOut.compareTo(dateGo) == 0) {
                                 count_room_purchase++
                             }
+                            else if(dateCheckIn.after(dateCome) && dateCheckOut.before(dateGo)){
+                                count_room_purchase++
+                            }
                         }
                     }
                     rest = room.quantity!! - count_room_purchase

@@ -18,6 +18,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.PopupWindow
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.Adapter.HotelAdapter
@@ -96,6 +97,20 @@ class Home(private var idUser: String) : Fragment() {
         checkOut = view.findViewById(R.id.checkOut)
         checkOut_Text = checkOut.editText as TextInputEditText
 
+        // Lấy ngày hiện tại
+        val currentDate = Calendar.getInstance().time
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val currentDateString = dateFormat.format(currentDate)
+
+        // Lấy ngày hôm sau
+        val nextDateCalendar = Calendar.getInstance()
+        nextDateCalendar.add(Calendar.DAY_OF_MONTH, 1) // Thêm 1 ngày vào ngày hiện tại
+        val nextDate = nextDateCalendar.time
+        val nextDateString = dateFormat.format(nextDate)
+
+        checkIn_Text.setText(currentDateString)
+        checkOut_Text.setText(nextDateString)
+
         if (!::listHotels.isInitialized) {
             listHotels = mutableListOf()
         }
@@ -150,6 +165,7 @@ class Home(private var idUser: String) : Fragment() {
                                         checkIn_Text.error = null
                                     } else {
                                         checkIn_Text.error = "Vui lòng chọn lại ngày hợp lí"
+                                        warning("Warning", "Vui lòng chọn lại ngày hợp lí")
                                     }
                                 }
                             } else {
@@ -199,6 +215,7 @@ class Home(private var idUser: String) : Fragment() {
                                         checkOut_Text.error = null
                                     } else {
                                         checkOut_Text.error = "Vui lòng chọn lại ngày hợp lí"
+                                        warning("Warning", "Vui lòng chọn lại ngày hợp lí")
                                     }
                                 }
                             } else {
@@ -342,6 +359,19 @@ class Home(private var idUser: String) : Fragment() {
             }
             rootView.alpha = 1.0f
         }
+    }
+
+    private fun warning(title: String, message: String){
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle(title)
+        builder.setMessage(message)
+
+        builder.setPositiveButton("EXIT") { dialog, _ ->
+            dialog.dismiss()
+        }
+
+        val dialog = builder.create()
+        dialog.show()
     }
 
     companion object {
