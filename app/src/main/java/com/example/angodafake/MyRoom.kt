@@ -1,12 +1,13 @@
 package com.example.angodafake
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,15 +18,15 @@ import com.example.angodafake.Adapter.PastCancelPurchaseAdapter
 import com.example.angodafake.Utilities.HotelUtils
 import com.example.angodafake.Utilities.PictureUtils
 import com.example.angodafake.Utilities.PurchaseUtils
+import com.example.angodafake.db.Hotel
+import com.example.angodafake.db.Picture_Hotel
 import com.example.angodafake.db.Purchase
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.NonCancellable.isActive
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -50,12 +51,15 @@ data class PurchaseExtra(
  * Use the [MyRoom.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MyRoom : Fragment() {
+@SuppressLint("NotConstructor")
+class MyRoom(private var idUser: String) : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
     private lateinit var collectionAdapter: CollectionAdapter
+    fun getUserId(): String {
+        return idUser
+    }
     private fun loadData() {
         collectionAdapter = CollectionAdapter(this)
         val tabHandler = requireView().findViewById<TabLayout>(R.id.tab_handler)
@@ -66,36 +70,45 @@ class MyRoom : Fragment() {
             tab.text = TAB_TITLE[position]
         }.attach()
     }
+
     private suspend fun createData() {
         upcomingList.clear()
         completedList.clear()
         canceledList.clear()
 
         // Suspend execution and wait for the callback to complete
-        val allPurchases = suspendCoroutine<List<Purchase>> { continuation ->
-            PurchaseUtils.getAllPurchases("tYw0x3oVS7gAd9wOdOszzvJMOEM2") { allPurchases ->
-                continuation.resume(allPurchases)
+        val allPurchases = suspendCancellableCoroutine<List<Purchase>> { continuation ->
+            PurchaseUtils.getAllPurchases(idUser) { allPurchases ->
+                if (continuation.isActive) {
+                    continuation.resume(allPurchases)
+                }
             }
         }
 
         for (purchase in allPurchases) {
             var temp: PurchaseExtra?
 
-            val hotel = suspendCoroutine { continuation ->
+            val hotel = suspendCancellableCoroutine<Hotel> { continuation ->
                 HotelUtils.getHotelByID(purchase.ID_Hotel!!) { hotel ->
-                    println(hotel.name)
-                    continuation.resume(hotel)
+                    if (continuation.isActive) {
+                        continuation.resume(hotel)
+                    }
                 }
             }
 
-            val picture = suspendCoroutine { continuation ->
+            val picture = suspendCancellableCoroutine<Picture_Hotel> { continuation ->
                 PictureUtils.getPictureByHotelID(purchase.ID_Hotel!!) { picture ->
-                    println(picture.picture)
-                    continuation.resume(picture)
+                    if (continuation.isActive) {
+                        continuation.resume(picture)
+                    }
                 }
             }
 
-            temp = PurchaseExtra(purchase,hotel.name,picture.picture)
+            if (!isActive) {
+                break
+            }
+
+            temp = PurchaseExtra(purchase, hotel.name, picture.picture)
             when (purchase.detail) {
                 "SAP_TOI" -> upcomingList.add(temp)
                 "HOAN_TAT" -> completedList.add(temp)
@@ -103,13 +116,14 @@ class MyRoom : Fragment() {
             }
         }
 
-        HAVE_CONTENT = mutableListOf(
-            upcomingList.isNotEmpty(),
-            completedList.isNotEmpty(),
-            canceledList.isNotEmpty()
-        )
+        if (isActive) {
+            HAVE_CONTENT = mutableListOf(
+                upcomingList.isNotEmpty(),
+                completedList.isNotEmpty(),
+                canceledList.isNotEmpty()
+            )
+        }
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -141,8 +155,8 @@ class MyRoom : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MyRoom().apply {
+        fun newInstance(param1: String, param2: String, idUser: String) =
+            MyRoom(idUser).apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
@@ -183,7 +197,6 @@ class ObjectFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             return when (getInt(ARG_OBJECT)) {
                 0 -> {
-                    println(upcomingList)
                     val view1 = if (have_content) R.layout.tab_active_room else R.layout.empty_active_room
                     val layout1 = inflater.inflate(view1, container, false)
                     if (have_content) {
@@ -191,20 +204,28 @@ class ObjectFragment : Fragment() {
                         activePurchase.layoutManager = layoutManager
                         activePurchase.setHasFixedSize(true)
 
-                        linearAdapter1 = ActivePurchaseAdapter(requireContext(), upcomingList)
+                        linearAdapter1 = ActivePurchaseAdapter(requireParentFragment(), upcomingList)
                         activePurchase.adapter = linearAdapter1
 
                         linearAdapter1.onItemClick = { contact ->
                             val intent = Intent(requireContext(), ActivePurchaseDetail::class.java)
-                            println(contact.Purchase?.status_purchase)
+                            intent.putExtra("id_purchase", contact.Purchase?.ID)
+                            intent.putExtra("id_hotel", contact.Purchase?.ID_Hotel)
+                            intent.putExtra("id_owner", contact.Purchase?.ID_Owner)
+                            intent.putExtra("id_room", contact.Purchase?.ID_Room)
+                            intent.putExtra("date_come", contact.Purchase?.date_come)
+                            intent.putExtra("date_go", contact.Purchase?.date_go)
+                            intent.putExtra("method", contact.Purchase?.method)
+                            intent.putExtra("quantity", contact.Purchase?.quantity.toString())
                             intent.putExtra("status_purchase", contact.Purchase?.status_purchase)
+                            intent.putExtra("total_purchase", contact.Purchase?.total_purchase.toString())
                             startActivity(intent)
                         }
                     } else {
                         val btnOrder1: Button = layout1.findViewById(R.id.btn_order1)
 
                         btnOrder1.setOnClickListener {
-                            replaceFragmentToHotel()
+                            replaceFragmentToHome()
                         }
                     }
                     return layout1
@@ -217,20 +238,28 @@ class ObjectFragment : Fragment() {
                         pastPurchase.layoutManager = layoutManager
                         pastPurchase.setHasFixedSize(true)
 
-                        linearAdapter2 = PastCancelPurchaseAdapter(requireContext(), completedList)
+                        linearAdapter2 = PastCancelPurchaseAdapter(requireParentFragment(), completedList)
                         pastPurchase.adapter = linearAdapter2
 
                         linearAdapter2.onItemClick = { contact ->
                             val intent = Intent(requireContext(), PastCancelPurchaseDetail::class.java)
-                            println(contact.Purchase?.status_purchase)
+                            intent.putExtra("id_hotel", contact.Purchase?.ID_Hotel)
+                            intent.putExtra("id_owner", contact.Purchase?.ID_Owner)
+                            intent.putExtra("id_room", contact.Purchase?.ID_Room)
+                            intent.putExtra("date_come", contact.Purchase?.date_come)
+                            intent.putExtra("date_go", contact.Purchase?.date_go)
+                            intent.putExtra("method", contact.Purchase?.method)
+                            intent.putExtra("quantity", contact.Purchase?.quantity.toString())
                             intent.putExtra("status_purchase", contact.Purchase?.status_purchase)
+                            intent.putExtra("total_purchase", contact.Purchase?.total_purchase.toString())
+                            intent.putExtra("reason", contact.Purchase?.reason)
                             startActivity(intent)
                         }
                     } else {
                         val btnOrder2: Button = layout2.findViewById(R.id.btn_order2)
 
                         btnOrder2.setOnClickListener {
-                            replaceFragmentToHotel()
+                            replaceFragmentToHome()
                         }
                     }
                     return layout2
@@ -243,20 +272,28 @@ class ObjectFragment : Fragment() {
                         cancelPurchase.layoutManager = layoutManager
                         cancelPurchase.setHasFixedSize(true)
 
-                        linearAdapter2 = PastCancelPurchaseAdapter(requireContext(), canceledList)
+                        linearAdapter2 = PastCancelPurchaseAdapter(requireParentFragment(), canceledList)
                         cancelPurchase.adapter = linearAdapter2
 
                         linearAdapter2.onItemClick = { contact ->
                             val intent = Intent(requireContext(), PastCancelPurchaseDetail::class.java)
-                            println(contact.Purchase?.status_purchase)
+                            intent.putExtra("id_hotel", contact.Purchase?.ID_Hotel)
+                            intent.putExtra("id_owner", contact.Purchase?.ID_Owner)
+                            intent.putExtra("id_room", contact.Purchase?.ID_Room)
+                            intent.putExtra("date_come", contact.Purchase?.date_come)
+                            intent.putExtra("date_go", contact.Purchase?.date_go)
+                            intent.putExtra("method", contact.Purchase?.method)
+                            intent.putExtra("quantity", contact.Purchase?.quantity.toString())
                             intent.putExtra("status_purchase", contact.Purchase?.status_purchase)
+                            intent.putExtra("total_purchase", contact.Purchase?.total_purchase.toString())
+                            intent.putExtra("reason", contact.Purchase?.reason)
                             startActivity(intent)
                         }
                     } else {
                         val btnOrder3: Button = layout3.findViewById(R.id.btn_order3)
 
                         btnOrder3.setOnClickListener {
-                            replaceFragmentToHotel()
+                            replaceFragmentToHome()
                         }
                     }
                     return layout3
@@ -266,8 +303,10 @@ class ObjectFragment : Fragment() {
         return inflater.inflate(R.layout.empty_active_room, container, false)
     }
 
-    private fun replaceFragmentToHotel() {
+    private fun replaceFragmentToHome() {
         val mainActivity = activity as MainActivity
-        mainActivity.replaceFragment(MyHotel())
+        val myRoomFragment = parentFragment as MyRoom
+        val idUser = myRoomFragment.getUserId()
+        mainActivity.replaceFragment(Home(idUser))
     }
 }

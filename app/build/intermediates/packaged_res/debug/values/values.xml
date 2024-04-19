@@ -309,6 +309,12 @@
     <string name="v_title">Phiếu giảm giá &amp; Ưu đãi</string>
     <style name="Base.Theme.AngodaFake" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
     </style>
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
     <style name="PopupAnimation" parent="@android:style/Animation">
         <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
         <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>

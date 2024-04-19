@@ -3063,6 +3063,7 @@ drawable baseline_bed_24
 drawable baseline_bookmark_24
 drawable baseline_bubble_chart_24
 drawable baseline_calendar_month_24
+drawable baseline_calendar_month_24_blue
 drawable baseline_card_membership_24
 drawable baseline_chat_24
 drawable baseline_chat_bubble_outline_24
@@ -3104,11 +3105,13 @@ drawable baseline_thumb_down_24
 drawable baseline_thumb_up_24
 drawable baseline_verified_user_24
 drawable baseline_x
-drawable beautiful_hotel
 drawable border
 drawable border1
 drawable border2
 drawable border3
+drawable border4
+drawable border5
+drawable border_6
 drawable border_color
 drawable border_color1
 drawable border_color2
@@ -3130,7 +3133,9 @@ drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
 drawable btn_removeorder
+drawable btn_see_detail
 drawable btn_sort
+drawable btn_use
 drawable btn_yes
 drawable button_selector
 drawable circle_shape
@@ -3173,6 +3178,8 @@ drawable ic_call_decline_low
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
 drawable ic_keyboard_black_24dp
+drawable ic_launcher_1_background
+drawable ic_launcher_1_foreground
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_m3_chip_check
@@ -3268,6 +3275,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable open_popup
 drawable quang_ba_khach_san
 drawable room
 drawable round_half
@@ -3281,6 +3289,9 @@ drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 drawable visa_logo
+drawable voucher1
+drawable voucher2
+drawable voucher3
 id ALT
 id Agoodaa
 id BOTTOM_END
@@ -3621,6 +3632,7 @@ id expand_activities_button
 id expanded_menu
 id fade
 id fav
+id fieldvoucher
 id fill
 id fill_horizontal
 id fill_vertical
@@ -3666,6 +3678,7 @@ id honorRequest
 id horizontal_only
 id hotel
 id hotelName
+id hotel_address
 id hotel_image
 id hotel_name
 id hotel_phone
@@ -3730,6 +3743,7 @@ id left
 id leftToRight
 id legacy
 id light
+id limited_price
 id line1
 id line10
 id line11
@@ -3786,6 +3800,7 @@ id material_timepicker_ok_button
 id material_timepicker_view
 id material_value_index
 id matrix
+id max_discount
 id message
 id middle
 id mini
@@ -3889,6 +3904,7 @@ id paymentMethod
 id payment_methods
 id peekHeight
 id percent
+id percentage
 id phone
 id pickMethod
 id pin
@@ -3917,6 +3933,7 @@ id purchased
 id quaCM
 id quan_client
 id quan_room
+id quantity
 id radio
 id radioButton
 id radioButton2
@@ -3931,6 +3948,7 @@ id ratingBar2
 id ratingBar3
 id ratingBar4
 id ratio
+id reason
 id rectangles
 id register
 id register2
@@ -3977,6 +3995,8 @@ id search_mag_icon
 id search_plate
 id search_src_text
 id search_voice_btn
+id seedetail
+id seen_voucher
 id select_dialog_listview
 id selected
 id selection_type
@@ -4023,6 +4043,7 @@ id staticPostLayout
 id status1
 id status2
 id status3
+id status4
 id stop
 id stretch
 id submenuarrow
@@ -4075,7 +4096,6 @@ id textView20
 id textView21
 id textView22
 id textView23
-id textView24
 id textView25
 id textView26
 id textView27
@@ -4107,7 +4127,6 @@ id textView5
 id textView50
 id textView51
 id textView52
-id textView53
 id textView54
 id textView6
 id textView7
@@ -4169,6 +4188,7 @@ id uniform
 id unlabeled
 id up
 id useLogo
+id usenow
 id vertical_only
 id view
 id view2
@@ -4184,6 +4204,9 @@ id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
 id voucher
+id voucher_limited
+id voucher_name
+id voucher_quantity
 id warning
 id watchRoom
 id west
@@ -4331,7 +4354,6 @@ layout custom_comment_form
 layout custom_dialog
 layout custom_hotel
 layout custom_hotel_detail
-layout custom_my_voucher
 layout custom_my_voucher_detail
 layout custom_password_dialog
 layout custom_past_cancel_purchase_adapter
@@ -4340,7 +4362,8 @@ layout custom_price
 layout custom_rating
 layout custom_room
 layout custom_sort
-layout custom_voucher
+layout custom_voucher_adapter
+layout custom_voucher_hotel_adapter
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar
@@ -4969,6 +4992,8 @@ style Base_Widget_MaterialComponents_Snackbar
 style Base_Widget_MaterialComponents_TextInputEditText
 style Base_Widget_MaterialComponents_TextInputLayout
 style Base_Widget_MaterialComponents_TextView
+style BottomSheetDialogTheme
+style BottomSheetStyle
 style CardView
 style CardView_Dark
 style CardView_Light

@@ -16,10 +16,6 @@
         "source": "com.example.angodafake.app-main-41:/layout/popup_find.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_voucher.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/custom_voucher.xml"
-    },
-    {
         "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/fragment_maps.xml",
         "source": "com.example.angodafake.app-main-41:/layout/fragment_maps.xml"
     },
@@ -104,10 +100,6 @@
         "source": "com.example.angodafake.app-main-41:/layout/rating.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_my_voucher.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/custom_my_voucher.xml"
-    },
-    {
         "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/activity_sign_up.xml",
         "source": "com.example.angodafake.app-main-41:/layout/activity_sign_up.xml"
     },
@@ -188,12 +180,20 @@
         "source": "com.example.angodafake.app-main-41:/layout/empty_active_room.xml"
     },
     {
+        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_voucher_hotel_adapter.xml",
+        "source": "com.example.angodafake.app-main-41:/layout/custom_voucher_hotel_adapter.xml"
+    },
+    {
         "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/fragment_home_filter.xml",
         "source": "com.example.angodafake.app-main-41:/layout/fragment_home_filter.xml"
     },
     {
         "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/empty_comment.xml",
         "source": "com.example.angodafake.app-main-41:/layout/empty_comment.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_voucher_adapter.xml",
+        "source": "com.example.angodafake.app-main-41:/layout/custom_voucher_adapter.xml"
     },
     {
         "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/tab_canceled_room.xml",

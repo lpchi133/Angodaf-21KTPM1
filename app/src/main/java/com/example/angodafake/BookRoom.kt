@@ -1,12 +1,22 @@
 package com.example.angodafake
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Build
+import android.content.Context
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
+import android.text.Html
+import android.text.Spanned
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -15,6 +25,8 @@ import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.utils.Utils
 import com.example.angodafake.Utilities.HotelUtils
@@ -32,6 +44,13 @@ import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import java.util.Calendar
 import java.util.Locale
+import com.example.angodafake.Adapter.VoucherHotelAdapter
+import com.example.angodafake.Utilities.VoucherUtils
+import com.example.angodafake.db.Voucher
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import java.text.DecimalFormatSymbols
+import kotlin.properties.Delegates
+import kotlin.time.times
 
 class BookRoom : AppCompatActivity() {
     private lateinit var countdownTimer: CountDownTimer
@@ -50,6 +69,33 @@ class BookRoom : AppCompatActivity() {
 
     private lateinit var customerName: String
     private lateinit var customerEmail: String
+
+    private lateinit var seenVoucherBtn: Button
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var layoutManager: LinearLayoutManager
+    private lateinit var linearAdapter: VoucherHotelAdapter
+    private var listVoucher: MutableList<Voucher> = mutableListOf()
+
+    private lateinit var textView: TextView
+    private lateinit var price: TextView
+    private lateinit var promotion: TextView
+    private lateinit var priceAfterPromotion: TextView
+    private lateinit var idVoucher: String
+    private var quantity: Int = 0
+    private var newPrice: Double = 0.0
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun createData(hotel_ID: String) {
+        listVoucher.clear()
+
+        VoucherUtils.getAllVouchers(hotel_ID) {vouchers ->
+            for (voucher in vouchers) {
+                if (voucher.quantity!! > 0) {
+                    listVoucher.add(voucher)
+                }
+            }
+        }
+    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -164,7 +210,83 @@ class BookRoom : AppCompatActivity() {
                 anim.visibility = View.VISIBLE
                 anim.playAnimation()
             }, 300)
+            VoucherUtils.minusVoucher(idVoucher,quantity) {result ->
+                println(result)
+            }
         }
+
+        createData(intent.getStringExtra("hotelID")!!)
+
+        layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
+        seenVoucherBtn = findViewById(R.id.seen_voucher)
+        textView = findViewById(R.id.textView39)
+        price = findViewById(R.id.Price)
+        promotion = findViewById(R.id.Promotion)
+        priceAfterPromotion = findViewById(R.id.PriceAfterPromotion)
+
+        priceAfterPromotion.text = price.text
+
+        recyclerView = findViewById(R.id.fieldvoucher)
+
+        seenVoucherBtn.setOnClickListener {
+            showBottomSheet()
+        }
+    }
+
+    private fun showBottomSheet() {
+        recyclerView.visibility = View.VISIBLE
+
+        recyclerView.layoutManager = layoutManager
+        recyclerView.setHasFixedSize(true)
+
+        linearAdapter = VoucherHotelAdapter(this, listVoucher)
+        recyclerView.adapter = linearAdapter
+
+        linearAdapter.onItemClick = { contact ->
+            idVoucher = contact.ID.toString()
+            quantity = contact.quantity!!
+            if (contact.money_discount == 0.0) {
+                calculatePrice2(744000.0, contact.limit_price!!, contact.max_discount!!, contact.percentage!!)
+            } else {
+                calculatePrice1(744000.0, contact.limit_price!!, contact.money_discount!!)
+            }
+
+            priceAfterPromotion.text = format(newPrice)
+
+            recyclerView.visibility = View.GONE
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun calculatePrice1(olePrice: Double, limit_price: Double, money_discount: Double) {
+        if (olePrice >= limit_price) {
+            promotion.text = "- ${format(money_discount)}"
+            newPrice = olePrice - money_discount
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun calculatePrice2(olePrice: Double, limit_price: Double, max_discount: Double, percentage: Int){
+        if (olePrice >= limit_price) {
+            val money_discount = olePrice * percentage * 0.01
+            promotion.text = "- ${format(money_discount)}"
+            newPrice = if (money_discount >= max_discount) {
+                olePrice - max_discount
+            } else {
+                olePrice - money_discount
+            }
+        }
+    }
+
+    fun format(money: Double): Spanned? {
+        val formatSymbols = DecimalFormatSymbols()
+        formatSymbols.groupingSeparator = '.'
+
+        val decimalFormat = DecimalFormat("#,##0", formatSymbols)
+        val temp = "${decimalFormat.format(money)} &#8363;"
+
+        return Html.fromHtml(temp, Html.FROM_HTML_MODE_COMPACT)
     }
 
     private fun startCountdownTimer() {

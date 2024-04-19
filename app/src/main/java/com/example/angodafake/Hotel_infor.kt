@@ -15,14 +15,16 @@ import android.widget.PopupWindow
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.angodafake.Adapter.VoucherAdapter
 import com.example.angodafake.Utilities.HotelUtils
-import com.example.angodafake.Utilities.PictureUtils
-import com.example.angodafake.Utilities.RoomUtils
 import com.example.angodafake.Utilities.UserUtils
+import com.example.angodafake.Utilities.VoucherUtils
 import com.example.angodafake.db.Hotel
 import com.example.angodafake.db.Picture_Hotel
-import com.example.angodafake.db.Rooms
 import com.example.angodafake.db.User
+import com.example.angodafake.db.Voucher
 
 
 private const val ARG_PARAM1 = "param1"
@@ -41,6 +43,9 @@ class Hotel_infor(private var idUser: String) : Fragment() {
     private lateinit var User: User
     private lateinit var hotel: Hotel
     private lateinit var popupWindow: PopupWindow
+    private lateinit var voucherfield: RecyclerView
+    private lateinit var layoutManager: LinearLayoutManager
+    private lateinit var linearAdapter: VoucherAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +70,7 @@ class Hotel_infor(private var idUser: String) : Fragment() {
         val checkOutfind = args?.getString("checkOut")
         val numberOfRooms = args?.getInt("numberOfRooms") ?: -1
         val numberOfGuests = args?.getInt("numberOfGuests") ?: -3
+        val flow = args?.getString("Flow_1")
 
         val nameTextView = view.findViewById<TextView>(R.id.hotel_name)
         val locationTextView = view.findViewById<TextView>(R.id.address_hotel)
@@ -85,6 +91,7 @@ class Hotel_infor(private var idUser: String) : Fragment() {
         val showDetail: TextView = view.findViewById(R.id.showDetail)
         val firstRectangle: TextView = view.findViewById(R.id.firstRectangle)
 
+        layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         if (itemPosition != null) {
             HotelUtils.getHotelByID(itemPosition) { ho ->
@@ -142,25 +149,26 @@ class Hotel_infor(private var idUser: String) : Fragment() {
                     description.text = initialDescription
 
                     view.findViewById<ImageView>(R.id.imageView4).setOnClickListener {
-                        val arg = Bundle()
-                        arg.putStringArray("hotelIds", hotelIds)
-                        arg.putStringArray("saveIds", saveIds)
-                        arg.putString("searchText", searchText)
-                        arg.putString("checkIn", checkInfind)
-                        arg.putString("checkOut", checkOutfind)
-                        arg.putInt("numberOfRooms", numberOfRooms)
-                        arg.putInt("numberOfGuests", numberOfGuests)
+                        if (flow == null) {
 
-                        // Khởi tạo Fragment Filter và đính kèm Bundle
-                        val filterFragment = Filter(idUser)
-                        filterFragment.arguments = arg
+                            val arg = Bundle()
+                            arg.putStringArray("hotelIds", hotelIds)
+                            arg.putStringArray("saveIds", saveIds)
+                            arg.putString("searchText", searchText)
 
-                        // Thay thế Fragment hiện tại bằng Fragment Filter
-                        val fragmentManager = requireActivity().supportFragmentManager
-                        fragmentManager.beginTransaction()
-                            .replace(R.id.frameLayout, filterFragment)
-                            .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
-                            .commit()
+                            // Khởi tạo Fragment Filter và đính kèm Bundle
+                            val filterFragment = Filter(idUser)
+                            filterFragment.arguments = arg
+
+                            // Thay thế Fragment hiện tại bằng Fragment Filter
+                            val fragmentManager = requireActivity().supportFragmentManager
+                            fragmentManager.beginTransaction()
+                                .replace(R.id.frameLayout, filterFragment)
+                                .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
+                                .commit()
+                        } else if (flow == "reorder") {
+                            replaceFragmentToRoom(idUser)
+                        }
                     }
 
                     view.findViewById<Button>(R.id.watchRoom).setOnClickListener {
@@ -188,9 +196,34 @@ class Hotel_infor(private var idUser: String) : Fragment() {
                         showPopup()
                     }
                 }
+                    }
+
+                    VoucherUtils.getAllVouchers(itemPosition) {vouchers ->
+//                        println(itemPosition)
+//                        println(listVoucher)
+                        val listVoucher = mutableListOf<Voucher>()
+
+                        for (voucher in vouchers) {
+                            if (voucher.quantity!! > 0) {
+                                listVoucher.add(voucher)
+                            }
+                        }
+
+                        voucherfield = view.findViewById(R.id.voucher)
+                        voucherfield.layoutManager = layoutManager
+                        voucherfield.setHasFixedSize(true)
+
+                        linearAdapter = VoucherAdapter(requireActivity(), listVoucher, idUser, hotel.name!!)
+                        voucherfield.adapter = linearAdapter
+                    }
             }
-        }
         return view
+    }
+
+    private fun replaceFragmentToRoom(idUser: String) {
+        println(idUser)
+        val mainActivity = activity as MainActivity
+        mainActivity.replaceFragment(MyRoom(idUser))
     }
 
     private fun showPopup() {
