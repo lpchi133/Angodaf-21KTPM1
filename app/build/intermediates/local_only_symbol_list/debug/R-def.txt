@@ -191,6 +191,7 @@ id btn_reorder1
 id btn_reorder2
 id btn_send
 id btn_sendcmt
+id btn_submit
 id button
 id button2
 id button3
@@ -249,6 +250,7 @@ id countRoom
 id count_Room
 id count_person
 id count_room
+id custom_password_dialog
 id customer
 id customerInfor
 id customerName
@@ -265,6 +267,7 @@ id editTextText
 id editTextText1
 id editTextTextMultiLine
 id errorText
+id et_Password
 id fav
 id filter
 id find
@@ -288,6 +291,7 @@ id icon
 id id_order
 id imageView
 id imageView1
+id imageView10
 id imageView12
 id imageView13
 id imageView14
@@ -461,6 +465,7 @@ id textView32
 id textView33
 id textView34
 id textView35
+id textView36
 id textView37
 id textView38
 id textView39
@@ -540,6 +545,7 @@ layout custom_hotel
 layout custom_hotel_detail
 layout custom_my_voucher
 layout custom_my_voucher_detail
+layout custom_password_dialog
 layout custom_past_cancel_purchase_adapter
 layout custom_past_cancel_purchase_detail
 layout custom_price

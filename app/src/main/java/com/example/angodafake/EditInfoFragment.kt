@@ -195,10 +195,15 @@ class EditInfoFragment(private var idUser: String) : Fragment() {
                 //quoc tich
                 if (actvCountry.text.toString().trim() == ""){
                     check[2] = true
+                    lCountry.error = null
                 }
                 else if (actvCountry.text.toString().trim() !in countries){
                     lCountry.error = "Quốc tịch không hợp lệ"
                     check[2] = false
+                }
+                else{
+                    check[2] = true
+                    lCountry.error = null
                 }
 
                 //email

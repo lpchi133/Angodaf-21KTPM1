@@ -2,18 +2,22 @@ package com.example.angodafake.Utilities
 
 import com.example.angodafake.db.User
 import com.google.firebase.Firebase
+import com.google.firebase.auth.EmailAuthProvider
+import com.google.firebase.auth.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
+import kotlinx.coroutines.tasks.await
 
 object UserUtils {
     private var database: DatabaseReference = Firebase.database.reference
 
+
     fun getUserByID(ID: String, listener: (User) -> Unit){
         val usersQuery = database.child("users/$ID")
-        usersQuery.addValueEventListener(object : ValueEventListener {
+        usersQuery.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // Xử lý khi dữ liệu thay đổi
                 val user = dataSnapshot.getValue(User::class.java)
@@ -46,20 +50,93 @@ object UserUtils {
         })
     }
 
+    suspend fun getUserByEmail(email: String): User? {
+        return try {
+            val dataSnapshot = database.child("users").get().await()
+            var user: User? = null
+            dataSnapshot.children.forEach { userSnapshot ->
+                val currentUser = userSnapshot.getValue(User::class.java)
+                if (currentUser?.email == email) {
+                    currentUser.ID = userSnapshot.key
+                    user = currentUser
+                    return@forEach
+                }
+            }
+            user
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    suspend fun getUserByPhoneNumber(phoneN: String): User? {
+        return try {
+            val dataSnapshot = database.child("users").get().await()
+            var user: User? = null
+            dataSnapshot.children.forEach { userSnapshot ->
+                val currentUser = userSnapshot.getValue(User::class.java)
+                if (currentUser?.phoneN == phoneN) {
+                    currentUser.ID = userSnapshot.key
+                    user = currentUser
+                    return@forEach
+                }
+            }
+            user
+        } catch (e: Exception) {
+            null
+        }
+    }
     fun getUserByPhoneNumber(phoneN: String, listener: (User?) -> Unit){
         val usersQuery = database.child("users")
-        usersQuery.addValueEventListener(object : ValueEventListener {
+        usersQuery.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                var check = false
+                var user : User ?= null
                 for (userSnapshort in dataSnapshot.children){
-                    val user = userSnapshort.getValue(User::class.java)
-                    if (user!!.phoneN == phoneN){
-                        check = true
-                        listener(user)
+                    val tmp = userSnapshort.getValue(User::class.java)
+                    if (tmp!!.phoneN == phoneN){
+                        tmp.ID = userSnapshort.key
+                        user = tmp
+                        break
                     }
                 }
-                if (!check){
-                    listener(null)
+                listener(user)
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Xử lý khi có lỗi xảy ra
+            }
+        })
+    }
+
+    fun updateUserByID(ID: String, newUser: User, pw: String, listener: (Boolean) -> Unit){
+        val usersQuery = database.child("users/$ID")
+        usersQuery.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val oldUser = dataSnapshot.getValue(User::class.java)
+                if (newUser.email != oldUser?.email){
+                    val user = Firebase.auth.currentUser
+                    val email = if (oldUser!!.email == ""){
+                        "${oldUser.phoneN}@gmail.com"
+                    } else{
+                        oldUser.email!!
+                    }
+                    val credential = EmailAuthProvider.getCredential(email, pw)
+                    user!!.reauthenticate(credential).addOnCompleteListener {
+                            if (it.isSuccessful){
+                                user.updateEmail(newUser.email!!)
+                                    .addOnCompleteListener { task ->
+                                        if (task.isSuccessful){
+                                            database.child("users").child(ID).setValue(newUser)
+                                            listener(true)
+                                        } else{
+                                            listener(false)
+                                        }
+                                    }
+                            } else{
+                                listener(false)
+                            }
+                    }
+                } else{
+                    database.child("users").child(ID).setValue(newUser)
+                    listener(true)
                 }
             }
             override fun onCancelled(databaseError: DatabaseError) {
@@ -67,4 +144,5 @@ object UserUtils {
             }
         })
     }
+
 }

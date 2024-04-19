@@ -336,6 +336,10 @@
         "source": "com.example.angodafake.app-main-41:/layout/empty_active_room.xml"
     },
     {
+        "merged": "com.example.angodafake.app-merged_res-39:/layout_custom_password_dialog.xml.flat",
+        "source": "com.example.angodafake.app-main-41:/layout/custom_password_dialog.xml"
+    },
+    {
         "merged": "com.example.angodafake.app-merged_res-39:/drawable_khach_san.jpeg.flat",
         "source": "com.example.angodafake.app-main-41:/drawable/khach_san.jpeg"
     },
