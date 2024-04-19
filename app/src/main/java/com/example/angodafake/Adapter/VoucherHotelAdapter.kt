@@ -59,6 +59,7 @@ class VoucherHotelAdapter(private val context: Context, private var voucher: Mut
             val quantityDialog: TextView = dialogView.findViewById(R.id.quantity)
             val textView: TextView = dialogView.findViewById(R.id.textView4)
             val useVoucher: Button = dialogView.findViewById(R.id.button)
+            val closePopup: Button = dialogView.findViewById(R.id.button1)
 
             quantityDialog.text = currentItem.quantity.toString()
             limit_priceDialog.text = format3(currentItem.limit_price!!)
@@ -77,10 +78,20 @@ class VoucherHotelAdapter(private val context: Context, private var voucher: Mut
                 dialog.dismiss()
             }
 
+            closePopup.setOnClickListener {
+                dialog.dismiss()
+            }
+
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.setCancelable(true)
             dialog.setContentView(dialogView)
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+            val window = dialog.window
+            val layoutParams = window?.attributes
+            layoutParams?.width = ViewGroup.LayoutParams.MATCH_PARENT // Kích thước ngang theo match_parent
+            layoutParams?.height = ViewGroup.LayoutParams.WRAP_CONTENT // Kích thước chiều cao tự động
+            window?.attributes = layoutParams
 
             dialog.show()
         }
@@ -113,14 +124,13 @@ class VoucherHotelAdapter(private val context: Context, private var voucher: Mut
         return Html.fromHtml(temp, Html.FROM_HTML_MODE_COMPACT)
     }
 
-    fun format3(amount: Double): String {
-        val suffixes = listOf("", "k", "k", "k", "k", "k")
-        val number = amount.toLong()
+    fun format3(money: Double): Spanned? {
+        val formatSymbols = DecimalFormatSymbols()
+        formatSymbols.groupingSeparator = '.'
 
-        val digits = (number.toString().length - 1) / 3
-
-        val formattedAmount = DecimalFormat("#,##0.#").format(amount / Math.pow(1000.0, digits.toDouble()))
-        return "$formattedAmount${suffixes[digits.toInt()]}"
+        val decimalFormat = DecimalFormat("#,##0", formatSymbols)
+        val stringMoney = "&#8363;${decimalFormat.format(money)}"
+        return Html.fromHtml(stringMoney, Html.FROM_HTML_MODE_COMPACT)
     }
     class MyViewHolder(voucherItem: View) : RecyclerView.ViewHolder(voucherItem) {
         val name: TextView = voucherItem.findViewById(R.id.voucher_name)

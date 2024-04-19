@@ -39,17 +39,21 @@ object VoucherUtils {
     }
 
     fun minusVoucher(voucherID: String, quantity: Int, callback: (String) -> Unit) {
-        val voucherUpdate = hashMapOf<String, Any>(
-            "/vouchers/$voucherID/quantity" to (quantity - 1)
-        )
+        if (quantity > 0) {
+            val voucherUpdate = hashMapOf<String, Any>(
+                "/vouchers/$voucherID/quantity" to (quantity - 1)
+            )
 
-        database.updateChildren(voucherUpdate)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    callback.invoke("success")
-                } else {
-                    callback.invoke("failure")
+            database.updateChildren(voucherUpdate)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        callback.invoke("success")
+                    } else {
+                        callback.invoke("failure")
+                    }
                 }
-            }
+        } else {
+            callback.invoke("failure")
+        }
     }
 }

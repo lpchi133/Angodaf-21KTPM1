@@ -165,11 +165,23 @@
                     android:layout_toEndOf="@+id/point"
                     android:text="628 nhận xét" />
 
+                <TextView
+                    android:id="@+id/inforVoucher"
+                    android:layout_width="240dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ratingBar"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center_vertical"
+                    android:text="Tìm hiểu thêm về phiếu quà tặng."
+                    android:textColor="#3E52FA"
+                    android:textStyle="bold"
+                    app:drawableRightCompat="@drawable/baseline_info_outline_24" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/voucher"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/ratingBar"
+                    android:layout_below="@+id/inforVoucher"
                     android:layout_marginVertical="10dp"
                     android:background="@drawable/border4"
                     android:orientation="horizontal" />

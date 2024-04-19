@@ -3471,6 +3471,7 @@ id btn_send
 id btn_sendcmt
 id btn_submit
 id button
+id button1
 id button2
 id button3
 id button5
@@ -3715,6 +3716,7 @@ id included
 id indeterminate
 id info
 id infor
+id inforVoucher
 id invisible
 id inward
 id is_pooling_container_tag

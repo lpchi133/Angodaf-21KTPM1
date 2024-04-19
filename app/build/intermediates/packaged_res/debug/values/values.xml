@@ -306,7 +306,7 @@
     <string name="timeCountingDown">00:20:00</string>
     <string name="title">Thông tin khách sạn</string>
     <string name="titlePurchase">Chi tiết thanh toán</string>
-    <string name="v_title">Phiếu giảm giá &amp; Ưu đãi</string>
+    <string name="v_title">Quản lý Phiếu giảm giá &amp; Ưu đãi</string>
     <style name="Base.Theme.AngodaFake" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
     </style>
     <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">

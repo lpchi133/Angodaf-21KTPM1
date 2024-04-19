@@ -76,13 +76,11 @@ class BookRoom : AppCompatActivity() {
     private lateinit var linearAdapter: VoucherHotelAdapter
     private var listVoucher: MutableList<Voucher> = mutableListOf()
 
-    private lateinit var textView: TextView
-    private lateinit var price: TextView
-    private lateinit var promotion: TextView
-    private lateinit var priceAfterPromotion: TextView
+    private lateinit var notic: TextView
+
     private lateinit var idVoucher: String
     private var quantity: Int = 0
-    private var newPrice: Double = 0.0
+    private var firstPrice: Int = 0
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun createData(hotel_ID: String) {
@@ -146,7 +144,7 @@ class BookRoom : AppCompatActivity() {
             findViewById<TextView>(R.id.type_room).text = "${roomQuantity} x ${room.type}"
             findViewById<TextView>(R.id.textView37).text = "Tối đa: ${room.capacity} người lớn"
             findViewById<TextView>(R.id.bedQ).text = "${room.single_bed} giường đơn - ${room.double_bed} giường đôi"
-            val firstPrice = (room.price?.times(roomQuantity.toInt()) ?: 1) * dayInHotel.toInt()
+            firstPrice = (room.price?.times(roomQuantity.toInt()) ?: 1) * dayInHotel.toInt()
             findViewById<TextView>(R.id.Price).text = "${formatMoney(firstPrice)} đ"
             findViewById<TextView>(R.id.PriceAfterPromotion).text = "${formatMoney(firstPrice - discountValue)} đ"
             dialog.findViewById<TextView>(R.id.roomID).text = "${room.type}"
@@ -159,7 +157,7 @@ class BookRoom : AppCompatActivity() {
         }
 
         findViewById<TextView>(R.id.cost).text = "Giá gốc (${roomQuantity} phòng x ${dayInHotel} đêm)"
-        findViewById<TextView>(R.id.Promotion).text = "${formatMoney(discountValue)} đ"
+        findViewById<TextView>(R.id.Promotion).text = "-${formatMoney(discountValue)} đ"
 
         findViewById<RadioButton>(R.id.cashChoice).text = "Thanh toán vào ${convertDateTimeToString(checkInTime, 2)}"
         findViewById<TextView>(R.id.textView47).text = "Đặt phòng hôm nay và thanh toán vào ${convertDateTimeToString(checkInTime, 2)}"
@@ -178,6 +176,10 @@ class BookRoom : AppCompatActivity() {
             when (checkedId) {
                 R.id.cashChoice -> {
                     paymentMethodLayout.visibility = View.GONE
+                    discountValue = 0
+                    findViewById<TextView>(R.id.Promotion).text = "-${formatMoney(discountValue)} đ"
+                    findViewById<TextView>(R.id.PriceAfterPromotion).text = "${formatMoney(firstPrice - discountValue)} đ"
+
                 }
                 R.id.onlineChoice -> {
                     paymentMethodLayout.visibility = View.VISIBLE
@@ -220,14 +222,10 @@ class BookRoom : AppCompatActivity() {
         layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         seenVoucherBtn = findViewById(R.id.seen_voucher)
-        textView = findViewById(R.id.textView39)
-        price = findViewById(R.id.Price)
-        promotion = findViewById(R.id.Promotion)
-        priceAfterPromotion = findViewById(R.id.PriceAfterPromotion)
-
-        priceAfterPromotion.text = price.text
-
+        notic = findViewById(R.id.notic)
         recyclerView = findViewById(R.id.fieldvoucher)
+
+        notic.visibility = View.GONE
 
         seenVoucherBtn.setOnClickListener {
             showBottomSheet()
@@ -247,46 +245,33 @@ class BookRoom : AppCompatActivity() {
             idVoucher = contact.ID.toString()
             quantity = contact.quantity!!
             if (contact.money_discount == 0.0) {
-                calculatePrice2(744000.0, contact.limit_price!!, contact.max_discount!!, contact.percentage!!)
+                calculatePrice2(firstPrice.toDouble(), contact.limit_price!!, contact.max_discount!!, contact.percentage!!)
             } else {
-                calculatePrice1(744000.0, contact.limit_price!!, contact.money_discount!!)
+                calculatePrice1(firstPrice.toDouble(), contact.limit_price!!, contact.money_discount!!)
             }
+            findViewById<TextView>(R.id.Promotion).text = "-${formatMoney(discountValue)} đ"
+            findViewById<TextView>(R.id.PriceAfterPromotion).text = "${formatMoney(firstPrice - discountValue)} đ"
 
-            priceAfterPromotion.text = format(newPrice)
-
+            notic.visibility = View.VISIBLE
             recyclerView.visibility = View.GONE
         }
     }
 
-    @SuppressLint("SetTextI18n")
     private fun calculatePrice1(olePrice: Double, limit_price: Double, money_discount: Double) {
         if (olePrice >= limit_price) {
-            promotion.text = "- ${format(money_discount)}"
-            newPrice = olePrice - money_discount
+            discountValue = money_discount.toInt()
         }
     }
 
-    @SuppressLint("SetTextI18n")
     private fun calculatePrice2(olePrice: Double, limit_price: Double, max_discount: Double, percentage: Int){
         if (olePrice >= limit_price) {
             val money_discount = olePrice * percentage * 0.01
-            promotion.text = "- ${format(money_discount)}"
-            newPrice = if (money_discount >= max_discount) {
-                olePrice - max_discount
+            if (money_discount > max_discount) {
+                discountValue = max_discount.toInt()
             } else {
-                olePrice - money_discount
+                discountValue = money_discount.toInt()
             }
         }
-    }
-
-    fun format(money: Double): Spanned? {
-        val formatSymbols = DecimalFormatSymbols()
-        formatSymbols.groupingSeparator = '.'
-
-        val decimalFormat = DecimalFormat("#,##0", formatSymbols)
-        val temp = "${decimalFormat.format(money)} &#8363;"
-
-        return Html.fromHtml(temp, Html.FROM_HTML_MODE_COMPACT)
     }
 
     private fun startCountdownTimer() {

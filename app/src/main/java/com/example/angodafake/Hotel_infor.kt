@@ -1,12 +1,16 @@
 package com.example.angodafake
 
+import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageButton
@@ -90,6 +94,11 @@ class Hotel_infor(private var idUser: String) : Fragment() {
         val count_cmt: TextView = view.findViewById(R.id.cmt)
         val showDetail: TextView = view.findViewById(R.id.showDetail)
         val firstRectangle: TextView = view.findViewById(R.id.firstRectangle)
+        val inforVoucher: TextView = view.findViewById(R.id.inforVoucher)
+
+        inforVoucher.setOnClickListener {
+            showPopup1()
+        }
 
         layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
@@ -224,6 +233,30 @@ class Hotel_infor(private var idUser: String) : Fragment() {
         println(idUser)
         val mainActivity = activity as MainActivity
         mainActivity.replaceFragment(MyRoom(idUser))
+    }
+
+    private fun showPopup1() {
+        val dialog = Dialog(requireActivity())
+        val inflater = LayoutInflater.from(requireActivity())
+        val dialogView = inflater.inflate(R.layout.popup_1, null)
+
+        val btn_close: ImageButton = dialogView.findViewById(R.id.btn_close)
+        btn_close.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(dialogView)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val window = dialog.window
+        val layoutParams = window?.attributes
+        layoutParams?.width = ViewGroup.LayoutParams.MATCH_PARENT // Kích thước ngang theo match_parent
+        layoutParams?.height = ViewGroup.LayoutParams.WRAP_CONTENT // Kích thước chiều cao tự động
+        window?.attributes = layoutParams
+
+        dialog.show()
     }
 
     private fun showPopup() {

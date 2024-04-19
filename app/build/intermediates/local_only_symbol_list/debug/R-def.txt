@@ -204,6 +204,7 @@ id btn_send
 id btn_sendcmt
 id btn_submit
 id button
+id button1
 id button2
 id button3
 id button5
@@ -321,6 +322,7 @@ id imageView9
 id image_hotel
 id image_room
 id infor
+id inforVoucher
 id lConfirmPass
 id lCountry
 id lDob

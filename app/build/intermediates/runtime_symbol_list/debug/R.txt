@@ -3470,6 +3470,7 @@ int id btn_send 0x7f0900af
 int id btn_sendcmt 0x7f0900b0
 int id btn_submit 0x7f0900b1
 int id button 0x7f0900b2
+int id button1 0x7f09039f
 int id button2 0x7f0900b3
 int id button3 0x7f0900b4
 int id button5 0x7f0900b5
@@ -3714,6 +3715,7 @@ int id included 0x7f0901a3
 int id indeterminate 0x7f0901a4
 int id info 0x7f0901a5
 int id infor 0x7f0901a6
+int id inforVoucher 0x7f0903a0
 int id invisible 0x7f0901a7
 int id inward 0x7f0901a8
 int id is_pooling_container_tag 0x7f0901a9
