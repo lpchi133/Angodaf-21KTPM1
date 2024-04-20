@@ -71,6 +71,10 @@ class Hotel_infor(private var idUser: String) : Fragment() {
         val numberOfRooms = args?.getInt("numberOfRooms")
         val numberOfGuests = args?.getInt("numberOfGuests")
         val flow = args?.getString("Flow_1")
+        println(checkInfind)
+        println(checkOutfind)
+        println(numberOfRooms)
+        println(numberOfGuests)
 
         val nameTextView = view.findViewById<TextView>(R.id.hotel_name)
         val locationTextView = view.findViewById<TextView>(R.id.address_hotel)
@@ -155,6 +159,10 @@ class Hotel_infor(private var idUser: String) : Fragment() {
                             arg.putStringArray("hotelIds", hotelIds)
                             arg.putStringArray("saveIds", saveIds)
                             arg.putString("searchText", searchText)
+                            arg.putString("checkIn", checkInfind)
+                            arg.putString("checkOut", checkOutfind)
+                            arg.putInt("numberOfRooms", numberOfRooms!!)
+                            arg.putInt("numberOfGuests", numberOfGuests!!)
 
                             // Khởi tạo Fragment Filter và đính kèm Bundle
                             val filterFragment = Filter(idUser)

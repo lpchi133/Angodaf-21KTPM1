@@ -80,11 +80,9 @@
             android:layout_width="47dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/line1"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="220dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="7dp"
-            android:layout_toEndOf="@+id/textView1"
+            android:layout_toEndOf="@+id/minus_room"
             app:srcCompat="@android:drawable/btn_plus" />
 
         <TextView
@@ -136,9 +134,9 @@
             android:layout_width="47dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/line2"
-            android:layout_marginStart="223dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="5dp"
-            android:layout_toEndOf="@+id/textView2"
+            android:layout_toEndOf="@+id/minus_person"
             app:srcCompat="@android:drawable/btn_plus" />
 
         <Button

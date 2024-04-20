@@ -87,6 +87,10 @@ class Filter(private var idUser: String) : Fragment() {
         val checkOut = args?.getString("checkOut")
         val numberOfRooms = args?.getInt("numberOfRooms", 0)
         val numberOfGuests = args?.getInt("numberOfGuests", 0)
+        println(checkIn)
+        println(checkOut)
+        println(numberOfRooms)
+        println(numberOfGuests)
 
         Log.d("FilterDetailFragment", "Hotel IDs: ${hotelIds?.joinToString(", ")}, Search Text: $searchText")
         if (hotelIds != null) {
@@ -149,6 +153,7 @@ class Filter(private var idUser: String) : Fragment() {
                                 arg.putString("checkOut", checkOut)
                                 arg.putInt("numberOfRooms", numberOfRooms!!)
                                 arg.putInt("numberOfGuests", numberOfGuests!!)
+
 
                                 val Fragment = Hotel_infor(idUser)
                                 Fragment.arguments = arg

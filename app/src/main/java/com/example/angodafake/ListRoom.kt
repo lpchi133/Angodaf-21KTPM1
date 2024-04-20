@@ -56,11 +56,17 @@ class ListRoom(private val idUser: String) : Fragment() {
         val checkOut = args?.getString("checkOut")
         val numberOfRooms = args?.getInt("numberOfRooms")
         val numberOfGuests = args?.getInt("numberOfGuests")
+        println(checkIn)
+        println(checkOut)
+        println(numberOfRooms)
+        println(numberOfGuests)
 
         nameTextView.text = hotelName
 
         if (itemPosition != null) {
             RoomUtils.getRoomByHotelID(itemPosition){ fetchedRoomList   ->
+                println(fetchedRoomList)
+
                 rooms = fetchedRoomList
                 rooms = rooms.filter { room ->
                     room.capacity!! >= numberOfGuests!! && (room.quantity!! - room.available!!) >= numberOfRooms!!
