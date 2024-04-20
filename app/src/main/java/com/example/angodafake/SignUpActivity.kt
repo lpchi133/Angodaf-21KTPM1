@@ -12,19 +12,15 @@ import android.os.Handler
 import android.text.InputType
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.angodafake.Utilities.UserUtils
 import com.example.angodafake.db.User
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.Firebase
@@ -34,14 +30,11 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.database
 
 class SignUpActivity : AppCompatActivity() {
-    private val checkArray = BooleanArray(7) { false } //kiem tra tinh hop le thong tin nguoi dung nhap
+    private val checkArray = BooleanArray(5) { false } //kiem tra tinh hop le thong tin nguoi dung nhap
     private lateinit var lName : TextInputLayout
     private lateinit var etName : TextInputEditText
     private lateinit var lDob : TextInputLayout
     private lateinit var etDob : TextInputEditText
-    private lateinit var rgGender : RadioGroup
-    private lateinit var lCountry : TextInputLayout
-    private lateinit var actvCountry : MaterialAutoCompleteTextView
     private lateinit var lPass : TextInputLayout
     private lateinit var etPass : TextInputEditText
     private lateinit var lConfirmPass : TextInputLayout
@@ -61,9 +54,6 @@ class SignUpActivity : AppCompatActivity() {
         etName = lName.editText as TextInputEditText
         lDob = findViewById(R.id.lDob)
         etDob = lDob.editText as TextInputEditText
-        rgGender = findViewById(R.id.radioGroup)
-        lCountry = findViewById(R.id.lCountry)
-        actvCountry = findViewById(R.id.actvCountry)
         lPass = findViewById(R.id.lPass)
         etPass = lPass.editText as TextInputEditText
         lConfirmPass = findViewById(R.id.lConfirmPass)
@@ -120,31 +110,6 @@ class SignUpActivity : AppCompatActivity() {
             datePickerDialog.show()
         }
 
-        //Gioi tinh
-        rgGender.setOnCheckedChangeListener { group, checkedId ->
-            hideKeyboard(this)
-            clearFocus()
-            findViewById<TextView>(R.id.errorText).visibility = View.GONE
-            checkArray[2] = true
-        }
-
-        //quoc tich
-        val countries = resources.getStringArray(R.array.countries)
-        val adapterActv = ArrayAdapter(this, android.R.layout.simple_list_item_1, countries)
-        actvCountry.setAdapter(adapterActv)
-        actvCountry.setOnFocusChangeListener { v, hasFocus ->
-            if (!hasFocus) {
-                isCheckEmpty(lCountry, actvCountry, "Quốc tịch")
-            }
-            else{
-                lCountry.error = null
-            }
-        }
-        actvCountry.setOnItemClickListener { parent, view, position, id ->
-            hideKeyboard(this)
-            clearFocus()
-        }
-
         //nut back
         findViewById<ImageButton>(R.id.btn_back).setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
@@ -155,7 +120,7 @@ class SignUpActivity : AppCompatActivity() {
         //password
         etPass.setOnFocusChangeListener { v, hasFocus ->
             if (!hasFocus) {
-                checkArray[5] = validatePass(lPass, etPass)
+                checkArray[3] = validatePass(lPass, etPass)
             }
             else{
                 lPass.error = null
@@ -165,7 +130,7 @@ class SignUpActivity : AppCompatActivity() {
         //confirmPassword
         etConfirmPass.setOnFocusChangeListener { v, hasFocus ->
             if (!hasFocus) {
-                checkArray[6] = validateConfirmPass(lConfirmPass, etConfirmPass, etPass)
+                checkArray[4] = validateConfirmPass(lConfirmPass, etConfirmPass, etPass)
             }
             else{
                 lConfirmPass.error = null
@@ -182,7 +147,7 @@ class SignUpActivity : AppCompatActivity() {
 
             etEmail.setOnFocusChangeListener { v, hasFocus ->
                 if (!hasFocus) {
-                    checkArray[4] = validateEmail(lEmail, etEmail)
+                    checkArray[2] = validateEmail(lEmail, etEmail)
                 }
                 else{
                     lEmail.error = null
@@ -209,7 +174,7 @@ class SignUpActivity : AppCompatActivity() {
 
             etPhoneN.setOnFocusChangeListener { v, hasFocus ->
                 if (!hasFocus) {
-                    checkArray[4] = validatePhoneNumber(lPhoneN, etPhoneN)
+                    checkArray[2] = validatePhoneNumber(lPhoneN, etPhoneN)
                 }
                 else{
                     lPhoneN.error = null
@@ -236,9 +201,9 @@ class SignUpActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     val name = etName.text.toString().trim()
                     val dob = etDob.text.toString().trim()
-                    val gender = findViewById<RadioButton>(rgGender.checkedRadioButtonId).text.toString().trim()
+                    val gender = ""
                     val number = ""
-                    val country = actvCountry.text.toString()
+                    val country = ""
                     val cardNumber = ""
                     val cardName = ""
 
@@ -256,7 +221,7 @@ class SignUpActivity : AppCompatActivity() {
                 } else {
                     // If sign in fails, display a message to the user.
                     showFailSnackBar("Người dùng đã tồn tại! Vui lòng nhập email khác.")
-                    checkArray[4] = false
+                    checkArray[2] = false
                     lEmail.error = "Email đã được sử dụng."
                 }
             }
@@ -267,7 +232,7 @@ class SignUpActivity : AppCompatActivity() {
         UserUtils.getUserByPhoneNumber(phoneN){
             if (it != null){
                 showFailSnackBar("Người dùng đã tồn tại! Vui lòng nhập số di động khác.")
-                checkArray[4] = false
+                checkArray[2] = false
                 lPhoneN.error = "Số di động đã được sử dụng."
             }
             else{
@@ -278,9 +243,9 @@ class SignUpActivity : AppCompatActivity() {
                             // Sign in success, update UI with the signed-in user's information
                             val name = etName.text.toString().trim()
                             val dob = etDob.text.toString().trim()
-                            val gender = findViewById<RadioButton>(rgGender.checkedRadioButtonId).text.toString().trim()
+                            val gender = ""
                             val number = fEmailFromPhoneN.substring(0, fEmailFromPhoneN.indexOf("@"))
-                            val country = actvCountry.text.toString()
+                            val country = ""
                             val cardNumber = ""
                             val cardName = ""
 
@@ -298,7 +263,7 @@ class SignUpActivity : AppCompatActivity() {
                         } else {
                             // If sign in fails, display a message to the user.
                             showFailSnackBar("Người dùng đã tồn tại! Vui lòng nhập số di động khác.")
-                            checkArray[4] = false
+                            checkArray[2] = false
                             lPhoneN.error = "Số di động đã được sử dụng."
                         }
                     }
@@ -322,7 +287,6 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun clearFocus(){
         etName.clearFocus()
-        actvCountry.clearFocus()
         findViewById<TextInputLayout>(R.id.lEmailOrPhoneN).editText?.clearFocus()
         etPass.clearFocus()
         etConfirmPass.clearFocus()
@@ -331,18 +295,9 @@ class SignUpActivity : AppCompatActivity() {
             checkArray[0] = validateName(lName, etName)
             editText.requestFocus()
             editText.clearFocus()
-            checkArray[5] = validatePass(lPass, etPass)
-            checkArray[6] = validateConfirmPass(lConfirmPass, etConfirmPass, etPass)
+            checkArray[3] = validatePass(lPass, etPass)
+            checkArray[4] = validateConfirmPass(lConfirmPass, etConfirmPass, etPass)
             checkArray[1] = !isCheckEmpty(lDob, etDob, "Ngày sinh") && checkArray[1]
-            checkArray[3] = !isCheckEmpty(lCountry, actvCountry, "Quốc tịch")
-            if (rgGender.checkedRadioButtonId == -1){
-                findViewById<TextView>(R.id.errorText).visibility = View.VISIBLE
-                checkArray[2] = false
-            }
-            else{
-                findViewById<TextView>(R.id.errorText).visibility = View.GONE
-                checkArray[2] = true
-            }
     }
     private fun isCheckEmpty(textInputLayout: TextInputLayout, editText: EditText, name: String) : Boolean{
         return if (editText.text.toString().trim() == ""){
