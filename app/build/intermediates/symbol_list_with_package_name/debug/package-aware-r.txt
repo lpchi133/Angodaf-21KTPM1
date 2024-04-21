@@ -3048,6 +3048,7 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
+drawable add_voucher
 drawable avd_hide_password
 drawable avd_show_password
 drawable b48f9f78ec2cf2bbe745f28a2f5f5541
@@ -3111,7 +3112,12 @@ drawable border2
 drawable border3
 drawable border4
 drawable border5
+drawable border_10
+drawable border_11
 drawable border_6
+drawable border_7
+drawable border_8
+drawable border_9
 drawable border_color
 drawable border_color1
 drawable border_color2
@@ -3126,6 +3132,8 @@ drawable btn_checkbox_unchecked_to_checked_mtrl_animation
 drawable btn_circle
 drawable btn_close
 drawable btn_continue
+drawable btn_edit_activevoucher
+drawable btn_edit_inactive_voucher
 drawable btn_no
 drawable btn_order
 drawable btn_radio_off_mtrl
@@ -3168,6 +3176,7 @@ drawable empty_list
 drawable gg_icon
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
+drawable hotel
 drawable ic_arrow_back_black_24
 drawable ic_call_answer
 drawable ic_call_answer_low
@@ -3292,6 +3301,8 @@ drawable visa_logo
 drawable voucher1
 drawable voucher2
 drawable voucher3
+drawable voucher4
+drawable voucher5
 id ALT
 id Agoodaa
 id BOTTOM_END
@@ -3375,6 +3386,7 @@ id action_mode_close_button
 id action_text
 id actions
 id activeList
+id activeVoucherList
 id activity_chooser_view_content
 id actvCountry
 id add
@@ -3439,6 +3451,7 @@ id browser_actions_menu_item_icon
 id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
+id btn_add
 id btn_back
 id btn_bookmark
 id btn_call
@@ -3481,6 +3494,8 @@ id buttonOK
 id buttonPanel
 id buttonReset
 id buttonSet
+id byMoney
+id byPercentage
 id cache_measures
 id calender
 id callMeasure
@@ -3600,6 +3615,10 @@ id disableHome
 id disableIntraAutoTransition
 id disablePostScroll
 id disableScroll
+id discount_max
+id discount_money
+id discount_percentage
+id discount_quantity
 id disjoint
 id dragAnticlockwise
 id dragClockwise
@@ -3615,6 +3634,11 @@ id easeInOut
 id easeOut
 id east
 id edge
+id editTextNumber
+id editTextNumber2
+id editTextNumber3
+id editTextNumber4
+id editTextNumber5
 id editTextText
 id editTextText1
 id editTextTextMultiLine
@@ -3678,6 +3702,7 @@ id homes
 id honorRequest
 id horizontal_only
 id hotel
+id hotelList
 id hotelName
 id hotel_address
 id hotel_image
@@ -3693,6 +3718,7 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id imageHotel
 id imageView
 id imageView1
 id imageView10
@@ -3712,6 +3738,7 @@ id imageView9
 id image_hotel
 id image_room
 id immediateStop
+id inactiveVoucherList
 id included
 id indeterminate
 id info
@@ -3843,6 +3870,7 @@ id mtrl_view_tag_bottom_padding
 id multiply
 id my_profile
 id name
+id nameHotel
 id nameHotelSearch
 id nameOwner
 id name_client
@@ -3864,6 +3892,11 @@ id none
 id normal
 id north
 id notic
+id notic1
+id notic2
+id notic3
+id notic4
+id notic5
 id notification_background
 id notification_main_column
 id notification_main_column_container
@@ -3938,6 +3971,7 @@ id quan_room
 id quantity
 id radio
 id radioButton
+id radioButton1
 id radioButton2
 id radioButton3
 id radioGroup
@@ -3963,6 +3997,7 @@ id restart
 id returnHotel
 id reverse
 id reverseSawtooth
+id rewrite
 id right
 id rightToLeft
 id right_icon
@@ -4051,9 +4086,13 @@ id stretch
 id submenuarrow
 id submit_area
 id supportScrollUp
+id tab1
+id tab2
 id tabActive
+id tabActiveVoucher
 id tabCanceled
 id tabHost
+id tabInactiveVoucher
 id tabMode
 id tabPass
 id tab_email
@@ -4142,6 +4181,8 @@ id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
 id text_no_place
+id text_no_place1
+id text_no_place2
 id textinput_counter
 id textinput_error
 id textinput_helper_text
@@ -4168,6 +4209,7 @@ id top
 id topPanel
 id total
 id totalPrice
+id totalVoucher
 id touch_outside
 id transitionToEnd
 id transitionToStart
@@ -4190,6 +4232,8 @@ id uniform
 id unlabeled
 id up
 id useLogo
+id usefulVoucher
+id uselessVoucher
 id usenow
 id vertical_only
 id view
@@ -4206,7 +4250,10 @@ id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
 id voucher
+id voucher_discount
 id voucher_limited
+id voucher_max
+id voucher_min
 id voucher_name
 id voucher_quantity
 id warning
@@ -4348,6 +4395,7 @@ layout chat
 layout comment
 layout custom_active_purchase_adapter
 layout custom_active_purchase_detail
+layout custom_active_voucher_adapter
 layout custom_bookmark
 layout custom_chat
 layout custom_chat_detail
@@ -4356,6 +4404,8 @@ layout custom_comment_form
 layout custom_dialog
 layout custom_hotel
 layout custom_hotel_detail
+layout custom_hotel_of_management_voucher
+layout custom_inactive_voucher_adapter
 layout custom_my_voucher_detail
 layout custom_password_dialog
 layout custom_past_cancel_purchase_adapter
@@ -4365,7 +4415,11 @@ layout custom_rating
 layout custom_room
 layout custom_sort
 layout custom_voucher_adapter
+layout custom_voucher_add_form
+layout custom_voucher_edit_form
 layout custom_voucher_hotel_adapter
+layout custom_voucher_list
+layout custom_voucher_of_hotel_adapter
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar
@@ -4466,12 +4520,13 @@ layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 layout tab_active_room
+layout tab_active_voucher
 layout tab_canceled_room
 layout tab_comment
+layout tab_inactive_voucher
 layout tab_login_email
 layout tab_login_phone
 layout tab_past_room
-layout voucher
 menu nav_bar
 mipmap ic_launcher
 mipmap ic_launcher_round

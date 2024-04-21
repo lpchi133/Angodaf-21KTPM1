@@ -45,6 +45,18 @@
         android:testOnly="true"
         android:theme="@style/Theme.AngodaFake" >
         <activity
+            android:name="com.example.angodafake.VoucherEditForm"
+            android:exported="false" />
+        <activity
+            android:name="com.example.angodafake.VoucherList"
+            android:exported="false" />
+        <activity
+            android:name="com.example.angodafake.VoucherAddForm"
+            android:exported="false" />
+        <activity
+            android:name="com.example.angodafake.HotelOfManagementVoucher"
+            android:exported="false" />
+        <activity
             android:name="com.example.angodafake.Hotel_Voucher"
             android:exported="false" />
         <activity

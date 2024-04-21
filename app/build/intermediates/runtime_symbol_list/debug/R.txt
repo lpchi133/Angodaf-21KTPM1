@@ -3047,6 +3047,7 @@ int drawable abc_textfield_search_activated_mtrl_alpha 0x7f080075
 int drawable abc_textfield_search_default_mtrl_alpha 0x7f080076
 int drawable abc_textfield_search_material 0x7f080077
 int drawable abc_vector_test 0x7f080078
+int drawable add_voucher 0x7f08016d
 int drawable avd_hide_password 0x7f080079
 int drawable avd_show_password 0x7f08007a
 int drawable b48f9f78ec2cf2bbe745f28a2f5f5541 0x7f08007b
@@ -3110,7 +3111,12 @@ int drawable border2 0x7f0800b4
 int drawable border3 0x7f0800b5
 int drawable border4 0x7f0800b6
 int drawable border5 0x7f0800b7
+int drawable border_10 0x7f08016e
+int drawable border_11 0x7f08016f
 int drawable border_6 0x7f0800b8
+int drawable border_7 0x7f080170
+int drawable border_8 0x7f080171
+int drawable border_9 0x7f080172
 int drawable border_color 0x7f0800b9
 int drawable border_color1 0x7f0800ba
 int drawable border_color2 0x7f0800bb
@@ -3125,6 +3131,8 @@ int drawable btn_checkbox_unchecked_to_checked_mtrl_animation 0x7f0800c3
 int drawable btn_circle 0x7f0800c4
 int drawable btn_close 0x7f0800c5
 int drawable btn_continue 0x7f0800c6
+int drawable btn_edit_activevoucher 0x7f080173
+int drawable btn_edit_inactive_voucher 0x7f080174
 int drawable btn_no 0x7f0800c7
 int drawable btn_order 0x7f0800c8
 int drawable btn_radio_off_mtrl 0x7f0800c9
@@ -3167,6 +3175,7 @@ int drawable empty_list 0x7f0800ed
 int drawable gg_icon 0x7f0800ee
 int drawable googleg_disabled_color_18 0x7f0800ef
 int drawable googleg_standard_color_18 0x7f0800f0
+int drawable hotel 0x7f080175
 int drawable ic_arrow_back_black_24 0x7f0800f1
 int drawable ic_call_answer 0x7f0800f2
 int drawable ic_call_answer_low 0x7f0800f3
@@ -3291,6 +3300,8 @@ int drawable visa_logo 0x7f080169
 int drawable voucher1 0x7f08016a
 int drawable voucher2 0x7f08016b
 int drawable voucher3 0x7f08016c
+int drawable voucher4 0x7f080176
+int drawable voucher5 0x7f080177
 int id ALT 0x7f090000
 int id Agoodaa 0x7f090001
 int id BOTTOM_END 0x7f090002
@@ -3374,6 +3385,7 @@ int id action_mode_close_button 0x7f09004f
 int id action_text 0x7f090050
 int id actions 0x7f090051
 int id activeList 0x7f090052
+int id activeVoucherList 0x7f0903a1
 int id activity_chooser_view_content 0x7f090053
 int id actvCountry 0x7f090054
 int id add 0x7f090055
@@ -3438,6 +3450,7 @@ int id browser_actions_menu_item_icon 0x7f09008f
 int id browser_actions_menu_item_text 0x7f090090
 int id browser_actions_menu_items 0x7f090091
 int id browser_actions_menu_view 0x7f090092
+int id btn_add 0x7f0903b5
 int id btn_back 0x7f090093
 int id btn_bookmark 0x7f090094
 int id btn_call 0x7f090095
@@ -3480,6 +3493,8 @@ int id buttonOK 0x7f0900b8
 int id buttonPanel 0x7f0900b9
 int id buttonReset 0x7f0900ba
 int id buttonSet 0x7f0900bb
+int id byMoney 0x7f0903a2
+int id byPercentage 0x7f0903a3
 int id cache_measures 0x7f0900bc
 int id calender 0x7f0900bd
 int id callMeasure 0x7f0900be
@@ -3599,6 +3614,10 @@ int id disableHome 0x7f09012f
 int id disableIntraAutoTransition 0x7f090130
 int id disablePostScroll 0x7f090131
 int id disableScroll 0x7f090132
+int id discount_max 0x7f0903b9
+int id discount_money 0x7f0903ba
+int id discount_percentage 0x7f0903bb
+int id discount_quantity 0x7f0903bc
 int id disjoint 0x7f090133
 int id dragAnticlockwise 0x7f090134
 int id dragClockwise 0x7f090135
@@ -3614,6 +3633,11 @@ int id easeInOut 0x7f09013e
 int id easeOut 0x7f09013f
 int id east 0x7f090140
 int id edge 0x7f090141
+int id editTextNumber 0x7f0903a4
+int id editTextNumber2 0x7f0903a5
+int id editTextNumber3 0x7f0903a6
+int id editTextNumber4 0x7f0903a7
+int id editTextNumber5 0x7f0903a8
 int id editTextText 0x7f090142
 int id editTextText1 0x7f090143
 int id editTextTextMultiLine 0x7f090144
@@ -3677,6 +3701,7 @@ int id homes 0x7f09017d
 int id honorRequest 0x7f09017e
 int id horizontal_only 0x7f09017f
 int id hotel 0x7f090180
+int id hotelList 0x7f0903b6
 int id hotelName 0x7f090181
 int id hotel_address 0x7f090182
 int id hotel_image 0x7f090183
@@ -3692,6 +3717,7 @@ int id ifRoom 0x7f09018c
 int id ignore 0x7f09018d
 int id ignoreRequest 0x7f09018e
 int id image 0x7f09018f
+int id imageHotel 0x7f0903bd
 int id imageView 0x7f090190
 int id imageView1 0x7f090191
 int id imageView10 0x7f090192
@@ -3711,6 +3737,7 @@ int id imageView9 0x7f09019f
 int id image_hotel 0x7f0901a0
 int id image_room 0x7f0901a1
 int id immediateStop 0x7f0901a2
+int id inactiveVoucherList 0x7f0903aa
 int id included 0x7f0901a3
 int id indeterminate 0x7f0901a4
 int id info 0x7f0901a5
@@ -3842,6 +3869,7 @@ int id mtrl_view_tag_bottom_padding 0x7f090221
 int id multiply 0x7f090222
 int id my_profile 0x7f090223
 int id name 0x7f090224
+int id nameHotel 0x7f0903be
 int id nameHotelSearch 0x7f090225
 int id nameOwner 0x7f090226
 int id name_client 0x7f090227
@@ -3863,6 +3891,11 @@ int id none 0x7f090236
 int id normal 0x7f090237
 int id north 0x7f090238
 int id notic 0x7f090239
+int id notic1 0x7f0903c4
+int id notic2 0x7f0903c5
+int id notic3 0x7f0903c6
+int id notic4 0x7f0903c7
+int id notic5 0x7f0903c8
 int id notification_background 0x7f09023a
 int id notification_main_column 0x7f09023b
 int id notification_main_column_container 0x7f09023c
@@ -3937,6 +3970,7 @@ int id quan_room 0x7f090280
 int id quantity 0x7f090281
 int id radio 0x7f090282
 int id radioButton 0x7f090283
+int id radioButton1 0x7f0903ab
 int id radioButton2 0x7f090284
 int id radioButton3 0x7f090285
 int id radioGroup 0x7f090286
@@ -3962,6 +3996,7 @@ int id restart 0x7f090299
 int id returnHotel 0x7f09029a
 int id reverse 0x7f09029b
 int id reverseSawtooth 0x7f09029c
+int id rewrite 0x7f0903bf
 int id right 0x7f09029d
 int id rightToLeft 0x7f09029e
 int id right_icon 0x7f09029f
@@ -4050,9 +4085,13 @@ int id stretch 0x7f0902f1
 int id submenuarrow 0x7f0902f2
 int id submit_area 0x7f0902f3
 int id supportScrollUp 0x7f0902f4
+int id tab1 0x7f0903c0
+int id tab2 0x7f0903c1
 int id tabActive 0x7f0902f5
+int id tabActiveVoucher 0x7f0903ac
 int id tabCanceled 0x7f0902f6
 int id tabHost 0x7f0902f7
+int id tabInactiveVoucher 0x7f0903ad
 int id tabMode 0x7f0902f8
 int id tabPass 0x7f0902f9
 int id tab_email 0x7f0902fa
@@ -4141,6 +4180,8 @@ int id text_input_end_icon 0x7f09034c
 int id text_input_error_icon 0x7f09034d
 int id text_input_start_icon 0x7f09034e
 int id text_no_place 0x7f09034f
+int id text_no_place1 0x7f0903c2
+int id text_no_place2 0x7f0903c3
 int id textinput_counter 0x7f090350
 int id textinput_error 0x7f090351
 int id textinput_helper_text 0x7f090352
@@ -4167,6 +4208,7 @@ int id top 0x7f090366
 int id topPanel 0x7f090367
 int id total 0x7f090368
 int id totalPrice 0x7f090369
+int id totalVoucher 0x7f0903af
 int id touch_outside 0x7f09036a
 int id transitionToEnd 0x7f09036b
 int id transitionToStart 0x7f09036c
@@ -4189,6 +4231,8 @@ int id uniform 0x7f09037c
 int id unlabeled 0x7f09037d
 int id up 0x7f09037e
 int id useLogo 0x7f09037f
+int id usefulVoucher 0x7f0903b7
+int id uselessVoucher 0x7f0903b8
 int id usenow 0x7f090380
 int id vertical_only 0x7f090381
 int id view 0x7f090382
@@ -4205,7 +4249,10 @@ int id view_tree_view_model_store_owner 0x7f09038c
 int id visible 0x7f09038d
 int id visible_removing_fragment_view_tag 0x7f09038e
 int id voucher 0x7f09038f
+int id voucher_discount 0x7f0903b2
 int id voucher_limited 0x7f090390
+int id voucher_max 0x7f0903b3
+int id voucher_min 0x7f0903b4
 int id voucher_name 0x7f090391
 int id voucher_quantity 0x7f090392
 int id warning 0x7f090393
@@ -4347,6 +4394,7 @@ int layout chat 0x7f0c0024
 int layout comment 0x7f0c0025
 int layout custom_active_purchase_adapter 0x7f0c0026
 int layout custom_active_purchase_detail 0x7f0c0027
+int layout custom_active_voucher_adapter 0x7f0c00a4
 int layout custom_bookmark 0x7f0c0028
 int layout custom_chat 0x7f0c0029
 int layout custom_chat_detail 0x7f0c002a
@@ -4355,6 +4403,8 @@ int layout custom_comment_form 0x7f0c002c
 int layout custom_dialog 0x7f0c002d
 int layout custom_hotel 0x7f0c002e
 int layout custom_hotel_detail 0x7f0c002f
+int layout custom_hotel_of_management_voucher 0x7f0c00ac
+int layout custom_inactive_voucher_adapter 0x7f0c00a5
 int layout custom_my_voucher_detail 0x7f0c0030
 int layout custom_password_dialog 0x7f0c0031
 int layout custom_past_cancel_purchase_adapter 0x7f0c0032
@@ -4364,7 +4414,11 @@ int layout custom_rating 0x7f0c0035
 int layout custom_room 0x7f0c0036
 int layout custom_sort 0x7f0c0037
 int layout custom_voucher_adapter 0x7f0c0038
+int layout custom_voucher_add_form 0x7f0c00a6
+int layout custom_voucher_edit_form 0x7f0c00a7
 int layout custom_voucher_hotel_adapter 0x7f0c0039
+int layout custom_voucher_list 0x7f0c00ad
+int layout custom_voucher_of_hotel_adapter 0x7f0c00a8
 int layout design_bottom_navigation_item 0x7f0c003a
 int layout design_bottom_sheet_dialog 0x7f0c003b
 int layout design_layout_snackbar 0x7f0c003c
@@ -4465,12 +4519,13 @@ int layout select_dialog_multichoice_material 0x7f0c009a
 int layout select_dialog_singlechoice_material 0x7f0c009b
 int layout support_simple_spinner_dropdown_item 0x7f0c009c
 int layout tab_active_room 0x7f0c009d
+int layout tab_active_voucher 0x7f0c00aa
 int layout tab_canceled_room 0x7f0c009e
 int layout tab_comment 0x7f0c009f
+int layout tab_inactive_voucher 0x7f0c00ab
 int layout tab_login_email 0x7f0c00a0
 int layout tab_login_phone 0x7f0c00a1
 int layout tab_past_room 0x7f0c00a2
-int layout voucher 0x7f0c00a3
 int menu nav_bar 0x7f0e0000
 int mipmap ic_launcher 0x7f0f0000
 int mipmap ic_launcher_round 0x7f0f0001

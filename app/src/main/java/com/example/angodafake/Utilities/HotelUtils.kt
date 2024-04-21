@@ -60,4 +60,26 @@ object HotelUtils {
         }
     }
 
+    fun getHotelByOwnerID(ownerID: String, listener: (MutableList<Hotel>) -> Unit) {
+        val hotelsQuery = database.child("hotels")
+
+        hotelsQuery.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val hotelsList = mutableListOf<Hotel>()
+                for (hotelSnapshot in dataSnapshot.children) {
+                    val hotel = hotelSnapshot.getValue(Hotel::class.java)
+                    if (hotel?.ID_Owner == ownerID) {
+                        hotel.ID = hotelSnapshot.key
+                        hotel.let { hotelsList.add(it) }
+                    }
+                }
+                listener(hotelsList)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+    }
+
 }

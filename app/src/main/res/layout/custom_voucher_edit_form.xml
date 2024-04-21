@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CAE1FF">
+    android:background="#CAE1FF"
+    tools:context=".VoucherEditForm">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -69,7 +71,7 @@
         android:background="#0000FF" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageHotel"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_below="@+id/border3"
@@ -78,10 +80,10 @@
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/nameHotel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView"
+        android:layout_below="@+id/imageHotel"
         android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
         android:text="ALPHA BIRD NHA TRANG"
@@ -93,7 +95,7 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/nameHotel"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="20dp"
         android:layout_toStartOf="@+id/editTextNumber"
@@ -105,7 +107,7 @@
         android:id="@+id/editTextNumber"
         android:layout_width="220dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/nameHotel"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
@@ -114,14 +116,23 @@
         android:inputType="number"
         android:textSize="16sp"
         android:padding="5dp"
-        android:hint="500.000"
-        android:enabled="false"/>
+        android:hint="500.000"/>
+
+    <TextView
+        android:id="@+id/notic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextNumber"
+        android:layout_alignStart="@+id/editTextNumber"
+        android:layout_marginTop="5dp"
+        android:text="*Vui lòng điền vào ô này!"
+        android:textColor="#EE0000" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editTextNumber"
+        android:layout_below="@id/notic"
         android:layout_marginHorizontal="30dp"
         android:padding="10dp">
 
@@ -129,13 +140,15 @@
             android:id="@+id/radioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ưu đãi theo phần trăm" />
+            android:text="Ưu đãi theo phần trăm"
+            android:enabled="false"/>
 
         <RadioButton
             android:id="@+id/radioButton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ưu đãi theo số tiền cụ thể" />
+            android:text="Ưu đãi theo số tiền cụ thể"
+            android:enabled="false"/>
     </RadioGroup>
 
     <RelativeLayout
@@ -180,14 +193,23 @@
             android:inputType="number"
             android:textSize="16sp"
             android:padding="5dp"
-            android:hint="10"
-            android:enabled="false"/>
+            android:hint="10"/>
+
+        <TextView
+            android:id="@+id/notic1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editTextNumber2"
+            android:layout_alignStart="@+id/editTextNumber2"
+            android:layout_marginTop="5dp"
+            android:text="*Vui lòng điền vào ô này!"
+            android:textColor="#EE0000" />
 
         <EditText
             android:id="@+id/editTextNumber3"
             android:layout_width="220dp"
             android:layout_height="40dp"
-            android:layout_below="@+id/editTextNumber2"
+            android:layout_below="@+id/notic1"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="15dp"
@@ -196,8 +218,17 @@
             android:inputType="number"
             android:textSize="16sp"
             android:padding="5dp"
-            android:hint="100.000"
-            android:enabled="false"/>
+            android:hint="100.000"/>
+
+        <TextView
+            android:id="@+id/notic2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editTextNumber3"
+            android:layout_alignStart="@+id/editTextNumber3"
+            android:layout_marginTop="5dp"
+            android:text="*Vui lòng điền vào ô này!"
+            android:textColor="#EE0000" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -228,8 +259,17 @@
             android:inputType="number"
             android:textSize="16sp"
             android:padding="5dp"
-            android:hint="100.000"
-            android:enabled="false"/>
+            android:hint="100.000"/>
+
+        <TextView
+            android:id="@+id/notic3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editTextNumber4"
+            android:layout_alignStart="@+id/editTextNumber4"
+            android:layout_marginTop="5dp"
+            android:text="*Vui lòng điền vào ô này!"
+            android:textColor="#EE0000" />
     </RelativeLayout>
 
     <TextView
@@ -258,6 +298,16 @@
         android:textSize="16sp"
         android:padding="5dp"
         android:hint="10" />
+
+    <TextView
+        android:id="@+id/notic4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextNumber5"
+        android:layout_alignStart="@+id/editTextNumber5"
+        android:layout_marginTop="5dp"
+        android:text="*Vui lòng điền vào ô này!"
+        android:textColor="#EE0000" />
 
     <Button
         android:id="@+id/button"

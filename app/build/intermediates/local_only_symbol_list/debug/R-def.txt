@@ -16,6 +16,7 @@ color light_red
 color pink
 color red
 color white
+drawable add_voucher
 drawable b48f9f78ec2cf2bbe745f28a2f5f5541
 drawable baseline_access_time_24
 drawable baseline_admin_panel_settings_20
@@ -77,7 +78,12 @@ drawable border2
 drawable border3
 drawable border4
 drawable border5
+drawable border_10
+drawable border_11
 drawable border_6
+drawable border_7
+drawable border_8
+drawable border_9
 drawable border_color
 drawable border_color1
 drawable border_color2
@@ -88,6 +94,8 @@ drawable btn_avt
 drawable btn_circle
 drawable btn_close
 drawable btn_continue
+drawable btn_edit_activevoucher
+drawable btn_edit_inactive_voucher
 drawable btn_no
 drawable btn_order
 drawable btn_removeorder
@@ -100,6 +108,7 @@ drawable circle_shape
 drawable edit_text
 drawable empty_list
 drawable gg_icon
+drawable hotel
 drawable ic_launcher_1_background
 drawable ic_launcher_1_foreground
 drawable ic_launcher_background
@@ -131,6 +140,8 @@ drawable visa_logo
 drawable voucher1
 drawable voucher2
 drawable voucher3
+drawable voucher4
+drawable voucher5
 id Agoodaa
 id BookingFee
 id City
@@ -145,6 +156,7 @@ id Price_low
 id Promotion
 id a1
 id activeList
+id activeVoucherList
 id actvCountry
 id address
 id address_hotel
@@ -172,6 +184,7 @@ id border3
 id border4
 id border5
 id bottomNavigationView
+id btn_add
 id btn_back
 id btn_bookmark
 id btn_call
@@ -213,6 +226,8 @@ id buttonMap
 id buttonOK
 id buttonReset
 id buttonSet
+id byMoney
+id byPercentage
 id calender
 id canceledList
 id cardCVV
@@ -275,6 +290,15 @@ id description
 id descriptions
 id detail
 id direction
+id discount_max
+id discount_money
+id discount_percentage
+id discount_quantity
+id editTextNumber
+id editTextNumber2
+id editTextNumber3
+id editTextNumber4
+id editTextNumber5
 id editTextText
 id editTextText1
 id editTextTextMultiLine
@@ -295,6 +319,7 @@ id highlight
 id home
 id homes
 id hotel
+id hotelList
 id hotelName
 id hotel_address
 id hotel_image
@@ -303,6 +328,7 @@ id hotel_phone
 id hotline
 id icon
 id id_order
+id imageHotel
 id imageView
 id imageView1
 id imageView10
@@ -321,6 +347,7 @@ id imageView8
 id imageView9
 id image_hotel
 id image_room
+id inactiveVoucherList
 id infor
 id inforVoucher
 id lConfirmPass
@@ -373,12 +400,18 @@ id minus_room
 id momoChoice
 id my_profile
 id name
+id nameHotel
 id nameHotelSearch
 id nameOwner
 id name_client
 id name_hotel
 id nhanphong
 id notic
+id notic1
+id notic2
+id notic3
+id notic4
+id notic5
 id onlineChoice
 id owner
 id pa
@@ -411,6 +444,7 @@ id quan_client
 id quan_room
 id quantity
 id radioButton
+id radioButton1
 id radioButton2
 id radioButton3
 id radioGroup
@@ -430,6 +464,7 @@ id relativeLayout2
 id relativeLayout3
 id relativeLayoutGender
 id returnHotel
+id rewrite
 id room
 id roomID
 id roomName
@@ -450,9 +485,13 @@ id status1
 id status2
 id status3
 id status4
+id tab1
+id tab2
 id tabActive
+id tabActiveVoucher
 id tabCanceled
 id tabHost
+id tabInactiveVoucher
 id tabPass
 id tab_email
 id tab_handler
@@ -516,6 +555,8 @@ id text_7_plus
 id text_8_plus
 id text_9_plus
 id text_no_place
+id text_no_place1
+id text_no_place2
 id thanh_toan
 id thong_tin_hotel
 id thong_tin_khach
@@ -531,6 +572,7 @@ id title
 id toolbar
 id total
 id totalPrice
+id totalVoucher
 id traphong
 id tvCity
 id tvPrice
@@ -539,6 +581,8 @@ id tv_PhoneN
 id tv_email
 id tv_emailPhoneN
 id type_room
+id usefulVoucher
+id uselessVoucher
 id usenow
 id view
 id view2
@@ -546,7 +590,10 @@ id view3
 id view4
 id view5
 id voucher
+id voucher_discount
 id voucher_limited
+id voucher_max
+id voucher_min
 id voucher_name
 id voucher_quantity
 id warning
@@ -561,6 +608,7 @@ layout chat
 layout comment
 layout custom_active_purchase_adapter
 layout custom_active_purchase_detail
+layout custom_active_voucher_adapter
 layout custom_bookmark
 layout custom_chat
 layout custom_chat_detail
@@ -568,6 +616,8 @@ layout custom_comment_detail
 layout custom_comment_form
 layout custom_hotel
 layout custom_hotel_detail
+layout custom_hotel_of_management_voucher
+layout custom_inactive_voucher_adapter
 layout custom_my_voucher_detail
 layout custom_password_dialog
 layout custom_past_cancel_purchase_adapter
@@ -577,7 +627,11 @@ layout custom_rating
 layout custom_room
 layout custom_sort
 layout custom_voucher_adapter
+layout custom_voucher_add_form
+layout custom_voucher_edit_form
 layout custom_voucher_hotel_adapter
+layout custom_voucher_list
+layout custom_voucher_of_hotel_adapter
 layout empty_active_room
 layout empty_canceled_room
 layout empty_comment
@@ -600,12 +654,13 @@ layout popup_find
 layout purchased
 layout rating
 layout tab_active_room
+layout tab_active_voucher
 layout tab_canceled_room
 layout tab_comment
+layout tab_inactive_voucher
 layout tab_login_email
 layout tab_login_phone
 layout tab_past_room
-layout voucher
 menu nav_bar
 mipmap ic_launcher
 mipmap ic_launcher_round

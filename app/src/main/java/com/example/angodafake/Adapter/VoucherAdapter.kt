@@ -108,7 +108,7 @@ class VoucherAdapter(private val fragment: FragmentActivity, private var voucher
 
     fun format1(money: Double): String {
         val formatSymbols = DecimalFormatSymbols()
-        formatSymbols.groupingSeparator = '.'
+        formatSymbols.groupingSeparator = ','
 
         val decimalFormat = DecimalFormat("#,##0", formatSymbols)
         return decimalFormat.format(money)
@@ -121,7 +121,7 @@ class VoucherAdapter(private val fragment: FragmentActivity, private var voucher
 
     fun format3(money: Double): Spanned? {
         val formatSymbols = DecimalFormatSymbols()
-        formatSymbols.groupingSeparator = '.'
+        formatSymbols.groupingSeparator = ','
 
         val decimalFormat = DecimalFormat("#,##0", formatSymbols)
         val stringMoney = "&#8363;${decimalFormat.format(money)}"

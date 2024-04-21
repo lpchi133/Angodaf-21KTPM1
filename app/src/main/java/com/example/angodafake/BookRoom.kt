@@ -1,6 +1,7 @@
 package com.example.angodafake
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Build
 import android.content.Context
@@ -81,6 +82,7 @@ class BookRoom : AppCompatActivity() {
     private lateinit var idVoucher: String
     private var quantity: Int = 0
     private var firstPrice: Int = 0
+    private var checkMethod: Boolean = true
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun createData(hotel_ID: String) {
@@ -176,13 +178,17 @@ class BookRoom : AppCompatActivity() {
             when (checkedId) {
                 R.id.cashChoice -> {
                     paymentMethodLayout.visibility = View.GONE
+                    notic.visibility = View.GONE
+
+                    checkMethod = false
                     discountValue = 0
                     findViewById<TextView>(R.id.Promotion).text = "-${formatMoney(discountValue)} đ"
                     findViewById<TextView>(R.id.PriceAfterPromotion).text = "${formatMoney(firstPrice - discountValue)} đ"
-
                 }
                 R.id.onlineChoice -> {
                     paymentMethodLayout.visibility = View.VISIBLE
+
+                    checkMethod = true
                 }
             }
         }
@@ -228,7 +234,16 @@ class BookRoom : AppCompatActivity() {
         notic.visibility = View.GONE
 
         seenVoucherBtn.setOnClickListener {
-            showBottomSheet()
+            if (checkMethod) {
+                showBottomSheet()
+            } else {
+                val noticDialog = AlertDialog.Builder(this)
+                    .setTitle("Lưu ý!")
+                    .setMessage("Phiếu Voucher không được áp dụng cho phương thức thanh toán trực tiếp!")
+                    .setCancelable(true)
+                    .setNegativeButton("Đóng") {_,_ ->}
+                    .show()
+            }
         }
     }
 
