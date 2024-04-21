@@ -35,13 +35,26 @@ class VoucherEditForm : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.custom_voucher_edit_form)
 
+        //Các biến thông báo
+        val notic: TextView = findViewById(R.id.notic)
+        val notic1: TextView = findViewById(R.id.notic1)
+        val notic2: TextView = findViewById(R.id.notic2)
+        val notic3: TextView = findViewById(R.id.notic3)
+        val notic4: TextView = findViewById(R.id.notic4)
+
+        notic.visibility = View.GONE
+        notic1.visibility = View.GONE
+        notic2.visibility = View.GONE
+        notic3.visibility = View.GONE
+        notic4.visibility = View.GONE
+
+        idVoucher = intent.getStringExtra("id").toString()
+        idHotel = intent.getStringExtra("idHotel").toString()
+
         val btnBack: ImageButton = findViewById(R.id.btn_back)
         btnBack.setOnClickListener {
             finish()
         }
-
-        idVoucher = intent.getStringExtra("id").toString()
-        idHotel = intent.getStringExtra("idHotel").toString()
 
         val nameHotel: TextView = findViewById(R.id.nameHotel)
         HotelUtils.getHotelByID(idHotel) { hotel ->
@@ -68,6 +81,10 @@ class VoucherEditForm : AppCompatActivity() {
 
                     min_discount.setText(formattedText)
                     min_discount.setSelection(formattedText.length)
+
+                    notic.visibility = View.GONE
+                } else {
+                    notic.visibility = View.VISIBLE
                 }
 
                 min_discount.addTextChangedListener(this)
@@ -94,6 +111,10 @@ class VoucherEditForm : AppCompatActivity() {
 
                     money_discount.setText(formattedText)
                     money_discount.setSelection(formattedText.length)
+
+                    notic3.visibility = View.GONE
+                } else {
+                    notic3.visibility = View.VISIBLE
                 }
 
                 money_discount.addTextChangedListener(this)
@@ -102,6 +123,29 @@ class VoucherEditForm : AppCompatActivity() {
 
         val percent_discount: EditText = findViewById(R.id.editTextNumber2)
         percent_discount.setText(intent.getStringExtra("percent"))
+        percent_discount.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                percent_discount.removeTextChangedListener(this)
+
+                val input = s.toString().replace("[,.]".toRegex(), "")
+
+                if (input.isNotEmpty()) {
+                    notic1.visibility = View.GONE
+                } else {
+                    notic1.visibility = View.VISIBLE
+                }
+
+                percent_discount.addTextChangedListener(this)
+            }
+        })
+
+
         val max_discount: EditText = findViewById(R.id.editTextNumber3)
         max_discount.setText(intent.getStringExtra("max")?.let { format(it.toDouble()) })
         max_discount.addTextChangedListener(object : TextWatcher {
@@ -122,6 +166,10 @@ class VoucherEditForm : AppCompatActivity() {
 
                     max_discount.setText(formattedText)
                     max_discount.setSelection(formattedText.length)
+
+                    notic2.visibility = View.GONE
+                } else {
+                    notic2.visibility = View.VISIBLE
                 }
 
                 max_discount.addTextChangedListener(this)
@@ -154,19 +202,27 @@ class VoucherEditForm : AppCompatActivity() {
 
         val quantity_discount: EditText = findViewById(R.id.editTextNumber5)
         quantity_discount.setText(intent.getStringExtra("quantity"))
+        quantity_discount.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
 
-        //Các biến thông báo
-        val notic: TextView = findViewById(R.id.notic)
-        val notic1: TextView = findViewById(R.id.notic1)
-        val notic2: TextView = findViewById(R.id.notic2)
-        val notic3: TextView = findViewById(R.id.notic3)
-        val notic4: TextView = findViewById(R.id.notic4)
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
 
-        notic.visibility = View.GONE
-        notic1.visibility = View.GONE
-        notic2.visibility = View.GONE
-        notic3.visibility = View.GONE
-        notic4.visibility = View.GONE
+            override fun afterTextChanged(s: Editable?) {
+                quantity_discount.removeTextChangedListener(this)
+
+                val input = s.toString().replace("[,.]".toRegex(), "")
+
+                if (input.isNotEmpty()) {
+                    notic4.visibility = View.GONE
+                } else {
+                    notic4.visibility = View.VISIBLE
+                }
+
+                quantity_discount.addTextChangedListener(this)
+            }
+        })
 
         val edit_btn: Button = findViewById(R.id.button)
         edit_btn.setOnClickListener {
@@ -207,19 +263,15 @@ class VoucherEditForm : AppCompatActivity() {
                     money = 0.0
                     notic1.visibility = View.GONE
                     notic2.visibility = View.GONE
-                } else {
+                } else if (percent_discount.text.toString().isEmpty()) {
                     notic1.visibility = View.VISIBLE
-                    notic2.visibility = View.VISIBLE
-                }
-                if (percent_discount.text.toString().isEmpty()) {
-                    notic1.visibility = View.VISIBLE
-                } else {
-                    notic1.visibility = View.GONE
-                }
-                if (max_discount.text.toString().isEmpty()) {
-                    notic2.visibility = View.VISIBLE
-                } else {
                     notic2.visibility = View.GONE
+                } else if (max_discount.text.toString().isEmpty()) {
+                    notic1.visibility = View.GONE
+                    notic2.visibility = View.VISIBLE
+                } else {
+                    notic1.visibility = View.VISIBLE
+                    notic2.visibility = View.VISIBLE
                 }
             }
 

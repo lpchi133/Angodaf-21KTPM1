@@ -173,7 +173,7 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editTextNumber2"
+            android:layout_below="@+id/notic1"
             android:layout_marginTop="19dp"
             android:layout_marginEnd="20dp"
             android:layout_toStartOf="@+id/editTextNumber3"
