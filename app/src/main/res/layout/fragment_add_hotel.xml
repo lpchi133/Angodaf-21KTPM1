@@ -505,9 +505,7 @@
                         android:inputType="time"
                         android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
-
             </RelativeLayout>
-
 
             <Button
                 android:id="@+id/btn_next"
