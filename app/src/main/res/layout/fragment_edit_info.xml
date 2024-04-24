@@ -219,7 +219,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:completionThreshold="1"
-                    android:hint="Enter your country"
+                    android:hint="Nhập quốc tịch"
                     android:padding="16dp"
                     android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>

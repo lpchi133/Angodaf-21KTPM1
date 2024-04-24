@@ -38,6 +38,7 @@ drawable baseline_cleaning_services_24
 drawable baseline_close_24
 drawable baseline_credit_card_24
 drawable baseline_directions_car_24
+drawable baseline_domain_add_24
 drawable baseline_favorite
 drawable baseline_favorite_24
 drawable baseline_favorite_border_24
@@ -131,6 +132,7 @@ drawable visa_logo
 drawable voucher1
 drawable voucher2
 drawable voucher3
+id AddHotelFragment
 id Agoodaa
 id BookingFee
 id City
@@ -146,6 +148,7 @@ id Promotion
 id a1
 id activeList
 id actvCountry
+id addHotel_title
 id address
 id address_hotel
 id ads
@@ -172,6 +175,7 @@ id border3
 id border4
 id border5
 id bottomNavigationView
+id btn_add_hotel
 id btn_back
 id btn_bookmark
 id btn_call
@@ -326,6 +330,7 @@ id lCountry
 id lDob
 id lEmail
 id lEmailOrPhoneN
+id lHotelName
 id lName
 id lPass
 id lPass2
@@ -334,6 +339,7 @@ id lay1
 id lay2
 id lay3
 id lay4
+id layout_addHotel_title
 id layout_editInfo_title
 id layout_signup_title
 id limited_price
@@ -580,6 +586,7 @@ layout empty_active_room
 layout empty_canceled_room
 layout empty_comment
 layout empty_past_room
+layout fragment_add_hotel
 layout fragment_bookmark
 layout fragment_edit_info
 layout fragment_home
@@ -608,6 +615,7 @@ menu nav_bar
 mipmap ic_launcher
 mipmap ic_launcher_round
 string Filter
+string addHotel_title
 string app_name
 string bookmarkAds
 string bookmarkTittle

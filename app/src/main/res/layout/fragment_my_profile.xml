@@ -190,6 +190,23 @@
         app:layout_constraintEnd_toEndOf="@+id/btn_chat_with_customer"
         app:layout_constraintStart_toStartOf="@+id/btn_chat_with_customer"
         app:layout_constraintTop_toBottomOf="@+id/btn_chat_with_customer" />
+    <Button
+        android:id="@+id/btn_add_hotel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:backgroundTint="@android:color/transparent"
+        android:drawableLeft="@drawable/baseline_domain_add_24"
+        android:drawablePadding="16dp"
+        android:gravity="left|center_vertical"
+        android:outlineProvider="none"
+        android:text="Thêm khách sạn"
+        android:drawableTint="@color/black"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/btn_chat_with_customer"
+        app:layout_constraintStart_toStartOf="@+id/btn_chat_with_customer"
+        app:layout_constraintTop_toBottomOf="@+id/btn_my_hotel" />
 
     <TextView
         android:id="@+id/textView27"
@@ -200,7 +217,7 @@
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/btn_my_hotel"
-        app:layout_constraintTop_toBottomOf="@+id/btn_my_hotel" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_add_hotel" />
 
     <View
         android:id="@+id/view3"

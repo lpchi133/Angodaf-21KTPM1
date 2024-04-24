@@ -3071,6 +3071,7 @@ int drawable baseline_cleaning_services_24 0x7f08008d
 int drawable baseline_close_24 0x7f08008e
 int drawable baseline_credit_card_24 0x7f08008f
 int drawable baseline_directions_car_24 0x7f080090
+int drawable baseline_domain_add_24 0x7f08016d
 int drawable baseline_favorite 0x7f080091
 int drawable baseline_favorite_24 0x7f080092
 int drawable baseline_favorite_border_24 0x7f080093
@@ -3292,6 +3293,7 @@ int drawable voucher1 0x7f08016a
 int drawable voucher2 0x7f08016b
 int drawable voucher3 0x7f08016c
 int id ALT 0x7f090000
+int id AddHotelFragment 0x7f09039f
 int id Agoodaa 0x7f090001
 int id BOTTOM_END 0x7f090002
 int id BOTTOM_START 0x7f090003
@@ -3377,6 +3379,7 @@ int id activeList 0x7f090052
 int id activity_chooser_view_content 0x7f090053
 int id actvCountry 0x7f090054
 int id add 0x7f090055
+int id addHotel_title 0x7f0903a0
 int id address 0x7f090056
 int id address_hotel 0x7f090057
 int id adjust_height 0x7f090058
@@ -3438,6 +3441,7 @@ int id browser_actions_menu_item_icon 0x7f09008f
 int id browser_actions_menu_item_text 0x7f090090
 int id browser_actions_menu_items 0x7f090091
 int id browser_actions_menu_view 0x7f090092
+int id btn_add_hotel 0x7f0903a1
 int id btn_back 0x7f090093
 int id btn_bookmark 0x7f090094
 int id btn_call 0x7f090095
@@ -3726,6 +3730,7 @@ int id lCountry 0x7f0901af
 int id lDob 0x7f0901b0
 int id lEmail 0x7f0901b1
 int id lEmailOrPhoneN 0x7f0901b2
+int id lHotelName 0x7f0903a2
 int id lName 0x7f0901b3
 int id lPass 0x7f0901b4
 int id lPass2 0x7f0901b5
@@ -3736,6 +3741,7 @@ int id lay2 0x7f0901b9
 int id lay3 0x7f0901ba
 int id lay4 0x7f0901bb
 int id layout 0x7f0901bc
+int id layout_addHotel_title 0x7f0903a3
 int id layout_editInfo_title 0x7f0901bd
 int id layout_signup_title 0x7f0901be
 int id left 0x7f0901bf
@@ -4382,6 +4388,7 @@ int layout empty_active_room 0x7f0c0049
 int layout empty_canceled_room 0x7f0c004a
 int layout empty_comment 0x7f0c004b
 int layout empty_past_room 0x7f0c004c
+int layout fragment_add_hotel 0x7f0c00a4
 int layout fragment_bookmark 0x7f0c004d
 int layout fragment_edit_info 0x7f0c004e
 int layout fragment_home 0x7f0c004f
@@ -4502,6 +4509,7 @@ int string abc_searchview_description_voice 0x7f120018
 int string abc_shareactionprovider_share_with 0x7f120019
 int string abc_shareactionprovider_share_with_application 0x7f12001a
 int string abc_toolbar_collapse_description 0x7f12001b
+int string addHotel_title 0x7f1200e5
 int string androidx_startup 0x7f12001c
 int string app_name 0x7f12001d
 int string appbar_scrolling_view_behavior 0x7f12001e

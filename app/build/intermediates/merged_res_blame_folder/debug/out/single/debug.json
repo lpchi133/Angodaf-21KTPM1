@@ -252,6 +252,10 @@
         "source": "com.example.angodafake.app-main-41:/layout/custom_room.xml"
     },
     {
+        "merged": "com.example.angodafake.app-merged_res-39:/layout_fragment_add_hotel.xml.flat",
+        "source": "com.example.angodafake.app-main-41:/layout/fragment_add_hotel.xml"
+    },
+    {
         "merged": "com.example.angodafake.app-merged_res-39:/drawable_btn_continue.xml.flat",
         "source": "com.example.angodafake.app-main-41:/drawable/btn_continue.xml"
     },
@@ -290,6 +294,10 @@
     {
         "merged": "com.example.angodafake.app-merged_res-39:/drawable_baseline_favorite_border_24.xml.flat",
         "source": "com.example.angodafake.app-main-41:/drawable/baseline_favorite_border_24.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-merged_res-39:/drawable_baseline_domain_add_24.xml.flat",
+        "source": "com.example.angodafake.app-main-41:/drawable/baseline_domain_add_24.xml"
     },
     {
         "merged": "com.example.angodafake.app-merged_res-39:/drawable_baseline_admin_panel_settings_20.xml.flat",

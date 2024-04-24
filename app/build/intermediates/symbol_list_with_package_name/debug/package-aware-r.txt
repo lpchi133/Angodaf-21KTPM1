@@ -3072,6 +3072,7 @@ drawable baseline_cleaning_services_24
 drawable baseline_close_24
 drawable baseline_credit_card_24
 drawable baseline_directions_car_24
+drawable baseline_domain_add_24
 drawable baseline_favorite
 drawable baseline_favorite_24
 drawable baseline_favorite_border_24
@@ -3293,6 +3294,7 @@ drawable voucher1
 drawable voucher2
 drawable voucher3
 id ALT
+id AddHotelFragment
 id Agoodaa
 id BOTTOM_END
 id BOTTOM_START
@@ -3378,6 +3380,7 @@ id activeList
 id activity_chooser_view_content
 id actvCountry
 id add
+id addHotel_title
 id address
 id address_hotel
 id adjust_height
@@ -3439,6 +3442,7 @@ id browser_actions_menu_item_icon
 id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
+id btn_add_hotel
 id btn_back
 id btn_bookmark
 id btn_call
@@ -3727,6 +3731,7 @@ id lCountry
 id lDob
 id lEmail
 id lEmailOrPhoneN
+id lHotelName
 id lName
 id lPass
 id lPass2
@@ -3737,6 +3742,7 @@ id lay2
 id lay3
 id lay4
 id layout
+id layout_addHotel_title
 id layout_editInfo_title
 id layout_signup_title
 id left
@@ -4383,6 +4389,7 @@ layout empty_active_room
 layout empty_canceled_room
 layout empty_comment
 layout empty_past_room
+layout fragment_add_hotel
 layout fragment_bookmark
 layout fragment_edit_info
 layout fragment_home
@@ -4503,6 +4510,7 @@ string abc_searchview_description_voice
 string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
+string addHotel_title
 string androidx_startup
 string app_name
 string appbar_scrolling_view_behavior

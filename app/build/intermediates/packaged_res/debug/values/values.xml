@@ -267,6 +267,7 @@
     <color name="red">#AF0C0C</color>
     <color name="white">#FFFFFFFF</color>
     <string name="Filter">Chọn lọc</string>
+    <string name="addHotel_title">Thêm khách sạn mới</string>
     <string name="app_name">AngodaFake</string>
     <string name="bookmarkAds">Hãy chọn chổ nghỉ này để xem giá mới mất, thấp nhất</string>
     <string name="bookmarkTittle">Danh sách yêu thích</string>
