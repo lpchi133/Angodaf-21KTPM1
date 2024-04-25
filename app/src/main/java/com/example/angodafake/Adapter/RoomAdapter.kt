@@ -11,11 +11,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.R
 import com.example.angodafake.Utilities.PurchaseUtils
+import com.example.angodafake.db.Picture_Hotel
+import com.example.angodafake.db.Picture_Room
 import com.example.angodafake.db.Purchase
 import com.example.angodafake.db.Rooms
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import java.util.UUID
 
 class RoomAdapter(private val context: Context, private var rooms: List<Rooms>, private var intArray: IntArray, private var checkIn: String, private var checkOut: String, private var idHotel: String) : RecyclerView.Adapter<RoomAdapter.ViewHolder>() {
     //private lateinit var Picture: Picture
@@ -33,7 +36,6 @@ class RoomAdapter(private val context: Context, private var rooms: List<Rooms>, 
         val count = listItemView.findViewById<TextView>(R.id.count)
         val countBedSingle = listItemView.findViewById<TextView>(R.id.countBedSingle)
         val countBedDouble = listItemView.findViewById<TextView>(R.id.countBedDouble)
-        val img: ImageView = listItemView.findViewById(R.id.imageView)
         val convenience: TextView = listItemView.findViewById(R.id.convenience)
         val countRoom: TextView = listItemView.findViewById(R.id.countRoom)
         val price: TextView = listItemView.findViewById(R.id.price)
@@ -43,6 +45,8 @@ class RoomAdapter(private val context: Context, private var rooms: List<Rooms>, 
         val minus: ImageView = listItemView.findViewById(R.id.minus)
         val plus: ImageView = listItemView.findViewById(R.id.plus)
         val bookRoomBtn: TextView = listItemView.findViewById(R.id.buttonSet)
+        val imageRV: RecyclerView = listItemView.findViewById(R.id.imageView)
+
 
 
         init {
@@ -88,6 +92,38 @@ class RoomAdapter(private val context: Context, private var rooms: List<Rooms>, 
         holder.convenience.text = formattedconvenience
         holder.direction.text = room.direction.toString()
         holder.price.text = room.price.toString() + " đ"
+
+        val imageList = arrayListOf(
+            Picture_Room(
+                UUID.randomUUID().toString(),
+                "https://fastly.picsum.photos/id/866/500/500.jpg?hmac=FOptChXpmOmfR5SpiL2pp74Yadf1T_bRhBF1wJZa9hg"
+            ),
+            Picture_Room(
+                UUID.randomUUID().toString(),
+                "https://fastly.picsum.photos/id/270/500/500.jpg?hmac=MK7XNrBrZ73QsthvGaAkiNoTl65ZDlUhEO-6fnd-ZnY"
+            ),
+            Picture_Room(
+                UUID.randomUUID().toString(),
+                "https://fastly.picsum.photos/id/320/500/500.jpg?hmac=2iE7TIF9kIqQOHrIUPOJx2wP1CJewQIZBeMLIRrm74s"
+            ),
+            Picture_Room(
+                UUID.randomUUID().toString(),
+                "https://fastly.picsum.photos/id/798/500/500.jpg?hmac=Bmzk6g3m8sUiEVHfJWBscr2DUg8Vd2QhN7igHBXLLfo"
+            ),
+            Picture_Room(
+                UUID.randomUUID().toString(),
+                "https://fastly.picsum.photos/id/95/500/500.jpg?hmac=0aldBQ7cQN5D_qyamlSP5j51o-Og4gRxSq4AYvnKk2U"
+            ),
+            Picture_Room(
+                UUID.randomUUID().toString(),
+                "https://fastly.picsum.photos/id/778/500/500.jpg?hmac=jZLZ6WV_OGRxAIIYPk7vGRabcAGAILzxVxhqSH9uLas"
+            )
+        )
+
+        val imageAdapter = ImageAdapterRoom()
+        holder.imageRV.adapter = imageAdapter
+        imageAdapter.submitList(imageList)
+
         Log.d("ID hotel", "room.ID_Hotel: ${idHotel}")
 
 

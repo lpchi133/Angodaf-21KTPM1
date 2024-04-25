@@ -4,6 +4,8 @@ import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
 data class Picture_Hotel(
+    val id: String? = null,
+    val url : String? = null,
     val ID_Hotel: String? = null,
     val picture: String? = null) {
     // Null default values create a no-argument default constructor, which is needed

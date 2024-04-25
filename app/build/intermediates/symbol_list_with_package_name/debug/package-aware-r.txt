@@ -3658,6 +3658,7 @@ id frost
 id fullscreen_header
 id ghost_view
 id ghost_view_holder
+id glide_custom_view_target_tag
 id gone
 id google_login_button
 id graph
@@ -4393,6 +4394,7 @@ layout fragment_my_hotel
 layout fragment_my_profile
 layout fragment_my_room
 layout fragment_room
+layout image_item_layout
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout m3_alert_dialog
@@ -5287,6 +5289,7 @@ style Theme_Material3_Light_Dialog_MinWidth
 style Theme_Material3_Light_DialogWhenLarge
 style Theme_Material3_Light_NoActionBar
 style Theme_Material3_Light_SideSheetDialog
+style Theme_MaterialCarousel_materialComp
 style Theme_MaterialComponents
 style Theme_MaterialComponents_BottomSheetDialog
 style Theme_MaterialComponents_Bridge

@@ -10,4 +10,5 @@
         <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
     </style>
     <style name="Theme.AngodaFake" parent="Base.Theme.AngodaFake" />
+    <style name="Theme.MaterialCarousel.materialComp" parent="Theme.Material3.DayNight.NoActionBar"/>
 </resources>

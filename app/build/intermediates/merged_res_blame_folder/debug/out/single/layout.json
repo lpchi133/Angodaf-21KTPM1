@@ -24,10 +24,6 @@
         "source": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-7:\\layout\\custom_active_purchase_detail.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-4:/layout/popup_find.xml",
-        "source": "com.example.angodafake.app-main-7:/layout/popup_find.xml"
-    },
-    {
         "merged": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-4:\\layout\\custom_chat.xml",
         "source": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-7:\\layout\\custom_chat.xml"
     },
@@ -36,12 +32,12 @@
         "source": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-7:\\layout\\activity_splash.xml"
     },
     {
-        "merged": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-4:\\layout\\fragment_bookmark.xml",
-        "source": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-7:\\layout\\fragment_bookmark.xml"
-    },
-    {
         "merged": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-4:\\layout\\custom_hotel.xml",
         "source": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-7:\\layout\\custom_hotel.xml"
+    },
+    {
+        "merged": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-4:\\layout\\fragment_bookmark.xml",
+        "source": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-7:\\layout\\fragment_bookmark.xml"
     },
     {
         "merged": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-4:\\layout\\custom_my_voucher_detail.xml",
@@ -50,6 +46,10 @@
     {
         "merged": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-4:\\layout\\empty_active_room.xml",
         "source": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-7:\\layout\\empty_active_room.xml"
+    },
+    {
+        "merged": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-4:\\layout\\image_item_layout.xml",
+        "source": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-7:\\layout\\image_item_layout.xml"
     },
     {
         "merged": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-4:\\layout\\popup_find.xml",
@@ -190,6 +190,10 @@
     {
         "merged": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-4:\\layout\\custom_comment_detail.xml",
         "source": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-7:\\layout\\custom_comment_detail.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-4:/layout/custom_room.xml",
+        "source": "com.example.angodafake.app-main-7:/layout/custom_room.xml"
     },
     {
         "merged": "C:\\Users\\PC\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-4:\\layout\\custom_sort.xml",

@@ -85,13 +85,19 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/border">
 
-                <ImageView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/hotel_image"
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
+                    android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
-                    android:src="@drawable/b48f9f78ec2cf2bbe745f28a2f5f5541" />
+                    android:layout_marginEnd="20dp"
+                    app:layoutManager="com.google.android.material.carousel.CarouselLayoutManager" />
+
 
                 <TextView
                     android:id="@+id/hotel_name"

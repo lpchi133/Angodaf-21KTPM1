@@ -20,4 +20,5 @@
     <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
     </style>
+    <style name="Theme.MaterialCarousel.materialComp" parent="Theme.Material3.DayNight.NoActionBar"/>
 </resources>

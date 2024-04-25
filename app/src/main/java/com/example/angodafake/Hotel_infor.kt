@@ -17,6 +17,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.angodafake.Adapter.ImageAdapterHotel
 import com.example.angodafake.Adapter.VoucherAdapter
 import com.example.angodafake.Utilities.HotelUtils
 import com.example.angodafake.Utilities.UserUtils
@@ -25,6 +26,7 @@ import com.example.angodafake.db.Hotel
 import com.example.angodafake.db.Picture_Hotel
 import com.example.angodafake.db.User
 import com.example.angodafake.db.Voucher
+import java.util.UUID
 
 
 private const val ARG_PARAM1 = "param1"
@@ -39,7 +41,7 @@ class Hotel_infor(private var idUser: String) : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private lateinit var Picture_Hotel: Picture_Hotel
+    //private lateinit var Picture_Hotel: Picture_Hotel
     private lateinit var User: User
     private lateinit var hotel: Hotel
     private lateinit var popupWindow: PopupWindow
@@ -79,7 +81,6 @@ class Hotel_infor(private var idUser: String) : Fragment() {
         val nameTextView = view.findViewById<TextView>(R.id.hotel_name)
         val locationTextView = view.findViewById<TextView>(R.id.address_hotel)
         val pointView = view.findViewById<TextView>(R.id.point)
-        val img: ImageView = view.findViewById(R.id.hotel_image)
         val rateStatus: TextView = view.findViewById(R.id.rateStatus)
         val description: TextView = view.findViewById(R.id.description)
         val convenience: TextView = view.findViewById(R.id.convenience)
@@ -94,6 +95,7 @@ class Hotel_infor(private var idUser: String) : Fragment() {
         val count_cmt: TextView = view.findViewById(R.id.cmt)
         val showDetail: TextView = view.findViewById(R.id.showDetail)
         val firstRectangle: TextView = view.findViewById(R.id.firstRectangle)
+        val imageRV: RecyclerView = view.findViewById(R.id.hotel_image)
 
         layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
@@ -107,6 +109,37 @@ class Hotel_infor(private var idUser: String) : Fragment() {
 ////                    val idAvt = requireContext().resources.getIdentifier(Picture_Hotel.picture_onwer, "drawable", requireContext().packageName)
 //                    img.setImageResource(idPicture)
 //                    imgAvt.setImageResource(idAvt)
+
+                val imageList = arrayListOf(
+                    Picture_Hotel(
+                        UUID.randomUUID().toString(),
+                        "https://fastly.picsum.photos/id/866/500/500.jpg?hmac=FOptChXpmOmfR5SpiL2pp74Yadf1T_bRhBF1wJZa9hg"
+                    ),
+                    Picture_Hotel(
+                        UUID.randomUUID().toString(),
+                        "https://fastly.picsum.photos/id/270/500/500.jpg?hmac=MK7XNrBrZ73QsthvGaAkiNoTl65ZDlUhEO-6fnd-ZnY"
+                    ),
+                    Picture_Hotel(
+                        UUID.randomUUID().toString(),
+                        "https://fastly.picsum.photos/id/320/500/500.jpg?hmac=2iE7TIF9kIqQOHrIUPOJx2wP1CJewQIZBeMLIRrm74s"
+                    ),
+                    Picture_Hotel(
+                        UUID.randomUUID().toString(),
+                        "https://fastly.picsum.photos/id/798/500/500.jpg?hmac=Bmzk6g3m8sUiEVHfJWBscr2DUg8Vd2QhN7igHBXLLfo"
+                    ),
+                    Picture_Hotel(
+                        UUID.randomUUID().toString(),
+                        "https://fastly.picsum.photos/id/95/500/500.jpg?hmac=0aldBQ7cQN5D_qyamlSP5j51o-Og4gRxSq4AYvnKk2U"
+                    ),
+                    Picture_Hotel(
+                        UUID.randomUUID().toString(),
+                        "https://fastly.picsum.photos/id/778/500/500.jpg?hmac=jZLZ6WV_OGRxAIIYPk7vGRabcAGAILzxVxhqSH9uLas"
+                    )
+                )
+
+                val imageAdapter = ImageAdapterHotel()
+                imageRV.adapter = imageAdapter
+                imageAdapter.submitList(imageList)
 
                 price_room.text = hotel.money.toString() + " đ"
 

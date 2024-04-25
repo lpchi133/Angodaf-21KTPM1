@@ -590,6 +590,7 @@ layout fragment_my_hotel
 layout fragment_my_profile
 layout fragment_my_room
 layout fragment_room
+layout image_item_layout
 layout popup2
 layout popup_1
 layout popup_2
@@ -653,6 +654,7 @@ style BottomSheetDialogTheme
 style BottomSheetStyle
 style PopupAnimation
 style Theme.AngodaFake
+style Theme.MaterialCarousel.materialComp
 style Theme.MyApp
 xml backup_rules
 xml data_extraction_rules
