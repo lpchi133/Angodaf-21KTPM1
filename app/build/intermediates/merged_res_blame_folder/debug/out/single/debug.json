@@ -284,6 +284,10 @@
         "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\drawable\\baseline_info_outline_24.xml"
     },
     {
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-39:\\layout_custom_hotel_comment.xml.flat",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_hotel_comment.xml"
+    },
+    {
         "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-39:\\drawable_btn_avt.xml.flat",
         "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\drawable\\btn_avt.xml"
     },
@@ -432,6 +436,10 @@
         "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\mipmap-hdpi\\ic_launcher.webp"
     },
     {
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-39:\\layout_popup_3.xml.flat",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\popup_3.xml"
+    },
+    {
         "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-39:\\layout_fragment_room.xml.flat",
         "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\fragment_room.xml"
     },
@@ -454,6 +462,10 @@
     {
         "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-39:\\layout_cancel_purchase.xml.flat",
         "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\cancel_purchase.xml"
+    },
+    {
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-39:\\drawable_border_12.xml.flat",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\drawable\\border_12.xml"
     },
     {
         "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-39:\\drawable_border_7.xml.flat",
@@ -668,10 +680,6 @@
         "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\drawable\\border2.xml"
     },
     {
-        "merged": "com.example.angodafake.app-merged_res-39:/layout_custom_voucher_edit_form.xml.flat",
-        "source": "com.example.angodafake.app-main-41:/layout/custom_voucher_edit_form.xml"
-    },
-    {
         "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-39:\\layout_custom_voucher_list.xml.flat",
         "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_voucher_list.xml"
     },
@@ -806,6 +814,10 @@
     {
         "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-39:\\drawable_img_6.png.flat",
         "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\drawable\\img_6.png"
+    },
+    {
+        "merged": "com.example.angodafake.app-merged_res-39:/layout_custom_rating.xml.flat",
+        "source": "com.example.angodafake.app-main-41:/layout/custom_rating.xml"
     },
     {
         "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-merged_res-39:\\layout_activity_book_room.xml.flat",

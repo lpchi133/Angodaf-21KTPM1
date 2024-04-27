@@ -1,5 +1,7 @@
 package com.example.angodafake.Utilities
 
+import android.util.Log
+import com.example.angodafake.db.Hotel
 import com.example.angodafake.db.Purchase
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
@@ -56,6 +58,18 @@ object PurchaseUtils {
                 // Xử lý khi có lỗi xảy ra
             }
         })
+    }
+
+    fun getPurchaseByID(ID: String, listener: (Purchase) -> Unit){
+        database.child("purchases").child(ID).get().addOnSuccessListener {
+            val purchase = it.getValue(Purchase::class.java)
+            purchase?.ID = ID
+            if(purchase != null) {
+                listener(purchase)
+            }
+        }.addOnFailureListener{
+            Log.e("firebase", "Error getting data", it)
+        }
     }
 
     fun cancelPurchase(purchaseID: String, detail: String, reason: String, status_purchase: String, time_cancel: String, callback: (String) -> Unit) {

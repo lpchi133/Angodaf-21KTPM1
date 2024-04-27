@@ -83,6 +83,7 @@ class BookRoom : AppCompatActivity() {
     private var quantity: Int = 0
     private var firstPrice: Int = 0
     private var checkMethod: Boolean = true
+    private var i: Int = -1
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun createData(hotel_ID: String) {
@@ -253,10 +254,12 @@ class BookRoom : AppCompatActivity() {
         recyclerView.layoutManager = layoutManager
         recyclerView.setHasFixedSize(true)
 
-        linearAdapter = VoucherHotelAdapter(this, listVoucher)
+        linearAdapter = VoucherHotelAdapter(this, listVoucher, i)
         recyclerView.adapter = linearAdapter
 
-        linearAdapter.onItemClick = { contact ->
+        linearAdapter.onItemClick = { contact, position ->
+            i = position
+
             idVoucher = contact.ID.toString()
             quantity = contact.quantity!!
             if (contact.money_discount == 0.0) {

@@ -184,7 +184,10 @@ id border3
 id border4
 id border5
 id bottomNavigationView
+id btn_accept
 id btn_add
+id btn_add1
+id btn_add2
 id btn_back
 id btn_bookmark
 id btn_call
@@ -216,6 +219,7 @@ id btn_reorder2
 id btn_send
 id btn_sendcmt
 id btn_submit
+id btn_unaccept
 id button
 id button1
 id button2
@@ -263,6 +267,7 @@ id comment3
 id comment4
 id comment5
 id comment6
+id commentField
 id contactsRV
 id content
 id continuousSlider
@@ -412,6 +417,7 @@ id notic2
 id notic3
 id notic4
 id notic5
+id notify
 id onlineChoice
 id owner
 id pa
@@ -447,6 +453,9 @@ id radioButton
 id radioButton1
 id radioButton2
 id radioButton3
+id radioButton4
+id radioButton5
+id radioButton6
 id radioGroup
 id radioGroup2
 id rateStatus
@@ -456,6 +465,7 @@ id ratingBar1
 id ratingBar2
 id ratingBar3
 id ratingBar4
+id ratingField
 id reason
 id register
 id register2
@@ -615,6 +625,7 @@ layout custom_chat_detail
 layout custom_comment_detail
 layout custom_comment_form
 layout custom_hotel
+layout custom_hotel_comment
 layout custom_hotel_detail
 layout custom_hotel_of_management_voucher
 layout custom_inactive_voucher_adapter
@@ -646,13 +657,12 @@ layout fragment_my_hotel
 layout fragment_my_profile
 layout fragment_my_room
 layout fragment_room
-layout popup2
 layout popup_1
 layout popup_2
+layout popup_3
 layout popup_description
 layout popup_find
 layout purchased
-layout rating
 layout tab_active_room
 layout tab_active_voucher
 layout tab_canceled_room

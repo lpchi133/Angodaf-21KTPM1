@@ -15,7 +15,7 @@ object CommentUtils {
          database = Firebase.database.reference
      }
 
-    fun getAllComments(ownerID: String, listenser: (List<Comment>) -> Unit) {
+    fun getAllComments(ownerID: String, listenser: (MutableList<Comment>) -> Unit) {
         val commentsQuery = database.child("comments")
 
         commentsQuery.addValueEventListener(object : ValueEventListener {

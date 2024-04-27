@@ -19,8 +19,8 @@ import com.example.angodafake.db.Voucher
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 
-class VoucherHotelAdapter(private val context: Context, private var voucher: MutableList<Voucher>) : RecyclerView.Adapter<VoucherHotelAdapter.MyViewHolder>() {
-    var onItemClick: ((Voucher) -> Unit)? = null
+class VoucherHotelAdapter(private val context: Context, private var voucher: MutableList<Voucher>, private var i: Int) : RecyclerView.Adapter<VoucherHotelAdapter.MyViewHolder>() {
+    var onItemClick: ((Voucher, position: Int) -> Unit)? = null
     private var listener: OnItemClickListener? = null
 
     interface OnItemClickListener {
@@ -48,56 +48,112 @@ class VoucherHotelAdapter(private val context: Context, private var voucher: Mut
         holder.limit.text = format2(limit_price)
         holder.quantity.text = currentItem.quantity.toString()
 
-        holder.btnSee.setOnClickListener {
-            val dialog = Dialog(context)
-            val inflater = LayoutInflater.from(context)
-            val dialogView = inflater.inflate(R.layout.custom_my_voucher_detail, null)
+        if (position == i) {
+            holder.btnSee.visibility = View.GONE
 
-            val percentageDialog: TextView = dialogView.findViewById(R.id.percentage)
-            val limit_priceDialog: TextView = dialogView.findViewById(R.id.limited_price)
-            val max_discountDialog: TextView = dialogView.findViewById(R.id.max_discount)
-            val quantityDialog: TextView = dialogView.findViewById(R.id.quantity)
-            val textView: TextView = dialogView.findViewById(R.id.textView4)
-            val useVoucher: Button = dialogView.findViewById(R.id.button)
-            val closePopup: Button = dialogView.findViewById(R.id.button1)
+            holder.btnNotify.setOnClickListener {
+                val dialog = Dialog(context)
+                val inflater = LayoutInflater.from(context)
+                val dialogView = inflater.inflate(R.layout.custom_my_voucher_detail, null)
 
-            quantityDialog.text = currentItem.quantity.toString()
-            limit_priceDialog.text = format3(currentItem.limit_price!!)
+                val percentageDialog: TextView = dialogView.findViewById(R.id.percentage)
+                val limit_priceDialog: TextView = dialogView.findViewById(R.id.limited_price)
+                val max_discountDialog: TextView = dialogView.findViewById(R.id.max_discount)
+                val quantityDialog: TextView = dialogView.findViewById(R.id.quantity)
+                val textView: TextView = dialogView.findViewById(R.id.textView4)
+                val useVoucher: Button = dialogView.findViewById(R.id.button)
+                val closePopup: Button = dialogView.findViewById(R.id.button1)
 
-            if (currentItem.money_discount == 0.0) {
-                percentageDialog.text = "Up to ${currentItem.percentage}%"
-                max_discountDialog.text = format3(currentItem.max_discount!!)
-            } else {
-                percentageDialog.text = "Giảm giá ${format3(currentItem.money_discount!!)}"
-                max_discountDialog.visibility = View.GONE
-                textView.visibility = View.GONE
+                useVoucher.visibility = View.GONE
+
+                quantityDialog.text = currentItem.quantity.toString()
+                limit_priceDialog.text = format3(currentItem.limit_price!!)
+
+                if (currentItem.money_discount == 0.0) {
+                    percentageDialog.text = "Up to ${currentItem.percentage}%"
+                    max_discountDialog.text = format3(currentItem.max_discount!!)
+                } else {
+                    percentageDialog.text = "Giảm giá ${format3(currentItem.money_discount!!)}"
+                    max_discountDialog.visibility = View.GONE
+                    textView.visibility = View.GONE
+                }
+
+                useVoucher.setOnClickListener {
+                    onItemClick?.invoke(currentItem, position)
+                    dialog.dismiss()
+                }
+
+                closePopup.setOnClickListener {
+                    dialog.dismiss()
+                }
+
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialog.setCancelable(true)
+                dialog.setContentView(dialogView)
+                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+                val window = dialog.window
+                val layoutParams = window?.attributes
+                layoutParams?.width = ViewGroup.LayoutParams.MATCH_PARENT // Kích thước ngang theo match_parent
+                layoutParams?.height = ViewGroup.LayoutParams.WRAP_CONTENT // Kích thước chiều cao tự động
+                window?.attributes = layoutParams
+
+                dialog.show()
             }
+        } else {
+            holder.btnNotify.visibility = View.GONE
 
-            useVoucher.setOnClickListener {
-                onItemClick?.invoke(currentItem)
-                dialog.dismiss()
+            holder.btnSee.setOnClickListener {
+                val dialog = Dialog(context)
+                val inflater = LayoutInflater.from(context)
+                val dialogView = inflater.inflate(R.layout.custom_my_voucher_detail, null)
+
+                val percentageDialog: TextView = dialogView.findViewById(R.id.percentage)
+                val limit_priceDialog: TextView = dialogView.findViewById(R.id.limited_price)
+                val max_discountDialog: TextView = dialogView.findViewById(R.id.max_discount)
+                val quantityDialog: TextView = dialogView.findViewById(R.id.quantity)
+                val textView: TextView = dialogView.findViewById(R.id.textView4)
+                val useVoucher: Button = dialogView.findViewById(R.id.button)
+                val closePopup: Button = dialogView.findViewById(R.id.button1)
+
+                quantityDialog.text = currentItem.quantity.toString()
+                limit_priceDialog.text = format3(currentItem.limit_price!!)
+
+                if (currentItem.money_discount == 0.0) {
+                    percentageDialog.text = "Up to ${currentItem.percentage}%"
+                    max_discountDialog.text = format3(currentItem.max_discount!!)
+                } else {
+                    percentageDialog.text = "Giảm giá ${format3(currentItem.money_discount!!)}"
+                    max_discountDialog.visibility = View.GONE
+                    textView.visibility = View.GONE
+                }
+
+                useVoucher.setOnClickListener {
+                    onItemClick?.invoke(currentItem, position)
+                    dialog.dismiss()
+                }
+
+                closePopup.setOnClickListener {
+                    dialog.dismiss()
+                }
+
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialog.setCancelable(true)
+                dialog.setContentView(dialogView)
+                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+                val window = dialog.window
+                val layoutParams = window?.attributes
+                layoutParams?.width = ViewGroup.LayoutParams.MATCH_PARENT // Kích thước ngang theo match_parent
+                layoutParams?.height = ViewGroup.LayoutParams.WRAP_CONTENT // Kích thước chiều cao tự động
+                window?.attributes = layoutParams
+
+                dialog.show()
             }
-
-            closePopup.setOnClickListener {
-                dialog.dismiss()
-            }
-
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.setCancelable(true)
-            dialog.setContentView(dialogView)
-            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-            val window = dialog.window
-            val layoutParams = window?.attributes
-            layoutParams?.width = ViewGroup.LayoutParams.MATCH_PARENT // Kích thước ngang theo match_parent
-            layoutParams?.height = ViewGroup.LayoutParams.WRAP_CONTENT // Kích thước chiều cao tự động
-            window?.attributes = layoutParams
-
-            dialog.show()
         }
 
         holder.itemView.setOnClickListener {
-            onItemClick?.invoke(currentItem)
+            onItemClick?.invoke(currentItem, position)
         }
     }
 
@@ -137,6 +193,7 @@ class VoucherHotelAdapter(private val context: Context, private var voucher: Mut
         val limit: TextView = voucherItem.findViewById(R.id.voucher_limited)
         val quantity: TextView = voucherItem.findViewById(R.id.voucher_quantity)
         val btnSee: Button = voucherItem.findViewById(R.id.seedetail)
+        val btnNotify: Button = voucherItem.findViewById(R.id.notify)
     }
 
     @SuppressLint("NotifyDataSetChanged")

@@ -7,6 +7,7 @@ data class Comment(
     var ID: String? = null,
     var ID_Owner: String? = null,
     var ID_Hotel: String? = null,
+    var ID_Purchase: String? = null,
     var time: String? = null,
     var point: Double? = 0.0,
     var content: String? = null,

@@ -26,11 +26,13 @@ class VoucherList : AppCompatActivity() {
     private lateinit var backGround1: ImageView
     private lateinit var textView1: TextView
     private lateinit var createNew1: Button
+    private lateinit var addNew1: ImageButton
 
     private lateinit var inactiveVoucher: RecyclerView
     private lateinit var backGround2: ImageView
     private lateinit var textView2: TextView
     private lateinit var createNew2: Button
+    private lateinit var addNew2: ImageButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.custom_voucher_list)
@@ -46,11 +48,13 @@ class VoucherList : AppCompatActivity() {
         backGround1 = findViewById(R.id.imageView1)
         textView1 = findViewById(R.id.text_no_place1)
         createNew1 = findViewById(R.id.btn_order1)
+        addNew1 = findViewById(R.id.btn_add1)
 
         inactiveVoucher = findViewById(R.id.inactiveVoucherList)
         backGround2 = findViewById(R.id.imageView2)
         textView2 = findViewById(R.id.text_no_place2)
         createNew2 = findViewById(R.id.btn_order2)
+        addNew2 = findViewById(R.id.btn_add2)
 
         VoucherUtils.getAllVouchers(idHotel) { vouchers ->
             activeVoucherList.clear()
@@ -76,12 +80,20 @@ class VoucherList : AppCompatActivity() {
                 }
 
                 activeVoucher.visibility = View.GONE
+                addNew1.visibility = View.GONE
             } else {
                 backGround1.visibility = View.GONE
                 textView1.visibility = View.GONE
                 createNew1.visibility = View.GONE
 
                 activeVoucher.visibility = View.VISIBLE
+                addNew1.visibility = View.VISIBLE
+
+                addNew1.setOnClickListener {
+                    val intent = Intent(this, VoucherAddForm::class.java)
+                    intent.putExtra("idHotel", idHotel)
+                    startActivity(intent)
+                }
             }
 
             if (inactiveVoucherList.size == 0) {
@@ -96,12 +108,20 @@ class VoucherList : AppCompatActivity() {
                 }
 
                 inactiveVoucher.visibility = View.GONE
+                addNew2.visibility = View.GONE
             } else {
                 backGround2.visibility = View.GONE
                 textView2.visibility = View.GONE
                 createNew2.visibility = View.GONE
 
                 inactiveVoucher.visibility = View.VISIBLE
+                addNew2.visibility = View.VISIBLE
+
+                addNew2.setOnClickListener {
+                    val intent = Intent(this, VoucherAddForm::class.java)
+                    intent.putExtra("idHotel", idHotel)
+                    startActivity(intent)
+                }
             }
         }
 

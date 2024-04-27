@@ -109,7 +109,7 @@
                 android:layout_height="60dp"
                 android:layout_below="@+id/hotelName"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginEnd="25dp"
                 android:background="@drawable/border_9"
                 app:srcCompat="@drawable/add_voucher" />

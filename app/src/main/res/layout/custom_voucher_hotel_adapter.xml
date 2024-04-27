@@ -22,12 +22,10 @@
 
     <RelativeLayout
         android:id="@+id/content"
-        android:layout_width="wrap_content"
+        android:layout_width="215dp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginStart="5dp"
-        android:layout_marginEnd="10dp"
-        android:layout_toStartOf="@+id/seedetail"
         android:layout_toEndOf="@+id/imageView">
 
         <TextView
@@ -38,8 +36,8 @@
             android:layout_marginTop="10dp"
             android:text="Giảm 10% Giảm tối đa &#8363;150.000"
             android:textColor="@color/black"
-            android:textStyle="bold"
             android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -58,7 +56,7 @@
             android:layout_below="@+id/voucher_limited"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
-            android:text="Số lượng còn lại: "
+            android:text="Số lượt còn lại: "
             android:textColor="#3E52FA"
             app:layout_constraintTop_toBottomOf="@+id/voucher_limited" />
 
@@ -67,8 +65,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/voucher_limited"
-            android:layout_toEndOf="@+id/textView2"
             android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/textView2"
             android:text="10"
             android:textColor="#3E52FA"
             app:layout_constraintTop_toBottomOf="@+id/voucher_limited" />
@@ -78,10 +76,21 @@
         android:id="@+id/seedetail"
         android:layout_width="65dp"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
         android:layout_marginEnd="10dp"
         android:background="@drawable/btn_see_detail"
         android:text="Xem chi tiết"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/notify"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/btn_see_detail"
+        android:text="Đã áp dụng"
+        android:textColor="@color/white" />
 </RelativeLayout>

@@ -68,7 +68,7 @@
             android:layout_below="@+id/voucher_max"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
-            android:text="Số lượng còn lại: "
+            android:text="Số lượt còn lại: "
             android:textColor="#3E52FA"
             app:layout_constraintTop_toBottomOf="@+id/voucher_max" />
 

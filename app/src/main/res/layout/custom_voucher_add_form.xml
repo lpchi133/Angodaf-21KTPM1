@@ -134,7 +134,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/notic"
         android:layout_marginHorizontal="30dp"
-        android:padding="10dp">
+        android:padding="5dp">
 
         <RadioButton
             android:id="@+id/radioButton"
