@@ -179,17 +179,6 @@
                         android:text="Other" />
                 </RadioGroup>
 
-                <TextView
-                    android:id="@+id/errorText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/radioGroup"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="Giới tính không được để trống."
-                    android:textColor="#FF0000"
-                    android:textSize="12sp"
-                    android:visibility="gone" />
             </RelativeLayout>
 
             <TextView

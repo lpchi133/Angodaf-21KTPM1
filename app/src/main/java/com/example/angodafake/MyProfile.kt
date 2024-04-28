@@ -27,6 +27,7 @@ class MyProfile(private var idUser: String) : Fragment() {
     private lateinit var profileTittle: TextView
     private lateinit var btn_myHotel: Button
     private lateinit var btn_profile: Button
+    private lateinit var btn_add_hotel: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,12 +55,30 @@ class MyProfile(private var idUser: String) : Fragment() {
 
         btn_bookmark.setOnClickListener {
             val mainActivity = requireActivity() as MainActivity
-            mainActivity.navigateToFragment("bookmark")
+            mainActivity.replaceFragment(Bookmark())
         }
 
         btn_myHotel.setOnClickListener {
             val mainActivity = requireActivity() as MainActivity
-            mainActivity.navigateToFragment("hotel")
+            mainActivity.replaceFragment(MyHotel())
+        }
+
+        btn_add_hotel.setOnClickListener {
+            val arg = Bundle()
+
+            arg.putString("from", "MyProfile")
+
+            val mainActivity = requireActivity() as MainActivity
+            mainActivity.binding.bottomNavigationView.selectedItemId = R.id.hotel
+
+            val AddHotelFragment = AddHotelFragment(idUser)
+            AddHotelFragment.arguments = arg
+
+            val fragmentManager = requireActivity().supportFragmentManager
+            fragmentManager.beginTransaction()
+                .replace(R.id.frameLayout, AddHotelFragment)
+                .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
+                .commit()
         }
 
         btn_logout.setOnClickListener {
@@ -77,6 +96,7 @@ class MyProfile(private var idUser: String) : Fragment() {
         profileTittle = view.findViewById(R.id.profileTittle)
         btn_myHotel = view.findViewById(R.id.btn_my_hotel)
         btn_profile = view.findViewById(R.id.btn_profile)
+        btn_add_hotel = view.findViewById(R.id.btn_add_hotel)
     }
 
 

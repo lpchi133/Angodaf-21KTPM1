@@ -41,4 +41,5 @@
     <string name="profile_title">"Chào mừng, Name"</string>
     <string name="editInfo_title">Hồ sơ cá nhân</string>
     <string name="addHotel_title">Thêm khách sạn mới</string>
+    <string name="link_momo_guidelines">Bạn chưa có tài khoản Momo Doanh nghiệp?\nĐăng ký <a href="https://business.momo.vn/sanpham/auth/signup">Tại đây</a></string>
 </resources>

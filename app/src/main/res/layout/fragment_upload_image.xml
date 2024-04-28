@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UploadImageFragment"
-    android:background="@drawable/Upload_img_layout">
+    android:background="@drawable/upload_img_layout">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -19,7 +19,7 @@
         android:background="@drawable/img_frame"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="20dp"
+        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -42,6 +42,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btn_upload"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="64dp"
@@ -54,5 +55,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="31dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/baseline_close_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

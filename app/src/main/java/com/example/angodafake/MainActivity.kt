@@ -8,7 +8,7 @@ import com.example.angodafake.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+    lateinit var binding: ActivityMainBinding
     private var idUser: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,6 +61,7 @@ class MainActivity : AppCompatActivity() {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frameLayout, fragment)
+        fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
 
         // Cập nhật BottomNavigationView
@@ -72,20 +73,5 @@ class MainActivity : AppCompatActivity() {
             is Bookmark -> bottomNavigationView.menu.findItem(R.id.bookmark).isChecked = true
             is MyProfile -> bottomNavigationView.menu.findItem(R.id.profile).isChecked = true
         }
-    }
-
-    fun navigateToFragment(fr: String) {
-        when(fr){
-            "bookmark" -> {
-                binding.bottomNavigationView.selectedItemId = R.id.bookmark
-            }
-            "hotel" -> {
-                binding.bottomNavigationView.selectedItemId = R.id.hotel
-            }
-            "home" -> {
-                binding.bottomNavigationView.selectedItemId = R.id.home
-            }
-        }
-
     }
 }

@@ -181,6 +181,7 @@ class EditInfoFragment(private var idUser: String) : Fragment() {
 
         btn_changeInf.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch{
+                clearFocus()
                 //ten
                 check[0] = validateName(lName, etName)
 

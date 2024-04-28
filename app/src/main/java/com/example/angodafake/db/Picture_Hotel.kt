@@ -4,8 +4,9 @@ import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
 data class Picture_Hotel(
-    val ID_Hotel: String? = null,
-    val picture: String? = null) {
+    var ID: String? = null,
+    var ID_Hotel: String? = null,
+    var picture: String? = null) {
     // Null default values create a no-argument default constructor, which is needed
     // for deserialization from a DataSnapshot.
 }

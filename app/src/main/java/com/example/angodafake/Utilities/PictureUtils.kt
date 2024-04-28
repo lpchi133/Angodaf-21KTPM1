@@ -18,6 +18,27 @@ object PictureUtils {
 
     }
 
+    fun getHotelPicturesList(ID_Hotel: String, listener: (ArrayList<Picture_Hotel>) -> Unit){
+        val pictureQuery = database.child("hotel_pictures").child(ID_Hotel)
+        pictureQuery.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val pictureHotelList = mutableListOf<Picture_Hotel>()
+                for (pictureSnapshot in snapshot.children) {
+                    val pictureHotel = pictureSnapshot.getValue(Picture_Hotel::class.java)
+                    pictureHotel?.ID = pictureSnapshot.key
+                    pictureHotel?.ID_Hotel = ID_Hotel
+                    pictureHotel?.let { pictureHotelList.add(it) }
+                }
+                if (pictureHotelList.isNotEmpty()){
+                    listener(pictureHotelList as ArrayList<Picture_Hotel>)
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Xử lý khi có lỗi xảy ra
+            }
+        })
+    }
     fun getPictureByHotelID(ID: String, listener: (Picture_Hotel) -> Unit){
         val pictureQuery = database.child("pictures").orderByChild("ID_Hotel").equalTo(ID)
         pictureQuery.addListenerForSingleValueEvent(object : ValueEventListener {

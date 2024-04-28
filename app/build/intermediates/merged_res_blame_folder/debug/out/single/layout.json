@@ -1,226 +1,246 @@
 [
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_my_voucher_detail.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/custom_my_voucher_detail.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\rating.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\rating.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/popup_1.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/popup_1.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\empty_past_room.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\empty_past_room.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/activity_splash.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/activity_splash.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\custom_past_cancel_purchase_adapter.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_past_cancel_purchase_adapter.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/popup_find.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/popup_find.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\activity_sign_up.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\activity_sign_up.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/fragment_maps.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/fragment_maps.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\comment.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\comment.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/fragment_my_hotel.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/fragment_my_hotel.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\custom_room.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_room.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_hotel_detail.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/custom_hotel_detail.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\custom_hotel.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_hotel.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/popup_description.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/popup_description.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\custom_hotel_detail.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_hotel_detail.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/voucher.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/voucher.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\custom_active_purchase_adapter.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_active_purchase_adapter.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_active_purchase_detail.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/custom_active_purchase_detail.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\tab_past_room.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\tab_past_room.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/tab_login_phone.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/tab_login_phone.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\tab_active_room.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\tab_active_room.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_chat.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/custom_chat.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\custom_rating.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_rating.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/tab_login_email.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/tab_login_email.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\popup_description.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\popup_description.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/popup_2.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/popup_2.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\cancel_purchase.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\cancel_purchase.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/tab_comment.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/tab_comment.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\custom_comment_detail.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_comment_detail.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/chat.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/chat.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\custom_sort.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_sort.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_price.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/custom_price.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\fragment_room.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\fragment_room.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_past_cancel_purchase_adapter.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/custom_past_cancel_purchase_adapter.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\voucher.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\voucher.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_active_purchase_adapter.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/custom_active_purchase_adapter.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\popup_2.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\popup_2.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_bookmark.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/custom_bookmark.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\fragment_my_room.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\fragment_my_room.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_chat_detail.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/custom_chat_detail.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\custom_password_dialog.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_password_dialog.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/fragment_home_filter_detail.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/fragment_home_filter_detail.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\custom_bookmark.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_bookmark.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/comment.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/comment.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\custom_past_cancel_purchase_detail.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_past_cancel_purchase_detail.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/tab_past_room.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/tab_past_room.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\fragment_add_hotel_image.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\fragment_add_hotel_image.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/rating.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/rating.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\tab_comment.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\tab_comment.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/activity_sign_up.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/activity_sign_up.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\fragment_my_profile.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\fragment_my_profile.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_password_dialog.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/custom_password_dialog.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\activity_login.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\activity_login.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/purchased.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/purchased.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\activity_book_room.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\activity_book_room.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_hotel.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/custom_hotel.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\fragment_edit_info.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\fragment_edit_info.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/cancel_purchase.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/cancel_purchase.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\purchased.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\purchased.xml"
     },
     {
         "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/fragment_add_hotel.xml",
         "source": "com.example.angodafake.app-main-41:/layout/fragment_add_hotel.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/empty_past_room.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/empty_past_room.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\custom_comment_form.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_comment_form.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/tab_active_room.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/tab_active_room.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\fragment_home.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\fragment_home.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/activity_main.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/activity_main.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\custom_my_voucher_detail.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_my_voucher_detail.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_past_cancel_purchase_detail.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/custom_past_cancel_purchase_detail.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\fragment_home_filter_detail.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\fragment_home_filter_detail.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/fragment_room.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/fragment_room.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\tab_login_email.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\tab_login_email.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/fragment_my_profile.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/fragment_my_profile.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\custom_chat_detail.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_chat_detail.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_comment_form.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/custom_comment_form.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\grid_item.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\grid_item.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/fragment_my_room.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/fragment_my_room.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\fragment_home_filter.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\fragment_home_filter.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_rating.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/custom_rating.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\popup2.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\popup2.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/activity_login.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/activity_login.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\empty_active_room.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\empty_active_room.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_sort.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/custom_sort.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\empty_comment.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\empty_comment.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_comment_detail.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/custom_comment_detail.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\fragment_bookmark.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\fragment_bookmark.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/empty_canceled_room.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/empty_canceled_room.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\custom_active_purchase_detail.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_active_purchase_detail.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/popup2.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/popup2.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\fragment_my_hotel.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\fragment_my_hotel.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/empty_active_room.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/empty_active_room.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\custom_voucher_hotel_adapter.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_voucher_hotel_adapter.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_voucher_hotel_adapter.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/custom_voucher_hotel_adapter.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\chat.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\chat.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/fragment_home_filter.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/fragment_home_filter.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\tab_canceled_room.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\tab_canceled_room.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/empty_comment.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/empty_comment.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\custom_chat.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_chat.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_voucher_adapter.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/custom_voucher_adapter.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\activity_splash.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\activity_splash.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/tab_canceled_room.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/tab_canceled_room.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\custom_voucher_adapter.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_voucher_adapter.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/fragment_bookmark.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/fragment_bookmark.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\popup_find.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\popup_find.xml"
+    },
+    {
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\popup_1.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\popup_1.xml"
+    },
+    {
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\fragment_upload_image.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\fragment_upload_image.xml"
+    },
+    {
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\tab_login_phone.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\tab_login_phone.xml"
+    },
+    {
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\custom_price.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_price.xml"
+    },
+    {
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\fragment_add_hotel.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\fragment_add_hotel.xml"
+    },
+    {
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\fragment_maps.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\fragment_maps.xml"
     },
     {
         "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/fragment_edit_info.xml",
         "source": "com.example.angodafake.app-main-41:/layout/fragment_edit_info.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_room.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/custom_room.xml"
-    },
-    {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/activity_book_room.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/activity_book_room.xml"
-    },
-    {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/fragment_home.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/fragment_home.xml"
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\empty_canceled_room.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\empty_canceled_room.xml"
     }
 ]
