@@ -65,5 +65,9 @@ dependencies {
     implementation("com.google.android.gms:play-services-maps:18.2.0") // google map
     implementation("com.github.bumptech.glide:glide:4.16.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
-
+    implementation("com.github.momo-wallet:mobile-sdk:1.0.7") {
+        exclude(group = "com.android.support")
+    }
+    implementation("com.journeyapps:zxing-android-embedded:4.3.0@aar")
+    implementation("com.google.zxing:core:3.4.1")
 }

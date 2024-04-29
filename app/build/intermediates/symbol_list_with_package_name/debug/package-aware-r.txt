@@ -43,6 +43,7 @@ anim m3_side_sheet_exit_to_right
 anim mtrl_bottom_sheet_slide_in
 anim mtrl_bottom_sheet_slide_out
 anim mtrl_card_lowers_interpolator
+anim rotator
 anim slide_in_bottom
 anim slide_out_bottom
 animator design_appbar_state_list_animator
@@ -1371,6 +1372,16 @@ attr yearSelectedStyle
 attr yearStyle
 attr yearTodayStyle
 attr zOrderOnTop
+attr zxing_framing_rect_height
+attr zxing_framing_rect_width
+attr zxing_possible_result_points
+attr zxing_preview_scaling_strategy
+attr zxing_result_view
+attr zxing_scanner_layout
+attr zxing_use_texture_view
+attr zxing_viewfinder_laser
+attr zxing_viewfinder_laser_visibility
+attr zxing_viewfinder_mask
 bool abc_action_bar_embed_tabs
 bool abc_config_actionMenuItemAllCaps
 bool mtrl_btn_textappearance_all_caps
@@ -1408,6 +1419,7 @@ color background_floating_material_dark
 color background_floating_material_light
 color background_material_dark
 color background_material_light
+color bg_color_url
 color black
 color blue
 color bluee
@@ -1421,6 +1433,7 @@ color browser_actions_bg_grey
 color browser_actions_divider_color
 color browser_actions_text_color
 color browser_actions_title_color
+color btn_selected
 color button_material_dark
 color button_material_light
 color call_notification_answer_color
@@ -1429,6 +1442,10 @@ color cardview_dark_background
 color cardview_light_background
 color cardview_shadow_end_color
 color cardview_shadow_start_color
+color colorAccent
+color colorPrimary
+color colorPrimaryDark
+color color_url
 color common_google_signin_btn_text_dark
 color common_google_signin_btn_text_dark_default
 color common_google_signin_btn_text_dark_disabled
@@ -2089,6 +2106,7 @@ color material_timepicker_button_stroke
 color material_timepicker_clock_text_color
 color material_timepicker_clockface
 color material_timepicker_modebutton_tint
+color momo_color
 color mtrl_btn_bg_color_selector
 color mtrl_btn_ripple_color
 color mtrl_btn_stroke_color_selector
@@ -2162,6 +2180,7 @@ color secondary_text_default_material_dark
 color secondary_text_default_material_light
 color secondary_text_disabled_material_dark
 color secondary_text_disabled_material_light
+color statusbar_default
 color switch_thumb_disabled_material_dark
 color switch_thumb_disabled_material_light
 color switch_thumb_material_dark
@@ -2170,7 +2189,18 @@ color switch_thumb_normal_material_dark
 color switch_thumb_normal_material_light
 color tooltip_background_dark
 color tooltip_background_light
+color transparent
 color white
+color zxing_custom_possible_result_points
+color zxing_custom_result_view
+color zxing_custom_viewfinder_laser
+color zxing_custom_viewfinder_mask
+color zxing_possible_result_points
+color zxing_result_view
+color zxing_status_text
+color zxing_transparent
+color zxing_viewfinder_laser
+color zxing_viewfinder_mask
 dimen abc_action_bar_content_inset_material
 dimen abc_action_bar_content_inset_with_nav
 dimen abc_action_bar_default_height_material
@@ -2252,6 +2282,8 @@ dimen abc_text_size_subhead_material
 dimen abc_text_size_subtitle_material_toolbar
 dimen abc_text_size_title_material
 dimen abc_text_size_title_material_toolbar
+dimen activity_horizontal_margin
+dimen activity_vertical_margin
 dimen appcompat_dialog_background_inset
 dimen browser_actions_context_menu_max_width
 dimen browser_actions_context_menu_min_padding
@@ -3139,6 +3171,7 @@ drawable btn_use
 drawable btn_yes
 drawable button_selector
 drawable circle_shape
+drawable circular_progress_bar
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -3189,6 +3222,8 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_reload
+drawable ic_reload_press
 drawable ic_search_black_24
 drawable img
 drawable img_1
@@ -3223,7 +3258,10 @@ drawable material_ic_keyboard_arrow_previous_black_24dp
 drawable material_ic_keyboard_arrow_right_black_24dp
 drawable material_ic_menu_arrow_down_black_24dp
 drawable material_ic_menu_arrow_up_black_24dp
+drawable momo_back
+drawable momo_lock_symbol
 drawable momo_mservice_logo
+drawable momoclose
 drawable mtrl_bottomsheet_drag_handle
 drawable mtrl_checkbox_button
 drawable mtrl_checkbox_button_checked_unchecked
@@ -3284,6 +3322,7 @@ drawable rounded_button
 drawable rounded_button_delete
 drawable rounded_button_edit
 drawable rounded_button_price
+drawable rounded_corner
 drawable rounded_layout
 drawable test_level_drawable
 drawable tooltip_frame_dark
@@ -3311,6 +3350,8 @@ id PriceAfterPromotion
 id Price_high
 id Price_low
 id Promotion
+id QRCode
+id QRcode
 id SHIFT
 id SHOW_ALL
 id SHOW_PATH
@@ -3523,6 +3564,7 @@ id checkmark_lowest
 id chronometer
 id chunha
 id circle_center
+id circular_progress_bar
 id clear_text
 id clip_horizontal
 id clip_vertical
@@ -3648,6 +3690,7 @@ id fitStart
 id fitToContents
 id fitXY
 id fixed
+id fl_country_not_found
 id flip
 id floating
 id forever
@@ -3711,6 +3754,9 @@ id imageView8
 id imageView9
 id image_hotel
 id image_room
+id imgBack
+id imgClose
+id imgReload
 id immediateStop
 id included
 id indeterminate
@@ -3768,6 +3814,9 @@ id linear_layout_rating
 id linear_map
 id listMode
 id list_item
+id ll_progressbar_circle
+id lnBack
+id lnReload
 id locationDetail
 id login_title
 id logo
@@ -3920,6 +3969,7 @@ id point_condition3
 id point_condition4
 id point_condition5
 id pooling_container_listener_holder_tag
+id popup_processing_bar_tv
 id position
 id postLayout
 id pressed
@@ -4180,6 +4230,7 @@ id triangle
 id tvCity
 id tvPrice
 id tvRating
+id tvTitle
 id tv_PhoneN
 id tv_email
 id tv_emailPhoneN
@@ -4210,6 +4261,8 @@ id voucher_name
 id voucher_quantity
 id warning
 id watchRoom
+id webView
+id webViewMapBank
 id west
 id wide
 id withText
@@ -4220,6 +4273,19 @@ id wrap_content
 id wrap_content_constrained
 id x_left
 id x_right
+id zxing_back_button
+id zxing_barcode_scanner
+id zxing_barcode_surface
+id zxing_camera_closed
+id zxing_camera_error
+id zxing_decode
+id zxing_decode_failed
+id zxing_decode_succeeded
+id zxing_possible_result_points
+id zxing_preview_failed
+id zxing_prewiew_size_ready
+id zxing_status_view
+id zxing_viewfinder_view
 integer abc_config_activityDefaultDur
 integer abc_config_activityShortDur
 integer app_bar_elevation_anim_duration
@@ -4416,6 +4482,7 @@ layout material_time_input
 layout material_timepicker
 layout material_timepicker_dialog
 layout material_timepicker_textinput_display
+layout momo_webview_activity
 layout mtrl_alert_dialog
 layout mtrl_alert_dialog_actions
 layout mtrl_alert_dialog_title
@@ -4459,6 +4526,7 @@ layout popup_1
 layout popup_2
 layout popup_description
 layout popup_find
+layout popup_processing_bar
 layout purchased
 layout rating
 layout select_dialog_item_material
@@ -4472,11 +4540,14 @@ layout tab_login_email
 layout tab_login_phone
 layout tab_past_room
 layout voucher
+layout zxing_barcode_scanner
+layout zxing_capture
 menu nav_bar
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
 raw firebase_common_keep
+raw zxing_beep
 string Filter
 string abc_action_bar_home_description
 string abc_action_bar_up_description
@@ -4507,6 +4578,7 @@ string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string androidx_startup
 string app_name
+string app_version
 string appbar_scrolling_view_behavior
 string bookmarkAds
 string bookmarkTittle
@@ -4554,6 +4626,7 @@ string content_active_room
 string content_canceled_room
 string content_past_room
 string copy_toast_msg
+string define_zxingandroidembedded
 string editInfo_title
 string error_a11y_label
 string error_icon_content_description
@@ -4579,6 +4652,15 @@ string homeTittle
 string i_title
 string icon_content_description
 string item_view_role_description
+string library_zxingandroidembedded_author
+string library_zxingandroidembedded_authorWebsite
+string library_zxingandroidembedded_isOpenSource
+string library_zxingandroidembedded_libraryDescription
+string library_zxingandroidembedded_libraryName
+string library_zxingandroidembedded_libraryVersion
+string library_zxingandroidembedded_libraryWebsite
+string library_zxingandroidembedded_licenseId
+string library_zxingandroidembedded_repositoryLink
 string m3_exceed_max_badge_text_suffix
 string m3_ref_typeface_brand_medium
 string m3_ref_typeface_brand_regular
@@ -4706,6 +4788,10 @@ string timeCountingDown
 string title
 string titlePurchase
 string v_title
+string zxing_app_name
+string zxing_button_ok
+string zxing_msg_camera_framework_bug
+string zxing_msg_default_status
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog
@@ -4717,6 +4803,7 @@ style Animation_Material3_SideSheetDialog
 style Animation_Material3_SideSheetDialog_Left
 style Animation_Material3_SideSheetDialog_Right
 style Animation_MaterialComponents_BottomSheetDialog
+style AppTheme
 style Base_AlertDialog_AppCompat
 style Base_AlertDialog_AppCompat_Light
 style Base_Animation_AppCompat_Dialog
@@ -5829,6 +5916,8 @@ style Widget_MaterialComponents_Toolbar_PrimarySurface
 style Widget_MaterialComponents_Toolbar_Surface
 style Widget_MaterialComponents_Tooltip
 style Widget_Support_CoordinatorLayout
+style myDialog_2
+style zxing_CaptureTheme
 styleable ActionBar background backgroundSplit backgroundStacked contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation customNavigationLayout displayOptions divider elevation height hideOnContentScroll homeAsUpIndicator homeLayout icon indeterminateProgressStyle itemPadding logo navigationMode popupTheme progressBarPadding progressBarStyle subtitle subtitleTextStyle title titleTextStyle
 styleable ActionBarLayout android_layout_gravity
 styleable ActionMenuItemView android_minWidth
@@ -5986,6 +6075,9 @@ styleable ViewPager2 android_orientation
 styleable ViewStubCompat android_id android_layout android_inflatedId
 styleable ViewTransition android_id SharedValue SharedValueId clearsTag duration ifTagNotSet ifTagSet motionInterpolator motionTarget onStateTransition pathMotionArc setsTag transitionDisable upDuration viewTransitionMode
 styleable include constraintSet
+styleable zxing_camera_preview zxing_framing_rect_height zxing_framing_rect_width zxing_preview_scaling_strategy zxing_use_texture_view
+styleable zxing_finder zxing_possible_result_points zxing_result_view zxing_viewfinder_laser zxing_viewfinder_laser_visibility zxing_viewfinder_mask
+styleable zxing_view zxing_scanner_layout
 xml backup_rules
 xml data_extraction_rules
 xml image_share_filepaths

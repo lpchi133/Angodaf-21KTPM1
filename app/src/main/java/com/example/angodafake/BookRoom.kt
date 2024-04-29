@@ -2,21 +2,13 @@ package com.example.angodafake
 
 import android.annotation.SuppressLint
 import android.app.Dialog
-import android.os.Build
-import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
-import android.text.Html
-import android.text.Spanned
-import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -24,18 +16,23 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
-import com.airbnb.lottie.utils.Utils
+import com.example.angodafake.Adapter.VoucherHotelAdapter
 import com.example.angodafake.Utilities.HotelUtils
 import com.example.angodafake.Utilities.RoomUtils
 import com.example.angodafake.Utilities.UserUtils
-import com.example.angodafake.db.Hotel
-import com.example.angodafake.db.Rooms
+import com.example.angodafake.Utilities.VoucherUtils
+import com.example.angodafake.db.Purchase
+import com.example.angodafake.db.Voucher
 import com.google.android.material.textfield.TextInputEditText
-import org.w3c.dom.Text
+import com.google.firebase.database.FirebaseDatabase
+import org.json.JSONException
+import org.json.JSONObject
+import vn.momo.momo_partner.AppMoMoLib
 import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
@@ -44,14 +41,6 @@ import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import java.util.Calendar
 import java.util.Locale
-import com.example.angodafake.Adapter.VoucherHotelAdapter
-import com.example.angodafake.Utilities.VoucherUtils
-import com.example.angodafake.db.Voucher
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import java.text.DecimalFormatSymbols
-import kotlin.properties.Delegates
-import kotlin.time.times
-
 class BookRoom : AppCompatActivity() {
     private lateinit var countdownTimer: CountDownTimer
     private lateinit var countdownTextView: TextView
@@ -62,7 +51,15 @@ class BookRoom : AppCompatActivity() {
     private lateinit var bookRoomBtn: Button
     private lateinit var backBtn: ImageView
 
+    private var firstPrice: Int = 0
     private var discountValue: Int = 0
+    private val databaseReference = FirebaseDatabase.getInstance().reference.child("purchases")
+    private lateinit var dialog: Dialog
+    private lateinit var anim: LottieAnimationView
+    private lateinit var hotelID: String
+    private lateinit var RoomID: String
+    private lateinit var purchaseId: String
+    private lateinit var purchase: Purchase
 
     private lateinit var changeCustomerBtn: Button
     private lateinit var specialDemand: TextInputEditText
@@ -80,9 +77,12 @@ class BookRoom : AppCompatActivity() {
     private lateinit var price: TextView
     private lateinit var promotion: TextView
     private lateinit var priceAfterPromotion: TextView
-    private lateinit var idVoucher: String
+    private var idVoucher: String = ""
     private var quantity: Int = 0
-    private var newPrice: Double = 0.0
+    private var newPrice: Int = 0
+    private lateinit var hotelName: String
+    private lateinit var typeRoom: String
+    private val merchantCode = "MOMOC2IC20220510"
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun createData(hotel_ID: String) {
@@ -102,9 +102,11 @@ class BookRoom : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_room)
 
-        val dialog = Dialog(this)
+        AppMoMoLib.getInstance().setEnvironment(AppMoMoLib.ENVIRONMENT.DEVELOPMENT); // AppMoMoLib.ENVIRONMENT.PRODUCTION
+
+        dialog = Dialog(this)
         dialog.setContentView(R.layout.purchased)
-        val anim = dialog.findViewById<LottieAnimationView>(R.id.checkPurchase)
+        anim = dialog.findViewById<LottieAnimationView>(R.id.checkPurchase)
 
         paymentMethodLayout = findViewById(R.id.paymentMethod)
         inputCardLayout = findViewById(R.id.cardInfor)
@@ -123,7 +125,7 @@ class BookRoom : AppCompatActivity() {
         findViewById<TextView>(R.id.textView35).text = "Đặt phòng không có rủi ro! Quý khách có thể huỷ bỏ đến ${convertDateTimeToString(checkInTime, 2)} và không phải trả gì!"
         findViewById<TextView>(R.id.calender).text = "Đặt phòng hôm nay và thanh toán vào ${convertDateTimeToString(checkInTime, 2)}"
 
-        val hotelID = intent.getStringExtra("hotelID")
+        hotelID = intent.getStringExtra("hotelID").toString()
         val roomID = intent.getStringExtra("roomID")
         HotelUtils.getHotelByID(hotelID!!){ hotel ->
             findViewById<TextView>(R.id.locationDetail).text = hotel.locationDetail
@@ -135,6 +137,7 @@ class BookRoom : AppCompatActivity() {
                 in 8 until 9 -> { "${hotel.point} Rất tốt" }
                 else -> { "${hotel.point} Tuyệt vời" }
             }
+            hotelName = hotel.name.toString()
             findViewById<TextView>(R.id.textView43).text = "Hotline: ${hotel.phoneNumber}"
             dialog.findViewById<TextView>(R.id.hotelName).text = hotel.name
             dialog.findViewById<TextView>(R.id.timeCheckIn).text = "${hotel.checkIn} ${convertDateTimeToString(checkInTime, 3)}"
@@ -143,13 +146,15 @@ class BookRoom : AppCompatActivity() {
 
         val roomQuantity = intent.getStringExtra("roomQuantity").toString()
         RoomUtils.getRoomByID(hotelID, roomID!!){ room ->
+            RoomID = room.ID.toString()
             findViewById<TextView>(R.id.type_room).text = "${roomQuantity} x ${room.type}"
             findViewById<TextView>(R.id.textView37).text = "Tối đa: ${room.capacity} người lớn"
             findViewById<TextView>(R.id.bedQ).text = "${room.single_bed} giường đơn - ${room.double_bed} giường đôi"
-            val firstPrice = (room.price?.times(roomQuantity.toInt()) ?: 1) * dayInHotel.toInt()
+            firstPrice = (room.price?.times(roomQuantity.toInt()) ?: 1) * dayInHotel.toInt()
             findViewById<TextView>(R.id.Price).text = "${formatMoney(firstPrice)} đ"
             findViewById<TextView>(R.id.PriceAfterPromotion).text = "${formatMoney(firstPrice - discountValue)} đ"
             dialog.findViewById<TextView>(R.id.roomID).text = "${room.type}"
+            typeRoom = room.type.toString()
         }
 
         UserUtils.getUserByID("tYw0x3oVS7gAd9wOdOszzvJMOEM2"){user ->
@@ -202,16 +207,21 @@ class BookRoom : AppCompatActivity() {
             }
         }
 
-
-
         bookRoomBtn.setOnClickListener {
-            dialog.show()
-            Handler(Looper.getMainLooper()).postDelayed(Runnable{
-                anim.visibility = View.VISIBLE
-                anim.playAnimation()
-            }, 300)
-            VoucherUtils.minusVoucher(idVoucher,quantity) {result ->
-                println(result)
+            purchaseId = getPurchaseID()
+
+            bookRoom(hotelID, "tYw0x3oVS7gAd9wOdOszzvJMOEM2", roomID,
+                roomQuantity, getTimePurchase(), (firstPrice - discountValue).toDouble(),
+                checkInTime, checkOutTime, dialog, anim)
+
+            dialog.setOnDismissListener(DialogInterface.OnDismissListener {
+                backBtn.callOnClick()
+            })
+
+            if(idVoucher != ""){
+                VoucherUtils.minusVoucher(idVoucher,quantity) {result ->
+                    println(result)
+                }
             }
         }
 
@@ -234,6 +244,66 @@ class BookRoom : AppCompatActivity() {
         }
     }
 
+    private fun showDialog(dialog: Dialog, anim: LottieAnimationView){
+        dialog.show()
+        Handler(Looper.getMainLooper()).postDelayed(Runnable{
+            anim.visibility = View.VISIBLE
+            anim.playAnimation()
+        }, 300)
+    }
+
+    private fun getPurchaseID(): String{
+        val currentTime = Calendar.getInstance()
+        val year = currentTime.get(Calendar.YEAR)
+        val month = currentTime.get(Calendar.MONTH) + 1
+        val day = currentTime.get(Calendar.DAY_OF_MONTH)
+        val hour = currentTime.get(Calendar.HOUR_OF_DAY)
+        val minute = currentTime.get(Calendar.MINUTE)
+        val second = currentTime.get(Calendar.SECOND)
+        return  "$day$month$year$hour$minute$second"
+    }
+
+    private fun  getTimePurchase(): String{
+        val currentTime = Calendar.getInstance()
+        val year = currentTime.get(Calendar.YEAR)
+        val month = currentTime.get(Calendar.MONTH) + 1
+        val day = currentTime.get(Calendar.DAY_OF_MONTH)
+        val hour = currentTime.get(Calendar.HOUR_OF_DAY)
+        val minute = currentTime.get(Calendar.MINUTE)
+        val second = currentTime.get(Calendar.SECOND)
+
+        return "$hour:$minute:$second $day/$month/$year"
+    }
+    private fun bookRoom(hotelID: String, customerID: String, RoomID: String,
+                         quantity: String, timeBooking: String, total_purchase: Double,
+                         checkInTime: String, checkOutTime: String, dialog: Dialog, anim: LottieAnimationView){
+
+        if(findViewById<RadioButton>(R.id.cashChoice).isChecked){
+            // Trả tiền mặt -> lưu thông tin ngay vào DB
+             purchase = Purchase(ID_Owner = customerID, ID_Hotel = hotelID, ID_Room = RoomID, quantity = quantity.toInt(),
+                method = "CASH", time_booking = timeBooking, time_purchase = "", time_cancel = "", reason = "", total_purchase = total_purchase,
+                status_purchase = "CHUA_THANH_TOAN", detail = "SAP_TOI", date_come = checkInTime, date_go = checkOutTime)
+             databaseReference.child(purchaseId).setValue(purchase)
+             showDialog(dialog, anim)
+        } else if (findViewById<RadioButton>(R.id.onlineChoice).isChecked){
+            // Kiểm tra vnpay hay momo
+            if(findViewById<RadioButton>(R.id.cardChoice).isChecked){
+                // CARD
+//                val purchase = Purchase(ID_Owner = customerID, ID_Hotel = hotelID, ID_Room = RoomID, quantity = quantity.toInt(),
+//                    method = "CARD_PAYMENT", time_booking = timeBooking, time_purchase = "$hour:$minute:$second $day/$month/$year", time_cancel = "", reason = "", total_purchase = total_purchase,
+//                    status_purchase = "DA_THANH_TOAN", detail = "SAP_TOI", date_come = checkInTime, date_go = checkOutTime)
+//                databaseReference.child(purchaseId).setValue(purchase)
+
+            } else if(findViewById<RadioButton>(R.id.momoChoice).isChecked){
+                // MoMo
+                 purchase = Purchase(ID_Owner = customerID, ID_Hotel = hotelID, ID_Room = RoomID, quantity = quantity.toInt(),
+                    method = "MOMO", time_booking = timeBooking, time_purchase = getTimePurchase(), time_cancel = "", reason = "", total_purchase = total_purchase,
+                    status_purchase = "DA_THANH_TOAN", detail = "SAP_TOI", date_come = checkInTime, date_go = checkOutTime)
+                 requestPayment(purchaseId, total_purchase.toInt())
+            }
+        }
+    }
+
     private fun showBottomSheet() {
         recyclerView.visibility = View.VISIBLE
 
@@ -247,12 +317,12 @@ class BookRoom : AppCompatActivity() {
             idVoucher = contact.ID.toString()
             quantity = contact.quantity!!
             if (contact.money_discount == 0.0) {
-                calculatePrice2(744000.0, contact.limit_price!!, contact.max_discount!!, contact.percentage!!)
+                calculatePrice2(firstPrice.toDouble(), contact.limit_price!!, contact.max_discount!!, contact.percentage!!)
             } else {
-                calculatePrice1(744000.0, contact.limit_price!!, contact.money_discount!!)
+                calculatePrice1(firstPrice.toDouble(), contact.limit_price!!, contact.money_discount!!)
             }
 
-            priceAfterPromotion.text = format(newPrice)
+            priceAfterPromotion.text = "${formatMoney(newPrice)} đ"
 
             recyclerView.visibility = View.GONE
         }
@@ -261,8 +331,8 @@ class BookRoom : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     private fun calculatePrice1(olePrice: Double, limit_price: Double, money_discount: Double) {
         if (olePrice >= limit_price) {
-            promotion.text = "- ${format(money_discount)}"
-            newPrice = olePrice - money_discount
+            promotion.text = "- ${formatMoney(money_discount.toInt())} đ"
+            newPrice = (olePrice - money_discount).toInt()
         }
     }
 
@@ -270,23 +340,14 @@ class BookRoom : AppCompatActivity() {
     private fun calculatePrice2(olePrice: Double, limit_price: Double, max_discount: Double, percentage: Int){
         if (olePrice >= limit_price) {
             val money_discount = olePrice * percentage * 0.01
-            promotion.text = "- ${format(money_discount)}"
             newPrice = if (money_discount >= max_discount) {
-                olePrice - max_discount
+                promotion.text = "- ${formatMoney(max_discount.toInt())} đ"
+                (olePrice - max_discount).toInt()
             } else {
-                olePrice - money_discount
+                promotion.text = "- ${formatMoney(money_discount.toInt())} đ"
+                (olePrice - money_discount).toInt()
             }
         }
-    }
-
-    fun format(money: Double): Spanned? {
-        val formatSymbols = DecimalFormatSymbols()
-        formatSymbols.groupingSeparator = '.'
-
-        val decimalFormat = DecimalFormat("#,##0", formatSymbols)
-        val temp = "${decimalFormat.format(money)} &#8363;"
-
-        return Html.fromHtml(temp, Html.FROM_HTML_MODE_COMPACT)
     }
 
     private fun startCountdownTimer() {
@@ -383,5 +444,85 @@ class BookRoom : AppCompatActivity() {
         val formatter = NumberFormat.getNumberInstance(Locale.getDefault()) as DecimalFormat
         formatter.applyPattern("#,###")
         return formatter.format(amount.toLong())
+    }
+
+    //Get token through MoMo app
+    private fun requestPayment(IDPayment: String, amount: Int) {
+        AppMoMoLib.getInstance().setAction(AppMoMoLib.ACTION.PAYMENT)
+        AppMoMoLib.getInstance().setActionType(AppMoMoLib.ACTION_TYPE.GET_TOKEN)
+
+        val eventValue: MutableMap<String, Any> = HashMap()
+        //client Required
+        eventValue["merchantname"] = hotelName //Tên đối tác. được đăng ký tại https://business.momo.vn. VD: Google, Apple, Tiki , CGV Cinemas
+        eventValue["merchantcode"] = merchantCode //Mã đối tác, được cung cấp bởi MoMo tại https://business.momo.vn
+        eventValue["amount"] = amount //Kiểu integer
+        eventValue["orderId"] = IDPayment //uniqueue id cho Bill order, giá trị duy nhất cho mỗi đơn hàng
+        eventValue["orderLabel"] = "Payment ID: $IDPayment" //gán nhãn
+
+        //client Optional - bill info
+        eventValue["merchantnamelabel"] = "Đặt phòng khách sạn" //gán nhãn
+        eventValue["fee"] = 0 //Kiểu integer
+        eventValue["description"] = typeRoom //mô tả đơn hàng - short description
+
+        //client extra data
+        eventValue["requestId"] = merchantCode + "merchant_billId_" + System.currentTimeMillis()
+        eventValue["partnerCode"] = merchantCode
+        //Example extra data
+        val objExtraData = JSONObject()
+        try {
+            objExtraData.put("ID_Hotel", hotelID)
+            objExtraData.put("ID_Room", RoomID)
+            objExtraData.put("quantity", quantity)
+            objExtraData.put("totalPayment", amount)
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+        eventValue["extraData"] = objExtraData.toString()
+        eventValue["extra"] = ""
+        AppMoMoLib.getInstance().requestMoMoCallBack(this, eventValue)
+    }
+
+    //Get token callback from MoMo app an submit to server side
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == AppMoMoLib.getInstance().REQUEST_CODE_MOMO && resultCode == -1) {
+            if (data != null) {
+                if (data.getIntExtra("status", -1) == 0) {
+                    //TOKEN IS AVAILABLE
+                    println("Thanh cong")
+                    println("Get token " + data.getStringExtra("message"))
+                    val token = data.getStringExtra("data") //Token response
+                    val phoneNumber = data.getStringExtra("phonenumber")
+                    var env = data.getStringExtra("env")
+                    if (env == null) {
+                        env = "app"
+                    }
+                    if (token != null && token != "") {
+                        // TODO: send phoneNumber & token to your server side to process payment with MoMo server
+                        // IF Momo topup success, continue to process your order
+                        showDialog(dialog, anim)
+                        databaseReference.child(purchaseId).setValue(purchase)
+                    } else {
+                        requestPayment(purchaseId, (firstPrice - discountValue))
+                    }
+                } else if (data.getIntExtra("status", -1) == 1) {
+                    //TOKEN FAIL
+                    val message =
+                        if (data.getStringExtra("message") != null) data.getStringExtra("message") else "Thất bại"
+                    println(message)
+                } else if (data.getIntExtra("status", -1) == 2) {
+                    //TOKEN FAIL
+                    requestPayment(purchaseId, (firstPrice - discountValue))
+                } else {
+                    //TOKEN FAIL
+                    requestPayment(purchaseId, (firstPrice - discountValue))
+                }
+            } else {
+                requestPayment(purchaseId, (firstPrice - discountValue))
+            }
+        } else {
+            requestPayment(purchaseId, (firstPrice - discountValue))
+        }
     }
 }
