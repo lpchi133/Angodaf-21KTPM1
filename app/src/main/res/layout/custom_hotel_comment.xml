@@ -292,26 +292,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/chart"
-                android:background="#EAE7E7">
+                android:background="#DDDDDD">
 
-                <Button
+                <TextView
                     android:id="@+id/button"
-                    android:layout_width="130dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:layout_margin="10dp"
                     android:layout_alignParentEnd="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/btn_sort"
+                    android:padding="10dp"
+                    android:gravity="center"
                     android:text="Phân loại"
+                    android:textSize="17sp"
                     android:textColor="#3E52FA"
-                    app:drawableRightCompat="@drawable/baseline_keyboard_arrow_down_24"/>
+                    app:drawableRightCompat="@drawable/baseline_keyboard_arrow_down_24" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/commentField"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@+id/button"
-                    android:background="#EAE7E7"
+                    android:background="#DDDDDD"
                     android:paddingHorizontal="10dp"/>
             </RelativeLayout>
         </RelativeLayout>

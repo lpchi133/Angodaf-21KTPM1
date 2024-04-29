@@ -43,6 +43,7 @@ class CommentAdapter(private val context: Context, private var comment: MutableL
     override fun getItemCount(): Int {
         return comment.size
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = comment[position]

@@ -31,7 +31,7 @@ object VoucherUtils {
                         voucher.let { vouchersList.add(it) }
                     }
                 }
-                listener(vouchersList)
+                listener(vouchersList.asReversed())
             }
 
             override fun onCancelled(error: DatabaseError) {

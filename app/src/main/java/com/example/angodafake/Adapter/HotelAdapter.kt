@@ -93,12 +93,13 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
         holder.City.text = hotel.city
         holder.count_cmt.text = hotel.total_comments.toString() + " nhận xét"
         holder.rateStatus.text = when (hotel.point?.toInt()){
-            in 0 until 3 -> { "Cực tệ" }
+            in 0 until 3 -> { "Rất tệ" }
             in 3 until 5 -> { "Tệ" }
             in 5 until 6 -> { "Trung bình" }
-            in 6 until 8 -> { "Tốt" }
-            in 8 until 9 -> { "Rất tốt" }
-            else -> { "Tuyệt vời" }
+            in 6 until 7 -> { "Hài lòng" }
+            in 7 until 8 -> { "Rất tốt" }
+            in 8 until 9 -> { "Tuyệt vời" }
+            else -> { "Trên cả tuyệt vời" }
         }
 
         RoomUtils.getRoomByHotelID(hotel.ID!!){ fetchedRoomList   ->
@@ -111,7 +112,7 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
             hotelsRef.child(hotel.ID!!).child("money").setValue(lowestPrice)
 
 
-            CommentUtils.getAllComments(hotel.ID!!) { commentList ->
+            CommentUtils.getCommentsByIDHotel(hotel.ID!!) { commentList ->
                 if (commentList != null){
                     var totalPoint = 0.0
                     for (comment in commentList) {

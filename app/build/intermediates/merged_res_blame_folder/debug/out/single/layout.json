@@ -16,6 +16,10 @@
         "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\tab_active_room.xml"
     },
     {
+        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_my_comment_form.xml",
+        "source": "com.example.angodafake.app-main-41:/layout/custom_my_comment_form.xml"
+    },
+    {
         "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\fragment_my_hotel.xml",
         "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\fragment_my_hotel.xml"
     },
@@ -42,6 +46,10 @@
     {
         "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\custom_hotel.xml",
         "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_hotel.xml"
+    },
+    {
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\popup_4.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\popup_4.xml"
     },
     {
         "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\voucher.xml",
@@ -82,6 +90,10 @@
     {
         "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\purchased.xml",
         "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\purchased.xml"
+    },
+    {
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\custom_my_comment.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_my_comment.xml"
     },
     {
         "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\custom_active_purchase_detail.xml",
@@ -188,6 +200,10 @@
         "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_price.xml"
     },
     {
+        "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\custom_my_comment_form.xml",
+        "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\custom_my_comment_form.xml"
+    },
+    {
         "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\tab_active_voucher.xml",
         "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\tab_active_voucher.xml"
     },
@@ -206,10 +222,6 @@
     {
         "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\fragment_room.xml",
         "source": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-41:\\layout\\fragment_room.xml"
-    },
-    {
-        "merged": "com.example.angodafake.app-mergeDebugResources-38:/layout/custom_rating.xml",
-        "source": "com.example.angodafake.app-main-41:/layout/custom_rating.xml"
     },
     {
         "merged": "C:\\Users\\ASUS\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-38:\\layout\\empty_past_room.xml",

@@ -24,6 +24,7 @@ class MyHotel(private var idUser: String) : Fragment() {
     private var param2: String? = null
 
     private lateinit var openVoucherActivity: Button
+    private lateinit var openCommentActivity: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +48,13 @@ class MyHotel(private var idUser: String) : Fragment() {
         openVoucherActivity = view.findViewById(R.id.button)
         openVoucherActivity.setOnClickListener {
             val intent = Intent(context, HotelOfManagementVoucher::class.java)
+            intent.putExtra("id_user", idUser)
+            startActivity(intent)
+        }
+
+        openCommentActivity = view.findViewById(R.id.button1)
+        openCommentActivity.setOnClickListener {
+            val intent = Intent(context, MyComment::class.java)
             intent.putExtra("id_user", idUser)
             startActivity(intent)
         }

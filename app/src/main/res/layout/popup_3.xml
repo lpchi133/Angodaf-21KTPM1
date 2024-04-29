@@ -24,7 +24,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
             android:layout_toEndOf="@+id/btn_close"
-            android:text="Lọc theo điểm"
+            android:text="Lọc theo đánh giá"
             android:textColor="@color/black"
             android:textSize="22sp"/>
 
@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Trên 9 điểm"
+                android:text="Trên cả tuyệt vời"
                 android:textSize="16sp"/>
 
             <TextView
@@ -61,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Từ 8 đến 9 điểm"
+                android:text="Tuyệt vời"
                 android:textSize="16sp"/>
 
             <TextView
@@ -76,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Từ 7 đến 8 điểm"
+                android:text="Rất tốt"
                 android:textSize="16sp"/>
 
             <TextView
@@ -91,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Từ 6 đến 7 điểm"
+                android:text="Hài lòng"
                 android:textSize="16sp"/>
 
             <TextView
@@ -106,7 +106,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Từ 5 đến 6 điểm"
+                android:text="Trung bình"
                 android:textSize="16sp"/>
 
             <TextView
@@ -121,7 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Từ 3 đến 5 điểm"
+                android:text="Tệ"
                 android:textSize="16sp"/>
 
             <TextView
@@ -136,7 +136,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Dưới 3 điểm"
+                android:text="Rất tệ"
                 android:textSize="16sp"/>
         </RadioGroup>
 

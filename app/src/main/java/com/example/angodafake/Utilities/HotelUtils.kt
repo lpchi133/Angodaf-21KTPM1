@@ -59,7 +59,6 @@ object HotelUtils {
             listener(emptyList()) // Trả về danh sách rỗng nếu có lỗi xảy ra
         }
     }
-
     fun getHotelByOwnerID(ownerID: String, listener: (MutableList<Hotel>) -> Unit) {
         val hotelsQuery = database.child("hotels")
 
@@ -81,5 +80,23 @@ object HotelUtils {
             }
         })
     }
+    fun updateRating(hotelID: String, point: Double, money_rating: Double, location: Double, clean: Double, service: Double, convenience: Double, callback: (String) -> Unit) {
+        val ratingUpdate = hashMapOf<String, Any>(
+            "/hotels/$hotelID/point" to point,
+            "/hotels/$hotelID/money_rating" to money_rating,
+            "/hotels/$hotelID/location" to location,
+            "/hotels/$hotelID/clean" to clean,
+            "/hotels/$hotelID/service" to service,
+            "/hotels/$hotelID/convenience" to convenience,
+        )
 
+        database.updateChildren(ratingUpdate)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    callback.invoke("success")
+                } else {
+                    callback.invoke("failure")
+                }
+            }
+    }
 }

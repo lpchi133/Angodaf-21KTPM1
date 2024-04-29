@@ -12,6 +12,8 @@ import android.view.Window
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ProgressBar
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,7 +24,9 @@ import com.example.angodafake.db.Comment
 
 class Hotel_comment : AppCompatActivity() {
     private var commentList: MutableList<Comment> = mutableListOf()
+    private var filterList: MutableList<Comment> = mutableListOf()
     private lateinit var commentField: RecyclerView
+    private var choice: Int = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.custom_hotel_comment)
@@ -71,11 +75,152 @@ class Hotel_comment : AppCompatActivity() {
         val money2:TextView = findViewById(R.id.point_condition5)
         money2.text = moneyDouble.toString()
 
-        val btnSort:Button = findViewById(R.id.button)
+        val layoutManager: RecyclerView.LayoutManager
+        var linearAdapter: CommentAdapter
+
+        commentField = findViewById(R.id.commentField)
+
+        layoutManager = LinearLayoutManager(this)
+        commentField.layoutManager = layoutManager
+        commentField.setHasFixedSize(true)
+
+        CommentUtils.getCommentsByIDHotel(intent.getStringExtra("idHotel")!!) {comments ->
+            commentList.clear()
+            commentList = comments
+
+            linearAdapter = CommentAdapter(this, commentList)
+            commentField.adapter = linearAdapter
+        }
+
+        val btnSort:TextView = findViewById(R.id.button)
         btnSort.setOnClickListener {
             val dialog = Dialog(this)
             val inflater = LayoutInflater.from(this)
             val dialogView = inflater.inflate(R.layout.popup_3, null)
+
+            val btnClose: ImageButton = dialogView.findViewById(R.id.btn_close)
+            btnClose.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            val radioGroup: RadioGroup = dialogView.findViewById(R.id.radioGroup)
+            val radioButton: RadioButton = dialogView.findViewById(R.id.radioButton)
+            val radioButton1:RadioButton = dialogView.findViewById(R.id.radioButton1)
+            val radioButton2:RadioButton = dialogView.findViewById(R.id.radioButton2)
+            val radioButton3:RadioButton = dialogView.findViewById(R.id.radioButton3)
+            val radioButton4:RadioButton = dialogView.findViewById(R.id.radioButton4)
+            val radioButton5:RadioButton = dialogView.findViewById(R.id.radioButton5)
+            val radioButton6:RadioButton = dialogView.findViewById(R.id.radioButton6)
+
+            when (choice) {
+                0 -> {
+                    radioButton.isChecked = true
+                }
+                1 -> {
+                    radioButton1.isChecked = true
+                }
+                2 -> {
+                    radioButton2.isChecked = true
+                }
+                3 -> {
+                    radioButton3.isChecked = true
+                }
+                4 -> {
+                    radioButton4.isChecked = true
+                }
+                5 -> {
+                    radioButton5.isChecked = true
+                }
+                6 -> {
+                    radioButton6.isChecked = true
+                }
+            }
+
+            radioGroup.setOnCheckedChangeListener { group, checkedId ->
+                filterList.clear()
+                when (checkedId) {
+                    R.id.radioButton -> {
+                        for (comment in commentList) {
+                            if (comment.point!! >= 9) {
+                                filterList.add(comment)
+                            }
+                        }
+                        choice = 0
+                        btnSort.text = radioButton.text
+                    }
+                    R.id.radioButton1 -> {
+                        for (comment in commentList) {
+                            if (comment.point!! >= 8 && comment.point!! < 9) {
+                                filterList.add(comment)
+                            }
+                        }
+                        choice = 1
+                        btnSort.text = radioButton1.text
+                    }
+                    R.id.radioButton2 -> {
+                        for (comment in commentList) {
+                            if (comment.point!! >= 7 && comment.point!! < 8) {
+                                filterList.add(comment)
+                            }
+                        }
+                        choice = 2
+                        btnSort.text = radioButton2.text
+                    }
+                    R.id.radioButton3 -> {
+                        for (comment in commentList) {
+                            if (comment.point!! >= 6 && comment.point!! < 7) {
+                                filterList.add(comment)
+                            }
+                        }
+                        choice = 3
+                        btnSort.text = radioButton3.text
+                    }
+                    R.id.radioButton4 -> {
+                        for (comment in commentList) {
+                            if (comment.point!! >= 5 && comment.point!! < 6) {
+                                filterList.add(comment)
+                            }
+                        }
+                        choice = 4
+                        btnSort.text = radioButton4.text
+                    }
+                    R.id.radioButton5 -> {
+                        for (comment in commentList) {
+                            if (comment.point!! >= 3 && comment.point!! < 5) {
+                                filterList.add(comment)
+                            }
+                        }
+                        choice = 5
+                        btnSort.text = radioButton5.text
+                    }
+                    R.id.radioButton6 -> {
+                        for (comment in commentList) {
+                            if (comment.point!! < 3) {
+                                filterList.add(comment)
+                            }
+                        }
+                        choice = 6
+                        btnSort.text = radioButton6.text
+                    }
+                }
+            }
+
+            val btnAccept: Button = dialogView.findViewById(R.id.btn_accept)
+            btnAccept.setOnClickListener {
+                linearAdapter = CommentAdapter(this, filterList)
+                commentField.adapter = linearAdapter
+
+                dialog.dismiss()
+            }
+
+            val btnUnAccept: Button = dialogView.findViewById(R.id.btn_unaccept)
+            btnUnAccept.setOnClickListener {
+                linearAdapter = CommentAdapter(this, commentList)
+                commentField.adapter = linearAdapter
+                choice = -1
+                btnSort.text = "Phân loại"
+                dialog.dismiss()
+            }
 
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             dialog.setCancelable(true)
@@ -89,23 +234,6 @@ class Hotel_comment : AppCompatActivity() {
             window?.attributes = layoutParams
 
             dialog.show()
-        }
-
-        val layoutManager: RecyclerView.LayoutManager
-        var linearAdapter: CommentAdapter
-
-        commentField = findViewById(R.id.commentField)
-
-        layoutManager = LinearLayoutManager(this)
-        commentField.layoutManager = layoutManager
-        commentField.setHasFixedSize(true)
-
-        CommentUtils.getAllComments(intent.getStringExtra("idHotel")!!) {comments ->
-            commentList = comments
-            println(commentList)
-
-            linearAdapter = CommentAdapter(this, commentList)
-            commentField.adapter = linearAdapter
         }
     }
 }

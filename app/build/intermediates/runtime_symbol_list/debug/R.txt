@@ -3082,10 +3082,12 @@ int drawable baseline_info_outline_24 0x7f080097
 int drawable baseline_ios_share_24 0x7f080098
 int drawable baseline_keyboard_arrow_down_24 0x7f080099
 int drawable baseline_keyboard_arrow_down_black_24 0x7f08009a
+int drawable baseline_king_bed_24 0x7f08017a
 int drawable baseline_local_activity_24 0x7f08009b
 int drawable baseline_local_phone_24 0x7f08009c
 int drawable baseline_location_on_12 0x7f08009d
 int drawable baseline_location_on_24 0x7f08009e
+int drawable baseline_location_on_24_normal_color 0x7f08017b
 int drawable baseline_lock_24 0x7f08009f
 int drawable baseline_logout_24 0x7f0800a0
 int drawable baseline_looks_3_24 0x7f0800a1
@@ -3113,6 +3115,8 @@ int drawable border4 0x7f0800b6
 int drawable border5 0x7f0800b7
 int drawable border_10 0x7f08016e
 int drawable border_11 0x7f08016f
+int drawable border_12 0x7f080178
+int drawable border_13 0x7f080179
 int drawable border_6 0x7f0800b8
 int drawable border_7 0x7f080170
 int drawable border_8 0x7f080171
@@ -3130,6 +3134,7 @@ int drawable btn_checkbox_unchecked_mtrl 0x7f0800c2
 int drawable btn_checkbox_unchecked_to_checked_mtrl_animation 0x7f0800c3
 int drawable btn_circle 0x7f0800c4
 int drawable btn_close 0x7f0800c5
+int drawable btn_comment 0x7f08017c
 int drawable btn_continue 0x7f0800c6
 int drawable btn_edit_activevoucher 0x7f080173
 int drawable btn_edit_inactive_voucher 0x7f080174
@@ -3465,6 +3470,7 @@ int id btn_chat 0x7f09009a
 int id btn_chat_as_customer 0x7f09009b
 int id btn_chat_with_customer 0x7f09009c
 int id btn_close 0x7f09009d
+int id btn_comment 0x7f0903d6
 int id btn_continue 0x7f09009e
 int id btn_local 0x7f09009f
 int id btn_login_email 0x7f0900a0
@@ -3488,8 +3494,6 @@ int id btn_submit 0x7f0900b1
 int id btn_unaccept 0x7f0903ce
 int id button 0x7f0900b2
 int id button1 0x7f09039f
-int id button2 0x7f0900b3
-int id button3 0x7f0900b4
 int id button5 0x7f0900b5
 int id buttonLike 0x7f0900b6
 int id buttonMap 0x7f0900b7
@@ -3557,6 +3561,7 @@ int id comment4 0x7f0900f2
 int id comment5 0x7f0900f3
 int id comment6 0x7f0900f4
 int id commentField 0x7f0903d2
+int id comment_notdone 0x7f0903d3
 int id compress 0x7f0900f5
 int id confirm_button 0x7f0900f6
 int id constraint 0x7f0900f7
@@ -3592,6 +3597,7 @@ int id customerName 0x7f090114
 int id cut 0x7f090115
 int id dark 0x7f090116
 int id date 0x7f090117
+int id dateComment 0x7f0903d5
 int id date_picker_actions 0x7f090118
 int id day 0x7f090119
 int id decelerate 0x7f09011a
@@ -3872,6 +3878,7 @@ int id mtrl_picker_text_input_range_start 0x7f09021f
 int id mtrl_picker_title_text 0x7f090220
 int id mtrl_view_tag_bottom_padding 0x7f090221
 int id multiply 0x7f090222
+int id myCommentField 0x7f0903d4
 int id my_profile 0x7f090223
 int id name 0x7f090224
 int id nameHotel 0x7f0903be
@@ -4235,6 +4242,7 @@ int id tvRating 0x7f090376
 int id tv_PhoneN 0x7f090377
 int id tv_email 0x7f090378
 int id tv_emailPhoneN 0x7f090379
+int id typeCustomer 0x7f0903d7
 int id type_room 0x7f09037a
 int id unchecked 0x7f09037b
 int id uniform 0x7f09037c
@@ -4401,7 +4409,6 @@ int layout browser_actions_context_menu_page 0x7f0c0021
 int layout browser_actions_context_menu_row 0x7f0c0022
 int layout cancel_purchase 0x7f0c0023
 int layout chat 0x7f0c0024
-int layout comment 0x7f0c0025
 int layout custom_active_purchase_adapter 0x7f0c0026
 int layout custom_active_purchase_detail 0x7f0c0027
 int layout custom_active_voucher_adapter 0x7f0c00a4
@@ -4409,13 +4416,14 @@ int layout custom_bookmark 0x7f0c0028
 int layout custom_chat 0x7f0c0029
 int layout custom_chat_detail 0x7f0c002a
 int layout custom_comment_detail 0x7f0c002b
-int layout custom_comment_form 0x7f0c002c
 int layout custom_dialog 0x7f0c002d
 int layout custom_hotel 0x7f0c002e
 int layout custom_hotel_comment 0x7f0c00ae
 int layout custom_hotel_detail 0x7f0c002f
 int layout custom_hotel_of_management_voucher 0x7f0c00ac
 int layout custom_inactive_voucher_adapter 0x7f0c00a5
+int layout custom_my_comment 0x7f0c00b0
+int layout custom_my_comment_form 0x7f0c00b1
 int layout custom_my_voucher_detail 0x7f0c0030
 int layout custom_password_dialog 0x7f0c0031
 int layout custom_past_cancel_purchase_adapter 0x7f0c0032
@@ -4447,7 +4455,6 @@ int layout design_text_input_end_icon 0x7f0c0047
 int layout design_text_input_start_icon 0x7f0c0048
 int layout empty_active_room 0x7f0c0049
 int layout empty_canceled_room 0x7f0c004a
-int layout empty_comment 0x7f0c004b
 int layout empty_past_room 0x7f0c004c
 int layout fragment_bookmark 0x7f0c004d
 int layout fragment_edit_info 0x7f0c004e
@@ -4521,6 +4528,7 @@ int layout notification_template_part_time 0x7f0c0091
 int layout popup_1 0x7f0c0093
 int layout popup_2 0x7f0c0094
 int layout popup_3 0x7f0c00af
+int layout popup_4 0x7f0c00b2
 int layout popup_description 0x7f0c0095
 int layout popup_find 0x7f0c0096
 int layout purchased 0x7f0c0097
@@ -4531,7 +4539,6 @@ int layout support_simple_spinner_dropdown_item 0x7f0c009c
 int layout tab_active_room 0x7f0c009d
 int layout tab_active_voucher 0x7f0c00aa
 int layout tab_canceled_room 0x7f0c009e
-int layout tab_comment 0x7f0c009f
 int layout tab_inactive_voucher 0x7f0c00ab
 int layout tab_login_email 0x7f0c00a0
 int layout tab_login_phone 0x7f0c00a1

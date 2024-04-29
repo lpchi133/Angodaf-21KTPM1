@@ -3083,10 +3083,12 @@ drawable baseline_info_outline_24
 drawable baseline_ios_share_24
 drawable baseline_keyboard_arrow_down_24
 drawable baseline_keyboard_arrow_down_black_24
+drawable baseline_king_bed_24
 drawable baseline_local_activity_24
 drawable baseline_local_phone_24
 drawable baseline_location_on_12
 drawable baseline_location_on_24
+drawable baseline_location_on_24_normal_color
 drawable baseline_lock_24
 drawable baseline_logout_24
 drawable baseline_looks_3_24
@@ -3114,6 +3116,8 @@ drawable border4
 drawable border5
 drawable border_10
 drawable border_11
+drawable border_12
+drawable border_13
 drawable border_6
 drawable border_7
 drawable border_8
@@ -3131,6 +3135,7 @@ drawable btn_checkbox_unchecked_mtrl
 drawable btn_checkbox_unchecked_to_checked_mtrl_animation
 drawable btn_circle
 drawable btn_close
+drawable btn_comment
 drawable btn_continue
 drawable btn_edit_activevoucher
 drawable btn_edit_inactive_voucher
@@ -3466,6 +3471,7 @@ id btn_chat
 id btn_chat_as_customer
 id btn_chat_with_customer
 id btn_close
+id btn_comment
 id btn_continue
 id btn_local
 id btn_login_email
@@ -3489,8 +3495,6 @@ id btn_submit
 id btn_unaccept
 id button
 id button1
-id button2
-id button3
 id button5
 id buttonLike
 id buttonMap
@@ -3558,6 +3562,7 @@ id comment4
 id comment5
 id comment6
 id commentField
+id comment_notdone
 id compress
 id confirm_button
 id constraint
@@ -3593,6 +3598,7 @@ id customerName
 id cut
 id dark
 id date
+id dateComment
 id date_picker_actions
 id day
 id decelerate
@@ -3873,6 +3879,7 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id mtrl_view_tag_bottom_padding
 id multiply
+id myCommentField
 id my_profile
 id name
 id nameHotel
@@ -4236,6 +4243,7 @@ id tvRating
 id tv_PhoneN
 id tv_email
 id tv_emailPhoneN
+id typeCustomer
 id type_room
 id unchecked
 id uniform
@@ -4402,7 +4410,6 @@ layout browser_actions_context_menu_page
 layout browser_actions_context_menu_row
 layout cancel_purchase
 layout chat
-layout comment
 layout custom_active_purchase_adapter
 layout custom_active_purchase_detail
 layout custom_active_voucher_adapter
@@ -4410,13 +4417,14 @@ layout custom_bookmark
 layout custom_chat
 layout custom_chat_detail
 layout custom_comment_detail
-layout custom_comment_form
 layout custom_dialog
 layout custom_hotel
 layout custom_hotel_comment
 layout custom_hotel_detail
 layout custom_hotel_of_management_voucher
 layout custom_inactive_voucher_adapter
+layout custom_my_comment
+layout custom_my_comment_form
 layout custom_my_voucher_detail
 layout custom_password_dialog
 layout custom_past_cancel_purchase_adapter
@@ -4448,7 +4456,6 @@ layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout empty_active_room
 layout empty_canceled_room
-layout empty_comment
 layout empty_past_room
 layout fragment_bookmark
 layout fragment_edit_info
@@ -4522,6 +4529,7 @@ layout notification_template_part_time
 layout popup_1
 layout popup_2
 layout popup_3
+layout popup_4
 layout popup_description
 layout popup_find
 layout purchased
@@ -4532,7 +4540,6 @@ layout support_simple_spinner_dropdown_item
 layout tab_active_room
 layout tab_active_voucher
 layout tab_canceled_room
-layout tab_comment
 layout tab_inactive_voucher
 layout tab_login_email
 layout tab_login_phone

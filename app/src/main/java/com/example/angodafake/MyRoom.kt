@@ -2,11 +2,13 @@ package com.example.angodafake
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,6 +28,8 @@ import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.NonCancellable.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import kotlin.coroutines.resume
 
 // TODO: Rename parameter arguments, choose names that match
@@ -71,10 +75,15 @@ class MyRoom(private var idUser: String) : Fragment() {
         }.attach()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private suspend fun createData() {
         upcomingList.clear()
         completedList.clear()
         canceledList.clear()
+
+        val temp1: MutableList<PurchaseExtra> = mutableListOf()
+        val temp2: MutableList<PurchaseExtra> = mutableListOf()
+        val temp3: MutableList<PurchaseExtra> = mutableListOf()
 
         // Suspend execution and wait for the callback to complete
         val allPurchases = suspendCancellableCoroutine<List<Purchase>> { continuation ->
@@ -110,11 +119,22 @@ class MyRoom(private var idUser: String) : Fragment() {
 
             temp = PurchaseExtra(purchase, hotel.name, picture.picture)
             when (purchase.detail) {
-                "SAP_TOI" -> upcomingList.add(temp)
-                "HOAN_TAT" -> completedList.add(temp)
-                "DA_HUY" -> canceledList.add(temp)
+                "SAP_TOI" -> temp1.add(temp)
+                "HOAN_TAT" -> temp2.add(temp)
+                "DA_HUY" -> temp3.add(temp)
             }
         }
+
+        val formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy")
+        upcomingList = temp1.sortedByDescending {
+            LocalDateTime.parse(it.Purchase?.time_booking, formatter)
+        }.toMutableList()
+        completedList = temp2.sortedByDescending {
+            LocalDateTime.parse(it.Purchase?.time_purchase, formatter)
+        }.toMutableList()
+        canceledList = temp3.sortedByDescending {
+            LocalDateTime.parse(it.Purchase?.time_cancel, formatter)
+        }.toMutableList()
 
         if (isActive) {
             HAVE_CONTENT = mutableListOf(
@@ -131,6 +151,7 @@ class MyRoom(private var idUser: String) : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launch {
@@ -243,6 +264,7 @@ class ObjectFragment : Fragment() {
 
                         linearAdapter2.onItemClick = { contact ->
                             val intent = Intent(requireContext(), PastCancelPurchaseDetail::class.java)
+                            intent.putExtra("id_purchase", contact.Purchase?.ID)
                             intent.putExtra("id_hotel", contact.Purchase?.ID_Hotel)
                             intent.putExtra("id_owner", contact.Purchase?.ID_Owner)
                             intent.putExtra("id_room", contact.Purchase?.ID_Room)
@@ -253,6 +275,7 @@ class ObjectFragment : Fragment() {
                             intent.putExtra("status_purchase", contact.Purchase?.status_purchase)
                             intent.putExtra("total_purchase", contact.Purchase?.total_purchase.toString())
                             intent.putExtra("reason", contact.Purchase?.reason)
+                            intent.putExtra("detail", contact.Purchase?.detail)
                             startActivity(intent)
                         }
                     } else {
@@ -277,6 +300,7 @@ class ObjectFragment : Fragment() {
 
                         linearAdapter2.onItemClick = { contact ->
                             val intent = Intent(requireContext(), PastCancelPurchaseDetail::class.java)
+                            intent.putExtra("id_purchase", contact.Purchase?.ID)
                             intent.putExtra("id_hotel", contact.Purchase?.ID_Hotel)
                             intent.putExtra("id_owner", contact.Purchase?.ID_Owner)
                             intent.putExtra("id_room", contact.Purchase?.ID_Room)
@@ -287,6 +311,7 @@ class ObjectFragment : Fragment() {
                             intent.putExtra("status_purchase", contact.Purchase?.status_purchase)
                             intent.putExtra("total_purchase", contact.Purchase?.total_purchase.toString())
                             intent.putExtra("reason", contact.Purchase?.reason)
+                            intent.putExtra("detail", contact.Purchase?.detail)
                             startActivity(intent)
                         }
                     } else {

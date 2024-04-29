@@ -24,16 +24,31 @@ data class Hotel(
     var clean: Double? =  0.0,
     var service: Double? = 0.0,
     var convenience: Double? = 0.0,
-    var total_comments: Int = 0) {
-    // Null default values create a no-argument default constructor, which is needed
-    // for deserialization from a DataSnapshot.
+    var total_comments: Int = 0
+    ) {
+    fun toMap(): Map<String, Any?> {
+        return mapOf(
+            "ID" to ID,
+            "ID_Owner" to ID_Owner,
+            "name" to name,
+            "phoneNumber" to phoneNumber,
+            "locationDetail" to locationDetail,
+            "city" to city,
+            "description" to description,
+            "conveniences" to conveniences,
+            "highlight" to highlight,
+            "star" to star,
+            "point" to point,
+            "profit" to profit,
+            "checkIn" to checkIn,
+            "checkOut" to checkOut,
+            "money" to money,
+            "money_rating" to money_rating,
+            "location" to location,
+            "clean" to clean,
+            "service" to service,
+            "convenience" to convenience,
+            "total_comments" to total_comments,
+        )
+    }
 }
-
-//@Query("Select * from hotel_db")
-//fun getHotelList() : List<Hotel>
-//@Query("SELECT * FROM hotel_db WHERE id = :hotel_id")
-//fun getHotelByID(hotel_id: Int): Hotel
-//@Query("SELECT * FROM hotel_db WHERE locationDetail = :hotel_location")
-//fun getHotelByLocation(hotel_location: String): Hotel
-//@Query("SELECT * FROM hotel_db WHERE name = :hotel_name")
-//fun getHotelByName(hotel_name: String): Hotel

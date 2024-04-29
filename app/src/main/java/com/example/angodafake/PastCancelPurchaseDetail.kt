@@ -16,6 +16,7 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import com.example.angodafake.Utilities.CommentUtils
 import com.example.angodafake.Utilities.HotelUtils
 import com.example.angodafake.Utilities.RoomUtils
 import com.example.angodafake.Utilities.UserUtils
@@ -35,6 +36,7 @@ class PastCancelPurchaseDetail : AppCompatActivity() {
     private lateinit var btnLocal: ImageButton
     private lateinit var btnChat: Button
     private lateinit var btnOrder: Button
+    private lateinit var btnComment: Button
 
     private lateinit var hotel: Hotel
     private lateinit var room: Rooms
@@ -115,13 +117,6 @@ class PastCancelPurchaseDetail : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.custom_past_cancel_purchase_detail)
 
-        val hotelID = intent.getStringExtra("id_hotel")
-        val ownerID = intent.getStringExtra("id_owner")
-        val roomID = intent.getStringExtra("id_room")
-        val roomquantity = intent.getStringExtra("quantity").toString()
-        val come = intent.getStringExtra("date_come").toString()
-        val go = intent.getStringExtra("date_go").toString()
-
         hotelName = findViewById(R.id.hotel_name)
         hotelStar = findViewById(R.id.ratingBar)
         hotelPhone = findViewById(R.id.hotel_phone)
@@ -144,6 +139,23 @@ class PastCancelPurchaseDetail : AppCompatActivity() {
         roomMethod = findViewById(R.id.payment_methods)
 
         reasoN = findViewById(R.id.reason)
+
+        btnComment = findViewById(R.id.btn_comment)
+
+        val purchaseID = intent.getStringExtra("id_purchase")
+        val hotelID = intent.getStringExtra("id_hotel")
+        val ownerID = intent.getStringExtra("id_owner")
+        val roomID = intent.getStringExtra("id_room")
+        val roomquantity = intent.getStringExtra("quantity").toString()
+        val come = intent.getStringExtra("date_come").toString()
+        val go = intent.getStringExtra("date_go").toString()
+
+        btnComment.visibility = View.GONE
+        CommentUtils.getCommentByIDPurchase(purchaseID!!) { comment ->
+            if (intent.getStringExtra("detail") == "HOAN_TAT" && comment.isEmpty()) {
+                btnComment.visibility = View.VISIBLE
+            }
+        }
 
         if (hotelID != null && ownerID != null && roomID != null) {
             HotelUtils.getHotelByID(hotelID) { h ->
@@ -260,6 +272,15 @@ class PastCancelPurchaseDetail : AppCompatActivity() {
             setResult(Activity.RESULT_OK, intent)
             startActivity(intent)
             finish()
+        }
+
+        btnComment.setOnClickListener {
+            val intent = Intent(this, MyCommentForm::class.java)
+            intent.putExtra("hotelName", hotelName.text)
+            intent.putExtra("ID_Owner", ownerID)
+            intent.putExtra("ID_Hotel", hotelID)
+            intent.putExtra("ID_Purchase", purchaseID)
+            startActivity(intent)
         }
     }
 }
