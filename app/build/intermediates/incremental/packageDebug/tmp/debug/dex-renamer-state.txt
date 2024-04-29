@@ -1,12 +1,12 @@
-#Fri Apr 19 20:38:29 ICT 2024
-base.0=C\:\\Bao\\Mobile\\Baitap\\new\\Mobile-21KTPM1-Group15\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=C\:\\Bao\\Mobile\\Baitap\\new\\Mobile-21KTPM1-Group15\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.2=C\:\\Bao\\Mobile\\Baitap\\new\\Mobile-21KTPM1-Group15\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\2\\classes.dex
-base.3=C\:\\Bao\\Mobile\\Baitap\\new\\Mobile-21KTPM1-Group15\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\3\\classes.dex
-base.4=C\:\\Bao\\Mobile\\Baitap\\new\\Mobile-21KTPM1-Group15\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\4\\classes.dex
-base.5=C\:\\Bao\\Mobile\\Baitap\\new\\Mobile-21KTPM1-Group15\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\7\\classes.dex
-base.6=C\:\\Bao\\Mobile\\Baitap\\new\\Mobile-21KTPM1-Group15\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\9\\classes.dex
-base.7=C\:\\Bao\\Mobile\\Baitap\\new\\Mobile-21KTPM1-Group15\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
+#Mon Apr 29 22:23:07 ICT 2024
+base.0=/Users/nguyenthanh/Mobile-21KTPM1-Group15/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+base.1=/Users/nguyenthanh/Mobile-21KTPM1-Group15/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
+base.2=/Users/nguyenthanh/Mobile-21KTPM1-Group15/app/build/intermediates/dex/debug/mergeProjectDexDebug/2/classes.dex
+base.3=/Users/nguyenthanh/Mobile-21KTPM1-Group15/app/build/intermediates/dex/debug/mergeProjectDexDebug/3/classes.dex
+base.4=/Users/nguyenthanh/Mobile-21KTPM1-Group15/app/build/intermediates/dex/debug/mergeProjectDexDebug/4/classes.dex
+base.5=/Users/nguyenthanh/Mobile-21KTPM1-Group15/app/build/intermediates/dex/debug/mergeProjectDexDebug/7/classes.dex
+base.6=/Users/nguyenthanh/Mobile-21KTPM1-Group15/app/build/intermediates/dex/debug/mergeProjectDexDebug/9/classes.dex
+base.7=/Users/nguyenthanh/Mobile-21KTPM1-Group15/app/build/intermediates/dex/debug/mergeExtDexDebug/classes2.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=2/classes.dex

@@ -143,6 +143,8 @@ id PriceAfterPromotion
 id Price_high
 id Price_low
 id Promotion
+id QRCode
+id QRcode
 id a1
 id activeList
 id actvCountry

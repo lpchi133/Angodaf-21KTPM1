@@ -626,10 +626,27 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/group_button"
+                android:id="@+id/QRcode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/thanh_toan"
+                android:layout_marginVertical="10dp"
+                android:padding="10dp"
+                android:background="@drawable/border">
+
+                <ImageView
+                    android:id="@+id/QRCode"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_centerInParent="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/group_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/QRcode"
                 android:layout_marginVertical="10dp"
                 android:padding="10dp"
                 android:background="@drawable/border">

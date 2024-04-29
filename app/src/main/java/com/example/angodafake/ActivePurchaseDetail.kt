@@ -3,6 +3,8 @@ package com.example.angodafake
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -22,6 +24,9 @@ import com.example.angodafake.Utilities.UserUtils
 import com.example.angodafake.db.Hotel
 import com.example.angodafake.db.Rooms
 import com.example.angodafake.db.User
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.WriterException
+import com.google.zxing.qrcode.QRCodeWriter
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.time.LocalDate
@@ -64,6 +69,7 @@ class ActivePurchaseDetail : AppCompatActivity() {
     private lateinit var total: TextView
     private lateinit var roomMethod: TextView
 
+    private lateinit var QRCode: ImageView
     @RequiresApi(Build.VERSION_CODES.O)
     fun format (temp: String) : String {
         val inputFormatter = DateTimeFormatter.ofPattern("d/M/yyyy")
@@ -142,6 +148,9 @@ class ActivePurchaseDetail : AppCompatActivity() {
         roomTax = findViewById(R.id.tax)
         total = findViewById(R.id.total)
         roomMethod = findViewById(R.id.payment_methods)
+
+        QRCode = findViewById(R.id.QRCode)
+        QRCode(purchaseID.toString(), QRCode)
 
         if (hotelID != null && ownerID != null && roomID != null) {
             HotelUtils.getHotelByID(hotelID) {h ->
@@ -246,4 +255,20 @@ class ActivePurchaseDetail : AppCompatActivity() {
     }
 }
 
-
+private fun QRCode(purchaseID: String, QRCode: ImageView){
+    val writer = QRCodeWriter()
+    try {
+        val bitMatrix = writer.encode(purchaseID.trim(), BarcodeFormat.QR_CODE, 512, 512)
+        val width = bitMatrix.width
+        val height = bitMatrix.height
+        val bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
+        for (x in 0 until width){
+            for(y in 0 until height){
+                bmp.setPixel(x, y, if (bitMatrix[x, y]) Color.BLACK else Color.WHITE)
+            }
+        }
+        QRCode.setImageBitmap(bmp)
+    } catch (e: WriterException){
+        e.printStackTrace()
+    }
+}
