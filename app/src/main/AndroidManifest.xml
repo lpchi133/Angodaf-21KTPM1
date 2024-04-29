@@ -35,9 +35,6 @@
             android:name=".HotelOfManagementVoucher"
             android:exported="false" />
         <activity
-            android:name=".Hotel_Voucher"
-            android:exported="false" />
-        <activity
             android:name=".Adapter.VoucherAdapter"
             android:exported="false" />
         <activity

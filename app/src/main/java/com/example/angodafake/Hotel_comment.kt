@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
@@ -14,6 +15,7 @@ import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,6 +28,7 @@ class Hotel_comment : AppCompatActivity() {
     private var commentList: MutableList<Comment> = mutableListOf()
     private var filterList: MutableList<Comment> = mutableListOf()
     private lateinit var commentField: RecyclerView
+    private lateinit var emptyField: RelativeLayout
     private var choice: Int = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,21 +78,30 @@ class Hotel_comment : AppCompatActivity() {
         val money2:TextView = findViewById(R.id.point_condition5)
         money2.text = moneyDouble.toString()
 
-        val layoutManager: RecyclerView.LayoutManager
+        var layoutManager: RecyclerView.LayoutManager
         var linearAdapter: CommentAdapter
-
-        commentField = findViewById(R.id.commentField)
-
-        layoutManager = LinearLayoutManager(this)
-        commentField.layoutManager = layoutManager
-        commentField.setHasFixedSize(true)
 
         CommentUtils.getCommentsByIDHotel(intent.getStringExtra("idHotel")!!) {comments ->
             commentList.clear()
             commentList = comments
 
-            linearAdapter = CommentAdapter(this, commentList)
-            commentField.adapter = linearAdapter
+            emptyField = findViewById(R.id.emptyField)
+            commentField = findViewById(R.id.commentField)
+
+            if (commentList.isEmpty()) {
+                emptyField.visibility = View.VISIBLE
+                commentField.visibility = View.GONE
+            } else {
+                emptyField.visibility = View.GONE
+                commentField.visibility = View.VISIBLE
+
+                layoutManager = LinearLayoutManager(this)
+                commentField.layoutManager = layoutManager
+                commentField.setHasFixedSize(true)
+
+                linearAdapter = CommentAdapter(this, commentList)
+                commentField.adapter = linearAdapter
+            }
         }
 
         val btnSort:TextView = findViewById(R.id.button)
@@ -207,8 +219,16 @@ class Hotel_comment : AppCompatActivity() {
 
             val btnAccept: Button = dialogView.findViewById(R.id.btn_accept)
             btnAccept.setOnClickListener {
-                linearAdapter = CommentAdapter(this, filterList)
-                commentField.adapter = linearAdapter
+                if (filterList.isEmpty()) {
+                    emptyField.visibility = View.VISIBLE
+                    commentField.visibility = View.GONE
+                } else {
+                    emptyField.visibility = View.GONE
+                    commentField.visibility = View.VISIBLE
+
+                    linearAdapter = CommentAdapter(this, filterList)
+                    commentField.adapter = linearAdapter
+                }
 
                 dialog.dismiss()
             }

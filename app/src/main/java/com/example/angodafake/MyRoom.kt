@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.RelativeLayout
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -61,6 +62,9 @@ class MyRoom(private var idUser: String) : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var collectionAdapter: CollectionAdapter
+
+    private lateinit var loading: RelativeLayout
+    private lateinit var content: RelativeLayout
     fun getUserId(): String {
         return idUser
     }
@@ -68,6 +72,12 @@ class MyRoom(private var idUser: String) : Fragment() {
         collectionAdapter = CollectionAdapter(this)
         val tabHandler = requireView().findViewById<TabLayout>(R.id.tab_handler)
         val viewPager = requireView().findViewById<ViewPager2>(R.id.pager)
+
+        loading = requireView().findViewById(R.id.loading)
+        content = requireView().findViewById(R.id.content)
+
+        loading.visibility = View.VISIBLE
+        content.visibility = View.GONE
 
         viewPager.adapter = collectionAdapter
         TabLayoutMediator(tabHandler, viewPager) { tab, position ->
@@ -157,6 +167,9 @@ class MyRoom(private var idUser: String) : Fragment() {
         lifecycleScope.launch {
             createData()
             loadData()
+
+            loading.visibility = View.GONE
+            content.visibility = View.VISIBLE
         }
     }
     override fun onCreateView(

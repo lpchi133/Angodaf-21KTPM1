@@ -289,6 +289,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/buttonField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/chart"
@@ -318,6 +319,24 @@
                     android:layout_below="@+id/button"
                     android:background="#DDDDDD"
                     android:paddingHorizontal="10dp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/emptyField"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@id/buttonField"
+                android:gravity="center"
+                android:background="@drawable/beach1">
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chưa có đánh giá"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
             </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
