@@ -3450,6 +3450,7 @@ int id browser_actions_menu_item_icon 0x7f090093
 int id browser_actions_menu_item_text 0x7f090094
 int id browser_actions_menu_items 0x7f090095
 int id browser_actions_menu_view 0x7f090096
+int id btn_add 0x7f0903cf
 int id btn_add_hotel 0x7f090097
 int id btn_back 0x7f090098
 int id btn_bookmark 0x7f090099
@@ -3476,6 +3477,7 @@ int id btn_order2 0x7f0900ad
 int id btn_order3 0x7f0900ae
 int id btn_profile 0x7f0900af
 int id btn_register 0x7f0900b0
+int id btn_remove 0x7f0903d0
 int id btn_removeorder 0x7f0900b1
 int id btn_reorder 0x7f0900b2
 int id btn_reorder1 0x7f0900b3
@@ -3487,7 +3489,6 @@ int id btn_upload 0x7f0903c3
 int id button 0x7f0900b8
 int id button2 0x7f0900b9
 int id button3 0x7f0900ba
-int id button4 0x7f0903c4
 int id button5 0x7f0900bb
 int id buttonLike 0x7f0900bc
 int id buttonMap 0x7f0900bd
@@ -3506,6 +3507,7 @@ int id cardExp 0x7f0900c9
 int id cardInfor 0x7f0900ca
 int id cardNumber 0x7f0900cb
 int id cardOwner 0x7f0900cc
+int id cardView 0x7f0903d1
 int id carryVelocity 0x7f0900cd
 int id cashChoice 0x7f0900ce
 int id cbDaLat 0x7f0900cf
@@ -3514,6 +3516,7 @@ int id cbHCM 0x7f0900d1
 int id cbHaiPhong 0x7f0900d2
 int id cbHanoi 0x7f0900d3
 int id cbNhaTrang 0x7f0900d4
+int id cb_momo 0x7f0903c9
 int id center 0x7f0900d5
 int id centerCrop 0x7f0900d6
 int id centerInside 0x7f0900d7
@@ -3643,6 +3646,7 @@ int id endToStart 0x7f090152
 int id enterAlways 0x7f090153
 int id enterAlwaysCollapsed 0x7f090154
 int id errorText 0x7f090155
+int id errorText_payment 0x7f0903ca
 int id et_Password 0x7f090156
 int id exitUntilCollapsed 0x7f090157
 int id expand_activities_button 0x7f090158
@@ -3755,6 +3759,7 @@ int id lEmailOrPhoneN 0x7f0901c0
 int id lHighlight 0x7f0901c1
 int id lHotelName 0x7f0901c2
 int id lLocationDetail 0x7f0901c3
+int id lMerchantCode 0x7f0903cb
 int id lName 0x7f0901c4
 int id lPass 0x7f0901c5
 int id lPass2 0x7f0901c6
@@ -3958,7 +3963,6 @@ int id profile 0x7f09028b
 int id profileTittle 0x7f09028c
 int id progressBar 0x7f09028d
 int id progressBar1 0x7f0903c7
-int id progressBar10 0x7f09028e
 int id progressBar11 0x7f09028f
 int id progressBar2 0x7f0903c8
 int id progress_circular 0x7f090290
@@ -4226,7 +4230,10 @@ int id tv_fiveStar 0x7f090395
 int id tv_fourStar 0x7f090396
 int id tv_highlight 0x7f090397
 int id tv_locationDetail 0x7f090398
+int id tv_merchantCode 0x7f0903cc
+int id tv_momoGuide 0x7f0903cd
 int id tv_oneStar 0x7f090399
+int id tv_paymentMethods 0x7f0903ce
 int id tv_sub_highlight 0x7f09039a
 int id tv_threeStar 0x7f09039b
 int id tv_twoStar 0x7f09039c

@@ -74,9 +74,6 @@ class AddHotelFragment(private var idUser: String) : Fragment() {
     private lateinit var errorText : TextView
 
     private lateinit var cb_momo: CheckBox
-    private lateinit var tv_merchantName : TextView
-    private lateinit var lMerchantName : TextInputLayout
-    private lateinit var et_merchantName : TextInputEditText
     private lateinit var tv_merchantCode : TextView
     private lateinit var lMerchantCode : TextInputLayout
     private lateinit var et_merchantCode :TextInputEditText
@@ -101,6 +98,36 @@ class AddHotelFragment(private var idUser: String) : Fragment() {
         val cities = resources.getStringArray(R.array.cities)
         val adapterActv = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, cities)
         actvCity.setAdapter(adapterActv)
+
+        et_hotelName.setOnClickListener {
+            lHotelName.error = null
+        }
+        actvCity.setOnClickListener {
+            lCity.error = null
+        }
+        et_locationDetail.setOnClickListener {
+            lLocationDetail.error = null
+        }
+        et_phoneN.setOnClickListener {
+            lPhoneN.error = null
+        }
+        et_description.setOnClickListener {
+            lDescription.error = null
+        }
+        et_conveniences.setOnClickListener {
+            lConveniences.error = null
+        }
+        et_highlight.setOnClickListener {
+            lHighlight.error = null
+        }
+        et_checkin.setOnClickListener {
+            lCheckIn.error = null
+            errorText.visibility = View.GONE
+        }
+        et_checkout.setOnClickListener {
+            lCheckOut.error = null
+            errorText.visibility = View.GONE
+        }
 
         ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
             displayStarText(rating.toInt())
@@ -166,15 +193,14 @@ class AddHotelFragment(private var idUser: String) : Fragment() {
 
         btn_next.setOnClickListener {
             if (checkAll()){
-                val mainActivity = requireActivity() as MainActivity
-                mainActivity.replaceFragment(addHotelImageFragment(idUser))
+                nextStepWithData()
             }
         }
 
-        if (checkAll()){
-            progressBar2.setOnClickListener {
-                val mainActivity = requireActivity() as MainActivity
-                mainActivity.replaceFragment(addHotelImageFragment(idUser))
+
+        progressBar2.setOnClickListener {
+            if (checkAll()){
+                nextStepWithData()
             }
         }
         return view
@@ -248,7 +274,6 @@ class AddHotelFragment(private var idUser: String) : Fragment() {
         et_description.clearFocus()
         et_conveniences.clearFocus()
         et_highlight.clearFocus()
-        et_merchantName.clearFocus()
         et_merchantCode.clearFocus()
     }
     fun hideKeyboard(activity: Activity) {
@@ -282,35 +307,55 @@ class AddHotelFragment(private var idUser: String) : Fragment() {
             check = false
         if (isCheckEmpty(lCheckIn, et_checkin, "!") || isCheckEmpty(lCheckOut, et_checkout, "!"))
             check = false
-        if (validateCheckin())
+        if (!validateCheckin())
             check = false
         if (cb_momo.isChecked){
-            if (isCheckEmpty(lMerchantName, et_merchantName, "Tên doanh nghiệp"))
-                check = false
             if (isCheckEmpty(lMerchantCode, et_merchantCode, "Mã doanh nghiệp"))
                 check = false
         }
         if (!cb_momo.isChecked){
             errorText_payment.visibility = View.VISIBLE
+            check = false
         }
         return check
     }
 
     private fun displayMomoMethod(){
-        tv_merchantName.visibility = View.VISIBLE
-        et_merchantName.visibility = View.VISIBLE
         tv_merchantCode.visibility = View.VISIBLE
-        et_merchantCode.visibility = View.VISIBLE
+        lMerchantCode.visibility = View.VISIBLE
         tv_momoGuide.visibility = View.VISIBLE
     }
     private fun hideMomoMethod(){
-        tv_merchantName.visibility = View.GONE
-        et_merchantName.visibility = View.GONE
         tv_merchantCode.visibility = View.GONE
-        et_merchantCode.visibility = View.GONE
+        lMerchantCode.visibility = View.GONE
         tv_momoGuide.visibility = View.GONE
     }
 
+    private fun nextStepWithData(){
+        val arg = Bundle()
+
+        arg.putString("hotelName", et_hotelName.text.toString().trim())
+        arg.putString("city", actvCity.text.toString().trim())
+        arg.putString("locationDetail", et_locationDetail.text.toString().trim())
+        arg.putInt("star", ratingBar.rating.toInt())
+        arg.putString("phoneN", et_phoneN.text.toString().trim())
+        arg.putString("description", et_description.text.toString().trim())
+        arg.putString("convenient", et_conveniences.text.toString().trim())
+        arg.putString("highlight", et_highlight.text.toString().trim())
+        arg.putString("checkin", et_checkin.text.toString().trim())
+        arg.putString("checkout", et_checkout.text.toString().trim())
+        arg.putString("merchantCode", et_merchantCode.text.toString().trim())
+
+        if (arguments?.getStringArrayList("pics") != null){
+            arg.putStringArrayList("pics", arguments?.getStringArrayList("pics"))
+        }
+
+        val addHotelImageFragment = addHotelImageFragment(idUser)
+        addHotelImageFragment.arguments = arg
+
+        val mainActivity = requireActivity() as MainActivity
+        mainActivity.replaceFragment(addHotelImageFragment)
+    }
 
     private fun initUI(view: View){
         btn_back = view.findViewById(R.id.btn_back)
@@ -344,40 +389,37 @@ class AddHotelFragment(private var idUser: String) : Fragment() {
         errorText = view.findViewById(R.id.errorText)
 
         cb_momo = view.findViewById(R.id.cb_momo)
-        tv_merchantName = view.findViewById(R.id.tv_merchantName)
-        lMerchantName = view.findViewById(R.id.lMerchantName)
-        et_merchantName = lMerchantName.editText as TextInputEditText
         tv_merchantCode = view.findViewById(R.id.tv_merchantCode)
         lMerchantCode = view.findViewById(R.id.lMerchantCode)
-        et_merchantCode = lMerchantName.editText as TextInputEditText
+        et_merchantCode  = lMerchantCode.editText as TextInputEditText
         tv_momoGuide = view.findViewById(R.id.tv_momoGuide)
         errorText_payment = view.findViewById(R.id.errorText_payment)
 
+        val hotelName = arguments?.getString("hotelName")
+        if (hotelName != null) {
+            et_hotelName.text = Editable.Factory.getInstance().newEditable(arguments?.getString("hotelName"))
+            actvCity.text = Editable.Factory.getInstance().newEditable(arguments?.getString("city"))
+            et_locationDetail.text = Editable.Factory.getInstance().newEditable(arguments?.getString("locationDetail"))
+            val star = arguments?.getInt("star")
+            if (star != null) {
+                ratingBar.rating = star.toFloat()
+                displayStarText(star)
+            }
 
-        et_hotelName.text = Editable.Factory.getInstance().newEditable(arguments?.getString("hotelName"))
-        actvCity.text = Editable.Factory.getInstance().newEditable(arguments?.getString("city"))
-        et_locationDetail.text = Editable.Factory.getInstance().newEditable(arguments?.getString("locationDetail"))
-        val star = arguments?.getInt("star")
-        if (star != null) {
-            ratingBar.rating = star.toFloat()
-            displayStarText(star)
+            et_phoneN.text = Editable.Factory.getInstance().newEditable(arguments?.getString("phoneN"))
+            et_description.text = Editable.Factory.getInstance().newEditable(arguments?.getString("description"))
+            et_conveniences.text = Editable.Factory.getInstance().newEditable(arguments?.getString("convenient"))
+            et_highlight.text = Editable.Factory.getInstance().newEditable(arguments?.getString("highlight"))
+            et_checkin.text = Editable.Factory.getInstance().newEditable(arguments?.getString("checkin"))
+            et_checkout.text = Editable.Factory.getInstance().newEditable(arguments?.getString("checkout"))
+
+            val merchantCode = arguments?.getString("merchantCode")
+            if (merchantCode != null){
+                cb_momo.isChecked = true
+                displayMomoMethod()
+                et_merchantCode.text = Editable.Factory.getInstance().newEditable(arguments?.getString("merchantCode"))
+            }
         }
-
-        et_phoneN.text = Editable.Factory.getInstance().newEditable(arguments?.getString("phoneN"))
-        et_description.text = Editable.Factory.getInstance().newEditable(arguments?.getString("description"))
-        et_conveniences.text = Editable.Factory.getInstance().newEditable(arguments?.getString("convenient"))
-        et_highlight.text = Editable.Factory.getInstance().newEditable(arguments?.getString("highlight"))
-        et_checkin.text = Editable.Factory.getInstance().newEditable(arguments?.getString("checkin"))
-        et_checkout.text = Editable.Factory.getInstance().newEditable(arguments?.getString("checkout"))
-
-        val merchantName = arguments?.getString("merchantName")
-        if (merchantName != null){
-            cb_momo.isChecked = true
-            displayMomoMethod()
-            et_merchantName.text = Editable.Factory.getInstance().newEditable(merchantName)
-            et_merchantCode.text = Editable.Factory.getInstance().newEditable(arguments?.getString("merchantCode"))
-        }
-
     }
 
     companion object {

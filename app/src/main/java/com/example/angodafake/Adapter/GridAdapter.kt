@@ -1,22 +1,27 @@
 package com.example.angodafake.Adapter
 
 import android.content.Context
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import com.example.angodafake.R
-import com.example.angodafake.db.Picture_Hotel
+import com.google.firebase.Firebase
+import com.google.firebase.storage.storage
 import com.squareup.picasso.Picasso
 
-class GridAdapter(private var context: Context, private var imgList: ArrayList<Picture_Hotel>) : BaseAdapter() {
+class GridAdapter(private var context: Context, private var imgList: ArrayList<String>) : BaseAdapter() {
     private class ViewHolder(row: View?){
         var pic: ImageView? = null
+        var btn_remove: Button? = null
+        val storageRef = Firebase.storage.reference
 
         init{
             pic = row?.findViewById(R.id.gridImage)
+            btn_remove = row?.findViewById(R.id.btn_remove)
         }
     }
 
@@ -47,9 +52,18 @@ class GridAdapter(private var context: Context, private var imgList: ArrayList<P
         }
 
         val pic = imgList[position]
-        Picasso.get().load(pic.picture)
+        Picasso.get().load(pic)
             .into(viewHolder.pic!!)
 
+        viewHolder.btn_remove?.setOnClickListener {
+            viewHolder.storageRef.child(pic.substring(pic.lastIndexOf('/') + 1, pic.indexOf('?'))).delete().addOnSuccessListener {
+                imgList.removeAt(position)
+                notifyDataSetChanged()
+            }.addOnFailureListener {
+                Toast.makeText(this.context, pic, Toast.LENGTH_SHORT).show()
+            }
+
+        }
         return view
     }
 

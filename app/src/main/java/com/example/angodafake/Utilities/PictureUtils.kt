@@ -15,7 +15,6 @@ object PictureUtils {
 
     init {
         database = Firebase.database.reference
-
     }
 
     fun getHotelPicturesList(ID_Hotel: String, listener: (ArrayList<Picture_Hotel>) -> Unit){
@@ -38,6 +37,18 @@ object PictureUtils {
                 // Xử lý khi có lỗi xảy ra
             }
         })
+    }
+    fun addHotelPictures(ID_Hotel: String, pics: ArrayList<String>){
+        val pictureQuery = database.child("hotel_pictures").child(ID_Hotel)
+        for (pic in pics){
+            val key = pictureQuery.push().key
+            if (key != null){
+                pictureQuery.child(key).setValue(pic)
+            } else{
+                Log.e("firebase", "Counldn't get push key for hotel_pictures")
+            }
+
+        }
     }
     fun getPictureByHotelID(ID: String, listener: (Picture_Hotel) -> Unit){
         val pictureQuery = database.child("pictures").orderByChild("ID_Hotel").equalTo(ID)

@@ -3451,6 +3451,7 @@ id browser_actions_menu_item_icon
 id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
+id btn_add
 id btn_add_hotel
 id btn_back
 id btn_bookmark
@@ -3477,6 +3478,7 @@ id btn_order2
 id btn_order3
 id btn_profile
 id btn_register
+id btn_remove
 id btn_removeorder
 id btn_reorder
 id btn_reorder1
@@ -3488,7 +3490,6 @@ id btn_upload
 id button
 id button2
 id button3
-id button4
 id button5
 id buttonLike
 id buttonMap
@@ -3507,6 +3508,7 @@ id cardExp
 id cardInfor
 id cardNumber
 id cardOwner
+id cardView
 id carryVelocity
 id cashChoice
 id cbDaLat
@@ -3515,6 +3517,7 @@ id cbHCM
 id cbHaiPhong
 id cbHanoi
 id cbNhaTrang
+id cb_momo
 id center
 id centerCrop
 id centerInside
@@ -3644,6 +3647,7 @@ id endToStart
 id enterAlways
 id enterAlwaysCollapsed
 id errorText
+id errorText_payment
 id et_Password
 id exitUntilCollapsed
 id expand_activities_button
@@ -3756,6 +3760,7 @@ id lEmailOrPhoneN
 id lHighlight
 id lHotelName
 id lLocationDetail
+id lMerchantCode
 id lName
 id lPass
 id lPass2
@@ -3959,7 +3964,6 @@ id profile
 id profileTittle
 id progressBar
 id progressBar1
-id progressBar10
 id progressBar11
 id progressBar2
 id progress_circular
@@ -4227,7 +4231,10 @@ id tv_fiveStar
 id tv_fourStar
 id tv_highlight
 id tv_locationDetail
+id tv_merchantCode
+id tv_momoGuide
 id tv_oneStar
+id tv_paymentMethods
 id tv_sub_highlight
 id tv_threeStar
 id tv_twoStar

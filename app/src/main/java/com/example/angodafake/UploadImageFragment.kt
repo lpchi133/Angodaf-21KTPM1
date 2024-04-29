@@ -22,8 +22,6 @@ import com.google.firebase.storage.storage
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -32,22 +30,18 @@ private const val ARG_PARAM2 = "param2"
  */
 class UploadImageFragment(private var idUser: String) : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
+    private lateinit var btn_back : Button
     private lateinit var btn_upload: Button
     private lateinit var uploadImage: ImageView
     private lateinit var progressBar: ProgressBar
     private var imageUri: Uri? = null
 
-    private var databaseRef = Firebase.database.reference.child("hotel_pictures/1")
     private val storageRef = Firebase.storage.reference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
         }
     }
 
@@ -58,6 +52,10 @@ class UploadImageFragment(private var idUser: String) : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_upload_image, container, false)
         initUI(view)
+
+        btn_back.setOnClickListener {
+            prevStepWithData("")
+        }
 
         progressBar.visibility = View.INVISIBLE
 
@@ -95,17 +93,8 @@ class UploadImageFragment(private var idUser: String) : Fragment() {
         imgRef.putFile(imageUri)
             .addOnSuccessListener {
                 imgRef.downloadUrl.addOnSuccessListener {
-                    val picture = Picture_Hotel(null, null, it.toString())
-                    val key = databaseRef.push().key
-                    if (key != null){
-                        databaseRef.child(key).setValue(picture)
-                        progressBar.visibility = View.INVISIBLE
-                        val mainActivity = requireActivity() as MainActivity
-                        mainActivity.replaceFragment(addHotelImageFragment(idUser))
-                    } else{
-                        Toast.makeText(requireContext(), "Counldn't get push key for hotel_pictures", Toast.LENGTH_SHORT).show()
-                    }
-
+                    progressBar.visibility = View.INVISIBLE
+                    prevStepWithData(it.toString())
                 }
             }.addOnProgressListener {
                 progressBar.visibility = View.VISIBLE
@@ -121,7 +110,36 @@ class UploadImageFragment(private var idUser: String) : Fragment() {
         return mime.getExtensionFromMimeType(contentResolver.getType(imageUri))!!
     }
 
+    private fun prevStepWithData(pic : String){
+        val arg = Bundle()
+
+        arg.putString("hotelName", arguments?.getString("hotelName"))
+        arg.putString("city", arguments?.getString("city"))
+        arg.putString("locationDetail", arguments?.getString("locationDetail"))
+        arg.putInt("star", arguments?.getInt("star")!!)
+        arg.putString("phoneN", arguments?.getString("phoneN"))
+        arg.putString("description", arguments?.getString("description"))
+        arg.putString("convenient", arguments?.getString("convenient"))
+        arg.putString("highlight", arguments?.getString("highlight"))
+        arg.putString("checkin", arguments?.getString("checkin"))
+        arg.putString("checkout", arguments?.getString("checkout"))
+        arg.putString("merchantCode", arguments?.getString("merchantCode"))
+
+        if (pic != ""){
+            val pics = arguments?.getStringArrayList("pics")
+            pics?.add(pic)
+            arg.putStringArrayList("pics", pics)
+        }
+
+        val addHotelImageFragment = addHotelImageFragment(idUser)
+        addHotelImageFragment.arguments = arg
+
+        val mainActivity = requireActivity() as MainActivity
+        mainActivity.replaceFragment(addHotelImageFragment)
+    }
+
     private fun initUI(view: View){
+        btn_back = view.findViewById(R.id.btn_back)
         btn_upload = view.findViewById(R.id.btn_upload)
         uploadImage = view.findViewById(R.id.uploadImage)
         progressBar = view.findViewById(R.id.progressBar)
@@ -137,11 +155,9 @@ class UploadImageFragment(private var idUser: String) : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String, idUser: String) =
+        fun newInstance(idUser: String) =
             UploadImageFragment(idUser).apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
                 }
             }
     }

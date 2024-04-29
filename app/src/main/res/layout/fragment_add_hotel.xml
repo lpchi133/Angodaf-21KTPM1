@@ -542,49 +542,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_paymentMethods"/>
 
             <TextView
-                android:id="@+id/tv_merchantName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:text="Tên doanh nghiệp"
-                android:textColor="@color/black"
-                android:visibility="gone"
-                app:layout_constraintStart_toStartOf="@+id/cb_momo"
-                app:layout_constraintTop_toBottomOf="@+id/cb_momo" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/lMerchantName"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:visibility="gone"
-                app:boxStrokeColor="@color/blue"
-                app:cursorColor="@color/black"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="@+id/lay2"
-                app:layout_constraintStart_toStartOf="@+id/tv_merchantName"
-                app:layout_constraintTop_toBottomOf="@+id/tv_merchantName">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:hint="Ví dụ: HoangNgoc"
-                    android:inputType="text"
-                    android:textSize="14sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
                 android:id="@+id/tv_merchantCode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
                 android:text="Mã doanh nghiệp"
                 android:textColor="@color/black"
                 android:visibility="gone"
-                app:layout_constraintStart_toStartOf="@+id/tv_merchantName"
-                app:layout_constraintTop_toBottomOf="@+id/lMerchantName" />
+                app:layout_constraintStart_toStartOf="@+id/cb_momo"
+                app:layout_constraintTop_toBottomOf="@+id/cb_momo" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/lMerchantCode"
@@ -597,7 +564,7 @@
                 app:hintEnabled="false"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@+id/lay2"
-                app:layout_constraintStart_toStartOf="@+id/lMerchantName"
+                app:layout_constraintStart_toStartOf="@+id/tv_merchantCode"
                 app:layout_constraintTop_toBottomOf="@+id/tv_merchantCode">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -615,7 +582,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:autoLink="web"
-                android:text="@string/link_momo_guidelines"
+                android:text="Bạn chưa có tài khoản Momo Doanh nghiệp?\nĐăng ký tại https://business.momo.vn"
                 android:textColor="@color/black"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"

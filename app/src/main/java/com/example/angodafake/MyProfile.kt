@@ -67,18 +67,12 @@ class MyProfile(private var idUser: String) : Fragment() {
             val arg = Bundle()
 
             arg.putString("from", "MyProfile")
-
-            val mainActivity = requireActivity() as MainActivity
-            mainActivity.binding.bottomNavigationView.selectedItemId = R.id.hotel
-
             val AddHotelFragment = AddHotelFragment(idUser)
             AddHotelFragment.arguments = arg
 
-            val fragmentManager = requireActivity().supportFragmentManager
-            fragmentManager.beginTransaction()
-                .replace(R.id.frameLayout, AddHotelFragment)
-                .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
-                .commit()
+            val mainActivity = requireActivity() as MainActivity
+            mainActivity.binding.bottomNavigationView.selectedItemId = R.id.hotel
+            mainActivity.replaceFragment(AddHotelFragment)
         }
 
         btn_logout.setOnClickListener {
