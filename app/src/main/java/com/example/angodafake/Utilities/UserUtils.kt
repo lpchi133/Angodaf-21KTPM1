@@ -13,8 +13,6 @@ import kotlinx.coroutines.tasks.await
 
 object UserUtils {
     private var database: DatabaseReference = Firebase.database.reference
-
-
     fun getUserByID(ID: String, listener: (User) -> Unit){
         val usersQuery = database.child("users/$ID")
         usersQuery.addListenerForSingleValueEvent(object : ValueEventListener {

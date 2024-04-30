@@ -3109,7 +3109,9 @@ drawable baseline_thumb_down_24
 drawable baseline_thumb_up_24
 drawable baseline_verified_user_24
 drawable baseline_x
+drawable bg_add_first_room
 drawable bg_add_imgs
+drawable bg_upload_room_img
 drawable border
 drawable border1
 drawable border2
@@ -3390,6 +3392,7 @@ id actvCountry
 id add
 id addHotelImageFragment
 id addHotel_title
+id addRoom_title
 id address
 id address_hotel
 id adjust_height
@@ -3747,6 +3750,8 @@ id italic
 id item_touch_helper_previous_elevation
 id jumpToEnd
 id jumpToStart
+id lAcreage
+id lBenefit
 id lCheckIn
 id lCheckOut
 id lCity
@@ -3754,7 +3759,9 @@ id lConfirmPass
 id lConveniences
 id lCountry
 id lDescription
+id lDirection
 id lDob
+id lDoubleBed
 id lEmail
 id lEmailOrPhoneN
 id lHighlight
@@ -3765,6 +3772,10 @@ id lName
 id lPass
 id lPass2
 id lPhoneN
+id lPrice
+id lQuantity
+id lRoomType
+id lSingleBed
 id labeled
 id lay1
 id lay2
@@ -3772,6 +3783,7 @@ id lay3
 id lay4
 id layout
 id layout_addHotel_title
+id layout_addRoom_title
 id layout_editInfo_title
 id layout_signup_title
 id left
@@ -4217,6 +4229,7 @@ id transition_transform
 id traphong
 id triangle
 id tv
+id tv2
 id tvCity
 id tvPrice
 id tvRating
@@ -4225,6 +4238,8 @@ id tv_checkin
 id tv_checkout
 id tv_conveniences
 id tv_description
+id tv_direction
+id tv_double_bed
 id tv_email
 id tv_emailPhoneN
 id tv_fiveStar
@@ -4235,6 +4250,8 @@ id tv_merchantCode
 id tv_momoGuide
 id tv_oneStar
 id tv_paymentMethods
+id tv_price
+id tv_quantity
 id tv_sub_highlight
 id tv_threeStar
 id tv_twoStar
@@ -4440,8 +4457,11 @@ layout empty_active_room
 layout empty_canceled_room
 layout empty_comment
 layout empty_past_room
+layout fragment_add_first_room
 layout fragment_add_hotel
 layout fragment_add_hotel_image
+layout fragment_add_room
+layout fragment_add_room_image
 layout fragment_bookmark
 layout fragment_edit_info
 layout fragment_home
@@ -4453,6 +4473,7 @@ layout fragment_my_profile
 layout fragment_my_room
 layout fragment_room
 layout fragment_upload_image
+layout fragment_upload_room_image
 layout grid_item
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
@@ -4565,6 +4586,7 @@ string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string addHotel_title
+string addRoom_title
 string androidx_startup
 string app_name
 string appbar_scrolling_view_behavior

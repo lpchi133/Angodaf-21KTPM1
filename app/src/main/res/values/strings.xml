@@ -41,4 +41,5 @@
     <string name="profile_title">"Chào mừng, Name"</string>
     <string name="editInfo_title">Hồ sơ cá nhân</string>
     <string name="addHotel_title">Thêm khách sạn mới</string>
+    <string name="addRoom_title">Thêm phòng khách sạn</string>
 </resources>

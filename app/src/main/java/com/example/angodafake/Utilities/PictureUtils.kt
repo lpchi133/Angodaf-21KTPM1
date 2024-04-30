@@ -3,6 +3,7 @@ package com.example.angodafake.Utilities
 import android.util.Log
 import com.example.angodafake.db.Hotel
 import com.example.angodafake.db.Picture_Hotel
+import com.example.angodafake.db.Picture_Room
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -50,6 +51,21 @@ object PictureUtils {
 
         }
     }
+
+    fun addRoomPictures(ID_Hotel: String, ID_Room: String, pics: ArrayList<String>){
+        val pictureQuery = database.child("room_pictures").child(ID_Room)
+        for (pic in pics){
+            val key = pictureQuery.push().key
+            if (key != null){
+                val room_pic = Picture_Room(null, ID_Hotel, pic)
+                pictureQuery.child(key).setValue(room_pic)
+            } else{
+                Log.e("firebase", "Counldn't get push key for room_pictures")
+            }
+
+        }
+    }
+
     fun getPictureByHotelID(ID: String, listener: (Picture_Hotel) -> Unit){
         val pictureQuery = database.child("pictures").orderByChild("ID_Hotel").equalTo(ID)
         pictureQuery.addListenerForSingleValueEvent(object : ValueEventListener {

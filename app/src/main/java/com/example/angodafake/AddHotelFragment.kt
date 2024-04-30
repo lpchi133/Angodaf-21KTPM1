@@ -99,34 +99,52 @@ class AddHotelFragment(private var idUser: String) : Fragment() {
         val adapterActv = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, cities)
         actvCity.setAdapter(adapterActv)
 
-        et_hotelName.setOnClickListener {
-            lHotelName.error = null
+        et_hotelName.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                lHotelName.error = null
+            }
         }
-        actvCity.setOnClickListener {
-            lCity.error = null
+        actvCity.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                lCity.error = null
+            }
         }
-        et_locationDetail.setOnClickListener {
-            lLocationDetail.error = null
+        et_locationDetail.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                lLocationDetail.error = null
+            }
         }
-        et_phoneN.setOnClickListener {
-            lPhoneN.error = null
+        et_phoneN.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                lPhoneN.error = null
+            }
         }
-        et_description.setOnClickListener {
-            lDescription.error = null
+        et_description.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                lDescription.error = null
+            }
         }
-        et_conveniences.setOnClickListener {
-            lConveniences.error = null
+        et_conveniences.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                lConveniences.error = null
+            }
         }
-        et_highlight.setOnClickListener {
-            lHighlight.error = null
+        et_highlight.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                lHighlight.error = null
+            }
         }
-        et_checkin.setOnClickListener {
-            lCheckIn.error = null
-            errorText.visibility = View.GONE
+        et_checkin.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                lCheckIn.error = null
+                errorText.visibility = View.GONE
+            }
         }
-        et_checkout.setOnClickListener {
-            lCheckOut.error = null
-            errorText.visibility = View.GONE
+        et_checkout.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                lCheckOut.error = null
+                errorText.visibility = View.GONE
+            }
         }
 
         ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->

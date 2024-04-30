@@ -87,4 +87,14 @@ object RoomUtils {
             }
         })
     }
+
+    fun addRoom(room: Rooms, idHotel: String, listener: (String) -> Unit){
+        val key = database.child("rooms").child(idHotel).push().key
+        if (key != null){
+            database.child("rooms").child(idHotel).child(key).setValue(room)
+            listener(key)
+        } else{
+            Log.e("firebase","Counldn't get push key for hotel")
+        }
+    }
 }

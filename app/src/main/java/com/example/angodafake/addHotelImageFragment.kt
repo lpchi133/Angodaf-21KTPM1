@@ -88,10 +88,12 @@ class addHotelImageFragment(private var idUser: String) : Fragment() {
                 val checkOut = arguments?.getString("checkout")
                 val merchantCode = arguments?.getString("merchantCode")
                 val hotel = Hotel(null, ID_Owner, name, phoneNumber, locationDetail, city, description, conveniences, highlight, star, null, null, checkIn, checkOut, merchantCode)
-//                HotelUtils.addHotel(hotel) {
-//                    PictureUtils.addHotelPictures(it, picList)
-//                }
-                showSuccessSnackBar("Thêm khách sạn thành công.", view)
+                HotelUtils.addHotel(hotel) {
+                    PictureUtils.addHotelPictures(it, picList)
+                    val mainActivity = requireActivity() as MainActivity
+                    mainActivity.replaceFragment(AddFirstRoomFragment(it))
+                    showSuccessSnackBar("Thêm khách sạn thành công.", view)
+                }
             } else{
                 showSnackBar("Thêm ít nhất 1 ảnh của khách sạn.", view)
             }
@@ -149,14 +151,14 @@ class addHotelImageFragment(private var idUser: String) : Fragment() {
     }
 
     private fun showSnackBar(msg: String, view: View) {
-        val snackbar = Snackbar.make(view.findViewById(R.id.rootView), msg, Snackbar.LENGTH_LONG)
+        val snackbar = Snackbar.make(view.rootView, msg, Snackbar.LENGTH_LONG)
         // Đổi màu background của Snackbar
         snackbar.view.backgroundTintList = ColorStateList.valueOf(Color.RED)
         snackbar.setTextColor(Color.WHITE)
         snackbar.show()
     }
     private fun showSuccessSnackBar(msg: String, view: View) {
-        val snackbar = Snackbar.make(view.findViewById(R.id.rootView), msg, Snackbar.LENGTH_LONG)
+        val snackbar = Snackbar.make(view.rootView, msg, Snackbar.LENGTH_LONG)
         snackbar.view.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#3193FF"))
         snackbar.setTextColor(Color.WHITE)
         snackbar.show()
