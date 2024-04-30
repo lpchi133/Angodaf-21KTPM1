@@ -179,17 +179,6 @@
                         android:text="Other" />
                 </RadioGroup>
 
-                <TextView
-                    android:id="@+id/errorText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/radioGroup"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="Giới tính không được để trống."
-                    android:textColor="#FF0000"
-                    android:textSize="12sp"
-                    android:visibility="gone" />
             </RelativeLayout>
 
             <TextView
@@ -219,7 +208,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:completionThreshold="1"
-                    android:hint="Enter your country"
+                    android:hint="Nhập quốc tịch"
                     android:padding="16dp"
                     android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
