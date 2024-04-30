@@ -107,7 +107,7 @@ class UploadRoomImageFragment(private var idHotel: String) : Fragment() {
     private fun prevStepWithData(pic : String){
         val arg = Bundle()
 
-        arg.putString("", arguments?.getString("roomType"))
+        arg.putString("roomType", arguments?.getString("roomType"))
         arg.putString("acreage", arguments?.getString("acreage"))
         arg.putString("direction", arguments?.getString("direction"))
         arg.putString("benefit", arguments?.getString("benefit"))
