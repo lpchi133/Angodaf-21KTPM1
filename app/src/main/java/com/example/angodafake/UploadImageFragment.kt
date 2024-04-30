@@ -129,6 +129,9 @@ class UploadImageFragment(private var idUser: String) : Fragment() {
             val pics = arguments?.getStringArrayList("pics")
             pics?.add(pic)
             arg.putStringArrayList("pics", pics)
+        } else{
+            val pics = arguments?.getStringArrayList("pics")
+            arg.putStringArrayList("pics", pics)
         }
 
         val addHotelImageFragment = addHotelImageFragment(idUser)

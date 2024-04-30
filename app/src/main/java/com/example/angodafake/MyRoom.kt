@@ -108,7 +108,7 @@ class MyRoom(private var idUser: String) : Fragment() {
                 break
             }
 
-            temp = PurchaseExtra(purchase, hotel.name, picture.picture)
+            temp = PurchaseExtra(purchase, hotel.name, picture.url)
             when (purchase.detail) {
                 "SAP_TOI" -> upcomingList.add(temp)
                 "HOAN_TAT" -> completedList.add(temp)

@@ -1,7 +1,6 @@
 package com.example.angodafake.Utilities
 
 import android.util.Log
-import com.example.angodafake.db.Hotel
 import com.example.angodafake.db.Picture_Hotel
 import com.example.angodafake.db.Picture_Room
 import com.google.firebase.Firebase
@@ -18,7 +17,7 @@ object PictureUtils {
         database = Firebase.database.reference
     }
 
-    fun getHotelPicturesList(ID_Hotel: String, listener: (ArrayList<Picture_Hotel>) -> Unit){
+    fun getHotelPicturesListByHotelID(ID_Hotel: String, listener: (ArrayList<Picture_Hotel>) -> Unit){
         val pictureQuery = database.child("hotel_pictures").child(ID_Hotel)
         pictureQuery.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -44,7 +43,8 @@ object PictureUtils {
         for (pic in pics){
             val key = pictureQuery.push().key
             if (key != null){
-                pictureQuery.child(key).setValue(pic)
+                val picture = Picture_Hotel(null, null, pic)
+                pictureQuery.child(key).setValue(picture)
             } else{
                 Log.e("firebase", "Counldn't get push key for hotel_pictures")
             }
@@ -67,16 +67,16 @@ object PictureUtils {
     }
 
     fun getPictureByHotelID(ID: String, listener: (Picture_Hotel) -> Unit){
-        val pictureQuery = database.child("pictures").orderByChild("ID_Hotel").equalTo(ID)
-        pictureQuery.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // Xử lý khi dữ liệu thay đổi
+        val pictureQuery = database.child("hotel_pictures").child(ID)
+        pictureQuery.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
                 val pictureHotelList = mutableListOf<Picture_Hotel>()
-                for (pictureSnapshot in dataSnapshot.children) {
+                for (pictureSnapshot in snapshot.children) {
                     val pictureHotel = pictureSnapshot.getValue(Picture_Hotel::class.java)
+                    pictureHotel?.ID = pictureSnapshot.key
+                    pictureHotel?.ID_Hotel = ID
                     pictureHotel?.let { pictureHotelList.add(it) }
                 }
-
                 if (!pictureHotelList.isEmpty()){
                     listener(pictureHotelList[0])
                 }

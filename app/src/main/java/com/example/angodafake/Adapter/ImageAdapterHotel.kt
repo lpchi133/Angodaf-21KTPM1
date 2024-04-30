@@ -15,7 +15,7 @@ class ImageAdapterHotel : ListAdapter<Picture_Hotel,ImageAdapterHotel.ViewHolder
 
     class DiffCallback : DiffUtil.ItemCallback<Picture_Hotel>(){
         override fun areItemsTheSame(oldItem: Picture_Hotel, newItem: Picture_Hotel): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.ID == newItem.ID
         }
 
         override fun areContentsTheSame(oldItem: Picture_Hotel, newItem: Picture_Hotel): Boolean {

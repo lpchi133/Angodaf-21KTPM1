@@ -15,7 +15,7 @@ class ImageAdapterRoom : ListAdapter<Picture_Room,ImageAdapterRoom.ViewHolder>(D
 
     class DiffCallback : DiffUtil.ItemCallback<Picture_Room>(){
         override fun areItemsTheSame(oldItem: Picture_Room, newItem: Picture_Room): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.ID == newItem.ID
         }
 
         override fun areContentsTheSame(oldItem: Picture_Room, newItem: Picture_Room): Boolean {

@@ -48,6 +48,10 @@
         "source": "com.example.angodafake.app-main-44:/layout/activity_main.xml"
     },
     {
+        "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/grid_item.xml",
+        "source": "com.example.angodafake.app-main-44:/layout/grid_item.xml"
+    },
+    {
         "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/fragment_room.xml",
         "source": "com.example.angodafake.app-main-44:/layout/fragment_room.xml"
     },
@@ -74,6 +78,10 @@
     {
         "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/custom_room.xml",
         "source": "com.example.angodafake.app-main-44:/layout/custom_room.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/fragment_add_room.xml",
+        "source": "com.example.angodafake.app-main-44:/layout/fragment_add_room.xml"
     },
     {
         "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/empty_past_room.xml",
@@ -108,6 +116,10 @@
         "source": "com.example.angodafake.app-main-44:/layout/image_item_layout.xml"
     },
     {
+        "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/fragment_upload_room_image.xml",
+        "source": "com.example.angodafake.app-main-44:/layout/fragment_upload_room_image.xml"
+    },
+    {
         "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/custom_chat_detail.xml",
         "source": "com.example.angodafake.app-main-44:/layout/custom_chat_detail.xml"
     },
@@ -120,16 +132,24 @@
         "source": "com.example.angodafake.app-main-44:/layout/fragment_my_hotel.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/tab_canceled_room.xml",
-        "source": "com.example.angodafake.app-main-44:/layout/tab_canceled_room.xml"
-    },
-    {
         "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/custom_active_purchase_adapter.xml",
         "source": "com.example.angodafake.app-main-44:/layout/custom_active_purchase_adapter.xml"
     },
     {
+        "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/tab_canceled_room.xml",
+        "source": "com.example.angodafake.app-main-44:/layout/tab_canceled_room.xml"
+    },
+    {
         "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/custom_bookmark.xml",
         "source": "com.example.angodafake.app-main-44:/layout/custom_bookmark.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/fragment_add_room_image.xml",
+        "source": "com.example.angodafake.app-main-44:/layout/fragment_add_room_image.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/fragment_add_hotel.xml",
+        "source": "com.example.angodafake.app-main-44:/layout/fragment_add_hotel.xml"
     },
     {
         "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/chat.xml",
@@ -162,6 +182,10 @@
     {
         "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/fragment_maps.xml",
         "source": "com.example.angodafake.app-main-44:/layout/fragment_maps.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/fragment_add_hotel_image.xml",
+        "source": "com.example.angodafake.app-main-44:/layout/fragment_add_hotel_image.xml"
     },
     {
         "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/custom_active_purchase_detail.xml",
@@ -212,15 +236,23 @@
         "source": "com.example.angodafake.app-main-44:/layout/custom_hotel_detail.xml"
     },
     {
+        "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/fragment_upload_image.xml",
+        "source": "com.example.angodafake.app-main-44:/layout/fragment_upload_image.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/fragment_add_first_room.xml",
+        "source": "com.example.angodafake.app-main-44:/layout/fragment_add_first_room.xml"
+    },
+    {
         "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/custom_price.xml",
         "source": "com.example.angodafake.app-main-44:/layout/custom_price.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/custom_password_dialog.xml",
-        "source": "com.example.angodafake.app-main-44:/layout/custom_password_dialog.xml"
-    },
-    {
         "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/custom_comment_form.xml",
         "source": "com.example.angodafake.app-main-44:/layout/custom_comment_form.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/custom_password_dialog.xml",
+        "source": "com.example.angodafake.app-main-44:/layout/custom_password_dialog.xml"
     }
 ]
