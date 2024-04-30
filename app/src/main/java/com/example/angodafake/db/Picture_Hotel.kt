@@ -5,6 +5,7 @@ import com.google.firebase.database.IgnoreExtraProperties
 @IgnoreExtraProperties
 data class Picture_Hotel(
     var ID: String? = null,
+    var ID_Room: String? = null,
     var ID_Hotel: String? = null,
     var url : String? = null,) {
 

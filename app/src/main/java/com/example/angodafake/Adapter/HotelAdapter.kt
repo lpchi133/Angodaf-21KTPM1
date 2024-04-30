@@ -28,6 +28,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
+import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -77,17 +78,10 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val hotel : Hotel = hotels[position]
 
-        //PictureUtils.getPictureByHotelID(hotel.ID!!){picture ->
-            //Picture_Hotel = picture
-//            println("Picture ID: ${Picture_Hotel.ID_Hotel}, Type: ${Picture_Hotel.picture}, Price: ${Picture_Hotel.picture_onwer}")
-
         database = Firebase.database.reference
         val hotelsRef = database.child("hotels")
         val roomsRef = database.child("rooms")
-//
-        val idPicture = context.resources.getIdentifier("quang_ba_khach_san", "drawable", context.packageName)
 
-        holder.img.setImageResource(idPicture)
         holder.hotelName.text = hotel.name
         holder.ratingBar.rating = hotel.star!!.toFloat()
         holder.City.text = hotel.city
@@ -177,6 +171,17 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
 
                         }else {
                             Log.d("PurchaseList", "Purchase list is null")
+                        }
+
+                        PictureUtils.getPicturesByHotelID(hotel.ID!!) { picture ->
+                            if (picture.isNotEmpty()) {
+                                Picasso.get().load(picture[0].url).into(holder.img)
+                            }
+                            else{
+                                val idPicture = context.resources.getIdentifier("quang_ba_khach_san", "drawable", context.packageName)
+
+                                holder.img.setImageResource(idPicture)
+                            }
                         }
                     }
 

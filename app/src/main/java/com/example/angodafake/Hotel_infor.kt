@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.Adapter.ImageAdapterHotel
 import com.example.angodafake.Adapter.VoucherAdapter
 import com.example.angodafake.Utilities.HotelUtils
+import com.example.angodafake.Utilities.PictureUtils
 import com.example.angodafake.Utilities.UserUtils
 import com.example.angodafake.Utilities.VoucherUtils
 import com.example.angodafake.db.Hotel
@@ -103,161 +104,163 @@ class Hotel_infor(private var idUser: String) : Fragment() {
             HotelUtils.getHotelByID(itemPosition) { ho ->
                 hotel = ho
 
-//                PictureUtils.getPictureByHotelID(hotel.ID!!) { picture ->
-//                    Picture_Hotel = picture
-//                    val idPicture = requireContext().resources.getIdentifier(Picture_Hotel.picture, "drawable", requireContext().packageName)
-////                    val idAvt = requireContext().resources.getIdentifier(Picture_Hotel.picture_onwer, "drawable", requireContext().packageName)
-//                    img.setImageResource(idPicture)
-//                    imgAvt.setImageResource(idAvt)
+                PictureUtils.getPicturesByHotelID(hotel.ID!!) { pictureList ->
+                    val imageAdapter = ImageAdapterHotel()
+                    imageRV.adapter = imageAdapter
+                    imageAdapter.submitList(pictureList)
 
-                val imageList = arrayListOf(
-                    Picture_Hotel(
-                        UUID.randomUUID().toString(),
-                        "https://fastly.picsum.photos/id/866/500/500.jpg?hmac=FOptChXpmOmfR5SpiL2pp74Yadf1T_bRhBF1wJZa9hg"
-                    ),
-                    Picture_Hotel(
-                        UUID.randomUUID().toString(),
-                        "https://fastly.picsum.photos/id/270/500/500.jpg?hmac=MK7XNrBrZ73QsthvGaAkiNoTl65ZDlUhEO-6fnd-ZnY"
-                    ),
-                    Picture_Hotel(
-                        UUID.randomUUID().toString(),
-                        "https://fastly.picsum.photos/id/320/500/500.jpg?hmac=2iE7TIF9kIqQOHrIUPOJx2wP1CJewQIZBeMLIRrm74s"
-                    ),
-                    Picture_Hotel(
-                        UUID.randomUUID().toString(),
-                        "https://fastly.picsum.photos/id/798/500/500.jpg?hmac=Bmzk6g3m8sUiEVHfJWBscr2DUg8Vd2QhN7igHBXLLfo"
-                    ),
-                    Picture_Hotel(
-                        UUID.randomUUID().toString(),
-                        "https://fastly.picsum.photos/id/95/500/500.jpg?hmac=0aldBQ7cQN5D_qyamlSP5j51o-Og4gRxSq4AYvnKk2U"
-                    ),
-                    Picture_Hotel(
-                        UUID.randomUUID().toString(),
-                        "https://fastly.picsum.photos/id/778/500/500.jpg?hmac=jZLZ6WV_OGRxAIIYPk7vGRabcAGAILzxVxhqSH9uLas"
-                    )
-                )
+                    price_room.text = hotel.money.toString() + " đ"
 
-                val imageAdapter = ImageAdapterHotel()
-                imageRV.adapter = imageAdapter
-                imageAdapter.submitList(imageList)
+                    UserUtils.getUserByID(hotel.ID_Owner!!){user ->
+                        User = user
 
-                price_room.text = hotel.money.toString() + " đ"
+                        Log.d("FilterFragment", "Received data - user: $User")
 
-                UserUtils.getUserByID(hotel.ID_Owner!!){user ->
-                    User = user
+                        nameTextView.text = hotel.name
+                        locationTextView.text = hotel.locationDetail
+                        pointView.text = hotel.point.toString()
+                        //description.text = hotel.description
+                        //convenience.text = hotel.conveniences
+                        checkIn.text = hotel.checkIn
+                        checkOut.text = hotel.checkOut
+                        nameOwner.text = User.name
+                        ratingBar.rating = hotel.star!!.toFloat()
+                        hotel_phone.text = hotel.phoneNumber
+                        count_cmt.text = hotel.total_comments.toString() + " nhận xét"
 
-                    Log.d("FilterFragment", "Received data - user: $User")
+                        val conveniences = hotel.highlight?.split("\\")
+                        val formattedconveniences = conveniences?.map { "✅    $it" }
+                        val formattedconvenience = formattedconveniences?.joinToString("\n")
+                        convenience.text = formattedconvenience
 
-                    nameTextView.text = hotel.name
-                    locationTextView.text = hotel.locationDetail
-                    pointView.text = hotel.point.toString()
-                    //description.text = hotel.description
-                    //convenience.text = hotel.conveniences
-                    checkIn.text = hotel.checkIn
-                    checkOut.text = hotel.checkOut
-                    nameOwner.text = User.name
-                    ratingBar.rating = hotel.star!!.toFloat()
-                    hotel_phone.text = hotel.phoneNumber
-                    count_cmt.text = hotel.total_comments.toString() + " nhận xét"
+                        val highlights = hotel.highlight?.split("\\")
+                        val formattedHighlights = highlights?.map { "\uD83D\uDCA0    $it" }
+                        val formattedHighlight = formattedHighlights?.joinToString("\n")
+                        highlight.text = formattedHighlight
 
-                    val conveniences = hotel.highlight?.split("\\")
-                    val formattedconveniences = conveniences?.map { "✅    $it" }
-                    val formattedconvenience = formattedconveniences?.joinToString("\n")
-                    convenience.text = formattedconvenience
+                        rateStatus.text = when (hotel.point!!.toInt()){
+                            in 0 until 3 -> { "Cực tệ" }
+                            in 3 until 5 -> { "Tệ" }
+                            in 5 until 6 -> { "Trung bình" }
+                            in 6 until 8 -> { "Tốt" }
+                            in 8 until 9 -> { "Rất tốt" }
+                            else -> { "Tuyệt vời" }
+                        }
 
-                    val highlights = hotel.highlight?.split("\\")
-                    val formattedHighlights = highlights?.map { "\uD83D\uDCA0    $it" }
-                    val formattedHighlight = formattedHighlights?.joinToString("\n")
-                    highlight.text = formattedHighlight
+                        val fullDescription = hotel.description
+                        val initialLinesToShow = 3
+                        val lines = fullDescription?.split("\\n")
+                        val initialDescription = lines?.take(initialLinesToShow)?.joinToString("\n")
+                        description.text = initialDescription
 
-                    rateStatus.text = when (hotel.point!!.toInt()){
-                        in 0 until 3 -> { "Cực tệ" }
-                        in 3 until 5 -> { "Tệ" }
-                        in 5 until 6 -> { "Trung bình" }
-                        in 6 until 8 -> { "Tốt" }
-                        in 8 until 9 -> { "Rất tốt" }
-                        else -> { "Tuyệt vời" }
-                    }
+                        view.findViewById<ImageView>(R.id.imageView4).setOnClickListener {
+                            if (flow == null) {
 
-                    val fullDescription = hotel.description
-                    val initialLinesToShow = 3
-                    val lines = fullDescription?.split("\\n")
-                    val initialDescription = lines?.take(initialLinesToShow)?.joinToString("\n")
-                    description.text = initialDescription
+                                val arg = Bundle()
+                                arg.putStringArray("hotelIds", hotelIds)
+                                arg.putStringArray("saveIds", saveIds)
+                                arg.putString("searchText", searchText)
+                                arg.putString("checkIn", checkInfind)
+                                arg.putString("checkOut", checkOutfind)
+                                arg.putInt("numberOfRooms", numberOfRooms!!)
+                                arg.putInt("numberOfGuests", numberOfGuests!!)
 
-                    view.findViewById<ImageView>(R.id.imageView4).setOnClickListener {
-                        if (flow == null) {
+                                // Khởi tạo Fragment Filter và đính kèm Bundle
+                                val filterFragment = Filter(idUser)
+                                filterFragment.arguments = arg
 
+                                // Thay thế Fragment hiện tại bằng Fragment Filter
+                                val fragmentManager = requireActivity().supportFragmentManager
+                                fragmentManager.beginTransaction()
+                                    .replace(R.id.frameLayout, filterFragment)
+                                    .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
+                                    .commit()
+                            } else if (flow == "reorder") {
+                                replaceFragmentToRoom(idUser)
+                            }
+                        }
+
+                        view.findViewById<Button>(R.id.watchRoom).setOnClickListener {
                             val arg = Bundle()
+                            arg.putString("hotelPosition", itemPosition)
+                            arg.putString("searchText", searchText)
                             arg.putStringArray("hotelIds", hotelIds)
                             arg.putStringArray("saveIds", saveIds)
-                            arg.putString("searchText", searchText)
+                            arg.putString("hotelName", hotel.name)
                             arg.putString("checkIn", checkInfind)
                             arg.putString("checkOut", checkOutfind)
                             arg.putInt("numberOfRooms", numberOfRooms!!)
                             arg.putInt("numberOfGuests", numberOfGuests!!)
 
-                            // Khởi tạo Fragment Filter và đính kèm Bundle
-                            val filterFragment = Filter(idUser)
-                            filterFragment.arguments = arg
+                            val listRoom = ListRoom(idUser)
+                            listRoom.arguments = arg
 
-                            // Thay thế Fragment hiện tại bằng Fragment Filter
                             val fragmentManager = requireActivity().supportFragmentManager
                             fragmentManager.beginTransaction()
-                                .replace(R.id.frameLayout, filterFragment)
-                                .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
+                                .replace(R.id.frameLayout, listRoom)
+                                .addToBackStack(null)
                                 .commit()
-                        } else if (flow == "reorder") {
-                            replaceFragmentToRoom(idUser)
                         }
-                    }
-
-                    view.findViewById<Button>(R.id.watchRoom).setOnClickListener {
-                        val arg = Bundle()
-                        arg.putString("hotelPosition", itemPosition)
-                        arg.putString("searchText", searchText)
-                        arg.putStringArray("hotelIds", hotelIds)
-                        arg.putStringArray("saveIds", saveIds)
-                        arg.putString("hotelName", hotel.name)
-                        arg.putString("checkIn", checkInfind)
-                        arg.putString("checkOut", checkOutfind)
-                        arg.putInt("numberOfRooms", numberOfRooms!!)
-                        arg.putInt("numberOfGuests", numberOfGuests!!)
-
-                        val listRoom = ListRoom(idUser)
-                        listRoom.arguments = arg
-
-                        val fragmentManager = requireActivity().supportFragmentManager
-                        fragmentManager.beginTransaction()
-                            .replace(R.id.frameLayout, listRoom)
-                            .addToBackStack(null)
-                            .commit()
-                    }
-                    showDetail.setOnClickListener {
-                        showPopup()
+                        showDetail.setOnClickListener {
+                            showPopup()
+                        }
                     }
                 }
-                    }
 
-                    VoucherUtils.getAllVouchers(itemPosition) {vouchers ->
+                VoucherUtils.getAllVouchers(itemPosition) {vouchers ->
 //                        println(itemPosition)
 //                        println(listVoucher)
-                        val listVoucher = mutableListOf<Voucher>()
+                    val listVoucher = mutableListOf<Voucher>()
 
-                        for (voucher in vouchers) {
-                            if (voucher.quantity!! > 0) {
-                                listVoucher.add(voucher)
-                            }
+                    for (voucher in vouchers) {
+                        if (voucher.quantity!! > 0) {
+                            listVoucher.add(voucher)
                         }
-
-                        voucherfield = view.findViewById(R.id.voucher)
-                        voucherfield.layoutManager = layoutManager
-                        voucherfield.setHasFixedSize(true)
-
-                        linearAdapter = VoucherAdapter(requireActivity(), listVoucher, idUser, hotel.name!!)
-                        voucherfield.adapter = linearAdapter
                     }
+
+                    voucherfield = view.findViewById(R.id.voucher)
+                    voucherfield.layoutManager = layoutManager
+                    voucherfield.setHasFixedSize(true)
+
+                    linearAdapter = VoucherAdapter(requireActivity(), listVoucher, idUser, hotel.name!!)
+                    voucherfield.adapter = linearAdapter
+                }
             }
+
+
+//                val imageList = arrayListOf(
+//                    Picture_Hotel(
+//                        UUID.randomUUID().toString(),
+    //                        "https://fastly.picsum.photos/id/866/500/500.jpg?hmac=FOptChXpmOmfR5SpiL2pp74Yadf1T_bRhBF1wJZa9hg"
+//                    ),
+//                    Picture_Hotel(
+//                        UUID.randomUUID().toString(),
+//                        "https://fastly.picsum.photos/id/270/500/500.jpg?hmac=MK7XNrBrZ73QsthvGaAkiNoTl65ZDlUhEO-6fnd-ZnY"
+//                    ),
+//                    Picture_Hotel(
+//                        UUID.randomUUID().toString(),
+//                        "https://fastly.picsum.photos/id/320/500/500.jpg?hmac=2iE7TIF9kIqQOHrIUPOJx2wP1CJewQIZBeMLIRrm74s"
+//                    ),
+//                    Picture_Hotel(
+//                        UUID.randomUUID().toString(),
+//                        "https://fastly.picsum.photos/id/798/500/500.jpg?hmac=Bmzk6g3m8sUiEVHfJWBscr2DUg8Vd2QhN7igHBXLLfo"
+//                    ),
+//                    Picture_Hotel(
+//                        UUID.randomUUID().toString(),
+//                        "https://fastly.picsum.photos/id/95/500/500.jpg?hmac=0aldBQ7cQN5D_qyamlSP5j51o-Og4gRxSq4AYvnKk2U"
+//                    ),
+//                    Picture_Hotel(
+//                        UUID.randomUUID().toString(),
+//                        "https://fastly.picsum.photos/id/778/500/500.jpg?hmac=jZLZ6WV_OGRxAIIYPk7vGRabcAGAILzxVxhqSH9uLas"
+//                    )
+//                )
+//
+//                val imageAdapter = ImageAdapterHotel()
+//                imageRV.adapter = imageAdapter
+//                imageAdapter.submitList(imageList)
+
+
+        }
         return view
     }
 

@@ -21,6 +21,7 @@ object RoomUtils {
             for (roomSnapshot in dataSnapshot.children) {
                 val room = roomSnapshot.getValue(Rooms::class.java)
                 room?.let {
+                    it.ID = roomSnapshot.key
                     roomList.add(it)
                 }
             }

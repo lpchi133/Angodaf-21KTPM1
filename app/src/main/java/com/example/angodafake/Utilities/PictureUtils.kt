@@ -3,6 +3,7 @@ package com.example.angodafake.Utilities
 import android.util.Log
 import com.example.angodafake.db.Picture_Hotel
 import com.example.angodafake.db.Picture_Room
+import com.example.angodafake.db.Rooms
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -104,4 +105,35 @@ object PictureUtils {
         }
     }
 
+    fun getPicturesByHotelID(ID: String, listener: (List<Picture_Hotel>) -> Unit){
+        val roomPicture = mutableListOf<Picture_Hotel>()
+        database.child("hotel_pictures").child(ID).get().addOnSuccessListener { dataSnapshot ->
+            for (roomSnapshot in dataSnapshot.children) {
+                val room = roomSnapshot.getValue(Picture_Hotel::class.java)
+                room?.let {
+                    roomPicture.add(it)
+                }
+            }
+            listener(roomPicture)
+        }.addOnFailureListener { exception ->
+            Log.e("firebase", "Error getting picture list", exception)
+            listener(emptyList()) // Trả về danh sách rỗng nếu có lỗi xảy ra
+        }
+    }
+
+    fun getPicturesRoomByID(ID_Hotel: String, roomID: String, listener: (List<Picture_Room>) -> Unit) {
+        val roomPicture = mutableListOf<Picture_Room>()
+        database.child("room_pictures").child(ID_Hotel).child(roomID).get().addOnSuccessListener { dataSnapshot ->
+            for (roomSnapshot in dataSnapshot.children) {
+                val picture = roomSnapshot.getValue(Picture_Room::class.java)
+                picture?.let {
+                    roomPicture.add(it)
+                }
+            }
+            listener(roomPicture)
+        }.addOnFailureListener { exception ->
+            Log.e("firebase", "Error getting picture by ID", exception)
+            listener(emptyList())
+        }
+    }
 }

@@ -10,11 +10,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.R
+import com.example.angodafake.Utilities.PictureUtils
 import com.example.angodafake.Utilities.PurchaseUtils
 import com.example.angodafake.db.Picture_Hotel
 import com.example.angodafake.db.Picture_Room
 import com.example.angodafake.db.Purchase
 import com.example.angodafake.db.Rooms
+import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -93,98 +95,50 @@ class RoomAdapter(private val context: Context, private var rooms: List<Rooms>, 
         holder.direction.text = room.direction.toString()
         holder.price.text = room.price.toString() + " đ"
 
-        val imageList = arrayListOf(
-            Picture_Room(
-                UUID.randomUUID().toString(),
-                "https://fastly.picsum.photos/id/866/500/500.jpg?hmac=FOptChXpmOmfR5SpiL2pp74Yadf1T_bRhBF1wJZa9hg"
-            ),
-            Picture_Room(
-                UUID.randomUUID().toString(),
-                "https://fastly.picsum.photos/id/270/500/500.jpg?hmac=MK7XNrBrZ73QsthvGaAkiNoTl65ZDlUhEO-6fnd-ZnY"
-            ),
-            Picture_Room(
-                UUID.randomUUID().toString(),
-                "https://fastly.picsum.photos/id/320/500/500.jpg?hmac=2iE7TIF9kIqQOHrIUPOJx2wP1CJewQIZBeMLIRrm74s"
-            ),
-            Picture_Room(
-                UUID.randomUUID().toString(),
-                "https://fastly.picsum.photos/id/798/500/500.jpg?hmac=Bmzk6g3m8sUiEVHfJWBscr2DUg8Vd2QhN7igHBXLLfo"
-            ),
-            Picture_Room(
-                UUID.randomUUID().toString(),
-                "https://fastly.picsum.photos/id/95/500/500.jpg?hmac=0aldBQ7cQN5D_qyamlSP5j51o-Og4gRxSq4AYvnKk2U"
-            ),
-            Picture_Room(
-                UUID.randomUUID().toString(),
-                "https://fastly.picsum.photos/id/778/500/500.jpg?hmac=jZLZ6WV_OGRxAIIYPk7vGRabcAGAILzxVxhqSH9uLas"
-            )
-        )
-
-        val imageAdapter = ImageAdapterRoom()
-        holder.imageRV.adapter = imageAdapter
-        imageAdapter.submitList(imageList)
+//        val imageList = arrayListOf(
+//            Picture_Room(
+//                UUID.randomUUID().toString(),
+//                "https://fastly.picsum.photos/id/866/500/500.jpg?hmac=FOptChXpmOmfR5SpiL2pp74Yadf1T_bRhBF1wJZa9hg"
+//            ),
+//            Picture_Room(
+//                UUID.randomUUID().toString(),
+//                "https://fastly.picsum.photos/id/270/500/500.jpg?hmac=MK7XNrBrZ73QsthvGaAkiNoTl65ZDlUhEO-6fnd-ZnY"
+//            ),
+//            Picture_Room(
+//                UUID.randomUUID().toString(),
+//                "https://fastly.picsum.photos/id/320/500/500.jpg?hmac=2iE7TIF9kIqQOHrIUPOJx2wP1CJewQIZBeMLIRrm74s"
+//            ),
+//            Picture_Room(
+//                UUID.randomUUID().toString(),
+//                "https://fastly.picsum.photos/id/798/500/500.jpg?hmac=Bmzk6g3m8sUiEVHfJWBscr2DUg8Vd2QhN7igHBXLLfo"
+//            ),
+//            Picture_Room(
+//                UUID.randomUUID().toString(),
+//                "https://fastly.picsum.photos/id/95/500/500.jpg?hmac=0aldBQ7cQN5D_qyamlSP5j51o-Og4gRxSq4AYvnKk2U"
+//            ),
+//            Picture_Room(
+//                UUID.randomUUID().toString(),
+//                "https://fastly.picsum.photos/id/778/500/500.jpg?hmac=jZLZ6WV_OGRxAIIYPk7vGRabcAGAILzxVxhqSH9uLas"
+//            )
+//        )
+//
+//        val imageAdapter = ImageAdapterRoom()
+//        holder.imageRV.adapter = imageAdapter
+//        imageAdapter.submitList(imageList)
 
         Log.d("ID hotel", "room.ID_Hotel: ${idHotel}")
+        Log.d("ID hotel", "room.ID: ${room.ID!!}")
+        PictureUtils.getPicturesRoomByID(idHotel, room.ID!!) { pictureList ->
+            Log.d("lít pic", "Size: ${pictureList.size}")
 
-
-        if(checkIn == "") {
-            var rest = room.quantity!! - room.available!!
-
-            if(rest <= 0){
-                holder.count_Room.text = "Hết phòng rồi ní ơi!"
-                holder.firstRectangle.text = "HẾT PHÒNG"
-            }
-            else {
-                holder.count_Room.text = rest.toString() + " phòng cuối cùng!"
-                holder.firstRectangle.text = "CÒN PHÒNG"
+            if (pictureList.isNotEmpty()) {
+                val imageAdapter = ImageAdapterRoom()
+                holder.imageRV.adapter = imageAdapter
+                imageAdapter.submitList(pictureList)
             }
 
-            if(intArray[position] <= rest) {
-                holder.countRoom.text = "Số phòng: " + intArray[position].toString()
-            }
-            else{
-                holder.countRoom.text = "Số phòng: " + rest.toString()
-                intArray[position] = rest
-            }
-        }
-        else{
-            PurchaseUtils.getAllPurchasesByHotelID(idHotel) { purchaseList ->
-                var purchases: List<Purchase> = emptyList()
-                purchases = purchaseList
-                var count_room_purchase = 0
-                var rest = 0
-                if (purchases.isNotEmpty()) {
-                    for (purchase in purchases) {
-                        if (purchase.detail != "DA_HUY") {
-
-                            val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-                            val dateCome = dateFormat.parse(purchase.date_come)
-                            val dateGo = dateFormat.parse(purchase.date_go)
-                            val dateCheckIn = dateFormat.parse(checkIn)
-                            val dateCheckOut = dateFormat.parse(checkOut)
-
-                            Log.d("DateCome", "Date come: ${dateFormat.format(dateCome)}")
-                            Log.d("DateGo", "Date go: ${dateFormat.format(dateGo)}")
-
-                            if ((dateCheckIn.before(dateCome) || dateCheckIn.compareTo(dateCome) == 0) && dateCheckOut.after(dateCome)) {
-                                count_room_purchase++
-                            }
-                            else if (dateCheckIn.before(dateGo) && ((dateCheckOut.after(dateGo) || dateCheckOut.compareTo(dateGo) == 0))) {
-                                count_room_purchase++
-                            }
-                            else if (dateCheckIn.compareTo(dateCome) == 0 && dateCheckOut.compareTo(dateGo) == 0) {
-                                count_room_purchase++
-                            }
-                            else if(dateCheckIn.after(dateCome) && dateCheckOut.before(dateGo)){
-                                count_room_purchase++
-                            }
-                        }
-                    }
-                    rest = room.quantity!! - count_room_purchase
-                }
-                else {
-                    rest = room.quantity!! - room.available!!
-                }
+            if(checkIn == "") {
+                var rest = room.quantity!! - room.available!!
 
                 if(rest <= 0){
                     holder.count_Room.text = "Hết phòng rồi ní ơi!"
@@ -203,8 +157,64 @@ class RoomAdapter(private val context: Context, private var rooms: List<Rooms>, 
                     intArray[position] = rest
                 }
             }
-        }
+            else{
+                PurchaseUtils.getAllPurchasesByHotelID(idHotel) { purchaseList ->
+                    var purchases: List<Purchase> = emptyList()
+                    purchases = purchaseList
+                    var count_room_purchase = 0
+                    var rest = 0
+                    if (purchases.isNotEmpty()) {
+                        for (purchase in purchases) {
+                            if (purchase.detail != "DA_HUY") {
 
+                                val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                                val dateCome = dateFormat.parse(purchase.date_come)
+                                val dateGo = dateFormat.parse(purchase.date_go)
+                                val dateCheckIn = dateFormat.parse(checkIn)
+                                val dateCheckOut = dateFormat.parse(checkOut)
+
+                                Log.d("DateCome", "Date come: ${dateFormat.format(dateCome)}")
+                                Log.d("DateGo", "Date go: ${dateFormat.format(dateGo)}")
+
+                                if ((dateCheckIn.before(dateCome) || dateCheckIn.compareTo(dateCome) == 0) && dateCheckOut.after(dateCome)) {
+                                    count_room_purchase++
+                                }
+                                else if (dateCheckIn.before(dateGo) && ((dateCheckOut.after(dateGo) || dateCheckOut.compareTo(dateGo) == 0))) {
+                                    count_room_purchase++
+                                }
+                                else if (dateCheckIn.compareTo(dateCome) == 0 && dateCheckOut.compareTo(dateGo) == 0) {
+                                    count_room_purchase++
+                                }
+                                else if(dateCheckIn.after(dateCome) && dateCheckOut.before(dateGo)){
+                                    count_room_purchase++
+                                }
+                            }
+                        }
+                        rest = room.quantity!! - count_room_purchase
+                    }
+                    else {
+                        rest = room.quantity!! - room.available!!
+                    }
+
+                    if(rest <= 0){
+                        holder.count_Room.text = "Hết phòng rồi ní ơi!"
+                        holder.firstRectangle.text = "HẾT PHÒNG"
+                    }
+                    else {
+                        holder.count_Room.text = rest.toString() + " phòng cuối cùng!"
+                        holder.firstRectangle.text = "CÒN PHÒNG"
+                    }
+
+                    if(intArray[position] <= rest) {
+                        holder.countRoom.text = "Số phòng: " + intArray[position].toString()
+                    }
+                    else{
+                        holder.countRoom.text = "Số phòng: " + rest.toString()
+                        intArray[position] = rest
+                    }
+                }
+            }
+        }
     }
 
     override fun getItemCount(): Int {
