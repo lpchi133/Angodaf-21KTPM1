@@ -73,65 +73,74 @@
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/border1">
+        android:layout_below="@+id/border1"
+        android:background="#DDDDDD">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/header_title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"
-                android:text="Đánh giá tổng thể dựa trên nhận xét được xác thực"
-                android:textColor="@color/black" />
+                android:background="@color/white"
+                android:paddingBottom="10dp">
 
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"
-                android:text="9,0"
-                android:textColor="#3E52FA"
-                android:textSize="32dp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Đánh giá tổng thể dựa trên nhận xét được xác thực"
+                    android:textColor="@color/black" />
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_toEndOf="@+id/textView1"
-                android:text="Trên cả tuyệt vời"
-                android:textColor="#3E52FA"
-                android:textSize="16dp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:text="9,0"
+                    android:textColor="#3E52FA"
+                    android:textSize="32dp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView2"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
-                android:layout_toEndOf="@+id/textView1"
-                android:text="620 nhận xét" />
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_toEndOf="@+id/textView1"
+                    android:text="Trên cả tuyệt vời"
+                    android:textColor="#3E52FA"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView2"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/textView1"
+                    android:text="620 nhận xét" />
+            </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/chart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textView3"
-                android:layout_marginTop="10dp"
-                android:padding="15dp">
+                android:layout_below="@+id/header_title"
+                android:padding="15dp"
+                android:background="@color/white">
 
                 <TextView
                     android:id="@+id/textView4"
@@ -292,8 +301,7 @@
                 android:id="@+id/buttonField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/chart"
-                android:background="#DDDDDD">
+                android:layout_below="@id/chart">
 
                 <TextView
                     android:id="@+id/button"
@@ -324,10 +332,10 @@
             <RelativeLayout
                 android:id="@+id/emptyField"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/buttonField"
-                android:gravity="center"
-                android:background="@drawable/beach1">
+                android:paddingVertical="20dp"
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/textView24"

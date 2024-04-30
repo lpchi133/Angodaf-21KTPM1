@@ -23,6 +23,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.RatingBar
 import android.widget.RelativeLayout
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.example.angodafake.Adapter.CommentAdapter
@@ -42,6 +43,8 @@ class MyCommentForm : AppCompatActivity() {
 
         val ID_Purchase: TextView = findViewById(R.id.textView2)
         ID_Purchase.text = intent.getStringExtra("ID_Purchase")
+
+        val scrollView:ScrollView = findViewById(R.id.scrollView)
         
         val ID_Owner = intent.getStringExtra("ID_Owner")
         val ID_Hotel = intent.getStringExtra("ID_Hotel")
@@ -90,6 +93,10 @@ class MyCommentForm : AppCompatActivity() {
 
         btnYes.setOnClickListener {
             relativeLayout1.visibility = View.VISIBLE
+            scrollView.post {
+                scrollView.smoothScrollTo(relativeLayout.bottom, relativeLayout1.bottom)
+            }
+
             if (progressBar.progress == 2) {
                 progressBar.progress += 14
             }
@@ -97,6 +104,10 @@ class MyCommentForm : AppCompatActivity() {
 
         btnNo.setOnClickListener {
             relativeLayout1.visibility = View.VISIBLE
+            scrollView.post {
+                scrollView.smoothScrollTo(relativeLayout.bottom, relativeLayout1.bottom)
+            }
+
             if (progressBar.progress == 2) {
                 progressBar.progress += 14
             }
@@ -105,6 +116,10 @@ class MyCommentForm : AppCompatActivity() {
         val ratingBar: RatingBar = findViewById(R.id.ratingBar)
         ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
             relativeLayout2.visibility = View.VISIBLE
+            scrollView.post {
+                scrollView.smoothScrollTo(relativeLayout1.bottom, relativeLayout2.bottom)
+            }
+
             if (progressBar.progress == 16) {
                 progressBar.progress += 14
             }
@@ -114,6 +129,10 @@ class MyCommentForm : AppCompatActivity() {
         val ratingBar1: RatingBar = findViewById(R.id.ratingBar1)
         ratingBar1.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
             relativeLayout3.visibility = View.VISIBLE
+            scrollView.post {
+                scrollView.smoothScrollTo(relativeLayout2.bottom, relativeLayout3.bottom)
+            }
+
             if (progressBar.progress == 30) {
                 progressBar.progress += 14
             }
@@ -123,6 +142,10 @@ class MyCommentForm : AppCompatActivity() {
         val ratingBar2: RatingBar = findViewById(R.id.ratingBar2)
         ratingBar2.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
             relativeLayout4.visibility = View.VISIBLE
+            scrollView.post {
+                scrollView.smoothScrollTo(relativeLayout3.bottom, relativeLayout4.bottom)
+            }
+
             if (progressBar.progress == 44) {
                 progressBar.progress += 14
             }
@@ -132,6 +155,10 @@ class MyCommentForm : AppCompatActivity() {
         val ratingBar3: RatingBar = findViewById(R.id.ratingBar3)
         ratingBar3.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
             relativeLayout5.visibility = View.VISIBLE
+            scrollView.post {
+                scrollView.smoothScrollTo(relativeLayout4.bottom, relativeLayout5.bottom)
+            }
+
             if (progressBar.progress == 58) {
                 progressBar.progress += 14
             }
@@ -141,6 +168,10 @@ class MyCommentForm : AppCompatActivity() {
         val ratingBar4: RatingBar = findViewById(R.id.ratingBar4)
         ratingBar4.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
             relativeLayout6.visibility = View.VISIBLE
+            scrollView.post {
+                scrollView.smoothScrollTo(relativeLayout5.bottom, relativeLayout6.bottom)
+            }
+
             if (progressBar.progress == 72) {
                 progressBar.progress += 14
             }

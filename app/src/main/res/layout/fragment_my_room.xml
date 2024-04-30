@@ -95,7 +95,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Loading..."
-                    android:textColor="#5B9CC1"
+                    android:textColor="#FFC125"
                     android:textStyle="bold"
                     android:textSize="40sp"
                     android:fontFamily="monospace"/>
@@ -108,7 +108,7 @@
                     android:layout_below="@id/textView"
                     android:layout_marginTop="20dp"
                     android:layout_centerHorizontal="true"
-                    android:indeterminateTint="#5B9CC1" />
+                    android:indeterminateTint="#FFC125" />
             </RelativeLayout>
         </RelativeLayout>
 
