@@ -227,7 +227,10 @@ class ActivePurchaseDetail : AppCompatActivity() {
 
         btnChat = findViewById(R.id.btn_chat)
         btnChat.setOnClickListener {
-            println("btnChat is pressed")
+            val phone_number = hotelPhone.text
+            val phone_uri = Uri.parse("sms:$phone_number")
+            val sms_intent = Intent(Intent.ACTION_SENDTO, phone_uri)
+            startActivity(sms_intent)
         }
 
         btnRemove = findViewById(R.id.btn_removeorder)

@@ -20,12 +20,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.example.angodafake.Utilities.PurchaseUtils
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
+import java.util.Calendar
 
 class CancelPurchase : AppCompatActivity() {
-    private fun showpopup_2(idPurchase:String, detail:String, reason:String, statusPurchase:String, dateNow:String, idUser: String) {
+    private fun showpopup_2(idPurchase:String, detail:String, reason:String, statusPurchase:String, idUser: String) {
         println("OK")
         val diaLog = Dialog(this)
         diaLog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -47,6 +49,10 @@ class CancelPurchase : AppCompatActivity() {
 
         btnCancel.setOnClickListener {
             try {
+                val currentDateTime = Calendar.getInstance().time
+                val formatter = SimpleDateFormat("HH:mm:ss dd/MM/yyyy")
+                val dateNow = formatter.format(currentDateTime)
+
                 PurchaseUtils.cancelPurchase(idPurchase, detail, reason, statusPurchase, dateNow) { result ->
                     println(result)
                     Toast.makeText(baseContext, "Đã hủy thành công đặt phòng của bạn!", Toast.LENGTH_SHORT).show()
@@ -120,8 +126,8 @@ class CancelPurchase : AppCompatActivity() {
                 notic.text = "*Vui lòng chọn lý do hủy đặt phòng"
             } else {
                 notic.text = ""
-                if (idPurchase != null && detail != null && dateNow != null && idUser != null) {
-                    showpopup_2(idPurchase, detail, reason, statusPurchase, dateNow, idUser)
+                if (idPurchase != null && dateNow != null && idUser != null) {
+                    showpopup_2(idPurchase, detail, reason, statusPurchase, idUser)
                 }
             }
         }

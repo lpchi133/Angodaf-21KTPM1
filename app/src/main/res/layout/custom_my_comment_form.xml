@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MyCommentForm">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -111,10 +113,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/relativeLayout3"
-        android:progress="50"
-        android:progressTint="#FFD700"/>
+        android:progress="2"
+        android:progressTint="#32CD32"/>
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/progressBar"
@@ -183,7 +186,7 @@
                     app:drawableLeftCompat="@drawable/baseline_thumb_down_24"/>
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/button1"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textView4"
@@ -203,6 +206,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/comment"
+                android:layout_marginBottom="20dp"
                 android:layout_marginHorizontal="20dp"
                 android:padding="15dp"
                 android:background="@drawable/border1">
@@ -235,7 +239,8 @@
                     android:layout_below="@+id/textView5"
                     android:layout_marginTop="10dp"
                     android:layout_centerHorizontal="true"
-                    android:rating="3"
+                    android:rating="0"
+                    android:stepSize="1"
                     android:progressTint="#FF4500"/>
 
                 <TextView
@@ -262,7 +267,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/comment"
-                android:layout_margin="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginHorizontal="20dp"
                 android:padding="15dp"
                 android:background="@drawable/border1">
 
@@ -294,7 +300,8 @@
                     android:layout_below="@+id/textView8"
                     android:layout_marginTop="10dp"
                     android:layout_centerHorizontal="true"
-                    android:rating="3"
+                    android:rating="0"
+                    android:stepSize="1"
                     android:progressTint="#FF4500"/>
 
                 <TextView
@@ -321,6 +328,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/comment"
+                android:layout_marginBottom="20dp"
                 android:layout_marginHorizontal="20dp"
                 android:padding="15dp"
                 android:background="@drawable/border1">
@@ -353,7 +361,8 @@
                     android:layout_below="@+id/textView11"
                     android:layout_marginTop="10dp"
                     android:layout_centerHorizontal="true"
-                    android:rating="3"
+                    android:rating="0"
+                    android:stepSize="1"
                     android:progressTint="#FF4500"/>
 
                 <TextView
@@ -380,7 +389,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/comment"
-                android:layout_margin="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginHorizontal="20dp"
                 android:padding="15dp"
                 android:background="@drawable/border1">
 
@@ -412,7 +422,8 @@
                     android:layout_below="@+id/textView14"
                     android:layout_marginTop="10dp"
                     android:layout_centerHorizontal="true"
-                    android:rating="3"
+                    android:rating="0"
+                    android:stepSize="1"
                     android:progressTint="#FF4500"/>
 
                 <TextView
@@ -439,6 +450,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/comment"
+                android:layout_marginBottom="20dp"
                 android:layout_marginHorizontal="20dp"
                 android:padding="15dp"
                 android:background="@drawable/border1">
@@ -471,7 +483,8 @@
                     android:layout_below="@+id/textView17"
                     android:layout_marginTop="10dp"
                     android:layout_centerHorizontal="true"
-                    android:rating="3"
+                    android:rating="0"
+                    android:stepSize="1"
                     android:progressTint="#FF4500"/>
 
                 <TextView
@@ -498,7 +511,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/comment5"
-                android:layout_margin="20dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="20dp"
                 android:padding="15dp"
                 android:background="@drawable/border1">
 
@@ -506,29 +520,38 @@
                     android:id="@+id/textView20"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/textView21"
+                    android:layout_alignStart="@+id/typeCustomer"
                     android:layout_marginStart="20dp"
                     android:background="@color/white"
                     android:text="Loại khách" />
 
                 <TextView
-                    android:id="@+id/textView21"
+                    android:id="@+id/typeCustomer"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_below="@+id/textView20"
                     android:layout_marginTop="10dp"
                     android:padding="10dp"
-                    android:text="Du lịch cặp đôi"
                     android:textSize="16sp"
                     android:textColor="@color/black"
                     android:background="@drawable/border1"
                     app:drawableRightCompat="@drawable/baseline_keyboard_arrow_down_black_24"/>
 
                 <TextView
+                    android:id="@+id/notic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/typeCustomer"
+                    android:layout_alignStart="@+id/typeCustomer"
+                    android:layout_marginTop="5dp"
+                    android:text="*Vui lòng điền vào ô này!"
+                    android:textColor="#EE0000" />
+
+                <TextView
                     android:id="@+id/textView22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/textView21"
+                    android:layout_below="@+id/notic"
                     android:layout_alignStart="@+id/editTextText"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="15dp"
@@ -538,11 +561,10 @@
                 <EditText
                     android:id="@+id/editTextText"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/textView22"
                     android:layout_marginTop="10dp"
                     android:padding="10dp"
-                    android:text="Trải nghiệm tuyệt vời"
                     android:textSize="16sp"
                     android:ems="10"
                     android:gravity="start|top"
@@ -550,10 +572,20 @@
                     android:background="@drawable/border1" />
 
                 <TextView
-                    android:id="@+id/textView23"
+                    android:id="@+id/notic1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/editTextText"
+                    android:layout_alignStart="@+id/editTextText"
+                    android:layout_marginTop="5dp"
+                    android:text="*Vui lòng điền vào ô này!"
+                    android:textColor="#EE0000" />
+
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/notic1"
                     android:layout_alignStart="@+id/editTextText1"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="15dp"
@@ -563,31 +595,38 @@
                 <EditText
                     android:id="@+id/editTextText1"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/textView23"
                     android:layout_marginTop="10dp"
                     android:padding="10dp"
-                    android:text="Phục vụ tốt"
                     android:textSize="16sp"
                     android:ems="10"
                     android:gravity="start|top"
                     android:inputType="textMultiLine"
                     android:background="@drawable/border1" />
 
+                <TextView
+                    android:id="@+id/notic2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/editTextText1"
+                    android:layout_alignStart="@+id/editTextText1"
+                    android:layout_marginTop="5dp"
+                    android:text="*Vui lòng điền vào ô này!"
+                    android:textColor="#EE0000" />
+
                 <Button
                     android:id="@+id/btn_sendcmt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/editTextText1"
-                    android:layout_marginTop="30dp"
+                    android:layout_below="@+id/notic2"
+                    android:layout_marginTop="15dp"
                     android:text="Gửi nhận xét của tôi"
                     android:textColor="@color/white"
                     android:background="@drawable/btn_order"
                     android:layout_centerHorizontal="true"/>
 
             </RelativeLayout>
-
-
         </LinearLayout>
     </ScrollView>
 

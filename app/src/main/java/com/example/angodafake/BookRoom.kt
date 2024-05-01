@@ -1,6 +1,7 @@
 package com.example.angodafake
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.DialogInterface
 import android.content.Intent
@@ -77,12 +78,18 @@ class BookRoom : AppCompatActivity() {
     private lateinit var price: TextView
     private lateinit var promotion: TextView
     private lateinit var priceAfterPromotion: TextView
-    private var idVoucher: String = ""
-    private var quantity: Int = 0
     private var newPrice: Int = 0
     private lateinit var hotelName: String
     private lateinit var typeRoom: String
     private val merchantCode = "MOMOC2IC20220510"
+
+    private lateinit var notic: TextView
+
+    private lateinit var idVoucher: String
+    private var quantity: Int = 0
+    private var checkMethod: Boolean = true
+    private var i: Int = -1
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun createData(hotel_ID: String) {
@@ -164,7 +171,7 @@ class BookRoom : AppCompatActivity() {
         }
 
         findViewById<TextView>(R.id.cost).text = "Giá gốc (${roomQuantity} phòng x ${dayInHotel} đêm)"
-        findViewById<TextView>(R.id.Promotion).text = "${formatMoney(discountValue)} đ"
+        findViewById<TextView>(R.id.Promotion).text = "-${formatMoney(discountValue)} đ"
 
         findViewById<RadioButton>(R.id.cashChoice).text = "Thanh toán vào ${convertDateTimeToString(checkInTime, 2)}"
         findViewById<TextView>(R.id.textView47).text = "Đặt phòng hôm nay và thanh toán vào ${convertDateTimeToString(checkInTime, 2)}"
@@ -183,9 +190,17 @@ class BookRoom : AppCompatActivity() {
             when (checkedId) {
                 R.id.cashChoice -> {
                     paymentMethodLayout.visibility = View.GONE
+                    notic.visibility = View.GONE
+
+                    checkMethod = false
+                    discountValue = 0
+                    findViewById<TextView>(R.id.Promotion).text = "-${formatMoney(discountValue)} đ"
+                    findViewById<TextView>(R.id.PriceAfterPromotion).text = "${formatMoney(firstPrice - discountValue)} đ"
                 }
                 R.id.onlineChoice -> {
                     paymentMethodLayout.visibility = View.VISIBLE
+
+                    checkMethod = true
                 }
             }
         }
@@ -230,17 +245,22 @@ class BookRoom : AppCompatActivity() {
         layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         seenVoucherBtn = findViewById(R.id.seen_voucher)
-        textView = findViewById(R.id.textView39)
-        price = findViewById(R.id.Price)
-        promotion = findViewById(R.id.Promotion)
-        priceAfterPromotion = findViewById(R.id.PriceAfterPromotion)
-
-        priceAfterPromotion.text = price.text
-
+        notic = findViewById(R.id.notic)
         recyclerView = findViewById(R.id.fieldvoucher)
 
+        notic.visibility = View.GONE
+
         seenVoucherBtn.setOnClickListener {
-            showBottomSheet()
+            if (checkMethod) {
+                showBottomSheet()
+            } else {
+                val noticDialog = AlertDialog.Builder(this)
+                    .setTitle("Lưu ý!")
+                    .setMessage("Phiếu Voucher không được áp dụng cho phương thức thanh toán trực tiếp!")
+                    .setCancelable(true)
+                    .setNegativeButton("Đóng") {_,_ ->}
+                    .show()
+            }
         }
     }
 
@@ -310,10 +330,12 @@ class BookRoom : AppCompatActivity() {
         recyclerView.layoutManager = layoutManager
         recyclerView.setHasFixedSize(true)
 
-        linearAdapter = VoucherHotelAdapter(this, listVoucher)
+        linearAdapter = VoucherHotelAdapter(this, listVoucher, i)
         recyclerView.adapter = linearAdapter
 
-        linearAdapter.onItemClick = { contact ->
+        linearAdapter.onItemClick = { contact, position ->
+            i = position
+
             idVoucher = contact.ID.toString()
             quantity = contact.quantity!!
             if (contact.money_discount == 0.0) {
@@ -321,14 +343,16 @@ class BookRoom : AppCompatActivity() {
             } else {
                 calculatePrice1(firstPrice.toDouble(), contact.limit_price!!, contact.money_discount!!)
             }
+            findViewById<TextView>(R.id.Promotion).text = "-${formatMoney(discountValue)} đ"
+            findViewById<TextView>(R.id.PriceAfterPromotion).text = "${formatMoney(firstPrice - discountValue)} đ"
 
             priceAfterPromotion.text = "${formatMoney(newPrice)} đ"
 
+            notic.visibility = View.VISIBLE
             recyclerView.visibility = View.GONE
         }
     }
 
-    @SuppressLint("SetTextI18n")
     private fun calculatePrice1(olePrice: Double, limit_price: Double, money_discount: Double) {
         if (olePrice >= limit_price) {
             promotion.text = "- ${formatMoney(money_discount.toInt())} đ"
@@ -336,7 +360,6 @@ class BookRoom : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("SetTextI18n")
     private fun calculatePrice2(olePrice: Double, limit_price: Double, max_discount: Double, percentage: Int){
         if (olePrice >= limit_price) {
             val money_discount = olePrice * percentage * 0.01

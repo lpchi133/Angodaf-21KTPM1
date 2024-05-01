@@ -61,18 +61,57 @@
         android:layout_toEndOf="@+id/border4"
         android:background="#0000FF" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_handler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/border3"
-        android:layout_marginTop="0dp">
-    </com.google.android.material.tabs.TabLayout>
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/pager"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tab_handler" />
+        android:layout_below="@+id/border3">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_handler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </com.google.android.material.tabs.TabLayout>
+
+        <RelativeLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tab_handler"
+            android:background="@drawable/beach">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="0.5dp"/>
+
+            <RelativeLayout
+                android:id="@+id/loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Loading..."
+                    android:textColor="#FFC125"
+                    android:textStyle="bold"
+                    android:textSize="40sp"
+                    android:fontFamily="monospace"/>
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView"
+                    android:layout_marginTop="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:indeterminateTint="#FFC125" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
 
 </RelativeLayout>

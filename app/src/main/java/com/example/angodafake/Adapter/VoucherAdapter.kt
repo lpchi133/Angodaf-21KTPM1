@@ -1,12 +1,16 @@
 package com.example.angodafake.Adapter
 
 import android.annotation.SuppressLint
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Html
 import android.text.Spanned
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
@@ -45,20 +49,50 @@ class VoucherAdapter(private val fragment: FragmentActivity, private var voucher
         holder.name.text = format(currentItem.percentage.toString(), max_discount, money_discount)
         holder.limit.text = format2(limit_price)
         holder.quantity.text = currentItem.quantity.toString()
+
         holder.btnUse.setOnClickListener {
-            val arg = Bundle()
-            arg.putString("hotelPosition", currentItem.ID_Hotel)
-            arg.putString("hotelName", nameHotel)
+            val dialog = Dialog(fragment)
+            val inflater = LayoutInflater.from(fragment)
+            val dialogView = inflater.inflate(R.layout.custom_my_voucher_detail, null)
 
+            val percentageDialog: TextView = dialogView.findViewById(R.id.percentage)
+            val limit_priceDialog: TextView = dialogView.findViewById(R.id.limited_price)
+            val max_discountDialog: TextView = dialogView.findViewById(R.id.max_discount)
+            val quantityDialog: TextView = dialogView.findViewById(R.id.quantity)
+            val textView: TextView = dialogView.findViewById(R.id.textView4)
+            val useVoucher: Button = dialogView.findViewById(R.id.button)
+            val closePopup: Button = dialogView.findViewById(R.id.button1)
 
-            val listRoom = ListRoom(idUser)
-            listRoom.arguments = arg
+            useVoucher.visibility = View.GONE
 
-            val fragmentManager = fragment.supportFragmentManager
-            fragmentManager.beginTransaction()
-                .replace(R.id.frameLayout, listRoom)
-                .addToBackStack(null)
-                .commit()
+            quantityDialog.text = currentItem.quantity.toString()
+            limit_priceDialog.text = format3(currentItem.limit_price!!)
+
+            if (currentItem.money_discount == 0.0) {
+                percentageDialog.text = "Up to ${currentItem.percentage}%"
+                max_discountDialog.text = format3(currentItem.max_discount!!)
+            } else {
+                percentageDialog.text = "Giảm giá ${format3(currentItem.money_discount!!)}"
+                max_discountDialog.visibility = View.GONE
+                textView.visibility = View.GONE
+            }
+
+            closePopup.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setCancelable(true)
+            dialog.setContentView(dialogView)
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+            val window = dialog.window
+            val layoutParams = window?.attributes
+            layoutParams?.width = ViewGroup.LayoutParams.MATCH_PARENT // Kích thước ngang theo match_parent
+            layoutParams?.height = ViewGroup.LayoutParams.WRAP_CONTENT // Kích thước chiều cao tự động
+            window?.attributes = layoutParams
+
+            dialog.show()
         }
     }
 
@@ -74,7 +108,7 @@ class VoucherAdapter(private val fragment: FragmentActivity, private var voucher
 
     fun format1(money: Double): String {
         val formatSymbols = DecimalFormatSymbols()
-        formatSymbols.groupingSeparator = '.'
+        formatSymbols.groupingSeparator = ','
 
         val decimalFormat = DecimalFormat("#,##0", formatSymbols)
         return decimalFormat.format(money)
@@ -84,6 +118,16 @@ class VoucherAdapter(private val fragment: FragmentActivity, private var voucher
         val temp = "Đơn tối thiểu &#8363;$limit_price"
         return Html.fromHtml(temp, Html.FROM_HTML_MODE_COMPACT)
     }
+
+    fun format3(money: Double): Spanned? {
+        val formatSymbols = DecimalFormatSymbols()
+        formatSymbols.groupingSeparator = ','
+
+        val decimalFormat = DecimalFormat("#,##0", formatSymbols)
+        val stringMoney = "&#8363;${decimalFormat.format(money)}"
+        return Html.fromHtml(stringMoney, Html.FROM_HTML_MODE_COMPACT)
+    }
+
     class MyViewHolder(voucherItem: View) : RecyclerView.ViewHolder(voucherItem) {
         val name: TextView = voucherItem.findViewById(R.id.voucher_name)
         val limit: TextView = voucherItem.findViewById(R.id.voucher_limited)

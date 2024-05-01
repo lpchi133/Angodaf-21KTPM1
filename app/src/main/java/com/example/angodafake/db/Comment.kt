@@ -7,6 +7,7 @@ data class Comment(
     var ID: String? = null,
     var ID_Owner: String? = null,
     var ID_Hotel: String? = null,
+    var ID_Purchase: String? = null,
     var time: String? = null,
     var point: Double? = 0.0,
     var content: String? = null,
@@ -18,6 +19,22 @@ data class Comment(
     var type_customer: String? = null,
     var title: String? = null,
     ) {
-    // Null default values create a no-argument default constructor, which is needed
-    // for deserialization from a DataSnapshot.
+    fun toMap(): Map<String, Any?> {
+        return mapOf(
+            "ID" to ID,
+            "ID_Owner" to ID_Owner,
+            "ID_Hotel" to ID_Hotel,
+            "ID_Purchase" to ID_Purchase,
+            "time" to time,
+            "point" to point,
+            "content" to content,
+            "money" to money,
+            "location" to location,
+            "clean" to clean,
+            "service" to service,
+            "convenience" to convenience,
+            "type_customer" to type_customer,
+            "title" to title,
+        )
+    }
 }

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EAE7E7">
+    android:background="#EAE7E7"
+    tools:context=".HotelOfManagementVoucher">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -11,7 +13,7 @@
         android:layout_height="60dp"
         android:background="?attr/colorPrimary"
         android:layout_marginStart="60dp"
-        app:title="Nhận xét của tôi" />
+        app:title="@string/v_title" />
 
     <ImageButton
         android:id="@+id/btn_back"
@@ -68,12 +70,13 @@
         android:layout_toEndOf="@+id/border4"
         android:background="#0000FF" />
 
-    <RelativeLayout
-        android:id="@+id/content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/hotelList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/border3"
-        android:layout_marginVertical="15dp"
-        android:background="@color/white"/>
+        android:layout_margin="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
 
 </RelativeLayout>

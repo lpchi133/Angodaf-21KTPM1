@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EAE7E7">
+    android:background="#DDDDDD"
+    tools:context=".MyComment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -11,7 +13,7 @@
         android:layout_height="60dp"
         android:background="?attr/colorPrimary"
         android:layout_marginStart="60dp"
-        app:title="@string/v_title" />
+        app:title="Nhận xét của tôi" />
 
     <ImageButton
         android:id="@+id/btn_back"
@@ -68,26 +70,47 @@
         android:layout_toEndOf="@+id/border4"
         android:background="#0000FF" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/border1"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
-        android:gravity="center_vertical"
-        android:text="Tìm hiểu thêm về phiếu quà tặng."
-        android:textColor="#3E52FA"
-        android:textStyle="bold"
-        app:drawableRightCompat="@drawable/baseline_info_outline_24" />
-
-    <androidx.recyclerview.widget.RecyclerView
+    <RelativeLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/textView"
-        android:layout_margin="10dp"
-        android:padding="10dp"/>
+        android:layout_below="@+id/border3"
+        android:background="@color/white">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/myCommentField"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/beach2"/>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#CDFFED"
+            app:srcCompat="@drawable/empty_list" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="400dp"
+            android:text="Chưa có gì để cho bạn nhận xét"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="16sp"
+            android:text="Thế giới rộng lớn đang chờ bạn khám phá. Xách balo lên và đi nào!" />
+    </RelativeLayout>
 
 </RelativeLayout>

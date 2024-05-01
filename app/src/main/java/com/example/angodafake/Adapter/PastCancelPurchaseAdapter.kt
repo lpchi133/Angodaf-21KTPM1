@@ -2,6 +2,7 @@ package com.example.angodafake.Adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,8 +16,10 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.Hotel_infor
+import com.example.angodafake.MyCommentForm
 import com.example.angodafake.PurchaseExtra
 import com.example.angodafake.R
+import com.example.angodafake.Utilities.CommentUtils
 import com.example.angodafake.Utilities.HotelUtils
 import com.example.angodafake.Utilities.PictureUtils
 import com.example.angodafake.db.Hotel
@@ -50,6 +53,22 @@ class PastCancelPurchaseAdapter(private val fragment: Fragment, private var past
     @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = past_cancelPurchase[position]
+
+        holder.commentbtn.visibility = View.GONE
+
+        CommentUtils.getCommentByIDPurchase(currentItem.Purchase?.ID!!) {comment ->
+            if (currentItem.Purchase?.detail == "HOAN_TAT" && comment.isEmpty()) {
+                holder.commentbtn.visibility = View.VISIBLE
+                holder.commentbtn.setOnClickListener {
+                    val intent = Intent(fragment.requireActivity(), MyCommentForm::class.java)
+                    intent.putExtra("hotelName", currentItem.nameHotel)
+                    intent.putExtra("ID_Owner", currentItem.Purchase!!.ID_Owner)
+                    intent.putExtra("ID_Hotel", currentItem.Purchase!!.ID_Hotel)
+                    intent.putExtra("ID_Purchase", currentItem.Purchase!!.ID)
+                    fragment.requireActivity().startActivity(intent)
+                }
+            }
+        }
 
         holder.namehotel.text = currentItem.nameHotel
         Picasso.get().load(currentItem.imageHotel).into(holder.imagehotel)
@@ -116,6 +135,7 @@ class PastCancelPurchaseAdapter(private val fragment: Fragment, private var past
         val checkin: TextView = past_cancelPurchaseItem.findViewById(R.id.check_in)
         val checkout: TextView = past_cancelPurchaseItem.findViewById(R.id.check_out)
         val reorderbtn: Button = past_cancelPurchaseItem.findViewById(R.id.btn_reorder2)
+        val commentbtn: Button = past_cancelPurchaseItem.findViewById(R.id.btn_comment)
     }
 
     @SuppressLint("NotifyDataSetChanged")

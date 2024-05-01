@@ -417,11 +417,21 @@
 
             </RelativeLayout>
 
+            <TextView
+                android:id="@+id/notic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/voucher"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:text="*Voucher đã được áp dụng"
+                android:textColor="#EE0000" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/fieldvoucher"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/voucher"
+                android:layout_below="@+id/notic"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/border4"
                 android:orientation="horizontal"/>

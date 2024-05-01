@@ -1,18 +1,24 @@
 package com.example.angodafake
 
+import android.app.Dialog
 import android.content.Context
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.PopupWindow
 import android.widget.RatingBar
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -81,8 +87,7 @@ class Hotel_infor(private var idUser: String) : Fragment() {
 
         val nameTextView = view.findViewById<TextView>(R.id.hotel_name)
         val locationTextView = view.findViewById<TextView>(R.id.address_hotel)
-        val pointView = view.findViewById<TextView>(R.id.point)
-        val rateStatus: TextView = view.findViewById(R.id.rateStatus)
+//        val img: ImageView = view.findViewById(R.id.hotel_image)
         val description: TextView = view.findViewById(R.id.description)
         val convenience: TextView = view.findViewById(R.id.convenience)
         val highlight: TextView = view.findViewById(R.id.highlight)
@@ -93,10 +98,19 @@ class Hotel_infor(private var idUser: String) : Fragment() {
         val checkIn: TextView = view.findViewById(R.id.time_In)
         val checkOut: TextView = view.findViewById(R.id.time_Out)
         val imgAvt: ImageView = view.findViewById(R.id.avt)
-        val count_cmt: TextView = view.findViewById(R.id.cmt)
         val showDetail: TextView = view.findViewById(R.id.showDetail)
         val firstRectangle: TextView = view.findViewById(R.id.firstRectangle)
         val imageRV: RecyclerView = view.findViewById(R.id.hotel_image)
+        val inforVoucher: TextView = view.findViewById(R.id.inforVoucher)
+
+        val ratingField: RelativeLayout = view.findViewById(R.id.ratingField)
+        val pointView = view.findViewById<TextView>(R.id.point)
+        val rateStatus: TextView = view.findViewById(R.id.rateStatus)
+        val count_cmt: TextView = view.findViewById(R.id.cmt)
+
+        inforVoucher.setOnClickListener {
+            showPopup1()
+        }
 
         layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
@@ -128,6 +142,7 @@ class Hotel_infor(private var idUser: String) : Fragment() {
                         hotel_phone.text = hotel.phoneNumber
                         count_cmt.text = hotel.total_comments.toString() + " nhận xét"
 
+
                         val conveniences = hotel.highlight?.split("\\")
                         val formattedconveniences = conveniences?.map { "✅    $it" }
                         val formattedconvenience = formattedconveniences?.joinToString("\n")
@@ -138,14 +153,39 @@ class Hotel_infor(private var idUser: String) : Fragment() {
                         val formattedHighlight = formattedHighlights?.joinToString("\n")
                         highlight.text = formattedHighlight
 
-                        rateStatus.text = when (hotel.point!!.toInt()){
-                            in 0 until 3 -> { "Cực tệ" }
-                            in 3 until 5 -> { "Tệ" }
-                            in 5 until 6 -> { "Trung bình" }
-                            in 6 until 8 -> { "Tốt" }
-                            in 8 until 9 -> { "Rất tốt" }
-                            else -> { "Tuyệt vời" }
+                        rateStatus.text = when (hotel.point!!.toInt()) {
+                            in 0 until 3 -> {
+                                "Rất tệ"
+                            }
+
+                            in 3 until 5 -> {
+                                "Tệ"
+                            }
+
+                            in 5 until 6 -> {
+                                "Trung bình"
+                            }
+
+                            in 6 until 7 -> {
+                                "Hài lòng"
+                            }
+
+                            in 7 until 8 -> {
+                                "Rất tốt"
+                            }
+
+                            in 8 until 9 -> {
+                                "Tuyệt vời"
+                            }
+
+                            else -> {
+                                "Trên cả tuyệt vời"
+                            }
                         }
+
+                        pointView.text = hotel.point.toString()
+
+                        count_cmt.text = hotel.total_comments.toString() + " nhận xét"
 
                         val fullDescription = hotel.description
                         val initialLinesToShow = 3
@@ -153,9 +193,22 @@ class Hotel_infor(private var idUser: String) : Fragment() {
                         val initialDescription = lines?.take(initialLinesToShow)?.joinToString("\n")
                         description.text = initialDescription
 
+                        ratingField.setOnClickListener {
+                            val intent = Intent(requireContext(), Hotel_comment::class.java)
+                            intent.putExtra("idHotel", itemPosition)
+                            intent.putExtra("point", pointView.text)
+                            intent.putExtra("rateStatus", rateStatus.text)
+                            intent.putExtra("cmt", count_cmt.text)
+                            intent.putExtra("clean", hotel.clean.toString())
+                            intent.putExtra("convenience", hotel.convenience.toString())
+                            intent.putExtra("location", hotel.location.toString())
+                            intent.putExtra("service", hotel.service.toString())
+                            intent.putExtra("money", hotel.money_rating.toString())
+                            startActivity(intent)
+                        }
+
                         view.findViewById<ImageView>(R.id.imageView4).setOnClickListener {
                             if (flow == null) {
-
                                 val arg = Bundle()
                                 arg.putStringArray("hotelIds", hotelIds)
                                 arg.putStringArray("saveIds", saveIds)
@@ -259,7 +312,6 @@ class Hotel_infor(private var idUser: String) : Fragment() {
 //                imageRV.adapter = imageAdapter
 //                imageAdapter.submitList(imageList)
 
-
         }
         return view
     }
@@ -268,6 +320,30 @@ class Hotel_infor(private var idUser: String) : Fragment() {
         println(idUser)
         val mainActivity = activity as MainActivity
         mainActivity.replaceFragment(MyRoom(idUser))
+    }
+
+    private fun showPopup1() {
+        val dialog = Dialog(requireActivity())
+        val inflater = LayoutInflater.from(requireActivity())
+        val dialogView = inflater.inflate(R.layout.popup_1, null)
+
+        val btn_close: ImageButton = dialogView.findViewById(R.id.btn_close)
+        btn_close.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(dialogView)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val window = dialog.window
+        val layoutParams = window?.attributes
+        layoutParams?.width = ViewGroup.LayoutParams.MATCH_PARENT // Kích thước ngang theo match_parent
+        layoutParams?.height = ViewGroup.LayoutParams.WRAP_CONTENT // Kích thước chiều cao tự động
+        window?.attributes = layoutParams
+
+        dialog.show()
     }
 
     private fun showPopup() {

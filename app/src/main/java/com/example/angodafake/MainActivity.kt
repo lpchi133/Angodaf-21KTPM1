@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
             when(menuItem.itemId){
                 R.id.home -> replaceFragment(Home(idUser!!))
                 R.id.room -> replaceFragment(MyRoom(idUser!!))
-                R.id.hotel -> replaceFragment(MyHotel())
+                R.id.hotel -> replaceFragment(MyHotel(idUser!!))
                 R.id.bookmark -> replaceFragment(Bookmark())
                 R.id.profile -> replaceFragment(MyProfile(idUser!!))
             }

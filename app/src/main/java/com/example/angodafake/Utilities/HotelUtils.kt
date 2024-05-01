@@ -44,6 +44,26 @@ object HotelUtils {
             listener(emptyList()) // Trả về danh sách rỗng nếu có lỗi xảy ra
         }
     }
+    fun getHotelByOwnerID(ownerID: String, listener: (MutableList<Hotel>) -> Unit) {
+        val hotelsQuery = database.child("hotels")
+        hotelsQuery.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val hotelsList = mutableListOf<Hotel>()
+                for (hotelSnapshot in dataSnapshot.children) {
+                    val hotel = hotelSnapshot.getValue(Hotel::class.java)
+                    if (hotel?.ID_Owner == ownerID) {
+                        hotel.ID = hotelSnapshot.key
+                        hotel.let { hotelsList.add(it) }
+                    }
+                }
+                listener(hotelsList)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+    }
 
     fun addHotel(hotel: Hotel, listener: (String) -> Unit){
         val key = database.child("hotels").push().key
@@ -55,4 +75,23 @@ object HotelUtils {
         }
     }
 
+    fun updateRating(hotelID: String, point: Double, money_rating: Double, location: Double, clean: Double, service: Double, convenience: Double, callback: (String) -> Unit) {
+        val ratingUpdate = hashMapOf<String, Any>(
+            "/hotels/$hotelID/point" to point,
+            "/hotels/$hotelID/money_rating" to money_rating,
+            "/hotels/$hotelID/location" to location,
+            "/hotels/$hotelID/clean" to clean,
+            "/hotels/$hotelID/service" to service,
+            "/hotels/$hotelID/convenience" to convenience,
+        )
+
+        database.updateChildren(ratingUpdate)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    callback.invoke("success")
+                } else {
+                    callback.invoke("failure")
+                }
+            }
+    }
 }
