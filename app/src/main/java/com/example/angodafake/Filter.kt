@@ -205,7 +205,22 @@ class Filter(private var idUser: String) : Fragment() {
                         }
 
                         view.findViewById<TextView>(R.id.buttonMap).setOnClickListener {
-                            val mapFragment = MapsFragment()
+                            val arg = Bundle()
+                            if (saveIds != null) {
+                                hotelIds = saveIds
+                            }
+                            Log.d("FilterDetailFragment", "Hotel ID Filter: ${hotelIds?.joinToString(", ")}, Search Text: $searchText")
+
+                            arg.putStringArray("hotelIds", hotelIds)
+                            arg.putStringArray("saveIds", saveIds)
+                            arg.putString("searchText", searchText)
+                            arg.putString("checkIn", checkIn)
+                            arg.putString("checkOut", checkOut)
+                            arg.putInt("numberOfRooms", numberOfRooms!!)
+                            arg.putInt("numberOfGuests", numberOfGuests!!)
+
+                            val mapFragment = MapsFragment(idUser)
+                            mapFragment.arguments = arg
                             parentFragmentManager.beginTransaction()
                                 .replace(R.id.frameLayout, mapFragment)
                                 .addToBackStack(null)
@@ -302,7 +317,22 @@ class Filter(private var idUser: String) : Fragment() {
                         }
 
                         view.findViewById<TextView>(R.id.buttonMap).setOnClickListener {
-                            val mapFragment = MapsFragment()
+                            val arg = Bundle()
+                            if (saveIds != null) {
+                                hotelIds = saveIds
+                            }
+                            Log.d("FilterDetailFragment", "Hotel ID Filter: ${hotelIds?.joinToString(", ")}, Search Text: $searchText")
+
+                            arg.putStringArray("hotelIds", hotelIds)
+                            arg.putStringArray("saveIds", saveIds)
+                            arg.putString("searchText", searchText)
+                            arg.putString("checkIn", checkIn)
+                            arg.putString("checkOut", checkOut)
+                            arg.putInt("numberOfRooms", numberOfRooms!!)
+                            arg.putInt("numberOfGuests", numberOfGuests!!)
+
+                            val mapFragment = MapsFragment(idUser)
+                            mapFragment.arguments = arg
                             parentFragmentManager.beginTransaction()
                                 .replace(R.id.frameLayout, mapFragment)
                                 .addToBackStack(null)

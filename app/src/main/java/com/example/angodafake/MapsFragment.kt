@@ -3,9 +3,14 @@ package com.example.angodafake
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import com.example.angodafake.Utilities.HotelUtils
+import com.example.angodafake.db.Hotel
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -14,34 +19,100 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
-class MapsFragment : Fragment() {
+class MapsFragment(private var idUser: String) : Fragment() {
 
     private val callback = OnMapReadyCallback { googleMap ->
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
-         * If Google Play services is not installed on the device, the user will be prompted to
-         * install it inside the SupportMapFragment. This method will only be triggered once the
-         * user has installed Google Play services and returned to the app.
-         */
+
         val sydney = LatLng(-34.0, 151.0)
         googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
     }
+    private lateinit var listHotels: List<Hotel>
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_maps, container, false)
+        val view = inflater.inflate(R.layout.fragment_maps, container, false)
+
+        val args = arguments
+        val hotelIds = args?.getStringArray("hotelIds")
+        val saveIds = args?.getStringArray("saveIds")
+        val searchText = args?.getString("searchText")
+        val checkInfind = args?.getString("checkIn")
+        val checkOutfind = args?.getString("checkOut")
+        val numberOfRooms = args?.getInt("numberOfRooms")
+        val numberOfGuests = args?.getInt("numberOfGuests")
+        val flow = args?.getString("Flow_1")
+
+        println(checkInfind)
+        println(checkOutfind)
+        println(numberOfRooms)
+        println(numberOfGuests)
+
+        Log.d("FilterDetailFragment", "Hotel IDs: ${hotelIds?.joinToString(", ")}, Search Text: $searchText")
+        if (hotelIds != null) {
+
+            HotelUtils.getHotelList() { hotelList ->
+                listHotels = hotelList.filter { hotel ->
+                    hotel.ID in hotelIds!!
+                }
+            }
+        }
+
+        view.findViewById<ImageView>(R.id.back).setOnClickListener {
+            val arg = Bundle()
+
+            arg.putString("searchText", searchText)
+            arg.putStringArray("hotelIds", hotelIds)
+            arg.putStringArray("saveIds", saveIds)
+            arg.putString("checkIn", checkInfind)
+            arg.putString("checkOut", checkOutfind)
+            arg.putInt("numberOfRooms", numberOfRooms!!)
+            arg.putInt("numberOfGuests", numberOfGuests!!)
+
+            val filterFragment = Filter(idUser)
+            filterFragment.arguments = arg
+
+            val fragmentManager = requireActivity().supportFragmentManager
+            fragmentManager.beginTransaction()
+                .replace(R.id.frameLayout, filterFragment)
+                .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
+                .commit()
+        }
+
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-        mapFragment?.getMapAsync(callback)
+        mapFragment?.getMapAsync { googleMap ->
+            // Duyệt qua danh sách các khách sạn và hiển thị các đánh dấu trên bản đồ
+            listHotels.forEach { hotel ->
+                val location = LatLng(hotel.latitude ?: 0.0, hotel.longitude ?: 0.0)
+                val title = "${hotel.name}"
+                val snippet = "Giá: ${hotel.money} đ"
+                googleMap.addMarker(
+                    MarkerOptions()
+                        .position(location)
+                        .title(title)
+                        .snippet(snippet)
+                )
+            }
+
+            // Phương thức moveCamera di chuyển tầm nhìn của bản đồ đến vị trí đầu tiên trong danh sách khách sạn
+            if (listHotels.isNotEmpty()) {
+                val defaultZoomLevel = 8f
+                println(listHotels[0].latitude)
+                println(listHotels[0].longitude)
+
+                val firstHotelLocation = LatLng(listHotels[0].latitude ?: 0.0, listHotels[0].longitude ?: 0.0)
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(firstHotelLocation, defaultZoomLevel))
+            }
+
+        }
     }
 }
