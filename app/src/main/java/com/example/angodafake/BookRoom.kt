@@ -21,6 +21,11 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.example.angodafake.Adapter.VoucherHotelAdapter
 import com.example.angodafake.Utilities.HotelUtils
 import com.example.angodafake.Utilities.RoomUtils
@@ -30,6 +35,9 @@ import com.example.angodafake.db.Purchase
 import com.example.angodafake.db.Voucher
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.database.FirebaseDatabase
+import com.stripe.android.PaymentConfiguration
+import com.stripe.android.paymentsheet.PaymentSheet
+import com.stripe.android.paymentsheet.PaymentSheetResult
 import org.json.JSONException
 import org.json.JSONObject
 import vn.momo.momo_partner.AppMoMoLib
@@ -45,7 +53,6 @@ class BookRoom : AppCompatActivity() {
     private lateinit var countdownTimer: CountDownTimer
     private lateinit var countdownTextView: TextView
     private lateinit var paymentMethodLayout: ConstraintLayout
-    private lateinit var inputCardLayout: ConstraintLayout
     private lateinit var radioGroupPaymentMethod: RadioGroup
     private lateinit var radioGroupPaymentMethod2: RadioGroup
     private lateinit var bookRoomBtn: Button
@@ -84,6 +91,15 @@ class BookRoom : AppCompatActivity() {
     private lateinit var typeRoom: String
     private val merchantCode = "MOMOC2IC20220510"
 
+    private var SECRET_KEY = "sk_test_51PBOtERqFfsInlNh3xxgL5gxlFlzGT9DcvC39CdnYfOUEgzSaBLhIHZjd7FxeTOQmyxa0z7XUrgG6BLaUk4ZOkgd003tHSghUm"
+    private var PUBLIC_KEY = "pk_test_51PBOtERqFfsInlNh3u5HEHArjlLgJXaeVXMtmWGNciKifAqtLgUr2aIueOjWc8hp5iHvGf8VEtU4OGchPgkQK1ZC00WEl82W2Y"
+    private lateinit var paymentSheet: PaymentSheet
+    private lateinit var stringRequest: StringRequest
+    private lateinit var requestQueue: RequestQueue
+    private lateinit var customerID: String
+    private lateinit var ClientSecret: String
+    private lateinit var EphericalKey: String
+
     @RequiresApi(Build.VERSION_CODES.O)
     private fun createData(hotel_ID: String) {
         listVoucher.clear()
@@ -104,12 +120,53 @@ class BookRoom : AppCompatActivity() {
 
         AppMoMoLib.getInstance().setEnvironment(AppMoMoLib.ENVIRONMENT.DEVELOPMENT); // AppMoMoLib.ENVIRONMENT.PRODUCTION
 
+        PaymentConfiguration.init(this, PUBLIC_KEY)
+        paymentSheet = PaymentSheet(this) { paymentSheetResult ->
+            onPaymentResult(paymentSheetResult)
+        }
+        println(paymentSheet)
+
+        stringRequest = object : StringRequest(
+            Method.POST,
+            "https://api.stripe.com/v1/customers",
+            { response ->
+                // Xử lý phản hồi ở đây
+                println("Response: $response")
+                try {
+                    val json = JSONObject(response)
+                    customerID = json.getString("id")
+                    getEphericalKey(customerID)
+                } catch (e: JSONException){
+                    e.printStackTrace()
+                }
+            },
+            { error ->
+                // Xử lý lỗi ở đây
+                println("Error: ${error.networkResponse.statusCode}")
+            }) {
+
+            override fun getParams(): MutableMap<String, String> {
+                val params = HashMap<String, String>()
+                // Thêm các tham số yêu cầu POST vào đây nếu cần
+                return params
+            }
+
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                // Đặt các tiêu đề yêu cầu nếu cần
+                headers["Authorization"] = "Bearer $SECRET_KEY"
+                return headers
+            }
+        }
+
+        requestQueue = Volley.newRequestQueue(this)
+        requestQueue.add(stringRequest)
+
         dialog = Dialog(this)
         dialog.setContentView(R.layout.purchased)
         anim = dialog.findViewById<LottieAnimationView>(R.id.checkPurchase)
 
         paymentMethodLayout = findViewById(R.id.paymentMethod)
-        inputCardLayout = findViewById(R.id.cardInfor)
         countdownTextView = findViewById(R.id.timer)
         bookRoomBtn = findViewById(R.id.bookRoomBtn)
         backBtn = findViewById(R.id.back)
@@ -172,7 +229,6 @@ class BookRoom : AppCompatActivity() {
 
         // Ẩn các layout khi khởi động Activity
         paymentMethodLayout.visibility = View.GONE
-        inputCardLayout.visibility = View.GONE
 
         // Khởi tạo đồng hồ đếm ngược
         startCountdownTimer()
@@ -192,19 +248,6 @@ class BookRoom : AppCompatActivity() {
 
         backBtn.setOnClickListener {
             onBackPressed()
-        }
-
-        // Xử lý sự kiện khi RadioButton trong RadioGroup Payment Method 2 được chọn
-        radioGroupPaymentMethod2 = findViewById(R.id.radioGroup2)
-        radioGroupPaymentMethod2.setOnCheckedChangeListener { group, checkedId ->
-            when (checkedId) {
-                R.id.momoChoice -> {
-                    inputCardLayout.visibility = View.GONE
-                }
-                R.id.cardChoice -> {
-                    inputCardLayout.visibility = View.VISIBLE
-                }
-            }
         }
 
         bookRoomBtn.setOnClickListener {
@@ -244,6 +287,110 @@ class BookRoom : AppCompatActivity() {
         }
     }
 
+    private fun onPaymentResult(paymentSheetResult: PaymentSheetResult) {
+        when (paymentSheetResult) {
+            is PaymentSheetResult.Completed -> {
+                println("Completed")
+            }
+            else -> {
+                // Xử lý trường hợp mặc định hoặc các trường hợp khác
+            }
+        }
+    }
+
+    private fun getEphericalKey(customerID: String) {
+        stringRequest = object : StringRequest(
+            Method.POST,
+            "https://api.stripe.com/v1/ephemeral_keys",
+            { response ->
+                // Xử lý phản hồi ở đây
+                println("Response: $response")
+                try {
+                    val json = JSONObject(response)
+                    EphericalKey = json.getString("id")
+                    getClientSecret(customerID)
+                } catch (e: JSONException){
+                    e.printStackTrace()
+                }
+            },
+            { error ->
+                // Xử lý lỗi ở đây
+                println("Error: ${error.message}")
+            }) {
+
+            override fun getParams(): MutableMap<String, String> {
+                val params = HashMap<String, String>()
+                params["customer"] = customerID
+                // Thêm các tham số yêu cầu POST vào đây nếu cần
+                return params
+            }
+
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                // Đặt các tiêu đề yêu cầu nếu cần
+                headers["Authorization"] = "Bearer $SECRET_KEY"
+                headers["Stripe-version"] = "2024-04-10"
+                headers["Content-Type"] = "application/x-www-form-urlencoded"
+                return headers
+            }
+        }
+
+        requestQueue = Volley.newRequestQueue(this)
+        requestQueue.add(stringRequest)
+    }
+
+    private fun getClientSecret(customerID: String){
+        stringRequest = object : StringRequest(
+            Method.POST,
+            "https://api.stripe.com/v1/payment_intents",
+            { response ->
+                // Xử lý phản hồi ở đây
+                println("Response: $response")
+                try {
+                    val json = JSONObject(response)
+                    ClientSecret = json.getString("client_secret")
+                } catch (e: JSONException){
+                    e.printStackTrace()
+                }
+            },
+            { error ->
+                // Xử lý lỗi ở đây
+                println("Error: ${error.message}")
+            }) {
+
+            override fun getParams(): MutableMap<String, String> {
+                val params = HashMap<String, String>()
+                params["customer"] = customerID
+                params["amount"] = (firstPrice - discountValue).toString()
+                params["currency"] = "vnd"
+                params["automatic_payment_methods[enabled]"] = "true"
+                return params
+            }
+
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                // Đặt các tiêu đề yêu cầu nếu cần
+                headers["Authorization"] = "Bearer $SECRET_KEY"
+                headers["Stripe-version"] = "2024-04-10"
+                headers["Content-Type"] = "application/x-www-form-urlencoded"
+                return headers
+            }
+        }
+
+        requestQueue = Volley.newRequestQueue(this)
+        requestQueue.add(stringRequest)
+    }
+
+    private fun PaymentFlow() {
+        paymentSheet.presentWithPaymentIntent(
+            ClientSecret, PaymentSheet.Configuration("Hotel name",
+                PaymentSheet.CustomerConfiguration(
+                    customerID, EphericalKey
+                )
+            )
+        )
+    }
+
     private fun showDialog(dialog: Dialog, anim: LottieAnimationView){
         dialog.show()
         Handler(Looper.getMainLooper()).postDelayed(Runnable{
@@ -263,16 +410,12 @@ class BookRoom : AppCompatActivity() {
         return  "$day$month$year$hour$minute$second"
     }
 
-    private fun  getTimePurchase(): String{
+    private fun getTimePurchase(): String {
         val currentTime = Calendar.getInstance()
-        val year = currentTime.get(Calendar.YEAR)
-        val month = currentTime.get(Calendar.MONTH) + 1
-        val day = currentTime.get(Calendar.DAY_OF_MONTH)
-        val hour = currentTime.get(Calendar.HOUR_OF_DAY)
-        val minute = currentTime.get(Calendar.MINUTE)
-        val second = currentTime.get(Calendar.SECOND)
+        // Định dạng thời gian theo đúng yêu cầu
+        val dateFormat = SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault())
 
-        return "$hour:$minute:$second $day/$month/$year"
+        return dateFormat.format(currentTime.time)
     }
     private fun bookRoom(hotelID: String, customerID: String, RoomID: String,
                          quantity: String, timeBooking: String, total_purchase: Double,
@@ -289,6 +432,7 @@ class BookRoom : AppCompatActivity() {
             // Kiểm tra vnpay hay momo
             if(findViewById<RadioButton>(R.id.cardChoice).isChecked){
                 // CARD
+                PaymentFlow()
 //                val purchase = Purchase(ID_Owner = customerID, ID_Hotel = hotelID, ID_Room = RoomID, quantity = quantity.toInt(),
 //                    method = "CARD_PAYMENT", time_booking = timeBooking, time_purchase = "$hour:$minute:$second $day/$month/$year", time_cancel = "", reason = "", total_purchase = total_purchase,
 //                    status_purchase = "DA_THANH_TOAN", detail = "SAP_TOI", date_come = checkInTime, date_go = checkOutTime)

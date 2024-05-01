@@ -73,4 +73,7 @@ dependencies {
     }
     implementation("com.journeyapps:zxing-android-embedded:4.3.0@aar")
     implementation("com.google.zxing:core:3.4.1")
+    implementation ("com.stripe:stripe-java:20.77.0")
+    implementation ("com.stripe:stripe-android:20.41.0")
+    implementation ("com.android.volley:volley:1.2.1")
 }
