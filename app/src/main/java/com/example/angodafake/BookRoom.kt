@@ -74,18 +74,12 @@ class BookRoom : AppCompatActivity() {
     private lateinit var linearAdapter: VoucherHotelAdapter
     private var listVoucher: MutableList<Voucher> = mutableListOf()
 
-    private lateinit var textView: TextView
-    private lateinit var price: TextView
-    private lateinit var promotion: TextView
-    private lateinit var priceAfterPromotion: TextView
-    private var newPrice: Int = 0
     private lateinit var hotelName: String
     private lateinit var typeRoom: String
-    private val merchantCode = "MOMOC2IC20220510"
-
     private lateinit var notic: TextView
-
     private lateinit var idVoucher: String
+
+    private val merchantCode = "MOMOC2IC20220510"
     private var quantity: Int = 0
     private var checkMethod: Boolean = true
     private var i: Int = -1
@@ -346,8 +340,6 @@ class BookRoom : AppCompatActivity() {
             findViewById<TextView>(R.id.Promotion).text = "-${formatMoney(discountValue)} đ"
             findViewById<TextView>(R.id.PriceAfterPromotion).text = "${formatMoney(firstPrice - discountValue)} đ"
 
-            priceAfterPromotion.text = "${formatMoney(newPrice)} đ"
-
             notic.visibility = View.VISIBLE
             recyclerView.visibility = View.GONE
         }
@@ -355,20 +347,17 @@ class BookRoom : AppCompatActivity() {
 
     private fun calculatePrice1(olePrice: Double, limit_price: Double, money_discount: Double) {
         if (olePrice >= limit_price) {
-            promotion.text = "- ${formatMoney(money_discount.toInt())} đ"
-            newPrice = (olePrice - money_discount).toInt()
+            discountValue = money_discount.toInt()
         }
     }
 
     private fun calculatePrice2(olePrice: Double, limit_price: Double, max_discount: Double, percentage: Int){
         if (olePrice >= limit_price) {
             val money_discount = olePrice * percentage * 0.01
-            newPrice = if (money_discount >= max_discount) {
-                promotion.text = "- ${formatMoney(max_discount.toInt())} đ"
-                (olePrice - max_discount).toInt()
+            if (money_discount > max_discount) {
+                discountValue = max_discount.toInt()
             } else {
-                promotion.text = "- ${formatMoney(money_discount.toInt())} đ"
-                (olePrice - money_discount).toInt()
+                discountValue = money_discount.toInt()
             }
         }
     }
