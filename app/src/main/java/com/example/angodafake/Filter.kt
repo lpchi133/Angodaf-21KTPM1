@@ -173,7 +173,7 @@ class Filter(private var idUser: String) : Fragment() {
                         view.findViewById<Button>(R.id.backToMain).setOnClickListener {
                             val fragmentManager = requireActivity().supportFragmentManager
                             val fragmentTransaction = fragmentManager.beginTransaction()
-                            fragmentTransaction.replace(R.id.frameLayout, Home.newInstance("param1", "param2", idUser))
+                            fragmentTransaction.replace(R.id.frameLayout, Home(idUser))
                             fragmentTransaction.commit()
                         }
 

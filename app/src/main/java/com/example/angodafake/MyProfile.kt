@@ -60,7 +60,7 @@ class MyProfile(private var idUser: String) : Fragment() {
 
         btn_myHotel.setOnClickListener {
             val mainActivity = requireActivity() as MainActivity
-            mainActivity.replaceFragment(MyHotel())
+            mainActivity.replaceFragment(MyHotel(idUser))
         }
 
         btn_add_hotel.setOnClickListener {

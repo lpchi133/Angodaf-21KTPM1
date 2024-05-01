@@ -87,7 +87,7 @@ class AddRoomImageFragment(private var idHotel: String) : Fragment() {
                 RoomUtils.addRoom(room, idHotel){
                     PictureUtils.addRoomPictures(idHotel, it, picList)
                     val mainActivity = requireActivity() as MainActivity
-                    mainActivity.replaceFragment(MyHotel())
+                    mainActivity.replaceFragment(MyHotel("tYw0x3oVS7gAd9wOdOszzvJMOEM2"))
                     showSuccessSnackBar("Thêm phòng thành công.", view)
                 }
             } else{
