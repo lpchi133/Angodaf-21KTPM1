@@ -3573,12 +3573,7 @@ int id calender 0x7f0900d1
 int id callMeasure 0x7f0900d2
 int id cancel_button 0x7f0900d3
 int id canceledList 0x7f0900d4
-int id cardCVV 0x7f0900d5
 int id cardChoice 0x7f0900d6
-int id cardExp 0x7f0900d7
-int id cardInfor 0x7f0900d8
-int id cardNumber 0x7f0900d9
-int id cardOwner 0x7f0900da
 int id cardView 0x7f0900db
 int id carryVelocity 0x7f0900dc
 int id cashChoice 0x7f0900dd

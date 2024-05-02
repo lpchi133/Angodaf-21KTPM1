@@ -46,9 +46,7 @@ class BookRoom : AppCompatActivity() {
     private lateinit var countdownTimer: CountDownTimer
     private lateinit var countdownTextView: TextView
     private lateinit var paymentMethodLayout: ConstraintLayout
-    private lateinit var inputCardLayout: ConstraintLayout
     private lateinit var radioGroupPaymentMethod: RadioGroup
-    private lateinit var radioGroupPaymentMethod2: RadioGroup
     private lateinit var bookRoomBtn: Button
     private lateinit var backBtn: ImageView
 
@@ -77,7 +75,7 @@ class BookRoom : AppCompatActivity() {
     private lateinit var hotelName: String
     private lateinit var typeRoom: String
     private lateinit var notic: TextView
-    private lateinit var idVoucher: String
+    private var idVoucher: String = ""
 
     private val merchantCode = "MOMOC2IC20220510"
     private var quantity: Int = 0
@@ -110,7 +108,6 @@ class BookRoom : AppCompatActivity() {
         anim = dialog.findViewById<LottieAnimationView>(R.id.checkPurchase)
 
         paymentMethodLayout = findViewById(R.id.paymentMethod)
-        inputCardLayout = findViewById(R.id.cardInfor)
         countdownTextView = findViewById(R.id.timer)
         bookRoomBtn = findViewById(R.id.bookRoomBtn)
         backBtn = findViewById(R.id.back)
@@ -173,7 +170,6 @@ class BookRoom : AppCompatActivity() {
 
         // Ẩn các layout khi khởi động Activity
         paymentMethodLayout.visibility = View.GONE
-        inputCardLayout.visibility = View.GONE
 
         // Khởi tạo đồng hồ đếm ngược
         startCountdownTimer()
@@ -201,19 +197,6 @@ class BookRoom : AppCompatActivity() {
 
         backBtn.setOnClickListener {
             onBackPressed()
-        }
-
-        // Xử lý sự kiện khi RadioButton trong RadioGroup Payment Method 2 được chọn
-        radioGroupPaymentMethod2 = findViewById(R.id.radioGroup2)
-        radioGroupPaymentMethod2.setOnCheckedChangeListener { group, checkedId ->
-            when (checkedId) {
-                R.id.momoChoice -> {
-                    inputCardLayout.visibility = View.GONE
-                }
-                R.id.cardChoice -> {
-                    inputCardLayout.visibility = View.VISIBLE
-                }
-            }
         }
 
         bookRoomBtn.setOnClickListener {
@@ -277,16 +260,12 @@ class BookRoom : AppCompatActivity() {
         return  "$day$month$year$hour$minute$second"
     }
 
-    private fun  getTimePurchase(): String{
+    private fun getTimePurchase(): String {
         val currentTime = Calendar.getInstance()
-        val year = currentTime.get(Calendar.YEAR)
-        val month = currentTime.get(Calendar.MONTH) + 1
-        val day = currentTime.get(Calendar.DAY_OF_MONTH)
-        val hour = currentTime.get(Calendar.HOUR_OF_DAY)
-        val minute = currentTime.get(Calendar.MINUTE)
-        val second = currentTime.get(Calendar.SECOND)
+        // Định dạng thời gian theo đúng yêu cầu
+        val dateFormat = SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault())
 
-        return "$hour:$minute:$second $day/$month/$year"
+        return dateFormat.format(currentTime.time)
     }
     private fun bookRoom(hotelID: String, customerID: String, RoomID: String,
                          quantity: String, timeBooking: String, total_purchase: Double,

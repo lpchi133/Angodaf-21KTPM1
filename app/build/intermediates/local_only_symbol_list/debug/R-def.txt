@@ -264,12 +264,7 @@ id byMoney
 id byPercentage
 id calender
 id canceledList
-id cardCVV
 id cardChoice
-id cardExp
-id cardInfor
-id cardNumber
-id cardOwner
 id cardView
 id cashChoice
 id cbDaLat

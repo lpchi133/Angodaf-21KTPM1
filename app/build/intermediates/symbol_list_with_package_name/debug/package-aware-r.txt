@@ -3574,12 +3574,7 @@ id calender
 id callMeasure
 id cancel_button
 id canceledList
-id cardCVV
 id cardChoice
-id cardExp
-id cardInfor
-id cardNumber
-id cardOwner
 id cardView
 id carryVelocity
 id cashChoice
