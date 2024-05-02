@@ -3583,7 +3583,10 @@ id cbDaNang
 id cbHCM
 id cbHaiPhong
 id cbHanoi
+id cbHoiAn
+id cbHue
 id cbNhaTrang
+id cbVungTau
 id cb_momo
 id center
 id centerCrop
@@ -4071,6 +4074,7 @@ id position
 id postLayout
 id pressed
 id price
+id priceNew
 id price_room
 id profile
 id profileTittle

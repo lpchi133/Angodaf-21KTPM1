@@ -272,7 +272,10 @@ id cbDaNang
 id cbHCM
 id cbHaiPhong
 id cbHanoi
+id cbHoiAn
+id cbHue
 id cbNhaTrang
+id cbVungTau
 id cb_momo
 id chart
 id chat
@@ -499,6 +502,7 @@ id point_condition3
 id point_condition4
 id point_condition5
 id price
+id priceNew
 id price_room
 id profile
 id profileTittle

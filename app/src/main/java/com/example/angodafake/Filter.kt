@@ -114,9 +114,11 @@ class Filter(private var idUser: String) : Fragment() {
                             hotel.point!! >= point
                         }
 
-                        // Lọc ra danh sách các khách sạn có city thuộc selectedCities
-                        listHotels = listHotels.filter { hotel ->
-                            selectedCities.contains(hotel.city.toString())
+                        if(selectedCities != "") {
+                            // Lọc ra danh sách các khách sạn có city thuộc selectedCities
+                            listHotels = listHotels.filter { hotel ->
+                                selectedCities.contains(hotel.city.toString())
+                            }
                         }
 
                         listHotels = listHotels.filter { hotel ->

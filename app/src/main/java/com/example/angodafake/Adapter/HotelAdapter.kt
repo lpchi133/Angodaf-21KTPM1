@@ -3,6 +3,9 @@ package com.example.angodafake.Adapter
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.StrikethroughSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,11 +20,13 @@ import com.example.angodafake.Utilities.CommentUtils
 import com.example.angodafake.Utilities.PictureUtils
 import com.example.angodafake.Utilities.PurchaseUtils
 import com.example.angodafake.Utilities.RoomUtils
+import com.example.angodafake.Utilities.VoucherUtils
 import com.example.angodafake.db.Bookmark
 import com.example.angodafake.db.Comment
 import com.example.angodafake.db.Hotel
 import com.example.angodafake.db.Picture_Hotel
 import com.example.angodafake.db.Rooms
+import com.example.angodafake.db.Voucher
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -54,6 +59,9 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
         val buttonFav: ImageView = listItemView.findViewById(R.id.fav)
         val buttonShare: ImageView = listItemView.findViewById(R.id.shareBtn)
         val price: TextView = listItemView.findViewById(R.id.price)
+        val price_new: TextView = listItemView.findViewById(R.id.priceNew)
+        val firstRectangle: TextView = listItemView.findViewById(R.id.firstRectangle)
+
 
         init {
             // Thêm sự kiện click cho itemView
@@ -100,7 +108,7 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
             var roomList: List<Rooms> = emptyList()
             roomList = fetchedRoomList
             val lowestPrice = roomList.minOfOrNull { it.price ?: Int.MAX_VALUE } ?: Int.MAX_VALUE
-            holder.price.text = lowestPrice.toString() + " đ"
+//            holder.price.text = lowestPrice.toString() + " đ"
             Log.d("Adapter", "Room: ${lowestPrice}")
 
             hotelsRef.child(hotel.ID!!).child("money").setValue(lowestPrice)
@@ -182,6 +190,40 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
                                 val idPicture = context.resources.getIdentifier("quang_ba_khach_san", "drawable", context.packageName)
 
                                 holder.img.setImageResource(idPicture)
+                            }
+
+                            VoucherUtils.getAllVouchers(hotel.ID!!) { vouchers ->
+                                println(hotel.ID!!)
+
+                                val listVoucher = mutableListOf<Voucher>()
+
+                                for (voucher in vouchers) {
+                                    if (voucher.quantity!! > 0) {
+                                        listVoucher.add(voucher)
+                                    }
+                                }
+                                if (listVoucher.isNotEmpty()) {
+                                    holder.firstRectangle.text = "Đã áp dụng đ " + listVoucher[0].money_discount.toString()
+                                    holder.price.visibility = View.VISIBLE
+
+                                    val priceText = lowestPrice.toString() + " đ"
+                                    val spannableString = SpannableString(priceText)
+                                    spannableString.setSpan(
+                                        StrikethroughSpan(),
+                                        0,
+                                        priceText.length,
+                                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                                    )
+                                    holder.price.text = spannableString
+                                    println(listVoucher[0].money_discount!!)
+                                    holder.price_new.text = (lowestPrice.minus(listVoucher[0].money_discount!!)).toString() + " đ"
+
+                                } else {
+                                    holder.price.visibility = View.GONE
+                                    holder.price_new.text = lowestPrice.toString() + " đ"
+                                    holder.firstRectangle.text = "GIÁ RẺ NHẤT"
+
+                                }
                             }
                         }
                     }

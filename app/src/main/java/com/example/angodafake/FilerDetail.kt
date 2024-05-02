@@ -42,6 +42,9 @@ class FilerDetail(private var idUser: String) : Fragment() {
     private lateinit var cbDaLat: CheckBox
     private lateinit var cbHaiPhong: CheckBox
     private lateinit var cbDaNang: CheckBox
+    private lateinit var cbHue: CheckBox
+    private lateinit var cbVungTau: CheckBox
+    private lateinit var cbHoiAn: CheckBox
 
     private var isText6PlusSelected = false
     private var isText7PlusSelected = false
@@ -89,6 +92,9 @@ class FilerDetail(private var idUser: String) : Fragment() {
         cbDaLat = view.findViewById(R.id.cbDaLat)
         cbHaiPhong = view.findViewById(R.id.cbHaiPhong)
         cbDaNang = view.findViewById(R.id.cbDaNang)
+        cbHue = view.findViewById(R.id.cbHue)
+        cbVungTau = view.findViewById(R.id.cbVungTau)
+        cbHoiAn = view.findViewById(R.id.cbHoiAn)
 
         val buttonReset: Button = view.findViewById(R.id.buttonReset)
         buttonReset.setOnClickListener {
@@ -252,6 +258,9 @@ class FilerDetail(private var idUser: String) : Fragment() {
         cbDaLat.isChecked = false
         cbHaiPhong.isChecked = false
         cbDaNang.isChecked = false
+        cbHue.isChecked = false
+        cbVungTau.isChecked = false
+        cbHoiAn.isChecked = false
     }
 
     private fun getSelectedCities(): String {
@@ -263,6 +272,9 @@ class FilerDetail(private var idUser: String) : Fragment() {
         if (cbDaLat.isChecked) selectedCitiesList.add("Đà Lạt")
         if (cbHaiPhong.isChecked) selectedCitiesList.add("Hải Phòng")
         if (cbDaNang.isChecked) selectedCitiesList.add("Đà Nẵng")
+        if (cbHue.isChecked) selectedCitiesList.add("Huế")
+        if (cbVungTau.isChecked) selectedCitiesList.add("Vũng Tàu")
+        if (cbHoiAn.isChecked) selectedCitiesList.add("Hội An")
 
         return selectedCitiesList.joinToString(", ")
     }

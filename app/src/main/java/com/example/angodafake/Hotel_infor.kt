@@ -6,6 +6,9 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.StrikethroughSpan
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -92,6 +95,7 @@ class Hotel_infor(private var idUser: String) : Fragment() {
         val convenience: TextView = view.findViewById(R.id.convenience)
         val highlight: TextView = view.findViewById(R.id.highlight)
         val price_room: TextView = view.findViewById(R.id.price)
+        val price_room_new: TextView = view.findViewById(R.id.priceNew)
         val nameOwner: TextView = view.findViewById(R.id.nameOwner)
         val hotel_phone: TextView = view.findViewById(R.id.hotel_phone)
         val ratingBar: RatingBar = view.findViewById(R.id.ratingBar)
@@ -122,8 +126,6 @@ class Hotel_infor(private var idUser: String) : Fragment() {
                     val imageAdapter = ImageAdapterHotel()
                     imageRV.adapter = imageAdapter
                     imageAdapter.submitList(pictureList)
-
-                    price_room.text = hotel.money.toString() + " đ"
 
                     UserUtils.getUserByID(hotel.ID_Owner!!){user ->
                         User = user
@@ -261,7 +263,7 @@ class Hotel_infor(private var idUser: String) : Fragment() {
                 }
 
                 VoucherUtils.getAllVouchers(itemPosition) {vouchers ->
-//                        println(itemPosition)
+                        println(itemPosition)
 //                        println(listVoucher)
                     val listVoucher = mutableListOf<Voucher>()
 
@@ -269,6 +271,20 @@ class Hotel_infor(private var idUser: String) : Fragment() {
                         if (voucher.quantity!! > 0) {
                             listVoucher.add(voucher)
                         }
+                    }
+                    if(listVoucher.isNotEmpty()){
+                        firstRectangle.text = "Đã áp dụng đ " + listVoucher[0].money_discount.toString()
+                        price_room.visibility = View.VISIBLE
+                        val priceText = hotel.money.toString() + " đ"
+                        val spannableString = SpannableString(priceText)
+                        spannableString.setSpan(StrikethroughSpan(), 0, priceText.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                        price_room.text = spannableString
+                        println(listVoucher[0].money_discount!!)
+                        price_room_new.text = (hotel.money?.minus(listVoucher[0].money_discount!!)).toString() + " đ"
+                    }
+                    else{
+                        price_room.visibility = View.GONE
+                        price_room_new.text = hotel.money.toString() + " đ"
                     }
 
                     voucherfield = view.findViewById(R.id.voucher)

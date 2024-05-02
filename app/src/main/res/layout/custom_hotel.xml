@@ -22,7 +22,7 @@
     <RelativeLayout
         android:id="@+id/price_room"
         android:layout_width="120dp"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/rounded_button_price"
@@ -39,6 +39,7 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
             android:background="@drawable/round_half"
             android:gravity="center"
             android:padding="2dp"
@@ -50,24 +51,35 @@
         <TextView
             android:id="@+id/price"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="15dp"
             android:layout_below="@+id/firstRectangle"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
-            android:layout_marginBottom="0dp"
+            android:gravity="center"
+            android:text="694.444 đ"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:id="@+id/priceNew"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
             android:gravity="center"
             android:padding="5dp"
             android:text="694.444 đ"
-            android:textSize="13sp"
             android:textColor="@android:color/holo_red_dark"
+            android:textSize="12sp"
+            android:layout_below="@+id/price"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            />
+
     </RelativeLayout>
 
     <TextView

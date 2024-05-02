@@ -50,6 +50,9 @@ public final class CustomHotelBinding implements ViewBinding {
   public final TextView price;
 
   @NonNull
+  public final TextView priceNew;
+
+  @NonNull
   public final RelativeLayout priceRoom;
 
   @NonNull
@@ -67,9 +70,9 @@ public final class CustomHotelBinding implements ViewBinding {
   private CustomHotelBinding(@NonNull ConstraintLayout rootView, @NonNull TextView City,
       @NonNull TextView cmt, @NonNull ImageView fav, @NonNull TextView firstRectangle,
       @NonNull TextView hotelName, @NonNull ImageView icon, @NonNull ImageView imageView,
-      @NonNull TextView point, @NonNull TextView price, @NonNull RelativeLayout priceRoom,
-      @NonNull TextView rateStatus, @NonNull RatingBar ratingBar, @NonNull ImageView shareBtn,
-      @NonNull View view) {
+      @NonNull TextView point, @NonNull TextView price, @NonNull TextView priceNew,
+      @NonNull RelativeLayout priceRoom, @NonNull TextView rateStatus, @NonNull RatingBar ratingBar,
+      @NonNull ImageView shareBtn, @NonNull View view) {
     this.rootView = rootView;
     this.City = City;
     this.cmt = cmt;
@@ -80,6 +83,7 @@ public final class CustomHotelBinding implements ViewBinding {
     this.imageView = imageView;
     this.point = point;
     this.price = price;
+    this.priceNew = priceNew;
     this.priceRoom = priceRoom;
     this.rateStatus = rateStatus;
     this.ratingBar = ratingBar;
@@ -168,6 +172,12 @@ public final class CustomHotelBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.priceNew;
+      TextView priceNew = ViewBindings.findChildViewById(rootView, id);
+      if (priceNew == null) {
+        break missingId;
+      }
+
       id = R.id.price_room;
       RelativeLayout priceRoom = ViewBindings.findChildViewById(rootView, id);
       if (priceRoom == null) {
@@ -199,8 +209,8 @@ public final class CustomHotelBinding implements ViewBinding {
       }
 
       return new CustomHotelBinding((ConstraintLayout) rootView, City, cmt, fav, firstRectangle,
-          hotelName, icon, imageView, point, price, priceRoom, rateStatus, ratingBar, shareBtn,
-          view);
+          hotelName, icon, imageView, point, price, priceNew, priceRoom, rateStatus, ratingBar,
+          shareBtn, view);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
