@@ -208,12 +208,10 @@ class Filter(private var idUser: String) : Fragment() {
 
                         view.findViewById<TextView>(R.id.buttonMap).setOnClickListener {
                             val arg = Bundle()
-                            if (saveIds != null) {
-                                hotelIds = saveIds
-                            }
-                            Log.d("FilterDetailFragment", "Hotel ID Filter: ${hotelIds?.joinToString(", ")}, Search Text: $searchText")
+                            val ids = listHotels.map { it.ID }
+                            Log.d("FilterDetailFragment", "Hotel ID Map: ${ids.joinToString(", ")}, Search Text: $searchText")
 
-                            arg.putStringArray("hotelIds", hotelIds)
+                            arg.putStringArray("hotelIds", ids.toTypedArray())
                             arg.putStringArray("saveIds", saveIds)
                             arg.putString("searchText", searchText)
                             arg.putString("checkIn", checkIn)
@@ -323,7 +321,7 @@ class Filter(private var idUser: String) : Fragment() {
                             if (saveIds != null) {
                                 hotelIds = saveIds
                             }
-                            Log.d("FilterDetailFragment", "Hotel ID Filter: ${hotelIds?.joinToString(", ")}, Search Text: $searchText")
+                            Log.d("FilterDetailFragment", "Hotel ID Map: ${hotelIds?.joinToString(", ")}, Search Text: $searchText")
 
                             arg.putStringArray("hotelIds", hotelIds)
                             arg.putStringArray("saveIds", saveIds)

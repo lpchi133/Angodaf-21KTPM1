@@ -748,6 +748,7 @@ layout fragment_edit_info
 layout fragment_home
 layout fragment_home_filter
 layout fragment_home_filter_detail
+layout fragment_map_one_hotel
 layout fragment_maps
 layout fragment_my_hotel
 layout fragment_my_profile

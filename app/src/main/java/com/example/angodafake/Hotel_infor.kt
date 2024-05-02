@@ -256,6 +256,27 @@ class Hotel_infor(private var idUser: String) : Fragment() {
                                 .addToBackStack(null)
                                 .commit()
                         }
+
+                        view.findViewById<ImageButton>(R.id.btn_local).setOnClickListener {
+                            val arg = Bundle()
+
+                            arg.putString("hotelPosition", itemPosition)
+                            arg.putString("searchText", searchText)
+                            arg.putStringArray("hotelIds", hotelIds)
+                            arg.putStringArray("saveIds", saveIds)
+                            arg.putString("searchText", searchText)
+                            arg.putString("checkIn", checkInfind)
+                            arg.putString("checkOut", checkOutfind)
+                            arg.putInt("numberOfRooms", numberOfRooms!!)
+                            arg.putInt("numberOfGuests", numberOfGuests!!)
+
+                            val mapFragment = MapsOneHotelFragment(idUser)
+                            mapFragment.arguments = arg
+                            parentFragmentManager.beginTransaction()
+                                .replace(R.id.frameLayout, mapFragment)
+                                .addToBackStack(null)
+                                .commit()
+                        }
                         showDetail.setOnClickListener {
                             showPopup()
                         }
