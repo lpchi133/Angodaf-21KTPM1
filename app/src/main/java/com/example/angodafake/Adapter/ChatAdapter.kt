@@ -35,24 +35,20 @@ class ChatAdapter(private val context: Context, private var chat: MutableList<Ch
         val currentItem = chat[position]
 
         if (temp == "seeClient") {
-            UserUtils.getUserByID(currentItem.ID_User!!) {user ->
-                holder.name.text = user.name
+            holder.name.text = currentItem.Name_User
 
-                if (currentItem.ID_User == currentItem.Last_Message_Sender) {
-                    holder.lastChat.text = currentItem.Last_Message
-                } else {
-                    holder.lastChat.text = "Bạn: ${currentItem.Last_Message}"
-                }
+            if (currentItem.ID_User == currentItem.Last_Message_Sender) {
+                holder.lastChat.text = currentItem.Last_Message
+            } else {
+                holder.lastChat.text = "Bạn: ${currentItem.Last_Message}"
             }
         } else {
-            HotelUtils.getHotelByID(currentItem.ID_Partner!!) {hotel ->
-                holder.name.text = hotel.name
+            holder.name.text = currentItem.Name_Partner
 
-                if (hotel.ID == currentItem.Last_Message_Sender) {
-                    holder.lastChat.text = currentItem.Last_Message
-                } else {
-                    holder.lastChat.text = "Bạn: ${currentItem.Last_Message}"
-                }
+            if (currentItem.ID_Partner == currentItem.Last_Message_Sender) {
+                holder.lastChat.text = currentItem.Last_Message
+            } else {
+                holder.lastChat.text = "Bạn: ${currentItem.Last_Message}"
             }
         }
 

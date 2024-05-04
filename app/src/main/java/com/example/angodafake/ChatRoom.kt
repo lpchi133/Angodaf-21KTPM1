@@ -22,6 +22,7 @@ class ChatRoom : AppCompatActivity() {
     private lateinit var ID_ChatRoom: String
     private lateinit var ID_User: String
     private lateinit var ID_Partner: String
+    private lateinit var Type_User: String
 
     private lateinit var btnBack: ImageButton
     private lateinit var imagePartner: ImageView
@@ -56,16 +57,8 @@ class ChatRoom : AppCompatActivity() {
         
         ID_User = intent.getStringExtra("ID_User").toString()
         ID_Partner = intent.getStringExtra("ID_Partner").toString()
-
-        if (intent.getStringExtra("Type_Partner") == "Hotel") {
-            HotelUtils.getHotelByID(ID_Partner) { hotel ->
-                namePartner.text = hotel.name
-            }
-        } else {
-            UserUtils.getUserByID(ID_Partner) {user ->
-                namePartner.text = user.name
-            }
-        }
+        Type_User = intent.getStringExtra("Type_User").toString()
+        namePartner.text = intent.getStringExtra("Name_User")
 
         ID_ChatRoom = getID_ChatRoom(ID_User, ID_Partner)
 
@@ -107,8 +100,22 @@ class ChatRoom : AppCompatActivity() {
     }
 
     private fun getOrCreateChatRoom() {
-        ChatUtils.getOrCreateChatRoom(ID_ChatRoom, ID_User, ID_Partner) {id_chatroom ->
-            ID_ChatRoom = id_chatroom
+        if (Type_User == "User") {
+            UserUtils.getUserByID(ID_User) {user ->
+                HotelUtils.getHotelByID(ID_Partner) {hotel ->
+                    ChatUtils.getOrCreateChatRoom(ID_ChatRoom, ID_User, ID_Partner, user.name!!, hotel.name!!) {id_chatroom ->
+                        ID_ChatRoom = id_chatroom
+                    }
+                }
+            }
+        } else {
+            UserUtils.getUserByID(ID_Partner) {user ->
+                HotelUtils.getHotelByID(ID_User) {hotel ->
+                    ChatUtils.getOrCreateChatRoom(ID_ChatRoom, ID_User, ID_Partner, hotel.name!!, user.name!!) {id_chatroom ->
+                        ID_ChatRoom = id_chatroom
+                    }
+                }
+            }
         }
     }
 }

@@ -24,7 +24,7 @@ object ChatUtils {
         return getChatroomReference(chatroom_ID).child("chats")
     }
 
-    fun getOrCreateChatRoom(chatroom_ID: String, user_ID: String, partner_ID: String, callback: (String) -> Unit) {
+    fun getOrCreateChatRoom(chatroom_ID: String, user_ID: String, partner_ID: String, user_Name: String, partner_Name: String, callback: (String) -> Unit) {
         getChatroomReference(chatroom_ID).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val chatRoom = dataSnapshot.getValue(Chat_Room::class.java)
@@ -34,7 +34,7 @@ object ChatUtils {
                     val formatter = SimpleDateFormat("HH:mm dd/MM")
                     val timeNow = formatter.format(currentDateTime)
 
-                    val newChatRoom = Chat_Room(chatroom_ID, user_ID, partner_ID, partner_ID, timeNow, "", System.currentTimeMillis())
+                    val newChatRoom = Chat_Room(chatroom_ID, user_ID, partner_ID, user_Name, partner_Name, partner_ID, timeNow, "", System.currentTimeMillis())
                     getChatroomReference(chatroom_ID).setValue(newChatRoom)
                     sendChatMessage(chatroom_ID, partner_ID, "Cảm ơn bạn đã liên hệ với khách sạn chúng tôi! Vui lòng chia sẻ yêu cầu hoặc câu hỏi của bạn, chúng tôi sẽ phản hồi ngay sau khi có thể.") {result ->
                         callback(chatroom_ID)

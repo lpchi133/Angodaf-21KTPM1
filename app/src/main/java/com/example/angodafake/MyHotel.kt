@@ -72,8 +72,9 @@ class MyHotel(private var idUser: String) : Fragment() {
         openChatRoomActivity.setOnClickListener {
             val intent = Intent(context, ChatRoom::class.java)
             intent.putExtra("ID_User", "tYw0x3oVS7gAd9wOdOszzvJMOEM2")
-            intent.putExtra("ID_Partner", "2")
-            intent.putExtra("Type_Partner", "Hotel")
+            intent.putExtra("ID_Partner", "1")
+            intent.putExtra("Name_User", "Hanh Xink Dep")
+            intent.putExtra("Type_User", "User")
             startActivity(intent)
         }
     }
