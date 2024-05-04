@@ -8,6 +8,10 @@
         android:minSdkVersion="24"
         android:targetSdkVersion="34" />
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -31,10 +35,8 @@
         android:protectionLevel="signature" />
 
     <uses-permission android:name="com.example.angodafake.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-    <uses-permission android:name="android.permission.CAMERA" /> <!-- Don't require camera, as this requires a rear camera. This allows it to work on the Nexus 7 -->
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature
         android:name="android.hardware.camera.front"
         android:required="false" /> <!-- TODO replace above two with next line after Android 4.2 -->
@@ -67,6 +69,9 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/Theme.AngodaFake" >
+        <activity
+            android:name="com.example.angodafake.ScanQRCodeActivity"
+            android:exported="false" />
         <activity
             android:name="com.example.angodafake.MyCommentForm"
             android:exported="false" />

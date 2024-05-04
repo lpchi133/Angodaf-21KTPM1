@@ -6,10 +6,6 @@
     tools:context=".MyHotel">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -32,6 +28,15 @@
             android:layout_marginTop="50dp"
             android:layout_centerHorizontal="true"
             android:text="Button" />
+
+        <Button
+            android:id="@+id/checkIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:text="Quét QR" />
     </RelativeLayout>
 
 </FrameLayout>

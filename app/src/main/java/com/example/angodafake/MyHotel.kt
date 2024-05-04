@@ -1,5 +1,6 @@
 package com.example.angodafake
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import com.google.zxing.integration.android.IntentIntegrator
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,6 +27,7 @@ class MyHotel(private var idUser: String) : Fragment() {
 
     private lateinit var openVoucherActivity: Button
     private lateinit var openCommentActivity: Button
+    private lateinit var scanQRCode: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +59,12 @@ class MyHotel(private var idUser: String) : Fragment() {
         openCommentActivity.setOnClickListener {
             val intent = Intent(context, MyComment::class.java)
             intent.putExtra("id_user", idUser)
+            startActivity(intent)
+        }
+
+        scanQRCode = view.findViewById(R.id.checkIn)
+        scanQRCode.setOnClickListener {
+            val intent = Intent(context, ScanQRCodeActivity::class.java)
             startActivity(intent)
         }
     }
