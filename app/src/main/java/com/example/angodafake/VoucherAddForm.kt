@@ -10,11 +10,14 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.RadioGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.example.angodafake.Utilities.HotelUtils
+import com.example.angodafake.Utilities.PictureUtils
 import com.example.angodafake.Utilities.VoucherUtils
+import com.squareup.picasso.Picasso
 
 class VoucherAddForm : AppCompatActivity() {
     private val decimalFormat = DecimalFormat("#,###")
@@ -38,7 +41,12 @@ class VoucherAddForm : AppCompatActivity() {
         notic5.visibility = View.GONE
 
         var isMoney: Int = 0
-        val idHotel = intent.getStringExtra("idHotel")
+        val idHotel = intent.getStringExtra("idHotel").toString()
+
+        val imageHotel: ImageView = findViewById(R.id.imageRoom)
+        PictureUtils.getPictureByHotelID(idHotel) { picture ->
+            Picasso.get().load(picture.url).into(imageHotel)
+        }
 
         val btnBack: ImageButton = findViewById(R.id.btn_back)
         btnBack.setOnClickListener {

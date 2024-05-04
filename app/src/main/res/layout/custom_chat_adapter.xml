@@ -17,7 +17,7 @@
             android:id="@+id/imageView"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            layout="@layout/image_circle" />
+            layout="@layout/avatar" />
 
         <TextView
             android:id="@+id/textView"

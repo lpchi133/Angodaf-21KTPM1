@@ -83,7 +83,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentStart="true"
-            layout="@layout/image_circle" />
+            layout="@layout/avatar" />
 
         <TextView
             android:id="@+id/textView"

@@ -11,8 +11,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.R
 import com.example.angodafake.Utilities.HotelUtils
+import com.example.angodafake.Utilities.PictureUtils
 import com.example.angodafake.Utilities.UserUtils
 import com.example.angodafake.db.Chat_Room
+import com.squareup.picasso.Picasso
 
 class ChatAdapter(private val context: Context, private var chat: MutableList<Chat_Room>, private var temp: String) : RecyclerView.Adapter<ChatAdapter.MyViewHolder>() {
     var onItemClick: ((Chat_Room) -> Unit)? = null
@@ -60,7 +62,6 @@ class ChatAdapter(private val context: Context, private var chat: MutableList<Ch
     }
 
     class MyViewHolder(chatItem: View) : RecyclerView.ViewHolder(chatItem) {
-        val image: ImageView = chatItem.findViewById(R.id.imageRoom)
         val name: TextView = chatItem.findViewById(R.id.textView)
         val lastChat: TextView = chatItem.findViewById(R.id.textView1)
         val lastTime: TextView = chatItem.findViewById(R.id.textView2)

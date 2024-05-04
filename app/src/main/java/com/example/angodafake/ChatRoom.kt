@@ -25,7 +25,6 @@ class ChatRoom : AppCompatActivity() {
     private lateinit var Type_User: String
 
     private lateinit var btnBack: ImageButton
-    private lateinit var imagePartner: ImageView
     private lateinit var namePartner: TextView
     private lateinit var chatField: RecyclerView
     private lateinit var chatInput: EditText
@@ -37,7 +36,6 @@ class ChatRoom : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.custom_chat_room)
 
-        imagePartner = findViewById(R.id.imageRoom)
         namePartner = findViewById(R.id.textView)
         chatField = findViewById(R.id.chatField)
         chatInput = findViewById(R.id.chatInput)

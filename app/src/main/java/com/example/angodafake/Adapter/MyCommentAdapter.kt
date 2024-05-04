@@ -10,17 +10,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.R
 import com.example.angodafake.Utilities.HotelUtils
+import com.example.angodafake.Utilities.PictureUtils
 import com.example.angodafake.Utilities.PurchaseUtils
 import com.example.angodafake.Utilities.RoomUtils
 import com.example.angodafake.Utilities.UserUtils
 import com.example.angodafake.VoucherEditForm
 import com.example.angodafake.db.Comment
 import com.example.angodafake.db.Voucher
+import com.squareup.picasso.Picasso
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.text.SimpleDateFormat
@@ -65,12 +68,18 @@ class MyCommentAdapter(private val context: Context, private var comment: Mutabl
                 holder.room.text = purchase.quantity.toString()
             }
         }
+
+        PictureUtils.getPictureByHotelID(currentItem.ID_Hotel!!) {pictureHotel ->
+            Picasso.get().load(pictureHotel.url).into(holder.hotelImage)
+        }
+
         holder.point.text = currentItem.point.toString()
         holder.title.text = currentItem.title
         holder.content.text = currentItem.content
         holder.dateComment.text = format(currentItem.time!!)
     }
     class MyViewHolder(commentItem: View) : RecyclerView.ViewHolder(commentItem) {
+        val hotelImage: ImageView = commentItem.findViewById(R.id.imageRoom)
         val hotelName: TextView = commentItem.findViewById(R.id.textView)
         val hotelLocal: TextView = commentItem.findViewById(R.id.textView1)
         val roomType: TextView = commentItem.findViewById(R.id.textView2)

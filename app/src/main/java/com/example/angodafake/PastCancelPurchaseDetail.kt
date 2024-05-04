@@ -18,11 +18,13 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.example.angodafake.Utilities.CommentUtils
 import com.example.angodafake.Utilities.HotelUtils
+import com.example.angodafake.Utilities.PictureUtils
 import com.example.angodafake.Utilities.RoomUtils
 import com.example.angodafake.Utilities.UserUtils
 import com.example.angodafake.db.Hotel
 import com.example.angodafake.db.Rooms
 import com.example.angodafake.db.User
+import com.squareup.picasso.Picasso
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.time.LocalDate
@@ -143,12 +145,21 @@ class PastCancelPurchaseDetail : AppCompatActivity() {
         btnComment = findViewById(R.id.btn_comment)
 
         val purchaseID = intent.getStringExtra("id_purchase")
+        val hotelPic = intent.getStringExtra("pic_hotel")
         val hotelID = intent.getStringExtra("id_hotel")
         val ownerID = intent.getStringExtra("id_owner")
         val roomID = intent.getStringExtra("id_room")
         val roomquantity = intent.getStringExtra("quantity").toString()
         val come = intent.getStringExtra("date_come").toString()
         val go = intent.getStringExtra("date_go").toString()
+
+        hotelImage = findViewById(R.id.hotel_image)
+        Picasso.get().load(hotelPic).into(hotelImage)
+
+        roomImage = findViewById(R.id.imageRoom)
+        PictureUtils.getPictureRoom(hotelID!!, roomID!!) { pictureRooms ->
+            Picasso.get().load(pictureRooms.url).into(roomImage)
+        }
 
         btnComment.visibility = View.GONE
         CommentUtils.getCommentByIDPurchase(purchaseID!!) { comment ->
