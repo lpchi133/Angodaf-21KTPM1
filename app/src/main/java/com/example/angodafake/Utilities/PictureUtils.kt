@@ -53,6 +53,20 @@ object PictureUtils {
         }
     }
 
+    fun updateHotelPictures(ID_Hotel: String, pics: ArrayList<String>){
+        val pictureQuery = database.child("hotel_pictures").child(ID_Hotel)
+        pictureQuery.setValue(null)
+        for (pic in pics){
+            val key = pictureQuery.push().key
+            if (key != null){
+                val picture = Picture_Hotel(null, null, pic)
+                pictureQuery.child(key).setValue(picture)
+            } else{
+                Log.e("firebase", "Counldn't get push key for hotel_pictures")
+            }
+        }
+    }
+
     fun addRoomPictures(ID_Hotel: String, ID_Room: String, pics: ArrayList<String>){
         val pictureQuery = database.child("room_pictures").child(ID_Hotel).child(ID_Room)
         for (pic in pics){
@@ -106,15 +120,18 @@ object PictureUtils {
     }
 
     fun getPicturesByHotelID(ID: String, listener: (List<Picture_Hotel>) -> Unit){
-        val roomPicture = mutableListOf<Picture_Hotel>()
-        database.child("hotel_pictures").child(ID).get().addOnSuccessListener { dataSnapshot ->
-            for (roomSnapshot in dataSnapshot.children) {
-                val room = roomSnapshot.getValue(Picture_Hotel::class.java)
-                room?.let {
-                    roomPicture.add(it)
+        val hotelPicture = mutableListOf<Picture_Hotel>()
+        database.child("hotel_pictures").child(ID).get().
+        addOnSuccessListener { dataSnapshot ->
+            for (hotelPictureSnapshot in dataSnapshot.children) {
+                val hotelPic = hotelPictureSnapshot.getValue(Picture_Hotel::class.java)
+                hotelPic?.let {
+                    it.ID = hotelPictureSnapshot.key
+                    it.ID_Hotel = ID
+                    hotelPicture.add(it)
                 }
             }
-            listener(roomPicture)
+            listener(hotelPicture)
         }.addOnFailureListener { exception ->
             Log.e("firebase", "Error getting picture list", exception)
             listener(emptyList()) // Trả về danh sách rỗng nếu có lỗi xảy ra

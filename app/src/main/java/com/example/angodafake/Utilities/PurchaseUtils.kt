@@ -9,6 +9,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 object PurchaseUtils {
     private lateinit var database: DatabaseReference
@@ -88,5 +90,38 @@ object PurchaseUtils {
                     callback.invoke("failure")
                 }
             }
+    }
+
+    fun getBookedRoomBillsByHotelID(ID_Hotel: String, date: String, listener: (List<Purchase>?) -> Unit){
+        val billQuery = database.child("purchases")
+        billQuery.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val purchaseList = mutableListOf<Purchase>()
+                for (purchaseSnapshort in dataSnapshot.children){
+                    val purchase = purchaseSnapshort.getValue(Purchase::class.java)
+                    if (purchase?.ID_Hotel == ID_Hotel
+                        && (purchase.time_cancel == "" || purchase.time_cancel == null)
+                        && isDateInRange(date, purchase.date_come!!, purchase.date_go!!)
+                    ) {
+                        purchase.ID = purchaseSnapshort.key
+                        purchaseList.add(purchase)
+                    }
+                }
+                listener(purchaseList)
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Xử lý khi có lỗi xảy ra
+                Log.e("firebase", "Error getting room count: ${databaseError.message}")
+                listener(null)
+            }
+        })
+    }
+
+    fun isDateInRange(date: String, startDate: String, endDate: String): Boolean {
+        val format = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val dateObj = format.parse(date)
+        val startDateObj = format.parse(startDate)
+        val endDateObj = format.parse(endDate)
+        return dateObj in startDateObj..endDateObj
     }
 }

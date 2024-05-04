@@ -207,6 +207,10 @@ class AddHotelFragment(private var idUser: String) : Fragment() {
                 val mainActivity = requireActivity() as MainActivity
                 mainActivity.replaceFragment(MyProfile(idUser))
             }
+            else{
+                val mainActivity = requireActivity() as MainActivity
+                mainActivity.replaceFragment(MyHotel(idUser))
+            }
         }
 
         btn_next.setOnClickListener {
@@ -254,7 +258,7 @@ class AddHotelFragment(private var idUser: String) : Fragment() {
     }
 
     private fun validatePhoneNumber(): Boolean {
-        return if (et_phoneN.text.toString().trim().length != 10){
+        return if (et_phoneN.text.toString().trim().length != 10 && et_phoneN.text.toString().trim().length != 11){
             lPhoneN.error = "Số di động không hợp lệ."
             false
         } else true
@@ -352,6 +356,7 @@ class AddHotelFragment(private var idUser: String) : Fragment() {
     private fun nextStepWithData(){
         val arg = Bundle()
 
+        arg.putString("from", fromFrag)
         arg.putString("hotelName", et_hotelName.text.toString().trim())
         arg.putString("city", actvCity.text.toString().trim())
         arg.putString("locationDetail", et_locationDetail.text.toString().trim())
@@ -366,6 +371,9 @@ class AddHotelFragment(private var idUser: String) : Fragment() {
 
         if (arguments?.getStringArrayList("pics") != null){
             arg.putStringArrayList("pics", arguments?.getStringArrayList("pics"))
+        }
+        if (fromFrag == "edit"){
+            arg.putString("idHotel", arguments?.getString("idHotel"))
         }
 
         val addHotelImageFragment = addHotelImageFragment(idUser)
@@ -437,6 +445,10 @@ class AddHotelFragment(private var idUser: String) : Fragment() {
                 displayMomoMethod()
                 et_merchantCode.text = Editable.Factory.getInstance().newEditable(arguments?.getString("merchantCode"))
             }
+        }
+
+        if (fromFrag == "edit"){
+            view.findViewById<TextView>(R.id.addHotel_title).text = "Sửa thông tin khách sạn"
         }
     }
 

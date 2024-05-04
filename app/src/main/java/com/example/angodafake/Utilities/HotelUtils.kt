@@ -75,6 +75,19 @@ object HotelUtils {
         }
     }
 
+    fun updateHotel(ID: String, hotel: Hotel, listener: (String?) -> Unit){
+        database.child("hotels").child(ID).setValue(hotel)
+            .addOnSuccessListener {
+                // Xử lý khi cập nhật thông tin khách sạn thành công
+                listener(ID)
+            }
+            .addOnFailureListener { exception ->
+                // Xử lý khi xảy ra lỗi
+                Log.e("firebase", "Couldn't update hotel information: ${exception.message}")
+                listener(null)
+            }
+    }
+
     fun updateRating(hotelID: String, point: Double, money_rating: Double, location: Double, clean: Double, service: Double, convenience: Double, callback: (String) -> Unit) {
         val ratingUpdate = hashMapOf<String, Any>(
             "/hotels/$hotelID/point" to point,

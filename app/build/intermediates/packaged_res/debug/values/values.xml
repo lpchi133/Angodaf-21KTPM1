@@ -352,6 +352,7 @@
     <string name="addHotel_title">Thêm khách sạn mới</string>
     <string name="addRoom_title">Thêm phòng khách sạn</string>
     <string name="app_name">AngodaFake</string>
+    <string name="bill_title">Danh sách hóa đơn</string>
     <string name="bookmarkAds">Hãy chọn chổ nghỉ này để xem giá mới mất, thấp nhất</string>
     <string name="bookmarkTittle">Danh sách yêu thích</string>
     <string name="btn_order">Đặt phòng nào!</string>
@@ -377,6 +378,7 @@
     <string name="homeTittle">Tìm kiếm khách sạn</string>
     <string name="i_title">Thông tin đặt phòng</string>
     <string name="mv_title">Khuyến mãi</string>
+    <string name="myhotel_title">Khách sạn của tôi</string>
     <string name="pleaseBuy">Đang giữ giá. Đặt ngay để không vuột mất giá tốt!</string>
     <string name="profile_title">"Chào mừng, Name"</string>
     <string name="project_id" translatable="false">mobile-angodaf</string>

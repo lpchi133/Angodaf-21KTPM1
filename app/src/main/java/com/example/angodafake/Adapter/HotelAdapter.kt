@@ -221,10 +221,6 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
         return hotels.size
     }
 
-    fun getStudents(): List<Hotel> {
-        return hotels
-    }
-
     fun updateDataGradually(newData: List<Hotel>) {
         hotels = newData
         notifyDataSetChanged()

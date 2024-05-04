@@ -42,4 +42,6 @@
     <string name="editInfo_title">Hồ sơ cá nhân</string>
     <string name="addHotel_title">Thêm khách sạn mới</string>
     <string name="addRoom_title">Thêm phòng khách sạn</string>
+    <string name="myhotel_title">Khách sạn của tôi</string>
+    <string name="bill_title">Danh sách hóa đơn</string>
 </resources>

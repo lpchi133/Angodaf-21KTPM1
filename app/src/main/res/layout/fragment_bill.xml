@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".BillFragment">
+
+    <LinearLayout
+        android:id="@+id/layout_addHotel_title"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
+            android:contentDescription="back"
+            android:src="@drawable/baseline_close_24" />
+
+        <TextView
+            android:id="@+id/addHotel_title"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:layout_marginEnd="60dp"
+            android:gravity="center"
+            android:text="@string/bill_title"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView53"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="Chọn ngày:"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/lay1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lay1" />
+
+    <RelativeLayout
+        android:id="@+id/lay1"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/border_color"
+        app:layout_constraintStart_toEndOf="@+id/textView53"
+        app:layout_constraintTop_toBottomOf="@+id/profileTittle">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="7dp"
+            app:srcCompat="?android:attr/actionModeFindDrawable" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/lDate"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_toEndOf="@+id/imageView6"
+            app:boxStrokeColor="@color/blue"
+            app:cursorColor="@color/black"
+            app:hintEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:autofillHints="05/05/2024"
+                android:background="@drawable/border_color2"
+                android:cursorVisible="false"
+                android:editable="false"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="dd/mm/yyyy"
+                android:inputType="time"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lay1" />
+
+    <View
+        android:id="@+id/backgroundOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.5"
+        android:elevation="1dp"
+        android:visibility="gone"
+        android:background="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

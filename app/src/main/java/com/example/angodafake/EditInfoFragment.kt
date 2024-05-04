@@ -398,7 +398,7 @@ class EditInfoFragment(private var idUser: String) : Fragment() {
         }
     }
     private suspend fun validatePhoneNumber(lPhoneN: TextInputLayout, etPhoneN: TextInputEditText): Boolean {
-        return if (etPhoneN.text.toString().trim().length != 10){
+        return if (etPhoneN.text.toString().trim().length != 10 && etPhoneN.text.toString().trim().length != 11){
                 lPhoneN.error = "Số di động không hợp lệ."
                 false
             } else {
