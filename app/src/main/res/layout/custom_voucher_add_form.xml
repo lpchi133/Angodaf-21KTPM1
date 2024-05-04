@@ -70,14 +70,14 @@
         android:layout_toEndOf="@+id/border4"
         android:background="#0000FF" />
 
-    <ImageView
+    <include
         android:id="@+id/imageHotel"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_below="@+id/border3"
         android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        layout="@layout/image_circle" />
 
     <TextView
         android:id="@+id/nameHotel"

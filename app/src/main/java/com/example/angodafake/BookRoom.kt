@@ -77,8 +77,8 @@ class BookRoom : AppCompatActivity() {
     private lateinit var hotelName: String
     private lateinit var typeRoom: String
     private lateinit var notic: TextView
-    private lateinit var idVoucher: String
 
+    private var idVoucher: String = ""
     private val merchantCode = "MOMOC2IC20220510"
     private var quantity: Int = 0
     private var checkMethod: Boolean = true
@@ -128,7 +128,7 @@ class BookRoom : AppCompatActivity() {
 
         hotelID = intent.getStringExtra("hotelID").toString()
         val roomID = intent.getStringExtra("roomID")
-        HotelUtils.getHotelByID(hotelID!!){ hotel ->
+        HotelUtils.getHotelByID(hotelID){ hotel ->
             findViewById<TextView>(R.id.locationDetail).text = hotel.locationDetail
             findViewById<TextView>(R.id.rating).text = when (hotel.point?.toInt()){
                 in 0 until 3 -> { "${hotel.point} Cực tệ" }
@@ -184,10 +184,14 @@ class BookRoom : AppCompatActivity() {
             when (checkedId) {
                 R.id.cashChoice -> {
                     paymentMethodLayout.visibility = View.GONE
-                    notic.visibility = View.GONE
 
+                    notic.visibility = View.GONE
+                    recyclerView.visibility = View.GONE
+
+                    idVoucher = ""
                     checkMethod = false
                     discountValue = 0
+                    i = -1
                     findViewById<TextView>(R.id.Promotion).text = "-${formatMoney(discountValue)} đ"
                     findViewById<TextView>(R.id.PriceAfterPromotion).text = "${formatMoney(firstPrice - discountValue)} đ"
                 }
@@ -245,6 +249,7 @@ class BookRoom : AppCompatActivity() {
         notic.visibility = View.GONE
 
         seenVoucherBtn.setOnClickListener {
+            println("giảm giá ${discountValue}")
             if (checkMethod) {
                 showBottomSheet()
             } else {
@@ -324,7 +329,7 @@ class BookRoom : AppCompatActivity() {
         recyclerView.layoutManager = layoutManager
         recyclerView.setHasFixedSize(true)
 
-        linearAdapter = VoucherHotelAdapter(this, listVoucher, i)
+        linearAdapter = VoucherHotelAdapter(this, listVoucher, i, firstPrice)
         recyclerView.adapter = linearAdapter
 
         linearAdapter.onItemClick = { contact, position ->
@@ -337,28 +342,43 @@ class BookRoom : AppCompatActivity() {
             } else {
                 calculatePrice1(firstPrice.toDouble(), contact.limit_price!!, contact.money_discount!!)
             }
+            if (discountValue != 0) {
+                notic.visibility = View.VISIBLE
+            } else {
+                notic.visibility = View.GONE
+                i = -1
+                val noticDialog = AlertDialog.Builder(this)
+                    .setTitle("Lưu ý!")
+                    .setMessage("Bạn chưa đủ điều kiện sử dụng phiếu Voucher này!")
+                    .setCancelable(true)
+                    .setNegativeButton("Đóng") {_,_ ->}
+                    .show()
+            }
+
             findViewById<TextView>(R.id.Promotion).text = "-${formatMoney(discountValue)} đ"
             findViewById<TextView>(R.id.PriceAfterPromotion).text = "${formatMoney(firstPrice - discountValue)} đ"
-
-            notic.visibility = View.VISIBLE
             recyclerView.visibility = View.GONE
         }
     }
 
     private fun calculatePrice1(olePrice: Double, limit_price: Double, money_discount: Double) {
-        if (olePrice >= limit_price) {
-            discountValue = money_discount.toInt()
+        discountValue = if (olePrice >= limit_price) {
+            money_discount.toInt()
+        } else {
+            0
         }
     }
 
     private fun calculatePrice2(olePrice: Double, limit_price: Double, max_discount: Double, percentage: Int){
-        if (olePrice >= limit_price) {
+        discountValue = if (olePrice >= limit_price) {
             val money_discount = olePrice * percentage * 0.01
             if (money_discount > max_discount) {
-                discountValue = max_discount.toInt()
+                max_discount.toInt()
             } else {
-                discountValue = money_discount.toInt()
+                money_discount.toInt()
             }
+        } else {
+            0
         }
     }
 

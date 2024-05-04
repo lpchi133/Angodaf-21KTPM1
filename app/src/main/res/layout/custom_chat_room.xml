@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ChatRoom">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -67,81 +69,77 @@
         android:layout_toEndOf="@+id/border4"
         android:background="#0000FF" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/border3"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        app:srcCompat="@drawable/ic_launcher_1_background" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/information"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/border3"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="25dp"
-        android:layout_toEndOf="@+id/imageView"
-        android:text="Hotel Colline de France"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
+        android:layout_marginTop="0.5dp"
+        android:padding="10dp"
+        android:background="#94AAD6">
 
-    <TextView
-        android:id="@+id/line1"
+        <include
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            layout="@layout/image_circle" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/imageView"
+            android:text="Hotel Colline de France"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chatField"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/imageView"
-        android:background="#A9A9A9" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/information"
+        android:layout_above="@id/bottom_layout" />
 
-    <ScrollView
-        android:id="@+id/message"
+    <RelativeLayout
+        android:id="@+id/bottom_layout"
         android:layout_width="match_parent"
-        android:layout_height="520dp"
-        android:layout_below="@+id/line1"
-        android:layout_marginTop="10dp">
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:padding="8dp">
 
-        <LinearLayout
+        <EditText
+            android:id="@+id/chatInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+            android:layout_centerInParent="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toStartOf="@id/btn_send"
+            android:background="@drawable/edit_text_rounded_corner"
+            android:elevation="4dp"
+            android:hint="Nhập tin nhắn..."
+            android:padding="10dp" />
 
-    <TextView
-        android:id="@+id/line2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/message"
-        android:layout_marginTop="10dp"
-        android:background="#A9A9A9" />
+        <ImageButton
+            android:id="@+id/btn_send"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/baseline_send_24"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="#94AAD6"
+            android:padding="8dp"
+            android:layout_marginStart="10dp"
+            />
 
-    <EditText
-        android:id="@+id/editTextTextMultiLine"
-        android:layout_width="330dp"
-        android:layout_height="45dp"
-        android:padding="10dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/border"
-        android:ems="10"
-        android:hint="Nhập tin nhắn..."
-        android:gravity="start|top"
-        android:inputType="textMultiLine" />
-
-    <ImageButton
-        android:id="@+id/btn_send"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="12dp"
-        android:layout_toEndOf="@+id/editTextTextMultiLine"
-        android:background="@color/white"
-        app:srcCompat="@drawable/baseline_send_24" />
+    </RelativeLayout>
 
 </RelativeLayout>

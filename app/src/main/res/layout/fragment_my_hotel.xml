@@ -22,7 +22,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"
-            android:text="Button" />
+            android:text="Quản lý Voucher" />
 
         <Button
             android:id="@+id/button1"
@@ -31,7 +31,25 @@
             android:layout_below="@+id/button"
             android:layout_marginTop="50dp"
             android:layout_centerHorizontal="true"
-            android:text="Button" />
+            android:text="Quản lý Comment" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button1"
+            android:layout_marginTop="50dp"
+            android:layout_centerHorizontal="true"
+            android:text="Quản lý Chat" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button2"
+            android:layout_marginTop="50dp"
+            android:layout_centerHorizontal="true"
+            android:text="Chat" />
     </RelativeLayout>
 
 </FrameLayout>

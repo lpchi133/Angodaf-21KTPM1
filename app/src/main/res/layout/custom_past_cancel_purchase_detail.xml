@@ -316,13 +316,13 @@
                     android:textSize="20sp"
                     android:textStyle="bold"/>
 
-                <ImageView
+                <include
                     android:id="@+id/image_room"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginHorizontal="10dp"
                     android:layout_below="@+id/textView4"
-                    app:srcCompat="@drawable/ic_launcher_1_background" />
+                    layout="@layout/image_square" />
 
                 <TextView
                     android:id="@+id/textView7"

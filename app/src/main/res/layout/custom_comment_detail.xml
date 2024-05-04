@@ -18,12 +18,12 @@
             android:layout_height="wrap_content"
             android:padding="10dp">
 
-            <ImageView
+            <include
                 android:id="@+id/imageView"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_centerVertical="true"
-                app:srcCompat="@drawable/ic_launcher_1_background" />
+                layout="@layout/image_square" />
 
             <TextView
                 android:id="@+id/textView"

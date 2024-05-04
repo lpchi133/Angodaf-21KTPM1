@@ -19,7 +19,7 @@ import com.example.angodafake.db.Voucher
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 
-class VoucherHotelAdapter(private val context: Context, private var voucher: MutableList<Voucher>, private var i: Int) : RecyclerView.Adapter<VoucherHotelAdapter.MyViewHolder>() {
+class VoucherHotelAdapter(private val context: Context, private var voucher: MutableList<Voucher>, private var i: Int, private var firstPrice: Int) : RecyclerView.Adapter<VoucherHotelAdapter.MyViewHolder>() {
     var onItemClick: ((Voucher, position: Int) -> Unit)? = null
     private var listener: OnItemClickListener? = null
 
@@ -48,7 +48,7 @@ class VoucherHotelAdapter(private val context: Context, private var voucher: Mut
         holder.limit.text = format2(limit_price)
         holder.quantity.text = currentItem.quantity.toString()
 
-        if (position == i) {
+        if (position == i && firstPrice >= currentItem.limit_price!!.toInt()) {
             holder.btnSee.visibility = View.GONE
 
             holder.btnNotify.setOnClickListener {
