@@ -1,5 +1,6 @@
 package com.example.angodafake.Utilities
 
+import android.util.Log
 import com.example.angodafake.db.User
 import com.google.firebase.Firebase
 import com.google.firebase.auth.EmailAuthProvider
@@ -109,32 +110,28 @@ object UserUtils {
         usersQuery.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val oldUser = dataSnapshot.getValue(User::class.java)
-                if (newUser.email != oldUser?.email){
-                    val user = Firebase.auth.currentUser
-                    val email = if (oldUser!!.email == ""){
-                        "${oldUser.phoneN}@gmail.com"
-                    } else{
-                        oldUser.email!!
-                    }
-                    val credential = EmailAuthProvider.getCredential(email, pw)
-                    user!!.reauthenticate(credential).addOnCompleteListener {
-                            if (it.isSuccessful){
-                                user.updateEmail(newUser.email!!)
-                                    .addOnCompleteListener { task ->
-                                        if (task.isSuccessful){
-                                            database.child("users").child(ID).setValue(newUser)
-                                            listener(true)
-                                        } else{
-                                            listener(false)
-                                        }
-                                    }
-                            } else{
-                                listener(false)
-                            }
-                    }
+                val user = Firebase.auth.currentUser
+                val email = if (oldUser!!.email == ""){
+                    "${oldUser.phoneN}@gmail.com"
                 } else{
-                    database.child("users").child(ID).setValue(newUser)
-                    listener(true)
+                    oldUser.email!!
+                }
+                val credential = EmailAuthProvider.getCredential(email, pw)
+                user!!.reauthenticate(credential).addOnCompleteListener {
+                        if (it.isSuccessful){
+                            user.updateEmail(newUser.email!!)
+                                .addOnCompleteListener { task ->
+                                    if (task.isSuccessful){
+                                        Log.d("checkAuth", "true")
+                                        database.child("users").child(ID).setValue(newUser)
+                                        listener(true)
+                                    } else{
+                                        listener(false)
+                                    }
+                                }
+                        } else{
+                            listener(false)
+                        }
                 }
             }
             override fun onCancelled(databaseError: DatabaseError) {
