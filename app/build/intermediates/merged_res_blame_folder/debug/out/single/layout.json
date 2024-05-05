@@ -324,16 +324,16 @@
         "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-47:\\layout\\fragment_add_first_room.xml"
     },
     {
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-44:\\layout\\fragment_my_profile.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-47:\\layout\\fragment_my_profile.xml"
+    },
+    {
         "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-44:\\layout\\custom_chat_hotel_adapter.xml",
         "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-47:\\layout\\custom_chat_hotel_adapter.xml"
     },
     {
         "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-44:\\layout\\activity_main.xml",
         "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-47:\\layout\\activity_main.xml"
-    },
-    {
-        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-44:\\layout\\fragment_my_profile.xml",
-        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-47:\\layout\\fragment_my_profile.xml"
     },
     {
         "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-44:\\layout\\activity_book_room.xml",

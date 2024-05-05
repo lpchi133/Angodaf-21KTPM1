@@ -135,8 +135,9 @@ object HotelUtils {
                     val room = roomSnapshot.getValue(Rooms::class.java)
                     room?.let { room ->
                         room.ID = roomSnapshot.key
-                        // Xóa phòng và các giao dịch liên quan
+                        // Xóa phòng, ảnh, bình luận và các giao dịch liên quan
                         RoomUtils.deleteRoom(room.ID_Hotel!!, room.ID!!)
+                        CommentUtils.deleteCommentByIDHotel(room.ID_Hotel!!)
                         PictureUtils.deleteRoomPictues(room.ID_Hotel!!, room.ID!!)
                         PurchaseUtils.deletePurchaseByRoomID(room.ID_Hotel!!, room.ID!!)
                     }

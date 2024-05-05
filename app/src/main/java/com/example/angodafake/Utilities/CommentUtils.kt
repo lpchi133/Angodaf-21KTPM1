@@ -129,4 +129,22 @@ object CommentUtils {
                 }
             }
     }
+
+    fun deleteCommentByIDHotel(ID_Hotel: String){
+        val commentsQuery = database.child("comments")
+        commentsQuery.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (commentSnapshot in dataSnapshot.children) {
+                    val comment = commentSnapshot.getValue(Comment::class.java)
+                    if (comment?.ID_Hotel == ID_Hotel) {
+                        database.child("comments").child(commentSnapshot.key!!).setValue(null)
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+    }
 }

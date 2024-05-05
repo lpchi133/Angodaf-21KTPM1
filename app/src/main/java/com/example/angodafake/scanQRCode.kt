@@ -12,8 +12,10 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import com.airbnb.lottie.LottieAnimationView
 import com.budiyev.android.codescanner.AutoFocusMode
 import com.budiyev.android.codescanner.CodeScanner
@@ -30,6 +32,7 @@ class ScanQRCodeActivity : AppCompatActivity() {
     private lateinit var scanQRCode: CodeScanner
     private lateinit var dialog: Dialog
     private lateinit var anim: LottieAnimationView
+    private lateinit var idUser: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan_qrcode)
@@ -41,7 +44,7 @@ class ScanQRCodeActivity : AppCompatActivity() {
             finish()
         })
 
-        println("hhi")
+        idUser = intent.getStringExtra("idUser").toString()
 
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED){
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), 123)
@@ -66,20 +69,34 @@ class ScanQRCodeActivity : AppCompatActivity() {
                         // Xử lý khi cập nhật thành công
                         println(it.text)
                         PurchaseUtils.getPurchaseByID(it.text){ purchase ->
-                            UserUtils.getUserByID(purchase.ID_Owner!!){ user ->
-                                dialog.findViewById<TextView>(R.id.customerName).text = user.name
-                            }
-                            HotelUtils.getHotelByID(purchase.ID_Hotel!!){ hotel ->
-                                dialog.findViewById<TextView>(R.id.hotelName).text = hotel.name
-                                dialog.findViewById<TextView>(R.id.timeCheckIn).text = "${hotel.checkIn} ${purchase.date_come}"
-                                dialog.findViewById<TextView>(R.id.timeCheckOut).text = "${hotel.checkOut} ${purchase.date_go}"
-                            }
-                            RoomUtils.getRoomByID(purchase.ID_Hotel!!, purchase.ID_Room!!){ room ->
-                                dialog.findViewById<TextView>(R.id.roomID).text = room.type
+                            HotelUtils.getHotelByOwnerID(idUser){hotelList->
+                                var check = false
+                                for (hotel in hotelList){
+                                    if (hotel.ID == purchase.ID_Hotel){
+                                        check = true
+                                        break
+                                    }
+                                }
+                                if (check){
+                                    UserUtils.getUserByID(purchase.ID_Owner!!){ user ->
+                                        dialog.findViewById<TextView>(R.id.customerName).text = user.name
+                                    }
+                                    HotelUtils.getHotelByID(purchase.ID_Hotel!!){ hotel ->
+                                        dialog.findViewById<TextView>(R.id.hotelName).text = hotel.name
+                                        dialog.findViewById<TextView>(R.id.timeCheckIn).text = "${hotel.checkIn} ${purchase.date_come}"
+                                        dialog.findViewById<TextView>(R.id.timeCheckOut).text = "${hotel.checkOut} ${purchase.date_go}"
+                                    }
+                                    RoomUtils.getRoomByID(purchase.ID_Hotel!!, purchase.ID_Room!!){ room ->
+                                        dialog.findViewById<TextView>(R.id.roomID).text = room.type
+                                    }
+                                    dialog.findViewById<TextView>(R.id.textView54).text = "Vui lòng kiểm tra lại thông tin đặt phòng sớm nhất."
+                                    showDialog(dialog, anim)
+                                } else{
+                                    Toast.makeText(this, "Không sở hữu khách sạn", Toast.LENGTH_SHORT).show()
+                                    finish()
+                                }
                             }
                         }
-                        dialog.findViewById<TextView>(R.id.textView54).text = "Vui lòng kiểm tra lại thông tin đặt phòng sớm nhất."
-                        showDialog(dialog, anim)
                     } else {
                         // Xử lý khi cập nhật thất bại
 //                        showDialog(dialog, anim)

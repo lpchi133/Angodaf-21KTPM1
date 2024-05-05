@@ -181,6 +181,7 @@ class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
 
         qrFab.setOnClickListener {
             val intent = Intent(context, ScanQRCodeActivity::class.java)
+            intent.putExtra("idUser", idUser)
             startActivity(intent)
         }
 

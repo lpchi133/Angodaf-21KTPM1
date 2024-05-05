@@ -78,13 +78,13 @@ class MyProfile(private var idUser: String) : Fragment() {
         }
 
         btn_chat.setOnClickListener {
-            val intent = Intent(context, ChatList::class.java)
+            val intent = Intent(requireActivity(), ChatList::class.java)
             intent.putExtra("id_user", idUser)
             startActivity(intent)
         }
 
         btn_my_comments.setOnClickListener {
-            val intent = Intent(context, MyComment::class.java)
+            val intent = Intent(requireActivity(), MyComment::class.java)
             intent.putExtra("id_user", idUser)
             startActivity(intent)
         }
