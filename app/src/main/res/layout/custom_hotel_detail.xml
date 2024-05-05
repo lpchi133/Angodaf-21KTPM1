@@ -586,30 +586,6 @@
     </ScrollView>
 
     <ImageView
-        android:id="@+id/fav"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:layout_alignBottom="@+id/border4"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="23dp"
-        app:srcCompat="@drawable/baseline_favorite" />
-
-    <ImageView
-        android:id="@+id/shareBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/border4"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="24dp"
-        android:layout_toStartOf="@+id/fav"
-        app:srcCompat="?attr/actionModeShareDrawable" />
-
-    <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
