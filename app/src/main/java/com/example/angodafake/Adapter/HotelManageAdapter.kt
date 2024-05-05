@@ -1,6 +1,7 @@
 package com.example.angodafake.Adapter
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -20,12 +21,23 @@ import com.example.angodafake.Utilities.PictureUtils
 import com.example.angodafake.Utilities.PurchaseUtils
 import com.example.angodafake.Utilities.RoomUtils
 import com.example.angodafake.db.Hotel
+import com.example.angodafake.db.Rooms
 import com.squareup.picasso.Picasso
 
+interface OnHotelDeleteListener {
+    fun onHotelDeleted(hotel: Hotel)
+}
 class HotelManageAdapter (private val context: Context, private var hotel_list: ArrayList<Hotel>, var date: String) : RecyclerView.Adapter<HotelManageAdapter.ViewHolder>() {
+    private var onDeleteListener: OnHotelDeleteListener? = null
+
+    fun setOnDeleteListener(listener: OnHotelDeleteListener) {
+        onDeleteListener = listener
+    }
+
     var onItemClick: ((Hotel) -> Unit)? = null
     inner class ViewHolder(listItemView: View) : RecyclerView.ViewHolder(listItemView) {
         val btn_edit = listItemView.findViewById<ImageButton>(R.id.btn_edit)
+        val btn_delete = listItemView.findViewById<ImageButton>(R.id.btn_delete)
         val tv_hotelName = listItemView.findViewById<TextView>(R.id.tv_hotelName)
         val tv_city = listItemView.findViewById<TextView>(R.id.tv_city)
         val layout_bookedRoomsQty = listItemView.findViewById<RelativeLayout>(R.id.layout_bookedRoomsQty)
@@ -86,6 +98,24 @@ class HotelManageAdapter (private val context: Context, private var hotel_list: 
 
             val mainActivity = context as MainActivity
             mainActivity.replaceFragment(editHotelFrag)
+        }
+
+        holder.btn_delete.setOnClickListener {
+            val builder = AlertDialog.Builder(context)
+            builder.setTitle("Xác nhận")
+            builder.setMessage("Bạn có chắc chắn muốn xóa khách sạn này không?")
+
+            builder.setPositiveButton("Xóa") { dialog, _ ->
+                onDeleteListener?.onHotelDeleted(hotel)
+                dialog.dismiss()
+            }
+
+            builder.setNegativeButton("Hủy bỏ") { dialog, _ ->
+                dialog.dismiss()
+            }
+
+            val dialog = builder.create()
+            dialog.show()
         }
 
         holder.tv_hotelName.text = hotel.name

@@ -5,6 +5,8 @@ import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.text.Editable
@@ -21,10 +23,15 @@ import androidx.dynamicanimation.animation.DynamicAnimation.OnAnimationEndListen
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.Adapter.HotelManageAdapter
+import com.example.angodafake.Adapter.OnHotelDeleteListener
 import com.example.angodafake.Utilities.HotelUtils
+import com.example.angodafake.Utilities.PictureUtils
 import com.example.angodafake.Utilities.PurchaseUtils
+import com.example.angodafake.Utilities.RoomUtils
 import com.example.angodafake.db.Hotel
+import com.example.angodafake.db.Rooms
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
@@ -36,10 +43,8 @@ import com.google.android.material.textfield.TextInputLayout
  * Use the [MyHotel.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MyHotel(private var idUser: String) : Fragment() {
+class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
     // TODO: Rename and change types of parameters
-
-    private lateinit var openCommentActivity: Button
 
     private lateinit var addLL : View
     private lateinit var addFab : FloatingActionButton
@@ -82,6 +87,7 @@ class MyHotel(private var idUser: String) : Fragment() {
         initShowout(qrLL)
 
         adapter = HotelManageAdapter(requireContext(), hotel_list, date)
+        adapter.setOnDeleteListener(this)
         adapter.onItemClick = {
             val arg = Bundle()
             arg.putString("date", adapter.date)
@@ -181,6 +187,20 @@ class MyHotel(private var idUser: String) : Fragment() {
         return view
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onHotelDeleted(hotel: Hotel){
+        // Xử lý sự kiện khi người dùng xóa khách sạn
+        HotelUtils.deleteHotel(hotel.ID!!){
+            if (it){
+                hotel_list.remove(hotel)
+                adapter.notifyDataSetChanged()
+                showSuccessSnackBar("Đã xóa phòng.", requireView())
+            } else{
+                showSnackBar("Xóa thất bại! Phòng này hiện vẫn đang được giao dịch. Xin kiểm tra lại hóa đơn.", requireView())
+            }
+        }
+    }
+
     private fun toggleFabMode(v: View) {
         rotate = rotateFab(v, !rotate)
         if (rotate){
@@ -244,15 +264,18 @@ class MyHotel(private var idUser: String) : Fragment() {
         return rotate
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//        openCommentActivity = view.findViewById(R.id.button1)
-//        openCommentActivity.setOnClickListener {
-//            val intent = Intent(context, MyComment::class.java)
-//            intent.putExtra("id_user", idUser)
-//            startActivity(intent)
-//        }
+    private fun showSnackBar(msg: String, view: View) {
+        val snackbar = Snackbar.make(view.rootView, msg, Snackbar.LENGTH_LONG)
+        // Đổi màu background của Snackbar
+        snackbar.view.backgroundTintList = ColorStateList.valueOf(Color.RED)
+        snackbar.setTextColor(Color.WHITE)
+        snackbar.show()
+    }
+    private fun showSuccessSnackBar(msg: String, view: View) {
+        val snackbar = Snackbar.make(view.rootView, msg, Snackbar.LENGTH_LONG)
+        snackbar.view.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#3193FF"))
+        snackbar.setTextColor(Color.WHITE)
+        snackbar.show()
     }
 
     @SuppressLint("NotifyDataSetChanged")

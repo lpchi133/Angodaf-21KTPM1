@@ -30,6 +30,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -172,7 +174,7 @@ class ManageRoomsFragment(private var idUser: String) : Fragment(), OnRoomDelete
         Log.d("checkDelete", "vao")
 
         // Xử lý sự kiện khi người dùng xóa phòng
-        PurchaseUtils.getPurchaseByRoom(room.ID_Hotel!!, room.ID!!, adapter.date){
+        PurchaseUtils.getPurchaseByRoom(room.ID_Hotel!!, room.ID!!, SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Calendar.getInstance().time)){
             if (it){
                 RoomUtils.deleteRoom(room.ID_Hotel!!, room.ID!!)
                 PictureUtils.deleteRoomPictues(room.ID_Hotel!!, room.ID!!)
@@ -242,6 +244,20 @@ class ManageRoomsFragment(private var idUser: String) : Fragment(), OnRoomDelete
         return rotate
     }
 
+    private fun showSnackBar(msg: String, view: View) {
+        val snackbar = Snackbar.make(view.rootView, msg, Snackbar.LENGTH_LONG)
+        // Đổi màu background của Snackbar
+        snackbar.view.backgroundTintList = ColorStateList.valueOf(Color.RED)
+        snackbar.setTextColor(Color.WHITE)
+        snackbar.show()
+    }
+    private fun showSuccessSnackBar(msg: String, view: View) {
+        val snackbar = Snackbar.make(view.rootView, msg, Snackbar.LENGTH_LONG)
+        snackbar.view.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#3193FF"))
+        snackbar.setTextColor(Color.WHITE)
+        snackbar.show()
+    }
+
     @SuppressLint("NotifyDataSetChanged")
     private fun initUI(view: View){
         addLL = view.findViewById(R.id.addLL)
@@ -273,20 +289,6 @@ class ManageRoomsFragment(private var idUser: String) : Fragment(), OnRoomDelete
             et_date.text = Editable.Factory.getInstance().newEditable("$formattedDay/$formattedMonth/$year")
         }
         date = et_date.text.toString()
-    }
-
-    private fun showSnackBar(msg: String, view: View) {
-        val snackbar = Snackbar.make(view.rootView, msg, Snackbar.LENGTH_LONG)
-        // Đổi màu background của Snackbar
-        snackbar.view.backgroundTintList = ColorStateList.valueOf(Color.RED)
-        snackbar.setTextColor(Color.WHITE)
-        snackbar.show()
-    }
-    private fun showSuccessSnackBar(msg: String, view: View) {
-        val snackbar = Snackbar.make(view.rootView, msg, Snackbar.LENGTH_LONG)
-        snackbar.view.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#3193FF"))
-        snackbar.setTextColor(Color.WHITE)
-        snackbar.show()
     }
 
     companion object {

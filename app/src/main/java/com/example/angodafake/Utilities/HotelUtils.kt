@@ -1,14 +1,18 @@
 package com.example.angodafake.Utilities
 
+import android.icu.util.Calendar
 import android.util.Log
 import com.example.angodafake.db.Bookmark
 import com.example.angodafake.db.Hotel
+import com.example.angodafake.db.Rooms
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 object HotelUtils {
     private lateinit var database: DatabaseReference
@@ -107,4 +111,45 @@ object HotelUtils {
                 }
             }
     }
+
+    fun deleteHotel(ID_hotel: String, listener: (Boolean) -> Unit) {
+        var allRoomsValid = true
+
+        database.child("rooms").child(ID_hotel).get().addOnSuccessListener { dataSnapshot ->
+            dataSnapshot.children.forEach { roomSnapshot ->
+                val room = roomSnapshot.getValue(Rooms::class.java)
+                room?.let { room ->
+                    room.ID = roomSnapshot.key
+                    PurchaseUtils.getPurchaseByRoom(room.ID_Hotel!!, room.ID!!, SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Calendar.getInstance().time)) { isDateAfterGoDate ->
+                        if (!isDateAfterGoDate) {
+                            allRoomsValid = false
+                        }
+                    }
+                }
+            }
+
+            // Nếu tất cả các phòng đều hợp lệ, thực hiện xóa khách sạn và các phòng
+            if (allRoomsValid) {
+                dataSnapshot.children.forEach { roomSnapshot ->
+                    val room = roomSnapshot.getValue(Rooms::class.java)
+                    room?.let { room ->
+                        room.ID = roomSnapshot.key
+                        // Xóa phòng và các giao dịch liên quan
+                        RoomUtils.deleteRoom(room.ID_Hotel!!, room.ID!!)
+                        PictureUtils.deleteRoomPictues(room.ID_Hotel!!, room.ID!!)
+                        PurchaseUtils.deletePurchaseByRoomID(room.ID_Hotel!!, room.ID!!)
+                    }
+                }
+
+                // Xóa khách sạn
+                database.child("hotels").child(ID_hotel).setValue(null)
+                    .addOnSuccessListener { listener(true) }
+                    .addOnFailureListener { listener(false) }
+            } else {
+                listener(false)
+            }
+        }
+    }
+
+
 }

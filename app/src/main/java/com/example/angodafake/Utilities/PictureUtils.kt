@@ -1,6 +1,7 @@
 package com.example.angodafake.Utilities
 
 import android.util.Log
+import android.widget.Toast
 import com.example.angodafake.db.Picture_Hotel
 import com.example.angodafake.db.Picture_Room
 import com.example.angodafake.db.Rooms
@@ -10,6 +11,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
+import com.google.firebase.storage.storage
 
 object PictureUtils {
     private lateinit var database: DatabaseReference
@@ -174,6 +176,19 @@ object PictureUtils {
     }
 
     fun deleteRoomPictues(ID_Hotel: String, roomID: String){
+        //xóa ảnh trên firebase storage
+        database.child("room_pictures").child(ID_Hotel).child(roomID).get().addOnSuccessListener { dataSnapshot ->
+            for (roomSnapshot in dataSnapshot.children) {
+                val picture = roomSnapshot.getValue(Picture_Room::class.java)
+                picture?.let {
+                    Firebase.storage.reference.child(picture.url!!.substring(picture.url.lastIndexOf('/') + 1, picture.url.indexOf('?'))).delete()
+                }
+            }
+
+        }.addOnFailureListener { exception ->
+            Log.e("firebase", "Error getting picture by ID", exception)
+        }
+        //xóa trên firebase realtime
         database.child("room_pictures").child(ID_Hotel).child(roomID).setValue(null)
     }
 }
