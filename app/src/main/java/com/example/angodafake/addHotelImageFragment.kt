@@ -84,7 +84,9 @@ class addHotelImageFragment(private var idUser: String) : Fragment() {
                 val checkIn = arguments?.getString("checkin")
                 val checkOut = arguments?.getString("checkout")
                 val merchantCode = arguments?.getString("merchantCode")
-                val hotel = Hotel(null, ID_Owner, name, phoneNumber, locationDetail, city, description, conveniences, highlight, star, null, null, checkIn, checkOut, merchantCode)
+                val longitude = arguments?.getString("longitude")!!.toDouble()
+                val latitude = arguments?.getString("latitude")!!.toDouble()
+                val hotel = Hotel(null, ID_Owner, name, phoneNumber, locationDetail, city, description, conveniences, highlight, star, null, null, checkIn, checkOut, merchantCode, longitude, latitude,)
                 if (fromFrag == "edit"){
                     HotelUtils.updateHotel(arguments?.getString("idHotel")!!, hotel){
                         if (it != null){
@@ -125,6 +127,8 @@ class addHotelImageFragment(private var idUser: String) : Fragment() {
         arg.putString("hotelName", arguments?.getString("hotelName"))
         arg.putString("city", arguments?.getString("city"))
         arg.putString("locationDetail", arguments?.getString("locationDetail"))
+        arg.putString("longitude", arguments?.getString("longitude"))
+        arg.putString("latitude", arguments?.getString("latitude"))
         arg.putInt("star", arguments?.getInt("star")!!)
         arg.putString("phoneN", arguments?.getString("phoneN"))
         arg.putString("description", arguments?.getString("description"))
@@ -154,6 +158,8 @@ class addHotelImageFragment(private var idUser: String) : Fragment() {
         arg.putString("hotelName", arguments?.getString("hotelName"))
         arg.putString("city", arguments?.getString("city"))
         arg.putString("locationDetail", arguments?.getString("locationDetail"))
+        arg.putString("longitude", arguments?.getString("longitude"))
+        arg.putString("latitude", arguments?.getString("latitude"))
         arg.putInt("star", arguments?.getInt("star")!!)
         arg.putString("phoneN", arguments?.getString("phoneN"))
         arg.putString("description", arguments?.getString("description"))

@@ -3876,7 +3876,9 @@ int id lEmail 0x7f0901f8
 int id lEmailOrPhoneN 0x7f0901f9
 int id lHighlight 0x7f0901fa
 int id lHotelName 0x7f0901fb
+int id lLatitude 0x7f09045e
 int id lLocationDetail 0x7f0901fc
+int id lLongitude 0x7f09045f
 int id lMerchantCode 0x7f0901fd
 int id lName 0x7f0901fe
 int id lPass 0x7f0901ff
@@ -4372,6 +4374,7 @@ int id total 0x7f0903e3
 int id totalPrice 0x7f0903e4
 int id totalTitle 0x7f0903e5
 int id totalVoucher 0x7f0903e6
+int id total_title 0x7f09045c
 int id touch_outside 0x7f0903e7
 int id transitionToEnd 0x7f0903e8
 int id transitionToStart 0x7f0903e9
@@ -4406,7 +4409,9 @@ int id tv_fiveStar 0x7f090405
 int id tv_fourStar 0x7f090406
 int id tv_highlight 0x7f090407
 int id tv_hotelName 0x7f090408
+int id tv_latitude 0x7f090460
 int id tv_locationDetail 0x7f090409
+int id tv_longitude 0x7f090461
 int id tv_merchantCode 0x7f09040a
 int id tv_method 0x7f09040b
 int id tv_momoGuide 0x7f09040c
@@ -4419,6 +4424,7 @@ int id tv_roomType 0x7f090412
 int id tv_status 0x7f090413
 int id tv_sub_highlight 0x7f090414
 int id tv_threeStar 0x7f090415
+int id tv_total 0x7f09045d
 int id tv_totalPrice 0x7f090416
 int id tv_twoStar 0x7f090417
 int id typeCustomer 0x7f090418

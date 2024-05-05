@@ -61,6 +61,8 @@ class HotelManageAdapter (private val context: Context, private var hotel_list: 
             arg.putString("hotelName", hotel.name)
             arg.putString("city", hotel.city)
             arg.putString("locationDetail", hotel.locationDetail)
+            arg.putString("longitude", hotel.longitude.toString())
+            arg.putString("latitude", hotel.latitude.toString())
             arg.putInt("star", hotel.star!!)
             arg.putString("phoneN", hotel.phoneNumber)
             arg.putString("description", hotel.description)

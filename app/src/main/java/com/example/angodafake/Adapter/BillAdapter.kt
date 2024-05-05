@@ -14,6 +14,10 @@ import com.example.angodafake.Utilities.HotelUtils
 import com.example.angodafake.Utilities.RoomUtils
 import com.example.angodafake.Utilities.UserUtils
 import com.example.angodafake.db.Purchase
+import java.text.DecimalFormat
+import java.text.NumberFormat
+import java.util.Locale
+
 class BillAdapter(private val context: Context, private var purchaseList: ArrayList<Purchase>) : RecyclerView.Adapter<BillAdapter.ViewHolder>() {
     inner class ViewHolder(listItemView: View) : RecyclerView.ViewHolder(listItemView) {
         val idPurchase = listItemView.findViewById<TextView>(R.id.idPurchase)
@@ -73,6 +77,12 @@ class BillAdapter(private val context: Context, private var purchaseList: ArrayL
             holder.tv_status.setTextColor(Color.RED)
             holder.layout.setCardBackgroundColor(Color.parseColor("#2CF12819"))
         }
-        holder.tv_totalPrice.text = purchase.total_purchase.toString()
+        holder.tv_totalPrice.text = "${formatMoney(purchase.total_purchase!!.toInt())} VND"
+    }
+
+    fun formatMoney(amount: Int): String {
+        val formatter = NumberFormat.getNumberInstance(Locale.getDefault()) as DecimalFormat
+        formatter.applyPattern("#,###")
+        return formatter.format(amount.toLong())
     }
 }

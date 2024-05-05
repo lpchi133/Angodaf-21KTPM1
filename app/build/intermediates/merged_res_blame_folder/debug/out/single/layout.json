@@ -220,6 +220,10 @@
         "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-44:\\layout\\empty_canceled_room.xml"
     },
     {
+        "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/fragment_add_hotel.xml",
+        "source": "com.example.angodafake.app-main-44:/layout/fragment_add_hotel.xml"
+    },
+    {
         "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-41:\\layout\\image_item_layout.xml",
         "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-44:\\layout\\image_item_layout.xml"
     },

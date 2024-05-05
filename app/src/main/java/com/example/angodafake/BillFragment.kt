@@ -8,11 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.Adapter.BillAdapter
 import com.example.angodafake.Utilities.PurchaseUtils
 import com.example.angodafake.db.Purchase
+import java.text.DecimalFormat
+import java.text.NumberFormat
+import java.util.Locale
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,6 +33,7 @@ class BillFragment(private var idUser: String) : Fragment() {
     private lateinit var adapter : BillAdapter
     private lateinit var bill_list : ArrayList<Purchase>
     private lateinit var btn_back : ImageButton
+    private lateinit var tv_total : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +42,7 @@ class BillFragment(private var idUser: String) : Fragment() {
         }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
+    @SuppressLint("NotifyDataSetChanged", "SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,10 +58,15 @@ class BillFragment(private var idUser: String) : Fragment() {
 
         if (fromFrag == "edit" || fromFrag == "edit_room"){
             val list = arguments?.getStringArrayList("bills")
+            var total = 0.0
             for (bill in list!!){
                 PurchaseUtils.getPurchaseByID(bill){
                     bill_list.add(it)
                     adapter.notifyDataSetChanged()
+                    if (it.time_cancel == "" || it.time_cancel == null){
+                        total += it.total_purchase!!
+                        tv_total.text = "${formatMoney(total.toInt())} VND"
+                    }
                 }
             }
         }
@@ -87,10 +97,17 @@ class BillFragment(private var idUser: String) : Fragment() {
         return view
     }
 
+    fun formatMoney(amount: Int): String {
+        val formatter = NumberFormat.getNumberInstance(Locale.getDefault()) as DecimalFormat
+        formatter.applyPattern("#,###")
+        return formatter.format(amount.toLong())
+    }
+
     @SuppressLint("NotifyDataSetChanged")
     private fun initUI(view: View){
         recyclerView = view.findViewById(R.id.recyclerView)
         btn_back = view.findViewById(R.id.btn_back)
+        tv_total = view.findViewById(R.id.tv_total)
         bill_list = ArrayList()
     }
     companion object {
@@ -111,4 +128,5 @@ class BillFragment(private var idUser: String) : Fragment() {
                 }
             }
     }
+
 }

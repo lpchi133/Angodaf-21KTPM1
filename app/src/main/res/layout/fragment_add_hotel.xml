@@ -162,6 +162,68 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
+                android:id="@+id/tv_longitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Kinh độ"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/lLocationDetail" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/lLongitude"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:boxStrokeColor="@color/blue"
+                app:cursorColor="@color/black"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@+id/lHotelName"
+                app:layout_constraintStart_toStartOf="@+id/lHotelName"
+                app:layout_constraintTop_toBottomOf="@+id/tv_longitude">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="Vd: 48.8584"
+                    android:inputType="numberDecimal"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tv_latitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Vĩ độ"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/lLongitude" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/lLatitude"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:boxStrokeColor="@color/blue"
+                app:cursorColor="@color/black"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@+id/lHotelName"
+                app:layout_constraintStart_toStartOf="@+id/lHotelName"
+                app:layout_constraintTop_toBottomOf="@+id/tv_latitude">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="Vd: 2.2945"
+                    android:inputType="numberDecimal"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -169,7 +231,7 @@
                 android:text="Đây là khách sạn mấy sao?"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="@+id/textView"
-                app:layout_constraintTop_toBottomOf="@+id/lLocationDetail" />
+                app:layout_constraintTop_toBottomOf="@+id/lLatitude" />
 
             <RatingBar
                 android:id="@+id/ratingBar5"

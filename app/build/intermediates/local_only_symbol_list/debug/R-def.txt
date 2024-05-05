@@ -432,7 +432,9 @@ id lEmail
 id lEmailOrPhoneN
 id lHighlight
 id lHotelName
+id lLatitude
 id lLocationDetail
+id lLongitude
 id lMerchantCode
 id lName
 id lPass
@@ -690,6 +692,7 @@ id total
 id totalPrice
 id totalTitle
 id totalVoucher
+id total_title
 id traphong
 id tv
 id tv2
@@ -714,7 +717,9 @@ id tv_fiveStar
 id tv_fourStar
 id tv_highlight
 id tv_hotelName
+id tv_latitude
 id tv_locationDetail
+id tv_longitude
 id tv_merchantCode
 id tv_method
 id tv_momoGuide
@@ -727,6 +732,7 @@ id tv_roomType
 id tv_status
 id tv_sub_highlight
 id tv_threeStar
+id tv_total
 id tv_totalPrice
 id tv_twoStar
 id typeCustomer

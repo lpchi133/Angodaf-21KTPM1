@@ -119,6 +119,8 @@ class UploadImageFragment(private var idUser: String) : Fragment() {
         arg.putString("hotelName", arguments?.getString("hotelName"))
         arg.putString("city", arguments?.getString("city"))
         arg.putString("locationDetail", arguments?.getString("locationDetail"))
+        arg.putString("longitude", arguments?.getString("longitude"))
+        arg.putString("latitude", arguments?.getString("latitude"))
         arg.putInt("star", arguments?.getInt("star")!!)
         arg.putString("phoneN", arguments?.getString("phoneN"))
         arg.putString("description", arguments?.getString("description"))
