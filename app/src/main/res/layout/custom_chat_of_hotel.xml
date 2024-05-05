@@ -15,7 +15,8 @@
         android:gravity="center_vertical"
         android:text="ALPHA BIRD NHA TRANG"
         android:textColor="@color/black"
-        android:textSize="18sp"/>
+        android:textSize="18sp"
+        android:textStyle="bold"/>
 
     <ImageButton
         android:id="@+id/btn_back"

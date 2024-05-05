@@ -27,7 +27,7 @@
             android:layout_marginStart="15dp"
             android:layout_toEndOf="@+id/imageView"
             android:text="Hotel Colline de France"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold" />
 
         <TextView
@@ -39,7 +39,7 @@
             android:layout_marginTop="5dp"
             android:layout_toEndOf="@+id/imageView"
             android:text="TextView"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/textView2"
