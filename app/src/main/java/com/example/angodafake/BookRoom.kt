@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.example.angodafake.Adapter.VoucherHotelAdapter
 import com.example.angodafake.Utilities.HotelUtils
+import com.example.angodafake.Utilities.PictureUtils
 import com.example.angodafake.Utilities.RoomUtils
 import com.example.angodafake.Utilities.UserUtils
 import com.example.angodafake.Utilities.VoucherUtils
@@ -31,6 +32,7 @@ import com.example.angodafake.db.Purchase
 import com.example.angodafake.db.Voucher
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.database.FirebaseDatabase
+import com.squareup.picasso.Picasso
 import org.json.JSONException
 import org.json.JSONObject
 import vn.momo.momo_partner.AppMoMoLib
@@ -49,6 +51,7 @@ class BookRoom : AppCompatActivity() {
     private lateinit var radioGroupPaymentMethod: RadioGroup
     private lateinit var bookRoomBtn: Button
     private lateinit var backBtn: ImageView
+    private lateinit var hotelPicture: ImageView
 
     private var firstPrice: Int = 0
     private var discountValue: Int = 0
@@ -104,6 +107,7 @@ class BookRoom : AppCompatActivity() {
         countdownTextView = findViewById(R.id.timer)
         bookRoomBtn = findViewById(R.id.bookRoomBtn)
         backBtn = findViewById(R.id.back)
+        hotelPicture = findViewById(R.id.imageView8)
 
         val checkInTime = intent.getStringExtra("checkInTime") ?: ""
         val checkOutTime = intent.getStringExtra("checkOutTime") ?: ""
@@ -117,6 +121,9 @@ class BookRoom : AppCompatActivity() {
         findViewById<TextView>(R.id.calender).text = "Đặt phòng hôm nay và thanh toán vào ${convertDateTimeToString(checkInTime, 2)}"
 
         hotelID = intent.getStringExtra("hotelID").toString()
+        PictureUtils.getPictureByHotelID(hotelID){
+            Picasso.get().load(it.url).into(hotelPicture)
+        }
         val roomID = intent.getStringExtra("roomID")
         HotelUtils.getHotelByID(hotelID){ hotel ->
             findViewById<TextView>(R.id.locationDetail).text = hotel.locationDetail
