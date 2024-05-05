@@ -46,7 +46,7 @@ object HotelUtils {
     }
     fun getHotelByOwnerID(ownerID: String, listener: (MutableList<Hotel>) -> Unit) {
         val hotelsQuery = database.child("hotels")
-        hotelsQuery.addValueEventListener(object : ValueEventListener {
+        hotelsQuery.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val hotelsList = mutableListOf<Hotel>()
                 for (hotelSnapshot in dataSnapshot.children) {

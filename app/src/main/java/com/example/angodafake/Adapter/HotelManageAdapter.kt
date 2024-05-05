@@ -19,7 +19,6 @@ import com.example.angodafake.R
 import com.example.angodafake.Utilities.PictureUtils
 import com.example.angodafake.Utilities.PurchaseUtils
 import com.example.angodafake.Utilities.RoomUtils
-import com.example.angodafake.addHotelImageFragment
 import com.example.angodafake.db.Hotel
 import com.squareup.picasso.Picasso
 
@@ -58,6 +57,7 @@ class HotelManageAdapter (private val context: Context, private var hotel_list: 
             val arg = Bundle()
             arg.putString("from", "edit")
             arg.putString("idHotel", hotel.ID)
+            arg.putString("date", date)
             arg.putString("hotelName", hotel.name)
             arg.putString("city", hotel.city)
             arg.putString("locationDetail", hotel.locationDetail)
@@ -93,9 +93,9 @@ class HotelManageAdapter (private val context: Context, private var hotel_list: 
                 .into(holder.imageView)
         }
         hotel.ID?.let {
-            PurchaseUtils.getBookedRoomBillsByHotelID(it, date) { bookedRoomBills ->
+            PurchaseUtils.getBookedRoomBillsByHotelID(it, date) { bookedRoomBills, bookedRoomQty ->
                 RoomUtils.getRoomQtyByHotelID(it) { roomQty ->
-                    holder.tv_bookedRoomsQty.text = "${bookedRoomBills?.size}/$roomQty"
+                    holder.tv_bookedRoomsQty.text = "$bookedRoomQty/$roomQty"
                 }
                 val list = ArrayList<String>()
                 for (bill in bookedRoomBills!!){
@@ -104,6 +104,7 @@ class HotelManageAdapter (private val context: Context, private var hotel_list: 
                 holder.layout_bookedRoomsQty.setOnClickListener {
                     val arg = Bundle()
                     arg.putString("from", "edit")
+                    arg.putString("date", date)
                     arg.putStringArrayList("bills", list)
 
                     val billFrag = BillFragment(hotel.ID_Owner!!)

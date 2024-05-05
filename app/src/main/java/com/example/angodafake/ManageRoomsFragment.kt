@@ -1,0 +1,269 @@
+package com.example.angodafake
+
+import android.animation.AnimatorListenerAdapter
+import android.annotation.SuppressLint
+import android.app.DatePickerDialog
+import android.icu.util.Calendar
+import android.os.Bundle
+import android.text.Editable
+import android.util.Log
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.DatePicker
+import android.widget.ImageButton
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.angodafake.Adapter.HotelManageAdapter
+import com.example.angodafake.Adapter.RoomManageAdapter
+import com.example.angodafake.Utilities.HotelUtils
+import com.example.angodafake.Utilities.PurchaseUtils
+import com.example.angodafake.Utilities.RoomUtils
+import com.example.angodafake.db.Hotel
+import com.example.angodafake.db.Rooms
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
+
+// TODO: Rename parameter arguments, choose names that match
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
+/**
+ * A simple [Fragment] subclass.
+ * Use the [ManageRoomsFragment.newInstance] factory method to
+ * create an instance of this fragment.
+ */
+class ManageRoomsFragment(private var idUser: String) : Fragment() {
+    // TODO: Rename and change types of parameters
+    private lateinit var btn_back : ImageButton
+    private lateinit var addLL : View
+    private lateinit var addFab : FloatingActionButton
+    private lateinit var billLL : View
+    private lateinit var billFab : FloatingActionButton
+    private lateinit var menuFab : FloatingActionButton
+    private var rotate = false
+
+    private lateinit var lDate : TextInputLayout
+    private lateinit var et_date : TextInputEditText
+    private lateinit var recyclerView : RecyclerView
+    private lateinit var room_list : ArrayList<Rooms>
+    private lateinit var date: String
+    private lateinit var idHotel: String
+    private lateinit var adapter: RoomManageAdapter
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+        }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_manage_rooms, container, false)
+        initUI(view)
+        initShowout(addLL)
+        initShowout(billLL)
+
+        et_date.setOnClickListener {
+            it.clearFocus()
+            val year: Int
+            val month: Int
+            val day: Int
+            if (et_date.text.toString() == ""){
+                // Lấy ngày hiện tại
+                val calendar = Calendar.getInstance()
+                year = calendar.get(Calendar.YEAR)
+                month = calendar.get(Calendar.MONTH)
+                day = calendar.get(Calendar.DAY_OF_MONTH)
+            }
+            else{
+                val dateParts  = et_date.text.toString().split("/")
+                year = dateParts[2].toInt()
+                month = dateParts[1].toInt() - 1
+                day = dateParts[0].toInt()
+            }
+            val datePickerDialog = DatePickerDialog(
+                requireContext(),
+                { view: DatePicker, selectedYear: Int, selectedMonth: Int, selectedDayOfMonth: Int ->
+                    // Xử lý khi người dùng chọn ngày
+                    val selectedDate = "$selectedDayOfMonth/${selectedMonth + 1}/$selectedYear"
+                    et_date.setText(selectedDate)
+                    adapter.date = et_date.text.toString()
+                    adapter.notifyDataSetChanged()
+                },
+                year, month, day
+            )
+            datePickerDialog.show()
+        }
+
+        addFab.setOnClickListener {
+            val arg = Bundle()
+            arg.putString("from", "manageRoom")
+            arg.putString("idHotel", idHotel)
+            arg.putString("date", et_date.text.toString())
+
+            val addRoomFrag = AddRoomFragment(idHotel, idUser)
+            addRoomFrag.arguments = arg
+
+            val mainActivity = requireActivity() as MainActivity
+            mainActivity.replaceFragment(addRoomFrag)
+        }
+
+        billFab.setOnClickListener {
+            PurchaseUtils.getAllPurchasesByHotelID(idHotel){
+                val list = ArrayList<String>()
+                for (bill in it){
+                    list.add(bill.ID!!)
+                }
+
+                val arg = Bundle()
+                arg.putString("from", "edit_room")
+                arg.putString("idHotel", idHotel)
+                arg.putString("date", et_date.text.toString())
+                arg.putStringArrayList("bills", list)
+
+                val billFrag = BillFragment(idUser)
+                billFrag.arguments = arg
+
+                val mainActivity = requireActivity() as MainActivity
+                mainActivity.replaceFragment(billFrag)
+            }
+        }
+
+        menuFab.setOnClickListener {
+            toggleFabMode(it)
+        }
+
+        btn_back.setOnClickListener {
+            val arg = Bundle()
+            arg.putString("date", adapter.date)
+
+            val myHotel = MyHotel(idUser)
+            myHotel.arguments = arg
+            val mainActivity = requireActivity() as MainActivity
+            mainActivity.replaceFragment(myHotel)
+        }
+
+        return view
+    }
+
+    private fun toggleFabMode(v: View) {
+        rotate = rotateFab(v, !rotate)
+        if (rotate){
+            showIn(addLL)
+            showIn(billLL)
+            requireView().findViewById<View>(R.id.backgroundOverlay).visibility = View.VISIBLE
+        } else{
+            showOut(addLL)
+            showOut(billLL)
+            requireView().findViewById<View>(R.id.backgroundOverlay).visibility = View.GONE
+        }
+    }
+
+    private fun initShowout(v: View){
+        v.apply {
+            visibility = View.GONE
+            translationY = height.toFloat()
+            alpha = 0f
+        }
+    }
+    private fun showOut(view: View) {
+        view.apply {
+            visibility = View.VISIBLE
+            alpha = 1f
+            translationY = 0f
+            animate()
+                .setDuration(200)
+                .translationY(height.toFloat())
+                .setListener(object : AnimatorListenerAdapter(){
+                })
+                .alpha(0f)
+                .start()
+        }
+    }
+    private fun showIn(view: View) {
+        view.apply {
+            visibility = View.VISIBLE
+            alpha = 0f
+            translationY = height.toFloat()
+            animate()
+                .setDuration(200)
+                .translationY(0f)
+                .setListener(object : AnimatorListenerAdapter(){})
+                .alpha(1f)
+                .start()
+        }
+    }
+
+    private fun rotateFab(v: View, rotate: Boolean): Boolean {
+        v.animate()
+            .setDuration(200)
+            .setListener(object : AnimatorListenerAdapter(){})
+            .rotation(if (rotate) 180f else 0f)
+        return rotate
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun initUI(view: View){
+        addLL = view.findViewById(R.id.addLL)
+        addFab = view.findViewById(R.id.addFab)
+        billLL = view.findViewById(R.id.billLL)
+        billFab = view.findViewById(R.id.billFab)
+        menuFab = view.findViewById(R.id.menuFab)
+        btn_back = view.findViewById(R.id.btn_back)
+
+        lDate = view.findViewById(R.id.lDate)
+        et_date = lDate.editText as TextInputEditText
+
+        if (arguments?.getString("date") != null){
+            et_date.text = Editable.Factory.getInstance().newEditable(arguments?.getString("date"))
+        }
+
+        idHotel = arguments?.getString("idHotel")!!
+
+        recyclerView = view.findViewById(R.id.recyclerView)
+        room_list = ArrayList()
+        if (et_date.text.toString() == ""){
+            // Lấy ngày hiện tại
+            val calendar = Calendar.getInstance()
+            val year = calendar.get(Calendar.YEAR)
+            val month = calendar.get(Calendar.MONTH) + 1
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
+            val formattedDay = if (day < 10) "0$day" else "$day"
+            val formattedMonth = if (month < 10) "0$month" else "$month"
+            et_date.text = Editable.Factory.getInstance().newEditable("$formattedDay/$formattedMonth/$year")
+        }
+        date = et_date.text.toString()
+        adapter = RoomManageAdapter(requireContext(), room_list, date, idUser)
+        recyclerView.adapter = adapter
+        val layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.layoutManager = layoutManager
+        RoomUtils.getRoomByHotelID(idHotel){
+            room_list.clear()
+            room_list.addAll(it)
+            adapter.notifyDataSetChanged()
+        }
+    }
+
+    companion object {
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         *
+         * @param param1 Parameter 1.
+         * @param param2 Parameter 2.
+         * @return A new instance of fragment ManageRoomsFragment.
+         */
+        // TODO: Rename and change types and number of parameters
+        @JvmStatic
+        fun newInstance(idUser: String) =
+            ManageRoomsFragment(idUser).apply {
+                arguments = Bundle().apply {
+                }
+            }
+    }
+}

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.R
 import com.example.angodafake.Utilities.HotelUtils
@@ -26,6 +27,7 @@ class BillAdapter(private val context: Context, private var purchaseList: ArrayL
         val tv_method = listItemView.findViewById<TextView>(R.id.tv_method)
         val tv_status = listItemView.findViewById<TextView>(R.id.tv_status)
         val tv_totalPrice = listItemView.findViewById<TextView>(R.id.tv_totalPrice)
+        val layout = listItemView.findViewById<CardView>(R.id.layout)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -50,7 +52,7 @@ class BillAdapter(private val context: Context, private var purchaseList: ArrayL
         RoomUtils.getRoomByID(purchase.ID_Hotel!!, purchase.ID_Room!!){
             holder.tv_roomType.text = it.type
         }
-        holder.tv_quantity.text = "x$purchase.quantity"
+        holder.tv_quantity.text = "x${purchase.quantity}"
         holder.tv_date.text = "${purchase.date_come} - ${purchase.date_go}"
         UserUtils.getUserByID(purchase.ID_Owner!!){
             holder.tv_customerName.text = it.name
@@ -65,9 +67,11 @@ class BillAdapter(private val context: Context, private var purchaseList: ArrayL
         if (purchase.time_cancel == null || purchase.time_cancel == ""){
             holder.tv_status.text = "Thành công"
             holder.tv_status.setTextColor(Color.GREEN)
+            holder.layout.setCardBackgroundColor(Color.parseColor("#3100FF0A"))
         } else{
             holder.tv_status.text = "Đã hủy - ${purchase.status_purchase}"
             holder.tv_status.setTextColor(Color.RED)
+            holder.layout.setCardBackgroundColor(Color.parseColor("#2CF12819"))
         }
         holder.tv_totalPrice.text = purchase.total_purchase.toString()
     }

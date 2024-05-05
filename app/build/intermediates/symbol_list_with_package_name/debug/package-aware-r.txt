@@ -3142,6 +3142,7 @@ drawable baseline_nightlife_24
 drawable baseline_person_24
 drawable baseline_person_24_borderless
 drawable baseline_plus
+drawable baseline_qr_code_scanner_24
 drawable baseline_room_service_24
 drawable baseline_send_24
 drawable baseline_star_outline_24
@@ -3463,6 +3464,7 @@ id addFab
 id addHotelImageFragment
 id addHotel_title
 id addLL
+id addRoom_title
 id address
 id address_hotel
 id adjust_height
@@ -3895,6 +3897,7 @@ id layout_addHotel_title
 id layout_addRoom_title
 id layout_bookedRoomsQty
 id layout_editInfo_title
+id layout_manageRoom_title
 id layout_signup_title
 id left
 id leftToRight
@@ -4004,6 +4007,7 @@ id mtrl_picker_title_text
 id mtrl_view_tag_bottom_padding
 id multiply
 id myCommentField
+id myHotelTittle
 id my_profile
 id name
 id nameHotel
@@ -4107,6 +4111,8 @@ id progressBar2
 id progress_circular
 id progress_horizontal
 id purchased
+id qrFab
+id qrLL
 id quaCM
 id quan_client
 id quan_room
@@ -4155,6 +4161,7 @@ id roomID
 id roomName
 id roomTittle
 id room_time
+id roomsTittle
 id rootView
 id rounded
 id row_index_key
@@ -4615,6 +4622,7 @@ layout custom_hotel_detail
 layout custom_hotel_of_management_voucher
 layout custom_inactive_voucher_adapter
 layout custom_manage_hotel
+layout custom_manage_room
 layout custom_my_comment
 layout custom_my_comment_form
 layout custom_my_voucher_detail
@@ -4660,6 +4668,7 @@ layout fragment_edit_info
 layout fragment_home
 layout fragment_home_filter
 layout fragment_home_filter_detail
+layout fragment_manage_rooms
 layout fragment_maps
 layout fragment_my_hotel
 layout fragment_my_profile
@@ -4888,6 +4897,7 @@ string m3_sys_motion_easing_linear
 string m3_sys_motion_easing_standard
 string m3_sys_motion_easing_standard_accelerate
 string m3_sys_motion_easing_standard_decelerate
+string manageRooms_title
 string material_clock_display_divider
 string material_clock_toggle_content_description
 string material_hour_24h_suffix

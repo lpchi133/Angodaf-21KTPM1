@@ -11,7 +11,9 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ProgressBar
+import android.widget.TextView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
@@ -23,8 +25,10 @@ import com.google.android.material.textfield.TextInputLayout
  * Use the [AddRoomFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class AddRoomFragment(private var idHotel: String) : Fragment() {
+class AddRoomFragment(private var idHotel: String, private var idUser: String) : Fragment() {
     // TODO: Rename and change types of parameters
+    private var fromFrag: String? = null
+
     private lateinit var lRoomType: TextInputLayout
     private lateinit var et_roomType: TextInputEditText
     private lateinit var lAcreage: TextInputLayout
@@ -42,12 +46,14 @@ class AddRoomFragment(private var idHotel: String) : Fragment() {
     private lateinit var lQuantity: TextInputLayout
     private lateinit var et_quantity: TextInputEditText
 
+    private lateinit var btn_back: ImageButton
     private lateinit var btn_next: Button
     private lateinit var progressBar2: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
+            fromFrag = it.getString("from")
         }
     }
 
@@ -97,6 +103,20 @@ class AddRoomFragment(private var idHotel: String) : Fragment() {
         et_quantity.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 lQuantity.error = null
+            }
+        }
+
+        btn_back.setOnClickListener {
+            if (fromFrag == "edit" || fromFrag == "manageRoom"){
+                val arg = Bundle()
+                arg.putString("date", arguments?.getString("date"))
+                arg.putString("idHotel", arguments?.getString("idHotel"))
+
+                val manageRoomFrg = ManageRoomsFragment(idUser)
+                manageRoomFrg.arguments = arg
+
+                val mainActivity = requireActivity() as MainActivity
+                mainActivity.replaceFragment(manageRoomFrg)
             }
         }
 
@@ -172,6 +192,7 @@ class AddRoomFragment(private var idHotel: String) : Fragment() {
     private fun nextStepWithData(){
         val arg = Bundle()
 
+        arg.putString("from", fromFrag)
         arg.putString("roomType", et_roomType.text.toString().trim())
         arg.putString("acreage", et_acreage.text.toString().trim())
         arg.putString("direction", et_direction.text.toString().trim())
@@ -181,11 +202,20 @@ class AddRoomFragment(private var idHotel: String) : Fragment() {
         arg.putString("price", et_price.text.toString().trim())
         arg.putString("quantity", et_quantity.text.toString().trim())
 
+        if (fromFrag == "edit"){
+            arg.putString("idHotel", arguments?.getString("idHotel"))
+            arg.putString("idRoom", arguments?.getString("idRoom"))
+            arg.putString("date", arguments?.getString("date"))
+        } else if (fromFrag == "manageRoom"){
+            arg.putString("idHotel", arguments?.getString("idHotel"))
+            arg.putString("date", arguments?.getString("date"))
+        }
+
         if (arguments?.getStringArrayList("pics") != null){
             arg.putStringArrayList("pics", arguments?.getStringArrayList("pics"))
         }
 
-        val addRoomImageFragment = AddRoomImageFragment(idHotel)
+        val addRoomImageFragment = AddRoomImageFragment(idHotel, idUser)
         addRoomImageFragment.arguments = arg
 
         val mainActivity = requireActivity() as MainActivity
@@ -210,6 +240,7 @@ class AddRoomFragment(private var idHotel: String) : Fragment() {
         lQuantity = view.findViewById(R.id.lQuantity)
         et_quantity = lQuantity.editText as TextInputEditText
 
+        btn_back = view.findViewById(R.id.btn_back)
         btn_next = view.findViewById(R.id.btn_next)
         progressBar2 = view.findViewById(R.id.progressBar2)
 
@@ -224,6 +255,16 @@ class AddRoomFragment(private var idHotel: String) : Fragment() {
             et_price.text = Editable.Factory.getInstance().newEditable(arguments?.getString("price"))
             et_quantity.text = Editable.Factory.getInstance().newEditable(arguments?.getString("quantity"))
         }
+
+        if (fromFrag == "edit"){
+            view.findViewById<TextView>(R.id.addRoom_title).text = "Sửa thông tin phòng"
+            btn_back.visibility = View.VISIBLE
+        } else if (fromFrag == "manageRoom"){
+            btn_back.visibility = View.VISIBLE
+        }
+        else{
+            btn_back.visibility = View.GONE
+        }
     }
 
     companion object {
@@ -237,9 +278,10 @@ class AddRoomFragment(private var idHotel: String) : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(idHotel: String) =
-            AddRoomFragment(idHotel).apply {
+        fun newInstance(idHotel: String, idUser: String) =
+            AddRoomFragment(idHotel, idUser).apply {
                 arguments = Bundle().apply {
+                    putString("from", fromFrag)
                 }
             }
     }

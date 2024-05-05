@@ -8,6 +8,7 @@ import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.Adapter.HotelManageAdapter
 import com.example.angodafake.Utilities.HotelUtils
+import com.example.angodafake.Utilities.PurchaseUtils
 import com.example.angodafake.db.Hotel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
@@ -47,6 +49,8 @@ class MyHotel(private var idUser: String) : Fragment() {
     private lateinit var statisticsFab : FloatingActionButton
     private lateinit var billLL : View
     private lateinit var billFab : FloatingActionButton
+    private lateinit var qrLL : View
+    private lateinit var qrFab : FloatingActionButton
     private lateinit var menuFab : FloatingActionButton
     private var rotate = false
 
@@ -75,6 +79,27 @@ class MyHotel(private var idUser: String) : Fragment() {
         initShowout(voucherLL)
         initShowout(statisticsLL)
         initShowout(billLL)
+        initShowout(qrLL)
+
+        adapter = HotelManageAdapter(requireContext(), hotel_list, date)
+        adapter.onItemClick = {
+            val arg = Bundle()
+            arg.putString("date", adapter.date)
+            arg.putString("idHotel", it.ID)
+
+            val manageRoomFrg = ManageRoomsFragment(idUser)
+            manageRoomFrg.arguments = arg
+            val mainActivity = requireActivity() as MainActivity
+            mainActivity.replaceFragment(manageRoomFrg)
+        }
+        recyclerView.adapter = adapter
+        val layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.layoutManager = layoutManager
+        HotelUtils.getHotelByOwnerID(idUser){hotelL->
+            hotel_list.clear()
+            hotel_list.addAll(hotelL)
+            adapter.notifyDataSetChanged()
+        }
 
         et_date.setOnClickListener {
             it.clearFocus()
@@ -100,12 +125,8 @@ class MyHotel(private var idUser: String) : Fragment() {
                     // Xử lý khi người dùng chọn ngày
                     val selectedDate = "$selectedDayOfMonth/${selectedMonth + 1}/$selectedYear"
                     et_date.setText(selectedDate)
-                    HotelUtils.getHotelByOwnerID(idUser){hotelL->
-                        hotel_list.clear()
-                        hotel_list.addAll(hotelL)
-                        adapter.date = et_date.text.toString()
-                        adapter.notifyDataSetChanged()
-                    }
+                    adapter.date = et_date.text.toString()
+                    adapter.notifyDataSetChanged()
                 },
                 year, month, day
             )
@@ -113,7 +134,8 @@ class MyHotel(private var idUser: String) : Fragment() {
         }
 
         addFab.setOnClickListener {
-
+            val mainActivity = requireActivity() as MainActivity
+            mainActivity.replaceFragment(AddHotelFragment(idUser))
         }
 
         voucherFab.setOnClickListener {
@@ -127,6 +149,28 @@ class MyHotel(private var idUser: String) : Fragment() {
         }
 
         billFab.setOnClickListener {
+            PurchaseUtils.getAllPurchaseByIDHotelOwner(idUser){
+                Log.d("test_purchase", it.toString())
+
+                val list = ArrayList<String>()
+                for (bill in it!!){
+                    list.add(bill.ID!!)
+                }
+
+                val arg = Bundle()
+                arg.putString("from", "edit")
+                arg.putString("date", et_date.text.toString())
+                arg.putStringArrayList("bills", list)
+
+                val billFrag = BillFragment(idUser)
+                billFrag.arguments = arg
+
+                val mainActivity = requireActivity() as MainActivity
+                mainActivity.replaceFragment(billFrag)
+            }
+        }
+
+        qrFab.setOnClickListener {
 
         }
 
@@ -144,12 +188,14 @@ class MyHotel(private var idUser: String) : Fragment() {
             showIn(voucherLL)
             showIn(statisticsLL)
             showIn(billLL)
+            showIn(qrLL)
             requireView().findViewById<View>(R.id.backgroundOverlay).visibility = View.VISIBLE
         } else{
             showOut(addLL)
             showOut(voucherLL)
             showOut(statisticsLL)
             showOut(billLL)
+            showOut(qrLL)
             requireView().findViewById<View>(R.id.backgroundOverlay).visibility = View.GONE
         }
     }
@@ -219,10 +265,16 @@ class MyHotel(private var idUser: String) : Fragment() {
         statisticsFab = view.findViewById(R.id.statisticsFab)
         billLL = view.findViewById(R.id.billLL)
         billFab = view.findViewById(R.id.billFab)
+        qrLL = view.findViewById(R.id.qrLL)
+        qrFab = view.findViewById(R.id.qrFab)
         menuFab = view.findViewById(R.id.menuFab)
 
         lDate = view.findViewById(R.id.lDate)
         et_date = lDate.editText as TextInputEditText
+
+        if (arguments?.getString("date") != null){
+            et_date.text = Editable.Factory.getInstance().newEditable(arguments?.getString("date"))
+        }
 
         recyclerView = view.findViewById(R.id.recyclerView)
         hotel_list = ArrayList()
@@ -235,17 +287,8 @@ class MyHotel(private var idUser: String) : Fragment() {
             val formattedDay = if (day < 10) "0$day" else "$day"
             val formattedMonth = if (month < 10) "0$month" else "$month"
             et_date.text = Editable.Factory.getInstance().newEditable("$formattedDay/$formattedMonth/$year")
-            date = et_date.text.toString()
-            adapter = HotelManageAdapter(requireContext(), hotel_list, date)
-            recyclerView.adapter = adapter
-            val layoutManager = LinearLayoutManager(requireContext())
-            recyclerView.layoutManager = layoutManager
-            HotelUtils.getHotelByOwnerID(idUser){hotelL->
-                hotel_list.clear()
-                hotel_list.addAll(hotelL)
-                adapter.notifyDataSetChanged()
-            }
         }
+        date = et_date.text.toString()
     }
 
     companion object {

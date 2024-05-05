@@ -208,8 +208,14 @@ class AddHotelFragment(private var idUser: String) : Fragment() {
                 mainActivity.replaceFragment(MyProfile(idUser))
             }
             else{
+                val arg = Bundle()
+                arg.putString("date", arguments?.getString("date"))
+
+                val myHotel = MyHotel(idUser)
+                myHotel.arguments = arg
+
                 val mainActivity = requireActivity() as MainActivity
-                mainActivity.replaceFragment(MyHotel(idUser))
+                mainActivity.replaceFragment(myHotel)
             }
         }
 
@@ -374,6 +380,7 @@ class AddHotelFragment(private var idUser: String) : Fragment() {
         }
         if (fromFrag == "edit"){
             arg.putString("idHotel", arguments?.getString("idHotel"))
+            arg.putString("date", arguments?.getString("date"))
         }
 
         val addHotelImageFragment = addHotelImageFragment(idUser)

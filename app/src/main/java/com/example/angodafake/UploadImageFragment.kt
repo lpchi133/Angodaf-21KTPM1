@@ -138,7 +138,9 @@ class UploadImageFragment(private var idUser: String) : Fragment() {
         }
 
         if (fromFrag == "edit"){
+            arg.putString("from", arguments?.getString("from"))
             arg.putString("idHotel", arguments?.getString("idHotel"))
+            arg.putString("date", arguments?.getString("date"))
         }
 
         val addHotelImageFragment = addHotelImageFragment(idUser)

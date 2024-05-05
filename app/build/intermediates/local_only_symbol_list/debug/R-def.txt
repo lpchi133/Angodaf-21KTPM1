@@ -76,6 +76,7 @@ drawable baseline_nightlife_24
 drawable baseline_person_24
 drawable baseline_person_24_borderless
 drawable baseline_plus
+drawable baseline_qr_code_scanner_24
 drawable baseline_room_service_24
 drawable baseline_send_24
 drawable baseline_star_outline_24
@@ -192,6 +193,7 @@ id addFab
 id addHotelImageFragment
 id addHotel_title
 id addLL
+id addRoom_title
 id address
 id address_hotel
 id ads
@@ -444,10 +446,12 @@ id lay1
 id lay2
 id lay3
 id lay4
+id layout
 id layout_addHotel_title
 id layout_addRoom_title
 id layout_bookedRoomsQty
 id layout_editInfo_title
+id layout_manageRoom_title
 id layout_signup_title
 id limited_price
 id line1
@@ -487,6 +491,7 @@ id minus_person
 id minus_room
 id momoChoice
 id myCommentField
+id myHotelTittle
 id my_profile
 id name
 id nameHotel
@@ -533,6 +538,8 @@ id progressBar1
 id progressBar11
 id progressBar2
 id purchased
+id qrFab
+id qrLL
 id quaCM
 id quan_client
 id quan_room
@@ -570,6 +577,7 @@ id roomID
 id roomName
 id roomTittle
 id room_time
+id roomsTittle
 id rootView
 id scroll
 id scrollView
@@ -764,6 +772,7 @@ layout custom_hotel_detail
 layout custom_hotel_of_management_voucher
 layout custom_inactive_voucher_adapter
 layout custom_manage_hotel
+layout custom_manage_room
 layout custom_my_comment
 layout custom_my_comment_form
 layout custom_my_voucher_detail
@@ -794,6 +803,7 @@ layout fragment_edit_info
 layout fragment_home
 layout fragment_home_filter
 layout fragment_home_filter_detail
+layout fragment_manage_rooms
 layout fragment_maps
 layout fragment_my_hotel
 layout fragment_my_profile
@@ -849,6 +859,7 @@ string google_storage_bucket
 string hello_blank_fragment
 string homeTittle
 string i_title
+string manageRooms_title
 string mv_title
 string myhotel_title
 string pleaseBuy

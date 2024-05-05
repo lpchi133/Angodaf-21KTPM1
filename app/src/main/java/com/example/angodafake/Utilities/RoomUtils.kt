@@ -27,6 +27,7 @@ object RoomUtils {
                 val room = roomSnapshot.getValue(Rooms::class.java)
                 room?.let {
                     it.ID = roomSnapshot.key
+                    it.ID_Hotel = ID_Hotel
                     roomList.add(it)
                 }
             }
@@ -122,6 +123,19 @@ object RoomUtils {
                 listener(null)
             }
         })
+    }
+
+    fun updateRoom(ID_Hotel: String, ID_Room: String, room: Rooms, listener: (String?) -> Unit){
+        database.child("rooms").child(ID_Hotel).child(ID_Room).setValue(room)
+            .addOnSuccessListener {
+                // Xử lý khi cập nhật thông tin khách sạn thành công
+                listener(ID_Room)
+            }
+            .addOnFailureListener { exception ->
+                // Xử lý khi xảy ra lỗi
+                Log.e("firebase", "Couldn't update hotel information: ${exception.message}")
+                listener(null)
+            }
     }
 
 }

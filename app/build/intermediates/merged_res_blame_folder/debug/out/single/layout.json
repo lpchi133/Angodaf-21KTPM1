@@ -48,10 +48,6 @@
         "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-44:\\layout\\fragment_add_room_image.xml"
     },
     {
-        "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/custom_bill_item.xml",
-        "source": "com.example.angodafake.app-main-44:/layout/custom_bill_item.xml"
-    },
-    {
         "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-41:\\layout\\custom_voucher_edit_form.xml",
         "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-44:\\layout\\custom_voucher_edit_form.xml"
     },
@@ -70,6 +66,14 @@
     {
         "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-41:\\layout\\popup_1.xml",
         "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-44:\\layout\\popup_1.xml"
+    },
+    {
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-41:\\layout\\custom_manage_room.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-44:\\layout\\custom_manage_room.xml"
+    },
+    {
+        "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/fragment_manage_rooms.xml",
+        "source": "com.example.angodafake.app-main-44:/layout/fragment_manage_rooms.xml"
     },
     {
         "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-41:\\layout\\chat.xml",
@@ -114,6 +118,10 @@
     {
         "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-41:\\layout\\custom_comment_detail.xml",
         "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-44:\\layout\\custom_comment_detail.xml"
+    },
+    {
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-41:\\layout\\custom_bill_item.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-44:\\layout\\custom_bill_item.xml"
     },
     {
         "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-41:\\layout\\fragment_add_room.xml",
@@ -184,6 +192,10 @@
         "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-44:\\layout\\fragment_my_hotel.xml"
     },
     {
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-41:\\layout\\fragment_manage_rooms.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-44:\\layout\\fragment_manage_rooms.xml"
+    },
+    {
         "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-41:\\layout\\tab_canceled_room.xml",
         "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-44:\\layout\\tab_canceled_room.xml"
     },
@@ -194,6 +206,10 @@
     {
         "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-41:\\layout\\custom_voucher_add_form.xml",
         "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-44:\\layout\\custom_voucher_add_form.xml"
+    },
+    {
+        "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-41:\\layout\\fragment_bill.xml",
+        "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-44:\\layout\\fragment_bill.xml"
     },
     {
         "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-41:\\layout\\popup_4.xml",
@@ -214,10 +230,6 @@
     {
         "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-41:\\layout\\custom_password_dialog.xml",
         "source": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-main-44:\\layout\\custom_password_dialog.xml"
-    },
-    {
-        "merged": "com.example.angodafake.app-mergeDebugResources-41:/layout/fragment_bill.xml",
-        "source": "com.example.angodafake.app-main-44:/layout/fragment_bill.xml"
     },
     {
         "merged": "C:\\Users\\lephu\\.gradle\\daemon\\8.2\\com.example.angodafake.app-mergeDebugResources-41:\\layout\\tab_login_email.xml",

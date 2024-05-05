@@ -92,11 +92,12 @@ object PurchaseUtils {
             }
     }
 
-    fun getBookedRoomBillsByHotelID(ID_Hotel: String, date: String, listener: (List<Purchase>?) -> Unit){
+    fun getBookedRoomBillsByHotelID(ID_Hotel: String, date: String, listener: (List<Purchase>?, Int) -> Unit){
         val billQuery = database.child("purchases")
         billQuery.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val purchaseList = mutableListOf<Purchase>()
+                var count = 0
                 for (purchaseSnapshort in dataSnapshot.children){
                     val purchase = purchaseSnapshort.getValue(Purchase::class.java)
                     if (purchase?.ID_Hotel == ID_Hotel
@@ -105,14 +106,43 @@ object PurchaseUtils {
                     ) {
                         purchase.ID = purchaseSnapshort.key
                         purchaseList.add(purchase)
+                        count += purchase.quantity ?: 0
                     }
                 }
-                listener(purchaseList)
+                listener(purchaseList, count)
             }
             override fun onCancelled(databaseError: DatabaseError) {
                 // Xử lý khi có lỗi xảy ra
                 Log.e("firebase", "Error getting room count: ${databaseError.message}")
-                listener(null)
+                listener(null, 0)
+            }
+        })
+    }
+
+    fun getBookedRoomBillsByRoomID(ID_Hotel: String, ID_Room: String, date: String, listener: (List<Purchase>?, Int) -> Unit){
+        val billQuery = database.child("purchases")
+        billQuery.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val purchaseList = mutableListOf<Purchase>()
+                var count = 0
+                for (purchaseSnapshort in dataSnapshot.children){
+                    val purchase = purchaseSnapshort.getValue(Purchase::class.java)
+                    if (purchase?.ID_Hotel == ID_Hotel
+                        && (purchase.time_cancel == "" || purchase.time_cancel == null)
+                        && purchase.ID_Room == ID_Room
+                        && isDateInRange(date, purchase.date_come!!, purchase.date_go!!)
+                    ) {
+                        purchase.ID = purchaseSnapshort.key
+                        purchaseList.add(purchase)
+                        count += purchase.quantity ?: 0
+                    }
+                }
+                listener(purchaseList, count)
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Xử lý khi có lỗi xảy ra
+                Log.e("firebase", "Error getting room count: ${databaseError.message}")
+                listener(null, 0)
             }
         })
     }
@@ -124,4 +154,47 @@ object PurchaseUtils {
         val endDateObj = format.parse(endDate)
         return dateObj in startDateObj..endDateObj
     }
+
+    fun getAllPurchaseByIDHotelOwner(hotelOwner: String, listener: (List<Purchase>?) -> Unit){
+        val billQuery = database.child("purchases")
+        billQuery.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val purchaseList = mutableListOf<Purchase>()
+                val hotelMap = mutableMapOf<String, Hotel>()
+                var completedCount = 0 // Số lượng yêu cầu hoàn thành
+
+                HotelUtils.getHotelByOwnerID(hotelOwner) { hotels ->
+                    hotels.forEach { hotel ->
+                        hotelMap[hotel.ID!!] = hotel
+                    }
+
+                    for (purchaseSnapshort in dataSnapshot.children){
+                        val purchase = purchaseSnapshort.getValue(Purchase::class.java)
+                        val hotelID = purchase?.ID_Hotel
+
+                        if (hotelID == null || !hotelMap.containsKey(hotelID)) {
+                            continue
+                        }
+
+                        if (hotelMap[hotelID]!!.ID_Owner == hotelOwner){
+                            purchase.ID = purchaseSnapshort.key
+                            purchaseList.add(purchase)
+                        }
+
+                        completedCount++
+
+                        if (completedCount == dataSnapshot.childrenCount.toInt()) {
+                            listener(purchaseList)
+                        }
+                    }
+                }
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Xử lý khi có lỗi xảy ra
+                Log.e("firebase", "Error getting room count: ${databaseError.message}")
+                listener(null)
+            }
+        })
+    }
+
 }

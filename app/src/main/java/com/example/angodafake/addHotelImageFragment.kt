@@ -3,7 +3,6 @@ package com.example.angodafake
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,16 +16,11 @@ import com.example.angodafake.Adapter.GridAdapter
 import com.example.angodafake.Utilities.HotelUtils
 import com.example.angodafake.Utilities.PictureUtils
 import com.example.angodafake.db.Hotel
-import com.example.angodafake.db.Picture_Hotel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.Firebase
-import com.google.firebase.database.database
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -95,9 +89,14 @@ class addHotelImageFragment(private var idUser: String) : Fragment() {
                     HotelUtils.updateHotel(arguments?.getString("idHotel")!!, hotel){
                         if (it != null){
                             PictureUtils.updateHotelPictures(it, picList)
+
+                            val arg = Bundle()
+                            arg.putString("date", arguments?.getString("date"))
+                            val myHotel = MyHotel(idUser)
+                            myHotel.arguments = arg
                             val mainActivity = requireActivity() as MainActivity
-                            mainActivity.replaceFragment(MyHotel(idUser))
                             showSuccessSnackBar("Cập nhật thông tin thành công.", view)
+                            mainActivity.replaceFragment(myHotel)
                         }
                         else{
                             showSnackBar("Cập nhật thông tin thất bại.", view)
@@ -105,9 +104,9 @@ class addHotelImageFragment(private var idUser: String) : Fragment() {
                     }
                 } else{
                     HotelUtils.addHotel(hotel){
-                        PictureUtils.addHotelPictures(it, picList)
+                        PictureUtils.addHotelPictures(it,picList)
                         val mainActivity = requireActivity() as MainActivity
-                        mainActivity.replaceFragment(AddFirstRoomFragment(it))
+                        mainActivity.replaceFragment(AddFirstRoomFragment(it, idUser))
                         showSuccessSnackBar("Thêm khách sạn thành công.", view)
                     }
                 }
@@ -138,6 +137,7 @@ class addHotelImageFragment(private var idUser: String) : Fragment() {
         arg.putStringArrayList("pics", picList)
         if (fromFrag == "edit"){
             arg.putString("idHotel", arguments?.getString("idHotel"))
+            arg.putString("date", arguments?.getString("date"))
         }
 
         val addHotelFragment = AddHotelFragment(idUser)
@@ -166,6 +166,7 @@ class addHotelImageFragment(private var idUser: String) : Fragment() {
         arg.putStringArrayList("pics", picList)
         if (fromFrag == "edit"){
             arg.putString("idHotel", arguments?.getString("idHotel"))
+            arg.putString("date", arguments?.getString("date"))
         }
 
         val uploadImageFragment = UploadImageFragment(idUser)

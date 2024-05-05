@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.Adapter.BillAdapter
@@ -27,6 +28,7 @@ class BillFragment(private var idUser: String) : Fragment() {
     private lateinit var recyclerView : RecyclerView
     private lateinit var adapter : BillAdapter
     private lateinit var bill_list : ArrayList<Purchase>
+    private lateinit var btn_back : ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +37,7 @@ class BillFragment(private var idUser: String) : Fragment() {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,7 +51,7 @@ class BillFragment(private var idUser: String) : Fragment() {
         val layoutManager = LinearLayoutManager(requireContext())
         recyclerView.layoutManager = layoutManager
 
-        if (fromFrag == "edit"){
+        if (fromFrag == "edit" || fromFrag == "edit_room"){
             val list = arguments?.getStringArrayList("bills")
             for (bill in list!!){
                 PurchaseUtils.getPurchaseByID(bill){
@@ -56,14 +59,38 @@ class BillFragment(private var idUser: String) : Fragment() {
                     adapter.notifyDataSetChanged()
                 }
             }
-
         }
+
+        btn_back.setOnClickListener {
+            if (fromFrag == "edit"){
+                val arg = Bundle()
+                arg.putString("date", arguments?.getString("date"))
+
+                val hotelManageFrg = MyHotel(idUser)
+                hotelManageFrg.arguments = arg
+
+                val mainActivity = requireActivity() as MainActivity
+                mainActivity.replaceFragment(hotelManageFrg)
+            } else if (fromFrag == "edit_room"){
+                val arg = Bundle()
+                arg.putString("date", arguments?.getString("date"))
+                arg.putString("idHotel", arguments?.getString("idHotel"))
+
+                val roomManageFrg = ManageRoomsFragment(idUser)
+                roomManageFrg.arguments = arg
+
+                val mainActivity = requireActivity() as MainActivity
+                mainActivity.replaceFragment(roomManageFrg)
+            }
+        }
+
         return view
     }
 
     @SuppressLint("NotifyDataSetChanged")
     private fun initUI(view: View){
         recyclerView = view.findViewById(R.id.recyclerView)
+        btn_back = view.findViewById(R.id.btn_back)
         bill_list = ArrayList()
     }
     companion object {
