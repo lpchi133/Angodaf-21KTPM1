@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#95BDFF"
+        android:background="#9BB0C1"
         android:padding="10dp">
         <include
             android:contentDescription=""
