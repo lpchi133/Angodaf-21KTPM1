@@ -172,4 +172,8 @@ object PictureUtils {
             listener(emptyList())
         }
     }
+
+    fun deleteRoomPictues(ID_Hotel: String, roomID: String){
+        database.child("room_pictures").child(ID_Hotel).child(roomID).setValue(null)
+    }
 }

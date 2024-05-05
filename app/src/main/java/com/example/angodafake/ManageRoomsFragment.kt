@@ -3,6 +3,8 @@ package com.example.angodafake
 import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.text.Editable
@@ -16,13 +18,16 @@ import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.Adapter.HotelManageAdapter
+import com.example.angodafake.Adapter.OnRoomDeleteListener
 import com.example.angodafake.Adapter.RoomManageAdapter
 import com.example.angodafake.Utilities.HotelUtils
+import com.example.angodafake.Utilities.PictureUtils
 import com.example.angodafake.Utilities.PurchaseUtils
 import com.example.angodafake.Utilities.RoomUtils
 import com.example.angodafake.db.Hotel
 import com.example.angodafake.db.Rooms
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
@@ -34,7 +39,7 @@ import com.google.android.material.textfield.TextInputLayout
  * Use the [ManageRoomsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ManageRoomsFragment(private var idUser: String) : Fragment() {
+class ManageRoomsFragment(private var idUser: String) : Fragment(), OnRoomDeleteListener {
     // TODO: Rename and change types of parameters
     private lateinit var btn_back : ImageButton
     private lateinit var addLL : View
@@ -67,6 +72,17 @@ class ManageRoomsFragment(private var idUser: String) : Fragment() {
         initUI(view)
         initShowout(addLL)
         initShowout(billLL)
+
+        adapter = RoomManageAdapter(requireContext(), room_list, date, idUser)
+        adapter.setOnDeleteListener(this)
+        recyclerView.adapter = adapter
+        val layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.layoutManager = layoutManager
+        RoomUtils.getRoomByHotelID(idHotel){
+            room_list.clear()
+            room_list.addAll(it)
+            adapter.notifyDataSetChanged()
+        }
 
         et_date.setOnClickListener {
             it.clearFocus()
@@ -151,6 +167,25 @@ class ManageRoomsFragment(private var idUser: String) : Fragment() {
         return view
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onRoomDeleted(room: Rooms) {
+        Log.d("checkDelete", "vao")
+
+        // Xử lý sự kiện khi người dùng xóa phòng
+        PurchaseUtils.getPurchaseByRoom(room.ID_Hotel!!, room.ID!!, adapter.date){
+            if (it){
+                RoomUtils.deleteRoom(room.ID_Hotel!!, room.ID!!)
+                PictureUtils.deleteRoomPictues(room.ID_Hotel!!, room.ID!!)
+                PurchaseUtils.deletePurchaseByRoomID(room.ID_Hotel!!, room.ID!!)
+                room_list.remove(room)
+                adapter.notifyDataSetChanged()
+                showSuccessSnackBar("Đã xóa phòng.", requireView())
+            } else{
+                Log.d("checkDelete", it.toString())
+                showSnackBar("Xóa thất bại! Phòng này hiện vẫn đang được giao dịch. Xin kiểm tra lại hóa đơn.", requireView())
+            }
+        }
+    }
     private fun toggleFabMode(v: View) {
         rotate = rotateFab(v, !rotate)
         if (rotate){
@@ -238,15 +273,20 @@ class ManageRoomsFragment(private var idUser: String) : Fragment() {
             et_date.text = Editable.Factory.getInstance().newEditable("$formattedDay/$formattedMonth/$year")
         }
         date = et_date.text.toString()
-        adapter = RoomManageAdapter(requireContext(), room_list, date, idUser)
-        recyclerView.adapter = adapter
-        val layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.layoutManager = layoutManager
-        RoomUtils.getRoomByHotelID(idHotel){
-            room_list.clear()
-            room_list.addAll(it)
-            adapter.notifyDataSetChanged()
-        }
+    }
+
+    private fun showSnackBar(msg: String, view: View) {
+        val snackbar = Snackbar.make(view.rootView, msg, Snackbar.LENGTH_LONG)
+        // Đổi màu background của Snackbar
+        snackbar.view.backgroundTintList = ColorStateList.valueOf(Color.RED)
+        snackbar.setTextColor(Color.WHITE)
+        snackbar.show()
+    }
+    private fun showSuccessSnackBar(msg: String, view: View) {
+        val snackbar = Snackbar.make(view.rootView, msg, Snackbar.LENGTH_LONG)
+        snackbar.view.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#3193FF"))
+        snackbar.setTextColor(Color.WHITE)
+        snackbar.show()
     }
 
     companion object {

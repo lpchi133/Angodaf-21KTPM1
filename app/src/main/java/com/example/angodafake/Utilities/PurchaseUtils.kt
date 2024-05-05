@@ -197,4 +197,59 @@ object PurchaseUtils {
         })
     }
 
+    fun getPurchaseByRoom(ID_hotel: String, ID_Room : String, date: String, listener: (Boolean) -> Unit){
+        val billQuery = database.child("purchases")
+        billQuery.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                var isDateAfterGoDate = true
+                for (purchaseSnapshort in dataSnapshot.children) {
+                    val purchase = purchaseSnapshort.getValue(Purchase::class.java)
+                    if (purchase?.ID_Hotel == ID_hotel
+                        && (purchase.time_cancel == "" || purchase.time_cancel == null)
+                        && purchase.ID_Room == ID_Room
+                    ) {
+                        // Kiểm tra xem ngày `date` có lớn hơn hoặc bằng ngày `date_go` không
+                        if (!isDateAfter(purchase.date_go!!, date)) {
+                            isDateAfterGoDate = false
+                            break
+                        }
+                    }
+                }
+                listener(isDateAfterGoDate)
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Xử lý khi có lỗi xảy ra
+                Log.e("firebase", "Error getting room count: ${databaseError.message}")
+                listener(false)
+            }
+        })
+    }
+    fun isDateAfter(compareDate: String, date: String): Boolean {
+        val compareDateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val compareDateTime = compareDateFormat.parse(compareDate)
+        val dateTime = compareDateFormat.parse(date)
+        return dateTime?.after(compareDateTime) ?: false
+    }
+
+    fun deletePurchaseByRoomID(ID_Hotel: String, ID_Room: String){
+        val billQuery = database.child("purchases")
+        billQuery.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (purchaseSnapshort in dataSnapshot.children){
+                    val purchase = purchaseSnapshort.getValue(Purchase::class.java)
+                    if (purchase?.ID_Hotel == ID_Hotel
+                        && purchase.ID_Room == ID_Room
+                    ) {
+                        database.child("purchases").child(purchaseSnapshort.key!!).setValue(null)
+                    }
+                }
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Xử lý khi có lỗi xảy ra
+                Log.e("firebase", "Error delete purchase: ${databaseError.message}")
+            }
+        })
+    }
+
 }

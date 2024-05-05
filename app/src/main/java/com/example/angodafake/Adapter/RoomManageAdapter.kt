@@ -1,6 +1,7 @@
 package com.example.angodafake.Adapter
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
@@ -24,9 +25,20 @@ import com.example.angodafake.Utilities.RoomUtils
 import com.example.angodafake.db.Rooms
 import com.squareup.picasso.Picasso
 
+
+interface OnRoomDeleteListener {
+    fun onRoomDeleted(room: Rooms)
+}
+
 class RoomManageAdapter(private val context: Context, private var room_list: ArrayList<Rooms>, var date: String, var idUser: String) : RecyclerView.Adapter<RoomManageAdapter.ViewHolder>()  {
+    private var onDeleteListener: OnRoomDeleteListener? = null
+
+    fun setOnDeleteListener(listener: OnRoomDeleteListener) {
+        onDeleteListener = listener
+    }
     inner class ViewHolder(listItemView: View) : RecyclerView.ViewHolder(listItemView) {
         val btn_edit = listItemView.findViewById<ImageButton>(R.id.btn_edit)
+        val btn_delete = listItemView.findViewById<ImageButton>(R.id.btn_delete)
         val tv_roomType = listItemView.findViewById<TextView>(R.id.tv_roomType)
         val layout_bookedRoomsQty = listItemView.findViewById<RelativeLayout>(R.id.layout_bookedRoomsQty)
         val tv_bookedRoomsQty = listItemView.findViewById<TextView>(R.id.tv_bookedRoomsQty)
@@ -79,6 +91,24 @@ class RoomManageAdapter(private val context: Context, private var room_list: Arr
 
             val mainActivity = context as MainActivity
             mainActivity.replaceFragment(editRoomFrag)
+        }
+
+        holder.btn_delete.setOnClickListener {
+            val builder = AlertDialog.Builder(context)
+            builder.setTitle("Xác nhận")
+            builder.setMessage("Bạn có chắc chắn muốn xóa loại phòng này không?")
+
+            builder.setPositiveButton("Xóa") { dialog, _ ->
+                onDeleteListener?.onRoomDeleted(room)
+                dialog.dismiss()
+            }
+
+            builder.setNegativeButton("Hủy bỏ") { dialog, _ ->
+                dialog.dismiss()
+            }
+
+            val dialog = builder.create()
+            dialog.show()
         }
 
         holder.tv_roomType.text = room.type

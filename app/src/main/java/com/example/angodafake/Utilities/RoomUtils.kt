@@ -138,4 +138,8 @@ object RoomUtils {
             }
     }
 
+    fun deleteRoom(ID_Hotel: String, ID_Room: String){
+        database.child("rooms").child(ID_Hotel).child(ID_Room).setValue(null)
+    }
+
 }

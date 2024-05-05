@@ -45,6 +45,7 @@ drawable baseline_cleaning_services_24
 drawable baseline_close_24
 drawable baseline_create_24
 drawable baseline_credit_card_24
+drawable baseline_delete_forever_24
 drawable baseline_directions_car_24
 drawable baseline_domain_add_24
 drawable baseline_favorite
@@ -241,6 +242,7 @@ id btn_chat_with_customer
 id btn_close
 id btn_comment
 id btn_continue
+id btn_delete
 id btn_edit
 id btn_local
 id btn_login_email

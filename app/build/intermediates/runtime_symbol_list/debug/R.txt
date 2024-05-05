@@ -3110,6 +3110,7 @@ int drawable baseline_cleaning_services_24 0x7f080092
 int drawable baseline_close_24 0x7f080093
 int drawable baseline_create_24 0x7f080094
 int drawable baseline_credit_card_24 0x7f080095
+int drawable baseline_delete_forever_24 0x7f080197
 int drawable baseline_directions_car_24 0x7f080096
 int drawable baseline_domain_add_24 0x7f080097
 int drawable baseline_favorite 0x7f080098
@@ -3546,6 +3547,7 @@ int id btn_chat_with_customer 0x7f0900ae
 int id btn_close 0x7f0900af
 int id btn_comment 0x7f0900b0
 int id btn_continue 0x7f0900b1
+int id btn_delete 0x7f090462
 int id btn_edit 0x7f0900b2
 int id btn_local 0x7f0900b3
 int id btn_login_email 0x7f0900b4
