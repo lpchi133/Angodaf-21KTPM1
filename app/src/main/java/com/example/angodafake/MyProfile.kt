@@ -28,6 +28,8 @@ class MyProfile(private var idUser: String) : Fragment() {
     private lateinit var btn_myHotel: Button
     private lateinit var btn_profile: Button
     private lateinit var btn_add_hotel: Button
+    private lateinit var btn_my_comments: Button
+    private lateinit var btn_chat : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,6 +77,18 @@ class MyProfile(private var idUser: String) : Fragment() {
             mainActivity.replaceFragment(AddHotelFragment)
         }
 
+        btn_chat.setOnClickListener {
+            val intent = Intent(context, ChatList::class.java)
+            intent.putExtra("id_user", idUser)
+            startActivity(intent)
+        }
+
+        btn_my_comments.setOnClickListener {
+            val intent = Intent(context, MyComment::class.java)
+            intent.putExtra("id_user", idUser)
+            startActivity(intent)
+        }
+
         btn_logout.setOnClickListener {
             auth.signOut()
             val intent = Intent(requireActivity(), LoginActivity::class.java)
@@ -91,6 +105,8 @@ class MyProfile(private var idUser: String) : Fragment() {
         btn_myHotel = view.findViewById(R.id.btn_my_hotel)
         btn_profile = view.findViewById(R.id.btn_profile)
         btn_add_hotel = view.findViewById(R.id.btn_add_hotel)
+        btn_my_comments = view.findViewById(R.id.btn_my_comments)
+        btn_chat = view.findViewById(R.id.btn_chat)
     }
 
 

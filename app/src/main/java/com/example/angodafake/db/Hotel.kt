@@ -28,8 +28,6 @@ data class Hotel(
     var service: Double? = 0.0,
     var convenience: Double? = 0.0,
     var total_comments: Int = 0,
-    var latitude: Double? = null,
-    var longitude: Double? = null
     ) {
     fun toMap(): Map<String, Any?> {
         return mapOf(

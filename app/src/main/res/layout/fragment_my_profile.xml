@@ -84,57 +84,6 @@
         app:layout_constraintTop_toBottomOf="@+id/view2" />
 
     <Button
-        android:id="@+id/btn_card"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:backgroundTint="@android:color/transparent"
-        android:drawableLeft="@drawable/baseline_credit_card_24"
-        android:drawablePadding="16dp"
-        android:gravity="left|center_vertical"
-        android:outlineProvider="none"
-        android:text="Thông tin thẻ đã lưu của tôi"
-        android:textAllCaps="false"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/btn_profile"
-        app:layout_constraintStart_toStartOf="@+id/btn_profile"
-        app:layout_constraintTop_toBottomOf="@+id/btn_bookmark" />
-
-    <Button
-        android:id="@+id/btn_chat_as_customer"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:backgroundTint="@android:color/transparent"
-        android:drawableLeft="@drawable/baseline_chat_bubble_outline_24"
-        android:drawablePadding="16dp"
-        android:gravity="left|center_vertical"
-        android:outlineProvider="none"
-        android:text="Tin nhắn từ chỗ nghỉ"
-        android:textAllCaps="false"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/btn_card"
-        app:layout_constraintStart_toStartOf="@+id/btn_card"
-        app:layout_constraintTop_toBottomOf="@+id/btn_card" />
-
-    <Button
-        android:id="@+id/btn_chat_with_customer"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:backgroundTint="@android:color/transparent"
-        android:drawableLeft="@drawable/baseline_chat_bubble_outline_24"
-        android:drawablePadding="16dp"
-        android:gravity="left|center_vertical"
-        android:outlineProvider="none"
-        android:text="Tin nhắn từ khách hàng"
-        android:textAllCaps="false"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/btn_chat_as_customer"
-        app:layout_constraintStart_toStartOf="@+id/btn_chat_as_customer"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
-
-    <Button
         android:id="@+id/btn_my_comments"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -147,9 +96,9 @@
         android:text="Nhận xét của tôi"
         android:textAllCaps="false"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/btn_chat_with_customer"
-        app:layout_constraintStart_toStartOf="@+id/btn_chat_with_customer"
-        app:layout_constraintTop_toBottomOf="@+id/btn_chat_as_customer" />
+        app:layout_constraintEnd_toEndOf="@+id/btn_bookmark"
+        app:layout_constraintStart_toStartOf="@+id/btn_bookmark"
+        app:layout_constraintTop_toBottomOf="@+id/btn_bookmark" />
 
     <TextView
         android:id="@+id/textView26"
@@ -181,15 +130,16 @@
         android:backgroundTint="@android:color/transparent"
         android:drawableLeft="@drawable/baseline_apartment_24"
         android:drawablePadding="16dp"
+        android:drawableTint="@color/black"
         android:gravity="left|center_vertical"
         android:outlineProvider="none"
         android:text="Quản lý khách sạn của tôi"
-        android:drawableTint="@color/black"
         android:textAllCaps="false"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/btn_chat_with_customer"
-        app:layout_constraintStart_toStartOf="@+id/btn_chat_with_customer"
-        app:layout_constraintTop_toBottomOf="@+id/btn_chat_with_customer" />
+        app:layout_constraintEnd_toEndOf="@+id/btn_my_comments"
+        app:layout_constraintStart_toStartOf="@+id/btn_my_comments"
+        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
     <Button
         android:id="@+id/btn_add_hotel"
         android:layout_width="0dp"
@@ -198,14 +148,14 @@
         android:backgroundTint="@android:color/transparent"
         android:drawableLeft="@drawable/baseline_domain_add_24"
         android:drawablePadding="16dp"
+        android:drawableTint="@color/black"
         android:gravity="left|center_vertical"
         android:outlineProvider="none"
         android:text="Thêm khách sạn"
-        android:drawableTint="@color/black"
         android:textAllCaps="false"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/btn_chat_with_customer"
-        app:layout_constraintStart_toStartOf="@+id/btn_chat_with_customer"
+        app:layout_constraintEnd_toEndOf="@+id/btn_my_hotel"
+        app:layout_constraintStart_toStartOf="@+id/btn_my_hotel"
         app:layout_constraintTop_toBottomOf="@+id/btn_my_hotel" />
 
     <TextView
@@ -231,6 +181,23 @@
         app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
     <Button
+        android:id="@+id/btn_chat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:backgroundTint="@android:color/transparent"
+        android:drawableLeft="@drawable/baseline_chat_bubble_outline_24"
+        android:drawablePadding="16dp"
+        android:gravity="left|center_vertical"
+        android:outlineProvider="none"
+        android:text="Tin nhắn"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/btn_my_hotel"
+        app:layout_constraintStart_toStartOf="@+id/btn_my_hotel"
+        app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+    <Button
         android:id="@+id/btn_changePw"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -245,7 +212,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/btn_my_hotel"
         app:layout_constraintStart_toStartOf="@+id/btn_my_hotel"
-        app:layout_constraintTop_toBottomOf="@+id/view3" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_chat" />
     <Button
         android:id="@+id/btn_logout"
         android:layout_width="0dp"

@@ -10,6 +10,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Locale
 
 object PurchaseUtils {
@@ -18,21 +19,43 @@ object PurchaseUtils {
     init {
         database = Firebase.database.reference
     }
+    private fun getTimePurchase(): String {
+        val currentTime = Calendar.getInstance()
+        val dateFormat = SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault())
+        return dateFormat.format(currentTime.time)
+    }
 
     fun updatePurchaseStatus(purchaseID: String, callback: (String) -> Unit) {
-        val purchaseUpdate = hashMapOf<String, Any>(
-            "/purchases/$purchaseID/detail" to "HOAN_TAT",
-            "/purchases/$purchaseID/status_purchase" to "DA_THANH_TOAN"
-        )
-
-        database.updateChildren(purchaseUpdate)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    callback.invoke("success")
-                } else {
-                    callback.invoke("failure")
-                }
+        getPurchaseByID(purchaseID){
+            if (it.time_purchase == ""){
+                val purchaseUpdate = hashMapOf<String, Any>(
+                    "/purchases/$purchaseID/detail" to "HOAN_TAT",
+                    "/purchases/$purchaseID/status_purchase" to "DA_THANH_TOAN",
+                    "/purchases/$purchaseID/time_purchase" to getTimePurchase()
+                )
+                database.updateChildren(purchaseUpdate)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            callback.invoke("success")
+                        } else {
+                            callback.invoke("failure")
+                        }
+                    }
+            } else {
+                val purchaseUpdate = hashMapOf<String, Any>(
+                    "/purchases/$purchaseID/detail" to "HOAN_TAT",
+                    "/purchases/$purchaseID/status_purchase" to "DA_THANH_TOAN"
+                )
+                database.updateChildren(purchaseUpdate)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            callback.invoke("success")
+                        } else {
+                            callback.invoke("failure")
+                        }
+                    }
             }
+        }
     }
 
     fun getAllPurchases(ownerID: String, listener: (List<Purchase>) -> Unit) {

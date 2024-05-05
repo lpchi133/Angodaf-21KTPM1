@@ -115,7 +115,7 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
 
 
             CommentUtils.getCommentsByIDHotel(hotel.ID!!) { commentList ->
-                if (commentList != null){
+                if (commentList.size != 0){
                     var totalPoint = 0.0
                     for (comment in commentList) {
                         totalPoint += comment.point!!
@@ -156,12 +156,12 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
                                         Date()
                                     )
                                     val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-                                    val dateCome = dateFormat.parse(purchase.date_come)
-                                    val dateGo = dateFormat.parse(purchase.date_go)
+                                    val dateCome = dateFormat.parse(purchase.date_come!!)
+                                    val dateGo = dateFormat.parse(purchase.date_go!!)
                                     val currentDateObject = dateFormat.parse(currentDate)
-                                    Log.d("DateCome", "Date come: ${dateFormat.format(dateCome)}")
-                                    Log.d("DateGo", "Date go: ${dateFormat.format(dateGo)}")
-                                    Log.d("currentDate", "currentDate: ${dateFormat.format(currentDateObject)}")
+                                    Log.d("DateCome", "Date come: ${dateFormat.format(dateCome!!)}")
+                                    Log.d("DateGo", "Date go: ${dateFormat.format(dateGo!!)}")
+                                    Log.d("currentDate", "currentDate: ${dateFormat.format(currentDateObject!!)}")
 
 
                                     // Kiểm tra xem thời gian hiện tại có nằm trong khoảng thời gian giữa purchase.date_come và purchase.date_go không
