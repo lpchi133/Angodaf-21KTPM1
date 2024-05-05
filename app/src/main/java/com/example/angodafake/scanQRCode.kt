@@ -41,6 +41,8 @@ class ScanQRCodeActivity : AppCompatActivity() {
             finish()
         })
 
+        println("hhi")
+
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED){
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), 123)
         } else {
@@ -62,6 +64,7 @@ class ScanQRCodeActivity : AppCompatActivity() {
                 PurchaseUtils.updatePurchaseStatus(it.text){ result ->
                     if (result == "success") {
                         // Xử lý khi cập nhật thành công
+                        println(it.text)
                         PurchaseUtils.getPurchaseByID(it.text){ purchase ->
                             UserUtils.getUserByID(purchase.ID_Owner!!){ user ->
                                 dialog.findViewById<TextView>(R.id.customerName).text = user.name
@@ -80,6 +83,7 @@ class ScanQRCodeActivity : AppCompatActivity() {
                     } else {
                         // Xử lý khi cập nhật thất bại
 //                        showDialog(dialog, anim)
+                        println("fail")
                     }
                 }
             }

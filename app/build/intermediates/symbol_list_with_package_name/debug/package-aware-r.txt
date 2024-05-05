@@ -2188,6 +2188,7 @@ color mtrl_textinput_focused_box_stroke_color
 color mtrl_textinput_hovered_box_stroke_color
 color notification_action_color_filter
 color notification_icon_bg_color
+color notification_material_background_media_default_color
 color orange
 color pink
 color primary_dark_material_dark
@@ -3018,6 +3019,10 @@ dimen notification_small_icon_size_as_large
 dimen notification_subtext_size
 dimen notification_top_pad
 dimen notification_top_pad_large_text
+dimen subtitle_corner_radius
+dimen subtitle_outline_width
+dimen subtitle_shadow_offset
+dimen subtitle_shadow_radius
 dimen tooltip_corner_radius
 dimen tooltip_horizontal_padding
 dimen tooltip_margin
@@ -3109,6 +3114,7 @@ drawable add_voucher
 drawable avd_hide_password
 drawable avd_show_password
 drawable b48f9f78ec2cf2bbe745f28a2f5f5541
+drawable background1
 drawable baseline_access_time_24
 drawable baseline_add_24
 drawable baseline_admin_panel_settings_20
@@ -3161,6 +3167,7 @@ drawable baseline_person_24
 drawable baseline_person_24_borderless
 drawable baseline_plus
 drawable baseline_room_service_24
+drawable baseline_search_24
 drawable baseline_send_24
 drawable baseline_star_outline_24
 drawable baseline_thumb_down_24
@@ -3171,6 +3178,7 @@ drawable beach
 drawable beach1
 drawable beach2
 drawable beach3
+drawable beach4
 drawable bg_add_first_room
 drawable bg_add_imgs
 drawable bg_upload_room_img
@@ -3244,7 +3252,9 @@ drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
 drawable edit_text
+drawable edit_text_rounded_corner
 drawable empty_list
+drawable empty_result
 drawable gg_icon
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
@@ -3367,6 +3377,7 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable open_popup
+drawable person_icon
 drawable quang_ba_khach_san
 drawable room
 drawable round_half
@@ -3452,6 +3463,7 @@ id accessibility_custom_action_6
 id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
+id action0
 id actionDown
 id actionDownUp
 id actionUp
@@ -3536,6 +3548,7 @@ id bottom
 id bottomEnd
 id bottomNavigationView
 id bottomStart
+id bottom_layout
 id bounce
 id bounceBoth
 id bounceEnd
@@ -3588,6 +3601,8 @@ id btn_unaccept
 id btn_upload
 id button
 id button1
+id button2
+id button3
 id button5
 id buttonField
 id buttonLike
@@ -3601,6 +3616,7 @@ id byPercentage
 id cache_measures
 id calender
 id callMeasure
+id cancel_action
 id cancel_button
 id canceledList
 id cardChoice
@@ -3627,6 +3643,8 @@ id chain2
 id chains
 id chart
 id chat
+id chatField
+id chatInput
 id checkIn
 id checkOut
 id checkPurchase
@@ -3678,6 +3696,8 @@ id coordinator
 id cos
 id cost
 id count
+id count1
+id count2
 id countBedDouble
 id countBedSingle
 id countRoom
@@ -3691,6 +3711,7 @@ id custom
 id customPanel
 id custom_password_dialog
 id customer
+id customerChatList
 id customerInfor
 id customerName
 id cut
@@ -3750,7 +3771,6 @@ id editTextNumber4
 id editTextNumber5
 id editTextText
 id editTextText1
-id editTextTextMultiLine
 id edit_query
 id edit_text_id
 id elastic
@@ -3758,6 +3778,7 @@ id embed
 id emptyField
 id end
 id endToStart
+id end_padder
 id enterAlways
 id enterAlwaysCollapsed
 id errorText
@@ -3818,6 +3839,7 @@ id homes
 id honorRequest
 id horizontal_only
 id hotel
+id hotelChatList
 id hotelList
 id hotelName
 id hotel_address
@@ -3834,7 +3856,9 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id imageFace
 id imageHotel
+id imageRoom
 id imageView
 id imageView1
 id imageView10
@@ -3863,6 +3887,7 @@ id indeterminate
 id info
 id infor
 id inforVoucher
+id information
 id invisible
 id inward
 id is_pooling_container_tag
@@ -3908,6 +3933,9 @@ id layout_editInfo_title
 id layout_signup_title
 id left
 id leftToRight
+id left_chat_layout
+id left_chat_textview
+id left_chat_time
 id legacy
 id light
 id limited_price
@@ -3973,6 +4001,7 @@ id material_timepicker_view
 id material_value_index
 id matrix
 id max_discount
+id media_actions
 id message
 id middle
 id mini
@@ -4041,6 +4070,9 @@ id notic2
 id notic3
 id notic4
 id notic5
+id notic_empty_1
+id notic_empty_2
+id notic_empty_3
 id notification_background
 id notification_main_column
 id notification_main_column_container
@@ -4155,6 +4187,9 @@ id reverseSawtooth
 id rewrite
 id right
 id rightToLeft
+id right_chat_layout
+id right_chat_textview
+id right_chat_time
 id right_icon
 id right_side
 id room
@@ -4236,6 +4271,7 @@ id status1
 id status2
 id status3
 id status4
+id status_bar_latest_event_content
 id stop
 id stretch
 id submenuarrow
@@ -4246,7 +4282,9 @@ id tab2
 id tabActive
 id tabActiveVoucher
 id tabCanceled
+id tabCustomerChat
 id tabHost
+id tabHotelList
 id tabInactiveVoucher
 id tabMode
 id tabPass
@@ -4366,6 +4404,7 @@ id topEnd
 id topPanel
 id topStart
 id total
+id totalChat
 id totalPrice
 id totalVoucher
 id touch_outside
@@ -4438,6 +4477,7 @@ id voucher_max
 id voucher_min
 id voucher_name
 id voucher_quantity
+id waitChat
 id warning
 id watchRoom
 id webView
@@ -4586,16 +4626,21 @@ layout activity_main
 layout activity_scan_qrcode
 layout activity_sign_up
 layout activity_splash
+layout avatar
+layout avatar_1
 layout browser_actions_context_menu_page
 layout browser_actions_context_menu_row
 layout cancel_purchase
-layout chat
 layout custom_active_purchase_adapter
 layout custom_active_purchase_detail
 layout custom_active_voucher_adapter
 layout custom_bookmark
-layout custom_chat
-layout custom_chat_detail
+layout custom_chat_adapter
+layout custom_chat_hotel_adapter
+layout custom_chat_list
+layout custom_chat_message_adapter
+layout custom_chat_of_hotel
+layout custom_chat_room
 layout custom_comment_detail
 layout custom_dialog
 layout custom_hotel
@@ -4656,7 +4701,9 @@ layout fragment_room
 layout fragment_upload_image
 layout fragment_upload_room_image
 layout grid_item
+layout image_circle
 layout image_item_layout
+layout image_square
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout m3_alert_dialog
@@ -4713,8 +4760,17 @@ layout mtrl_search_bar
 layout mtrl_search_view
 layout notification_action
 layout notification_action_tombstone
+layout notification_media_action
+layout notification_media_cancel_action
+layout notification_template_big_media
+layout notification_template_big_media_custom
+layout notification_template_big_media_narrow
+layout notification_template_big_media_narrow_custom
 layout notification_template_custom_big
 layout notification_template_icon_group
+layout notification_template_lines_media
+layout notification_template_media
+layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
 layout popup_1
@@ -4732,6 +4788,8 @@ layout support_simple_spinner_dropdown_item
 layout tab_active_room
 layout tab_active_voucher
 layout tab_canceled_room
+layout tab_customer_chat
+layout tab_hotel_list
 layout tab_inactive_voucher
 layout tab_login_email
 layout tab_login_phone
@@ -5448,9 +5506,14 @@ style TextAppearance_AppCompat_Widget_Switch
 style TextAppearance_AppCompat_Widget_TextView_SpinnerItem
 style TextAppearance_Compat_Notification
 style TextAppearance_Compat_Notification_Info
+style TextAppearance_Compat_Notification_Info_Media
 style TextAppearance_Compat_Notification_Line2
+style TextAppearance_Compat_Notification_Line2_Media
+style TextAppearance_Compat_Notification_Media
 style TextAppearance_Compat_Notification_Time
+style TextAppearance_Compat_Notification_Time_Media
 style TextAppearance_Compat_Notification_Title
+style TextAppearance_Compat_Notification_Title_Media
 style TextAppearance_Design_CollapsingToolbar_Expanded
 style TextAppearance_Design_Counter
 style TextAppearance_Design_Counter_Overflow

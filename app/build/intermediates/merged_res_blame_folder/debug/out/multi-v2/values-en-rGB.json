@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.angodafake.app-mergeDebugResources-41:/values-en-rGB/values-en-rGB.xml",
+            "outputFile": "com.example.angodafake.app-mergeDebugResources-43:/values-en-rGB/values-en-rGB.xml",
             "map": [
                 {
                     "source": "/Users/nguyenthanh/.gradle/caches/transforms-3/56ba582400a294234224d0d3e20b14d0/transformed/appcompat-1.6.1/res/values-en-rGB/values-en-rGB.xml",

@@ -253,6 +253,7 @@ class ObjectFragment : Fragment() {
                             intent.putExtra("quantity", contact.Purchase?.quantity.toString())
                             intent.putExtra("status_purchase", contact.Purchase?.status_purchase)
                             intent.putExtra("total_purchase", contact.Purchase?.total_purchase.toString())
+                            intent.putExtra("pic_hotel", contact.imageHotel)
                             startActivity(intent)
                         }
                     } else {
@@ -289,6 +290,7 @@ class ObjectFragment : Fragment() {
                             intent.putExtra("total_purchase", contact.Purchase?.total_purchase.toString())
                             intent.putExtra("reason", contact.Purchase?.reason)
                             intent.putExtra("detail", contact.Purchase?.detail)
+                            intent.putExtra("pic_hotel", contact.imageHotel)
                             startActivity(intent)
                         }
                     } else {
@@ -325,6 +327,7 @@ class ObjectFragment : Fragment() {
                             intent.putExtra("total_purchase", contact.Purchase?.total_purchase.toString())
                             intent.putExtra("reason", contact.Purchase?.reason)
                             intent.putExtra("detail", contact.Purchase?.detail)
+                            intent.putExtra("pic_hotel", contact.imageHotel)
                             startActivity(intent)
                         }
                     } else {

@@ -235,6 +235,9 @@ class Hotel_comment : AppCompatActivity() {
 
             val btnUnAccept: Button = dialogView.findViewById(R.id.btn_unaccept)
             btnUnAccept.setOnClickListener {
+                emptyField.visibility = View.GONE
+                commentField.visibility = View.VISIBLE
+
                 linearAdapter = CommentAdapter(this, commentList)
                 commentField.adapter = linearAdapter
                 choice = -1

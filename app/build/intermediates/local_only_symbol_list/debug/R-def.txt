@@ -20,6 +20,7 @@ color red
 color white
 drawable add_voucher
 drawable b48f9f78ec2cf2bbe745f28a2f5f5541
+drawable background1
 drawable baseline_access_time_24
 drawable baseline_add_24
 drawable baseline_admin_panel_settings_20
@@ -72,6 +73,7 @@ drawable baseline_person_24
 drawable baseline_person_24_borderless
 drawable baseline_plus
 drawable baseline_room_service_24
+drawable baseline_search_24
 drawable baseline_send_24
 drawable baseline_star_outline_24
 drawable baseline_thumb_down_24
@@ -82,6 +84,7 @@ drawable beach
 drawable beach1
 drawable beach2
 drawable beach3
+drawable beach4
 drawable bg_add_first_room
 drawable bg_add_imgs
 drawable bg_upload_room_img
@@ -122,7 +125,9 @@ drawable btn_yes
 drawable button_selector
 drawable circle_shape
 drawable edit_text
+drawable edit_text_rounded_corner
 drawable empty_list
+drawable empty_result
 drawable gg_icon
 drawable hotel
 drawable ic_launcher_1_background
@@ -144,6 +149,7 @@ drawable khach_san
 drawable logo
 drawable momo_mservice_logo
 drawable open_popup
+drawable person_icon
 drawable quang_ba_khach_san
 drawable room
 drawable round_half
@@ -210,6 +216,7 @@ id border3
 id border4
 id border5
 id bottomNavigationView
+id bottom_layout
 id btn_accept
 id btn_add
 id btn_add1
@@ -253,6 +260,8 @@ id btn_unaccept
 id btn_upload
 id button
 id button1
+id button2
+id button3
 id button5
 id buttonField
 id buttonLike
@@ -279,6 +288,8 @@ id cbVungTau
 id cb_momo
 id chart
 id chat
+id chatField
+id chatInput
 id checkIn
 id checkOut
 id checkPurchase
@@ -310,6 +321,8 @@ id conveniences
 id convinent
 id cost
 id count
+id count1
+id count2
 id countBedDouble
 id countBedSingle
 id countRoom
@@ -318,6 +331,7 @@ id count_person
 id count_room
 id custom_password_dialog
 id customer
+id customerChatList
 id customerInfor
 id customerName
 id date
@@ -341,7 +355,6 @@ id editTextNumber4
 id editTextNumber5
 id editTextText
 id editTextText1
-id editTextTextMultiLine
 id emptyField
 id errorText
 id errorText_payment
@@ -365,6 +378,7 @@ id highlight
 id home
 id homes
 id hotel
+id hotelChatList
 id hotelList
 id hotelName
 id hotel_address
@@ -374,7 +388,9 @@ id hotel_phone
 id hotline
 id icon
 id id_order
+id imageFace
 id imageHotel
+id imageRoom
 id imageView
 id imageView1
 id imageView10
@@ -396,6 +412,7 @@ id image_room
 id inactiveVoucherList
 id infor
 id inforVoucher
+id information
 id lAcreage
 id lBenefit
 id lCheckIn
@@ -430,6 +447,9 @@ id layout_addHotel_title
 id layout_addRoom_title
 id layout_editInfo_title
 id layout_signup_title
+id left_chat_layout
+id left_chat_textview
+id left_chat_time
 id limited_price
 id line1
 id line10
@@ -460,7 +480,6 @@ id mailConfirm
 id main_frame
 id map
 id max_discount
-id message
 id minus
 id minus_person
 id minus_room
@@ -480,6 +499,9 @@ id notic2
 id notic3
 id notic4
 id notic5
+id notic_empty_1
+id notic_empty_2
+id notic_empty_3
 id notify
 id onlineChoice
 id owner
@@ -543,6 +565,9 @@ id relativeLayout3
 id relativeLayoutGender
 id returnHotel
 id rewrite
+id right_chat_layout
+id right_chat_textview
+id right_chat_time
 id room
 id roomID
 id roomName
@@ -569,7 +594,9 @@ id tab2
 id tabActive
 id tabActiveVoucher
 id tabCanceled
+id tabCustomerChat
 id tabHost
+id tabHotelList
 id tabInactiveVoucher
 id tabPass
 id tab_email
@@ -651,6 +678,7 @@ id timer
 id title
 id toolbar
 id total
+id totalChat
 id totalPrice
 id totalVoucher
 id traphong
@@ -699,6 +727,7 @@ id voucher_max
 id voucher_min
 id voucher_name
 id voucher_quantity
+id waitChat
 id warning
 id watchRoom
 layout activity_book_room
@@ -707,14 +736,19 @@ layout activity_main
 layout activity_scan_qrcode
 layout activity_sign_up
 layout activity_splash
+layout avatar
+layout avatar_1
 layout cancel_purchase
-layout chat
 layout custom_active_purchase_adapter
 layout custom_active_purchase_detail
 layout custom_active_voucher_adapter
 layout custom_bookmark
-layout custom_chat
-layout custom_chat_detail
+layout custom_chat_adapter
+layout custom_chat_hotel_adapter
+layout custom_chat_list
+layout custom_chat_message_adapter
+layout custom_chat_of_hotel
+layout custom_chat_room
 layout custom_comment_detail
 layout custom_hotel
 layout custom_hotel_comment
@@ -759,7 +793,9 @@ layout fragment_room
 layout fragment_upload_image
 layout fragment_upload_room_image
 layout grid_item
+layout image_circle
 layout image_item_layout
+layout image_square
 layout popup_1
 layout popup_2
 layout popup_3
@@ -770,6 +806,8 @@ layout purchased
 layout tab_active_room
 layout tab_active_voucher
 layout tab_canceled_room
+layout tab_customer_chat
+layout tab_hotel_list
 layout tab_inactive_voucher
 layout tab_login_email
 layout tab_login_phone

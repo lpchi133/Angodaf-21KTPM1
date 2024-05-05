@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.angodafake.app-mergeDebugResources-41:/values-en-rXC/values-en-rXC.xml",
+            "outputFile": "com.example.angodafake.app-mergeDebugResources-43:/values-en-rXC/values-en-rXC.xml",
             "map": [
                 {
                     "source": "/Users/nguyenthanh/.gradle/caches/transforms-3/e25a9eca5d37960903d9451f73b4fe2d/transformed/browser-1.4.0/res/values-en-rXC/values-en-rXC.xml",

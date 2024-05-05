@@ -111,6 +111,8 @@ class Hotel_infor(private var idUser: String) : Fragment() {
         val pointView = view.findViewById<TextView>(R.id.point)
         val rateStatus: TextView = view.findViewById(R.id.rateStatus)
         val count_cmt: TextView = view.findViewById(R.id.cmt)
+        val btnChat: ImageView = view.findViewById(R.id.chat)
+        var nameUser: String = ""
 
         inforVoucher.setOnClickListener {
             showPopup1()
@@ -121,6 +123,15 @@ class Hotel_infor(private var idUser: String) : Fragment() {
         if (itemPosition != null) {
             HotelUtils.getHotelByID(itemPosition) { ho ->
                 hotel = ho
+
+                btnChat.setOnClickListener {
+                    val intent = Intent(context, ChatRoom::class.java)
+                    intent.putExtra("ID_User", idUser)
+                    intent.putExtra("ID_Partner", ho.ID)
+                    intent.putExtra("Name_User", ho.name)
+                    intent.putExtra("Type_User", "User")
+                    startActivity(intent)
+                }
 
                 PictureUtils.getPicturesByHotelID(hotel.ID!!) { pictureList ->
                     val imageAdapter = ImageAdapterHotel()
@@ -143,7 +154,6 @@ class Hotel_infor(private var idUser: String) : Fragment() {
                         ratingBar.rating = hotel.star!!.toFloat()
                         hotel_phone.text = hotel.phoneNumber
                         count_cmt.text = hotel.total_comments.toString() + " nhận xét"
-
 
                         val conveniences = hotel.highlight?.split("\\")
                         val formattedconveniences = conveniences?.map { "✅    $it" }

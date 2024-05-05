@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.angodafake.app-mergeDebugResources-41:/values-mn/values-mn.xml",
+            "outputFile": "com.example.angodafake.app-mergeDebugResources-43:/values-mn/values-mn.xml",
             "map": [
                 {
                     "source": "/Users/nguyenthanh/.gradle/caches/transforms-3/56ba582400a294234224d0d3e20b14d0/transformed/appcompat-1.6.1/res/values-mn/values-mn.xml",

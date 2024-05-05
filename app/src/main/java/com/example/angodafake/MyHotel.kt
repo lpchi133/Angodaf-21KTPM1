@@ -27,6 +27,8 @@ class MyHotel(private var idUser: String) : Fragment() {
     private lateinit var openVoucherActivity: Button
     private lateinit var openCommentActivity: Button
     private lateinit var scanQRCode: Button
+    private lateinit var openChatActivity: Button
+    private lateinit var openChatRoomActivity: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +66,23 @@ class MyHotel(private var idUser: String) : Fragment() {
         scanQRCode = view.findViewById(R.id.checkIn)
         scanQRCode.setOnClickListener {
             val intent = Intent(context, ScanQRCodeActivity::class.java)
+            startActivity(intent)
+        }
+
+        openChatActivity = view.findViewById(R.id.button2)
+        openChatActivity.setOnClickListener {
+            val intent = Intent(context, ChatList::class.java)
+            intent.putExtra("id_user", idUser)
+            startActivity(intent)
+        }
+
+        openChatRoomActivity = view.findViewById(R.id.button3)
+        openChatRoomActivity.setOnClickListener {
+            val intent = Intent(context, ChatRoom::class.java)
+            intent.putExtra("ID_User", idUser)
+            intent.putExtra("ID_Partner", "1")
+            intent.putExtra("Name_User", "Hanh Xink Dep")
+            intent.putExtra("Type_User", "User")
             startActivity(intent)
         }
     }

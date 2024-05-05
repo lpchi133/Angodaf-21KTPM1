@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.angodafake.app-mergeDebugResources-41:/values-sl/values-sl.xml",
+            "outputFile": "com.example.angodafake.app-mergeDebugResources-43:/values-sl/values-sl.xml",
             "map": [
                 {
                     "source": "/Users/nguyenthanh/.gradle/caches/transforms-3/51dd3c783475405d61fcbd45d2e85e03/transformed/zxing-android-embedded-4.3.0/res/values-sl/values-sl.xml",

@@ -20,6 +20,21 @@
         tools:replace="android:theme"
         tools:targetApi="31">
         <activity
+            android:name=".ChatOfHotel"
+            android:exported="false" />
+        <meta-data
+            android:name="com.google.firebase.auth.DEFAULT_AUTH_SIGN_IN_ENABLED"
+            android:value="false" />
+        <meta-data
+            android:name="com.google.firebase.database.collection.LRUCacheSize"
+            android:value="1000" />
+        <activity
+            android:name=".ChatRoom"
+            android:exported="false" />
+        <activity
+            android:name=".ChatList"
+            android:exported="false" />
+        <activity
             android:name=".ScanQRCodeActivity"
             android:exported="false" />
         <activity

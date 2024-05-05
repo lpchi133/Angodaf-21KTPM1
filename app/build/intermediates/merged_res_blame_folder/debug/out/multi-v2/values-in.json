@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.angodafake.app-mergeDebugResources-41:/values-in/values-in.xml",
+            "outputFile": "com.example.angodafake.app-mergeDebugResources-43:/values-in/values-in.xml",
             "map": [
                 {
                     "source": "/Users/nguyenthanh/.gradle/caches/transforms-3/f22b2775ce14646665dbe1e92dfe5c67/transformed/play-services-basement-18.3.0/res/values-in/values.xml",

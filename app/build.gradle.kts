@@ -44,6 +44,7 @@ android {
 }
 
 dependencies {
+    implementation("com.firebaseui:firebase-ui-database:8.0.2")
     implementation("com.google.firebase:firebase-storage")
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")

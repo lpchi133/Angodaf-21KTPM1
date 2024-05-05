@@ -19,6 +19,7 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.angodafake.Utilities.HotelUtils
+import com.example.angodafake.Utilities.PictureUtils
 import com.example.angodafake.Utilities.RoomUtils
 import com.example.angodafake.Utilities.UserUtils
 import com.example.angodafake.db.Hotel
@@ -27,6 +28,7 @@ import com.example.angodafake.db.User
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
 import com.google.zxing.qrcode.QRCodeWriter
+import com.squareup.picasso.Picasso
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.time.LocalDate
@@ -121,12 +123,21 @@ class ActivePurchaseDetail : AppCompatActivity() {
         setContentView(R.layout.custom_active_purchase_detail)
 
         val hotelID = intent.getStringExtra("id_hotel")
+        val hotelPic = intent.getStringExtra("pic_hotel")
         val ownerID = intent.getStringExtra("id_owner")
         val roomID = intent.getStringExtra("id_room")
         val purchaseID = intent.getStringExtra("id_purchase")
         val roomquantity = intent.getStringExtra("quantity").toString()
         val come = intent.getStringExtra("date_come").toString()
         val go = intent.getStringExtra("date_go").toString()
+
+        hotelImage = findViewById(R.id.hotel_image)
+        Picasso.get().load(hotelPic).into(hotelImage)
+
+        roomImage = findViewById(R.id.imageRoom)
+        PictureUtils.getPictureRoom(hotelID!!, roomID!!) {pictureRooms ->
+            Picasso.get().load(pictureRooms.url).into(roomImage)
+        }
 
         hotelName = findViewById(R.id.hotel_name)
         hotelStar = findViewById(R.id.ratingBar)
@@ -227,10 +238,16 @@ class ActivePurchaseDetail : AppCompatActivity() {
 
         btnChat = findViewById(R.id.btn_chat)
         btnChat.setOnClickListener {
-            val phone_number = hotelPhone.text
-            val phone_uri = Uri.parse("sms:$phone_number")
-            val sms_intent = Intent(Intent.ACTION_SENDTO, phone_uri)
-            startActivity(sms_intent)
+//            val phone_number = hotelPhone.text
+//            val phone_uri = Uri.parse("sms:$phone_number")
+//            val sms_intent = Intent(Intent.ACTION_SENDTO, phone_uri)
+//            startActivity(sms_intent)
+            val intent = Intent(this, ChatRoom::class.java)
+            intent.putExtra("ID_User", ownerID)
+            intent.putExtra("ID_Partner", hotelID)
+            intent.putExtra("Name_User", clientName.text)
+            intent.putExtra("Type_User", "User")
+            startActivity(intent)
         }
 
         btnRemove = findViewById(R.id.btn_removeorder)

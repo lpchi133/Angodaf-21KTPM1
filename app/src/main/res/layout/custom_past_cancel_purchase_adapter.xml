@@ -137,7 +137,8 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@+id/image_hotel"
-            android:text="@string/r_nhanphong" />
+            android:text="@string/r_nhanphong"
+            android:textColor="#666666"/>
 
         <TextView
             android:id="@+id/check_in"
@@ -147,7 +148,8 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
             android:layout_toEndOf="@+id/image_hotel"
-            android:text="Th 5, 28 thg 3" />
+            android:text="Th 5, 28 thg 3"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/textView6"
@@ -157,7 +159,8 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@+id/textView4"
-            android:text="@string/r_traphong" />
+            android:text="@string/r_traphong"
+            android:textColor="#666666"/>
 
         <TextView
             android:id="@+id/check_out"
@@ -167,7 +170,8 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="5dp"
             android:layout_toEndOf="@+id/textView4"
-            android:text="Th 6, 29 thg 3" />
+            android:text="Th 6, 29 thg 3"
+            android:textColor="@color/black"/>
     </RelativeLayout>
 
     <TextView

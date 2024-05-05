@@ -13,9 +13,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_marginEnd="20dp"
+        android:layout_toStartOf="@+id/textView1"
         android:text="Phòng đẹp"
         android:textColor="#3E52FA"
-        android:textSize="18dp"/>
+        android:textSize="18dp" />
 
     <TextView
         android:id="@+id/textView1"
