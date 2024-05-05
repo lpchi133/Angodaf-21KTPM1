@@ -371,7 +371,8 @@
                     android:layout_marginTop="5dp"
                     android:layout_below="@+id/quan_room"
                     android:layout_toEndOf="@+id/image_room"
-                    android:text="Hướng ngoài trời | 18 &#8575;&#178; | 1 giường lớn" />
+                    android:text="Hướng ngoài trời | 18 &#8575;&#178; | 1 giường lớn"
+                    android:textColor="#666666" />
 
                 <TextView
                     android:id="@+id/line3"
@@ -388,7 +389,8 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginBottom="5dp"
                     android:layout_below="@+id/line3"
-                    android:text="Lợi ích" />
+                    android:text="Lợi ích"
+                    android:textColor="#666666" />
 
                 <TextView
                     android:id="@+id/benefit"
@@ -426,7 +428,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_below="@+id/textView5"
-                    android:text="Khách chính" />
+                    android:text="Khách chính"
+                    android:textColor="#666666" />
 
                 <TextView
                     android:id="@+id/name_client"
@@ -452,7 +455,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_below="@+id/line4"
-                    android:text="Sức chứa đã đặt" />
+                    android:text="Sức chứa đã đặt"
+                    android:textColor="#666666" />
 
                 <TextView
                     android:id="@+id/quan_client"
@@ -574,7 +578,8 @@
                     android:layout_height="match_parent"
                     android:layout_below="@id/line9"
                     android:layout_marginStart="10dp"
-                    android:text="Tình trạng thanh toán" />
+                    android:text="Tình trạng thanh toán"
+                    android:textColor="#666666" />
 
                 <TextView
                     android:id="@+id/status1"
@@ -612,7 +617,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_below="@+id/line6"
-                    android:text="Phương thức thanh toán" />
+                    android:text="Phương thức thanh toán"
+                    android:textColor="#666666" />
 
                 <TextView
                     android:id="@+id/payment_methods"
@@ -650,7 +656,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/QRcode"
                 android:layout_marginVertical="10dp"
-                android:padding="10dp"
+                android:paddingEnd="15dp"
+                android:paddingVertical="10dp"
                 android:background="@drawable/border">
 
                 <Button

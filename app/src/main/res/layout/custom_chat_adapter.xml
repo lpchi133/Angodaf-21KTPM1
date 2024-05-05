@@ -10,14 +10,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#C1FFC1"
+        android:background="#95BDFF"
         android:padding="10dp">
         <include
             android:contentDescription=""
             android:id="@+id/imageView"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            layout="@layout/avatar" />
+            layout="@layout/avatar_1" />
 
         <TextView
             android:id="@+id/textView"

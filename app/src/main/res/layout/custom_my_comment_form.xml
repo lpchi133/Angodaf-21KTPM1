@@ -121,7 +121,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/progressBar"
-        android:background="@drawable/ic_launcher_background">
+        android:background="@drawable/background1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -582,6 +582,16 @@
                     android:textColor="#EE0000" />
 
                 <TextView
+                    android:id="@+id/count1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/editTextText"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="5dp"
+                    android:text="0/50"
+                    android:textColor="#666666" />
+
+                <TextView
                     android:id="@+id/textView23"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -615,11 +625,21 @@
                     android:text="*Vui lòng điền vào ô này!"
                     android:textColor="#EE0000" />
 
+                <TextView
+                    android:id="@+id/count2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/editTextText1"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="5dp"
+                    android:text="0/200"
+                    android:textColor="#666666" />
+
                 <Button
                     android:id="@+id/btn_sendcmt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/notic2"
+                    android:layout_below="@+id/count2"
                     android:layout_marginTop="15dp"
                     android:text="Gửi nhận xét của tôi"
                     android:textColor="@color/white"

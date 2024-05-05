@@ -49,6 +49,12 @@ class MyCommentForm : AppCompatActivity() {
         val ID_Owner = intent.getStringExtra("ID_Owner")
         val ID_Hotel = intent.getStringExtra("ID_Hotel")
 
+        val count1: TextView = findViewById(R.id.count1)
+        val count2: TextView = findViewById(R.id.count2)
+
+        count1.visibility = View.GONE
+        count2.visibility = View.GONE
+
         //Các biến thông báo
         val notic: TextView = findViewById(R.id.notic)
         val notic1: TextView = findViewById(R.id.notic1)
@@ -274,6 +280,20 @@ class MyCommentForm : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val maxCharacterCount = 50 // Số lượng ký tự tối đa cho phép
+
+                val inputText = s.toString().trim()
+
+                if (inputText.isNotEmpty()) {
+                    count1.visibility = View.VISIBLE
+                    count1.text = "${inputText.length}/50"
+                }
+
+                if (inputText.length > maxCharacterCount) {
+                    val truncatedText = inputText.substring(0, maxCharacterCount)
+                    title.setText(truncatedText)
+                    title.setSelection(truncatedText.length)
+                }
             }
 
             override fun afterTextChanged(s: Editable?) {
@@ -297,6 +317,20 @@ class MyCommentForm : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val maxCharacterCount = 200 // Số lượng ký tự tối đa cho phép
+
+                val inputText = s.toString().trim()
+
+                if (inputText.isNotEmpty()) {
+                    count2.visibility = View.VISIBLE
+                    count2.text = "${inputText.length}/200"
+                }
+
+                if (inputText.length > maxCharacterCount) {
+                    val truncatedText = inputText.substring(0, maxCharacterCount)
+                    title.setText(truncatedText)
+                    title.setSelection(truncatedText.length)
+                }
             }
 
             override fun afterTextChanged(s: Editable?) {

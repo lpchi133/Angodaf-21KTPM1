@@ -9,7 +9,7 @@
         android:id="@+id/imageFace"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFBCD1"
+        android:background="#F7C8E0"
         android:padding="10dp"
         app:srcCompat="@drawable/person_icon" />
 </androidx.cardview.widget.CardView>

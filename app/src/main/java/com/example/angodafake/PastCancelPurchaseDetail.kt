@@ -269,10 +269,16 @@ class PastCancelPurchaseDetail : AppCompatActivity() {
 
         btnChat = findViewById(R.id.btn_chat)
         btnChat.setOnClickListener {
-            val phone_number = hotelPhone.text
-            val phone_uri = Uri.parse("sms:$phone_number")
-            val sms_intent = Intent(Intent.ACTION_SENDTO, phone_uri)
-            startActivity(sms_intent)
+//            val phone_number = hotelPhone.text
+//            val phone_uri = Uri.parse("sms:$phone_number")
+//            val sms_intent = Intent(Intent.ACTION_SENDTO, phone_uri)
+//            startActivity(sms_intent)
+            val intent = Intent(this, ChatRoom::class.java)
+            intent.putExtra("ID_User", ownerID)
+            intent.putExtra("ID_Partner", hotelID)
+            intent.putExtra("Name_User", clientName.text)
+            intent.putExtra("Type_User", "User")
+            startActivity(intent)
         }
 
         btnOrder = findViewById(R.id.btn_reorder)

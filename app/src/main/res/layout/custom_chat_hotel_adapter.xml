@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="@drawable/border_8"
-            android:backgroundTint="#FFC1C1"
+            android:backgroundTint="#FFB2A6"
             android:paddingBottom="15dp"
             android:paddingHorizontal="15dp">
 
@@ -86,7 +86,7 @@
             android:layout_above="@+id/relativeLayout"
             android:layout_marginBottom="-45dp"
             android:background="@drawable/border_7"
-            android:backgroundTint="#FFC1C1"
+            android:backgroundTint="#FFB2A6"
             android:padding="15dp"
             app:srcCompat="@drawable/hotel" />
     </RelativeLayout>
