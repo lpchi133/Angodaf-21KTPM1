@@ -15,7 +15,9 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.example.angodafake.Home
 import com.example.angodafake.Hotel_infor
+import com.example.angodafake.MainActivity
 import com.example.angodafake.MyCommentForm
 import com.example.angodafake.PurchaseExtra
 import com.example.angodafake.R
@@ -89,23 +91,8 @@ class PastCancelPurchaseAdapter(private val fragment: Fragment, private var past
         holder.checkout.text = format(currentItem.Purchase?.date_go.toString())
 
         holder.reorderbtn.setOnClickListener {
-//            Toast.makeText(context, "Press", Toast.LENGTH_SHORT).show()
-            val arg = Bundle()
-            val idUser = currentItem.Purchase?.ID_Owner
-            arg.putString("Flow_1", "reorder")
-            arg.putString("hotelPosition", currentItem.Purchase?.ID_Hotel)
-
-            // Khởi tạo Fragment Filter và đính kèm Bundle
-            val Fragment = idUser?.let { it1 -> Hotel_infor(it1) }
-            Fragment?.arguments = arg
-
-            val fragmentManager = fragment.requireActivity().supportFragmentManager
-            if (Fragment != null) {
-                fragmentManager.beginTransaction()
-                    .replace(R.id.frameLayout, Fragment)
-                    .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
-                    .commit()
-            }
+            val mainActivity = fragment.requireActivity() as MainActivity
+            mainActivity.replaceFragment(Home(currentItem.Purchase?.ID_Owner!!, currentItem.nameHotel))
         }
 
         holder.itemView.setOnClickListener {

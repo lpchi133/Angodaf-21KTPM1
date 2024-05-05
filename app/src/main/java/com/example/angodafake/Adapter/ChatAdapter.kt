@@ -47,7 +47,7 @@ class ChatAdapter(private val context: Context, private var chat: MutableList<Ch
                 }
             } else {
                 if (currentItem.Last_Message!!.length < 40) {
-                    holder.lastChat.text = currentItem.Last_Message
+                    holder.lastChat.text = "Bạn: ${currentItem.Last_Message}"
                 } else {
                     holder.lastChat.text = "Bạn: ${currentItem.Last_Message!!.subSequence(0, 30)}..."
                 }
@@ -63,7 +63,7 @@ class ChatAdapter(private val context: Context, private var chat: MutableList<Ch
                 }
             } else {
                 if (currentItem.Last_Message!!.length < 40) {
-                    holder.lastChat.text = currentItem.Last_Message
+                    holder.lastChat.text = "Bạn: ${currentItem.Last_Message}"
                 } else {
                     holder.lastChat.text = "Bạn: ${currentItem.Last_Message!!.subSequence(0, 30)}..."
                 }

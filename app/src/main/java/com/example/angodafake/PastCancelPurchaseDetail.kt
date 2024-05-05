@@ -288,7 +288,7 @@ class PastCancelPurchaseDetail : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) // Xóa các activity trước đó và chỉ hiển thị MainActivity
             intent.putExtra("replaceChannel", "Hotel_infor")
             intent.putExtra("idUser", ownerID)
-            intent.putExtra("idHotel", hotelID)
+            intent.putExtra("nameHotel", hotelName.text)
             setResult(Activity.RESULT_OK, intent)
             startActivity(intent)
             finish()

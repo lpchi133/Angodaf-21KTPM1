@@ -348,6 +348,6 @@ class ObjectFragment : Fragment() {
         val mainActivity = activity as MainActivity
         val myRoomFragment = parentFragment as MyRoom
         val idUser = myRoomFragment.getUserId()
-        mainActivity.replaceFragment(Home(idUser))
+        mainActivity.replaceFragment(Home(idUser,""))
     }
 }
