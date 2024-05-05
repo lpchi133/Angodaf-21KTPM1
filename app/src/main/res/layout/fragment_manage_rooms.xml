@@ -4,22 +4,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MyHotel">
+    tools:context=".ManageRoomsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/myHotelTittle"
-        android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:background="@color/blue"
-        android:gravity="center"
-        android:text="@string/myhotel_title"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
+    <LinearLayout
+        android:id="@+id/layout_manageRoom_title"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
+            android:contentDescription="back"
+            android:src="@drawable/baseline_arrow_back_24" />
+
+        <TextView
+            android:id="@+id/roomsTittle"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:layout_marginEnd="60dp"
+            android:gravity="center"
+            android:text="@string/manageRooms_title"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView53"
@@ -43,7 +59,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/border_color"
         app:layout_constraintStart_toEndOf="@+id/textView53"
-        app:layout_constraintTop_toBottomOf="@+id/myHotelTittle">
+        app:layout_constraintTop_toBottomOf="@+id/layout_manageRoom_title">
 
         <ImageView
             android:id="@+id/imageView6"
@@ -141,7 +157,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Thêm khách sạn"
+                    android:text="Thêm phòng"
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
@@ -154,120 +170,6 @@
                 android:backgroundTint="@color/blue"
                 android:clickable="true"
                 android:src="@drawable/baseline_add_24"
-                android:tint="@color/white"
-                app:fabSize="mini"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/voucherLL"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="10dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="3dp"
-                app:cardElevation="2dp"
-                app:contentPadding="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Quản lí voucher"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-            </androidx.cardview.widget.CardView>
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/voucherFab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
-                android:backgroundTint="@color/blue"
-                android:clickable="true"
-                android:src="@drawable/baseline_card_giftcard_24"
-                android:tint="@color/white"
-                app:fabSize="mini"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/chatLL"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="10dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="3dp"
-                app:cardElevation="2dp"
-                app:contentPadding="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Quản lí Chat"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-            </androidx.cardview.widget.CardView>
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/chatFab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
-                android:backgroundTint="@color/blue"
-                android:clickable="true"
-                android:src="@drawable/baseline_chat_24"
-                android:tint="@color/white"
-                app:fabSize="mini"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/statisticsLL"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="10dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="3dp"
-                app:cardElevation="2dp"
-                app:contentPadding="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Thống kê"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-            </androidx.cardview.widget.CardView>
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/statisticsFab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
-                android:backgroundTint="@color/blue"
-                android:clickable="true"
-                android:src="@drawable/baseline_bar_chart_24"
                 android:tint="@color/white"
                 app:fabSize="mini"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -306,44 +208,6 @@
                 android:backgroundTint="@color/blue"
                 android:clickable="true"
                 android:src="@drawable/baseline_assignment_24"
-                android:tint="@color/white"
-                app:fabSize="mini"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/qrLL"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="10dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="3dp"
-                app:cardElevation="2dp"
-                app:contentPadding="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Quét mã QR"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-            </androidx.cardview.widget.CardView>
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/qrFab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
-                android:backgroundTint="@color/blue"
-                android:clickable="true"
-                android:src="@drawable/baseline_qr_code_scanner_24"
                 android:tint="@color/white"
                 app:fabSize="mini"
                 app:layout_constraintBottom_toBottomOf="parent"

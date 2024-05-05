@@ -30,6 +30,7 @@ import com.google.firebase.storage.storage
  */
 class UploadImageFragment(private var idUser: String) : Fragment() {
     // TODO: Rename and change types of parameters
+    private var fromFrag: String? = null
 
     private lateinit var btn_back : Button
     private lateinit var btn_upload: Button
@@ -42,6 +43,7 @@ class UploadImageFragment(private var idUser: String) : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
+            fromFrag = it.getString("from")
         }
     }
 
@@ -113,9 +115,12 @@ class UploadImageFragment(private var idUser: String) : Fragment() {
     private fun prevStepWithData(pic : String){
         val arg = Bundle()
 
+        arg.putString("from", fromFrag)
         arg.putString("hotelName", arguments?.getString("hotelName"))
         arg.putString("city", arguments?.getString("city"))
         arg.putString("locationDetail", arguments?.getString("locationDetail"))
+        arg.putString("longitude", arguments?.getString("longitude"))
+        arg.putString("latitude", arguments?.getString("latitude"))
         arg.putInt("star", arguments?.getInt("star")!!)
         arg.putString("phoneN", arguments?.getString("phoneN"))
         arg.putString("description", arguments?.getString("description"))
@@ -132,6 +137,12 @@ class UploadImageFragment(private var idUser: String) : Fragment() {
         } else{
             val pics = arguments?.getStringArrayList("pics")
             arg.putStringArrayList("pics", pics)
+        }
+
+        if (fromFrag == "edit"){
+            arg.putString("from", arguments?.getString("from"))
+            arg.putString("idHotel", arguments?.getString("idHotel"))
+            arg.putString("date", arguments?.getString("date"))
         }
 
         val addHotelImageFragment = addHotelImageFragment(idUser)
@@ -158,9 +169,10 @@ class UploadImageFragment(private var idUser: String) : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(idUser: String) =
+        fun newInstance(fromFrag: String, idUser: String) =
             UploadImageFragment(idUser).apply {
                 arguments = Bundle().apply {
+                    putString("from", fromFrag)
                 }
             }
     }

@@ -25,8 +25,10 @@ import com.google.firebase.storage.storage
  * Use the [UploadRoomImageFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class UploadRoomImageFragment(private var idHotel: String) : Fragment() {
+class UploadRoomImageFragment(private var idHotel: String, private var idUser: String) : Fragment() {
     // TODO: Rename and change types of parameters
+    private var fromFrag: String? = null
+
     private lateinit var btn_back : Button
     private lateinit var btn_upload: Button
     private lateinit var uploadImage: ImageView
@@ -37,6 +39,7 @@ class UploadRoomImageFragment(private var idHotel: String) : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
+            fromFrag = it.getString("from")
         }
     }
 
@@ -125,7 +128,18 @@ class UploadRoomImageFragment(private var idHotel: String) : Fragment() {
             arg.putStringArrayList("pics", pics)
         }
 
-        val addRoomImageFragment = AddRoomImageFragment(idHotel)
+        if (fromFrag == "edit"){
+            arg.putString("from", arguments?.getString("from"))
+            arg.putString("idHotel", arguments?.getString("idHotel"))
+            arg.putString("idRoom", arguments?.getString("idRoom"))
+            arg.putString("date", arguments?.getString("date"))
+        } else if (fromFrag == "manageRoom"){
+            arg.putString("from", arguments?.getString("from"))
+            arg.putString("idHotel", arguments?.getString("idHotel"))
+            arg.putString("date", arguments?.getString("date"))
+        }
+
+        val addRoomImageFragment = AddRoomImageFragment(idHotel, idUser)
         addRoomImageFragment.arguments = arg
 
         val mainActivity = requireActivity() as MainActivity
@@ -149,9 +163,10 @@ class UploadRoomImageFragment(private var idHotel: String) : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(idHotel: String) =
-            UploadRoomImageFragment(idHotel).apply {
+        fun newInstance(idHotel: String, idUser: String) =
+            UploadRoomImageFragment(idHotel, idUser).apply {
                 arguments = Bundle().apply {
+                    putString("from", fromFrag)
                 }
             }
     }

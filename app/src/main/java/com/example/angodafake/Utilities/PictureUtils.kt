@@ -1,6 +1,7 @@
 package com.example.angodafake.Utilities
 
 import android.util.Log
+import android.widget.Toast
 import com.example.angodafake.db.Picture_Hotel
 import com.example.angodafake.db.Picture_Room
 import com.example.angodafake.db.Rooms
@@ -10,6 +11,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
+import com.google.firebase.storage.storage
 
 object PictureUtils {
     private lateinit var database: DatabaseReference
@@ -18,27 +20,6 @@ object PictureUtils {
         database = Firebase.database.reference
     }
 
-    fun getHotelPicturesListByHotelID(ID_Hotel: String, listener: (ArrayList<Picture_Hotel>) -> Unit){
-        val pictureQuery = database.child("hotel_pictures").child(ID_Hotel)
-        pictureQuery.addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val pictureHotelList = mutableListOf<Picture_Hotel>()
-                for (pictureSnapshot in snapshot.children) {
-                    val pictureHotel = pictureSnapshot.getValue(Picture_Hotel::class.java)
-                    pictureHotel?.ID = pictureSnapshot.key
-                    pictureHotel?.ID_Hotel = ID_Hotel
-                    pictureHotel?.let { pictureHotelList.add(it) }
-                }
-                if (pictureHotelList.isNotEmpty()){
-                    listener(pictureHotelList as ArrayList<Picture_Hotel>)
-                }
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Xử lý khi có lỗi xảy ra
-            }
-        })
-    }
     fun addHotelPictures(ID_Hotel: String, pics: ArrayList<String>){
         val pictureQuery = database.child("hotel_pictures").child(ID_Hotel)
         for (pic in pics){
@@ -50,6 +31,34 @@ object PictureUtils {
                 Log.e("firebase", "Counldn't get push key for hotel_pictures")
             }
 
+        }
+    }
+
+    fun updateHotelPictures(ID_Hotel: String, pics: ArrayList<String>){
+        val pictureQuery = database.child("hotel_pictures").child(ID_Hotel)
+        pictureQuery.setValue(null)
+        for (pic in pics){
+            val key = pictureQuery.push().key
+            if (key != null){
+                val picture = Picture_Hotel(null, null, pic)
+                pictureQuery.child(key).setValue(picture)
+            } else{
+                Log.e("firebase", "Counldn't get push key for hotel_pictures")
+            }
+        }
+    }
+
+    fun updateRoomPictures(ID_Hotel: String, ID_Room: String, pics: ArrayList<String>){
+        val pictureQuery = database.child("room_pictures").child(ID_Hotel).child(ID_Room)
+        pictureQuery.setValue(null)
+        for (pic in pics){
+            val key = pictureQuery.push().key
+            if (key != null){
+                val picture = Picture_Room(null, null, null, pic)
+                pictureQuery.child(key).setValue(picture)
+            } else{
+                Log.e("firebase", "Counldn't get push key for room_pictures")
+            }
         }
     }
 
@@ -106,16 +115,58 @@ object PictureUtils {
         }
     }
 
-    fun getPicturesByHotelID(ID: String, listener: (List<Picture_Hotel>) -> Unit){
-        val roomPicture = mutableListOf<Picture_Hotel>()
-        database.child("hotel_pictures").child(ID).get().addOnSuccessListener { dataSnapshot ->
-            for (roomSnapshot in dataSnapshot.children) {
-                val room = roomSnapshot.getValue(Picture_Hotel::class.java)
-                room?.let {
-                    roomPicture.add(it)
+    fun getRoomPictureByID(ID_Hotel: String, roomID: String, listener: (Picture_Room?) -> Unit) {
+        database.child("room_pictures").child(ID_Hotel).child(roomID)
+            .get()
+            .addOnSuccessListener { dataSnapshot ->
+                val roomPicture = dataSnapshot.children.firstOrNull { roomSnapshot ->
+                    val picture = roomSnapshot.getValue(Picture_Room::class.java)
+                    picture?.let {
+                        it.ID = roomSnapshot.key
+                        it.ID_Hotel = ID_Hotel
+                        it.ID_Room = roomID
+                        true
+                    } ?: false
+                }?.getValue(Picture_Room::class.java)
+
+                listener(roomPicture)
+            }
+            .addOnFailureListener { exception ->
+                Log.e("firebase", "Error getting picture by ID", exception)
+                listener(null)
+            }
+    }
+
+
+    fun getPictureList(listener: (List<Picture_Hotel>) -> Unit) {
+        val pictureList = mutableListOf<Picture_Hotel>()
+        PictureUtils.database.child("pictures").get().addOnSuccessListener { dataSnapshot ->
+            for (pictureSnapshot in dataSnapshot.children) {
+                val picture = pictureSnapshot.getValue(Picture_Hotel::class.java)
+                picture?.let {
+                    pictureList.add(it)
                 }
             }
-            listener(roomPicture)
+            listener(pictureList)
+        }.addOnFailureListener { exception ->
+            Log.e("firebase", "Error getting hotel list", exception)
+            listener(emptyList()) // Trả về danh sách rỗng nếu có lỗi xảy ra
+        }
+    }
+
+    fun getPicturesByHotelID(ID: String, listener: (List<Picture_Hotel>) -> Unit){
+        val hotelPicture = mutableListOf<Picture_Hotel>()
+        database.child("hotel_pictures").child(ID).get().
+        addOnSuccessListener { dataSnapshot ->
+            for (hotelPictureSnapshot in dataSnapshot.children) {
+                val hotelPic = hotelPictureSnapshot.getValue(Picture_Hotel::class.java)
+                hotelPic?.let {
+                    it.ID = hotelPictureSnapshot.key
+                    it.ID_Hotel = ID
+                    hotelPicture.add(it)
+                }
+            }
+            listener(hotelPicture)
         }.addOnFailureListener { exception ->
             Log.e("firebase", "Error getting picture list", exception)
             listener(emptyList()) // Trả về danh sách rỗng nếu có lỗi xảy ra
@@ -128,6 +179,9 @@ object PictureUtils {
             for (roomSnapshot in dataSnapshot.children) {
                 val picture = roomSnapshot.getValue(Picture_Room::class.java)
                 picture?.let {
+                    it.ID = roomSnapshot.key
+                    it.ID_Hotel = ID_Hotel
+                    it.ID_Room = roomID
                     roomPicture.add(it)
                 }
             }
@@ -136,5 +190,22 @@ object PictureUtils {
             Log.e("firebase", "Error getting picture by ID", exception)
             listener(emptyList())
         }
+    }
+
+    fun deleteRoomPictues(ID_Hotel: String, roomID: String){
+        //xóa ảnh trên firebase storage
+        database.child("room_pictures").child(ID_Hotel).child(roomID).get().addOnSuccessListener { dataSnapshot ->
+            for (roomSnapshot in dataSnapshot.children) {
+                val picture = roomSnapshot.getValue(Picture_Room::class.java)
+                picture?.let {
+                    Firebase.storage.reference.child(picture.url!!.substring(picture.url.lastIndexOf('/') + 1, picture.url.indexOf('?'))).delete()
+                }
+            }
+
+        }.addOnFailureListener { exception ->
+            Log.e("firebase", "Error getting picture by ID", exception)
+        }
+        //xóa trên firebase realtime
+        database.child("room_pictures").child(ID_Hotel).child(roomID).setValue(null)
     }
 }

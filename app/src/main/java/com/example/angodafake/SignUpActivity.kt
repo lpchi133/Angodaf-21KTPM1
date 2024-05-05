@@ -349,7 +349,7 @@ class SignUpActivity : AppCompatActivity() {
         return if (isCheckEmpty(lPhoneN, etPhoneN, "Số di động")){
             false
         } else{
-            if (etPhoneN.text.toString().trim().length != 10){
+            if (etPhoneN.text.toString().trim().length != 10 && etPhoneN.text.toString().trim().length != 11){
                 lPhoneN.error = "Số di động không hợp lệ."
                 false
             } else{

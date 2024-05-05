@@ -14,7 +14,7 @@ import android.widget.Button
  * Use the [AddFirstRoomFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class AddFirstRoomFragment(private var idHotel: String) : Fragment() {
+class AddFirstRoomFragment(private var idHotel: String, private var idUser: String) : Fragment() {
     // TODO: Rename and change types of parameters
     private lateinit var btn_next: Button
 
@@ -33,7 +33,7 @@ class AddFirstRoomFragment(private var idHotel: String) : Fragment() {
         btn_next = view.findViewById(R.id.btn_next)
         btn_next.setOnClickListener {
             val mainActivity = requireActivity() as MainActivity
-            mainActivity.replaceFragment(AddRoomFragment(idHotel))
+            mainActivity.replaceFragment(AddRoomFragment(idHotel, idUser))
         }
         return view
     }
@@ -49,8 +49,8 @@ class AddFirstRoomFragment(private var idHotel: String) : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(idHotel: String) =
-            AddFirstRoomFragment(idHotel).apply {
+        fun newInstance(idHotel: String, idUser: String) =
+            AddFirstRoomFragment(idHotel, idUser).apply {
                 arguments = Bundle().apply {
                 }
             }

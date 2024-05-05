@@ -1,11 +1,8 @@
 package com.example.angodafake
 
-import android.app.Dialog
-import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.icu.util.Calendar
@@ -17,51 +14,50 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
+import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.Adapter.HotelManageAdapter
-import com.example.angodafake.Adapter.OnHotelDeleteListener
+import com.example.angodafake.Adapter.OnRoomDeleteListener
+import com.example.angodafake.Adapter.RoomManageAdapter
 import com.example.angodafake.Utilities.HotelUtils
+import com.example.angodafake.Utilities.PictureUtils
 import com.example.angodafake.Utilities.PurchaseUtils
+import com.example.angodafake.Utilities.RoomUtils
 import com.example.angodafake.db.Hotel
+import com.example.angodafake.db.Rooms
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
 /**
  * A simple [Fragment] subclass.
- * Use the [MyHotel.newInstance] factory method to
+ * Use the [ManageRoomsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
+class ManageRoomsFragment(private var idUser: String) : Fragment(), OnRoomDeleteListener {
     // TODO: Rename and change types of parameters
-
+    private lateinit var btn_back : ImageButton
     private lateinit var addLL : View
     private lateinit var addFab : FloatingActionButton
-    private lateinit var voucherLL : View
-    private lateinit var voucherFab : FloatingActionButton
-    private lateinit var statisticsLL : View
-    private lateinit var statisticsFab : FloatingActionButton
     private lateinit var billLL : View
     private lateinit var billFab : FloatingActionButton
-    private lateinit var chatLL : View
-    private lateinit var chatFab : FloatingActionButton
-    private lateinit var qrLL : View
-    private lateinit var qrFab : FloatingActionButton
     private lateinit var menuFab : FloatingActionButton
     private var rotate = false
 
     private lateinit var lDate : TextInputLayout
     private lateinit var et_date : TextInputEditText
     private lateinit var recyclerView : RecyclerView
-    private lateinit var hotel_list : ArrayList<Hotel>
+    private lateinit var room_list : ArrayList<Rooms>
     private lateinit var date: String
-    private lateinit var adapter: HotelManageAdapter
-
+    private lateinit var idHotel: String
+    private lateinit var adapter: RoomManageAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -74,33 +70,19 @@ class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_my_hotel, container, false)
+        val view = inflater.inflate(R.layout.fragment_manage_rooms, container, false)
         initUI(view)
         initShowout(addLL)
-        initShowout(voucherLL)
-        initShowout(statisticsLL)
         initShowout(billLL)
-        initShowout(qrLL)
-        initShowout(chatLL)
 
-        adapter = HotelManageAdapter(requireContext(), hotel_list, date)
+        adapter = RoomManageAdapter(requireContext(), room_list, date, idUser)
         adapter.setOnDeleteListener(this)
-        adapter.onItemClick = {
-            val arg = Bundle()
-            arg.putString("date", adapter.date)
-            arg.putString("idHotel", it.ID)
-
-            val manageRoomFrg = ManageRoomsFragment(idUser)
-            manageRoomFrg.arguments = arg
-            val mainActivity = requireActivity() as MainActivity
-            mainActivity.replaceFragment(manageRoomFrg)
-        }
         recyclerView.adapter = adapter
         val layoutManager = LinearLayoutManager(requireContext())
         recyclerView.layoutManager = layoutManager
-        HotelUtils.getHotelByOwnerID(idUser){hotelL->
-            hotel_list.clear()
-            hotel_list.addAll(hotelL)
+        RoomUtils.getRoomByHotelID(idHotel){
+            room_list.clear()
+            room_list.addAll(it)
             adapter.notifyDataSetChanged()
         }
 
@@ -137,37 +119,28 @@ class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
         }
 
         addFab.setOnClickListener {
+            val arg = Bundle()
+            arg.putString("from", "manageRoom")
+            arg.putString("idHotel", idHotel)
+            arg.putString("date", et_date.text.toString())
+
+            val addRoomFrag = AddRoomFragment(idHotel, idUser)
+            addRoomFrag.arguments = arg
+
             val mainActivity = requireActivity() as MainActivity
-            mainActivity.replaceFragment(AddHotelFragment(idUser))
-        }
-
-        voucherFab.setOnClickListener {
-            val intent = Intent(context, HotelOfManagementVoucher::class.java)
-            intent.putExtra("id_user", idUser)
-            startActivity(intent)
-        }
-
-        statisticsFab.setOnClickListener {
-
-        }
-
-        chatFab.setOnClickListener {
-                val intent = Intent(context, ChatList::class.java)
-                intent.putExtra("id_user", idUser)
-                startActivity(intent)
+            mainActivity.replaceFragment(addRoomFrag)
         }
 
         billFab.setOnClickListener {
-            PurchaseUtils.getAllPurchaseByIDHotelOwner(idUser){
-                Log.d("test_purchase", it.toString())
-
+            PurchaseUtils.getAllPurchasesByHotelID(idHotel){
                 val list = ArrayList<String>()
-                for (bill in it!!){
+                for (bill in it){
                     list.add(bill.ID!!)
                 }
 
                 val arg = Bundle()
-                arg.putString("from", "edit")
+                arg.putString("from", "edit_room")
+                arg.putString("idHotel", idHotel)
                 arg.putString("date", et_date.text.toString())
                 arg.putStringArrayList("bills", list)
 
@@ -179,49 +152,51 @@ class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
             }
         }
 
-        qrFab.setOnClickListener {
-            val intent = Intent(context, ScanQRCodeActivity::class.java)
-            startActivity(intent)
-        }
-
         menuFab.setOnClickListener {
             toggleFabMode(it)
+        }
+
+        btn_back.setOnClickListener {
+            val arg = Bundle()
+            arg.putString("date", adapter.date)
+
+            val myHotel = MyHotel(idUser)
+            myHotel.arguments = arg
+            val mainActivity = requireActivity() as MainActivity
+            mainActivity.replaceFragment(myHotel)
         }
 
         return view
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    override fun onHotelDeleted(hotel: Hotel){
-        // Xử lý sự kiện khi người dùng xóa khách sạn
-        HotelUtils.deleteHotel(hotel.ID!!){
+    override fun onRoomDeleted(room: Rooms) {
+        Log.d("checkDelete", "vao")
+
+        // Xử lý sự kiện khi người dùng xóa phòng
+        PurchaseUtils.getPurchaseByRoom(room.ID_Hotel!!, room.ID!!, SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Calendar.getInstance().time)){
             if (it){
-                hotel_list.remove(hotel)
+                RoomUtils.deleteRoom(room.ID_Hotel!!, room.ID!!)
+                PictureUtils.deleteRoomPictues(room.ID_Hotel!!, room.ID!!)
+                PurchaseUtils.deletePurchaseByRoomID(room.ID_Hotel!!, room.ID!!)
+                room_list.remove(room)
                 adapter.notifyDataSetChanged()
                 showSuccessSnackBar("Đã xóa phòng.", requireView())
             } else{
+                Log.d("checkDelete", it.toString())
                 showSnackBar("Xóa thất bại! Phòng này hiện vẫn đang được giao dịch. Xin kiểm tra lại hóa đơn.", requireView())
             }
         }
     }
-
     private fun toggleFabMode(v: View) {
         rotate = rotateFab(v, !rotate)
         if (rotate){
             showIn(addLL)
-            showIn(voucherLL)
-            showIn(statisticsLL)
             showIn(billLL)
-            showIn(qrLL)
-            showIn(chatLL)
             requireView().findViewById<View>(R.id.backgroundOverlay).visibility = View.VISIBLE
         } else{
             showOut(addLL)
-            showOut(voucherLL)
-            showOut(statisticsLL)
             showOut(billLL)
-            showOut(qrLL)
-            showOut(chatLL)
             requireView().findViewById<View>(R.id.backgroundOverlay).visibility = View.GONE
         }
     }
@@ -247,7 +222,6 @@ class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
                 .start()
         }
     }
-
     private fun showIn(view: View) {
         view.apply {
             visibility = View.VISIBLE
@@ -288,17 +262,10 @@ class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
     private fun initUI(view: View){
         addLL = view.findViewById(R.id.addLL)
         addFab = view.findViewById(R.id.addFab)
-        voucherLL = view.findViewById(R.id.voucherLL)
-        voucherFab = view.findViewById(R.id.voucherFab)
-        statisticsLL = view.findViewById(R.id.statisticsLL)
-        statisticsFab = view.findViewById(R.id.statisticsFab)
         billLL = view.findViewById(R.id.billLL)
         billFab = view.findViewById(R.id.billFab)
-        qrLL = view.findViewById(R.id.qrLL)
-        qrFab = view.findViewById(R.id.qrFab)
-        chatLL = view.findViewById(R.id.chatLL)
-        chatFab = view.findViewById(R.id.chatFab)
         menuFab = view.findViewById(R.id.menuFab)
+        btn_back = view.findViewById(R.id.btn_back)
 
         lDate = view.findViewById(R.id.lDate)
         et_date = lDate.editText as TextInputEditText
@@ -307,8 +274,10 @@ class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
             et_date.text = Editable.Factory.getInstance().newEditable(arguments?.getString("date"))
         }
 
+        idHotel = arguments?.getString("idHotel")!!
+
         recyclerView = view.findViewById(R.id.recyclerView)
-        hotel_list = ArrayList()
+        room_list = ArrayList()
         if (et_date.text.toString() == ""){
             // Lấy ngày hiện tại
             val calendar = Calendar.getInstance()
@@ -329,12 +298,12 @@ class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment MyHotel.
+         * @return A new instance of fragment ManageRoomsFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(idUser: String) =
-            MyHotel(idUser).apply {
+            ManageRoomsFragment(idUser).apply {
                 arguments = Bundle().apply {
                 }
             }

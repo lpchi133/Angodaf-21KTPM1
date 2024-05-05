@@ -52,6 +52,10 @@ class AddHotelFragment(private var idUser: String) : Fragment() {
     private lateinit var actvCity: MaterialAutoCompleteTextView
     private lateinit var lLocationDetail: TextInputLayout
     private lateinit var et_locationDetail: TextInputEditText
+    private lateinit var lLongitude: TextInputLayout
+    private lateinit var et_longitude: TextInputEditText
+    private lateinit var lLatitude: TextInputLayout
+    private lateinit var et_latitude: TextInputEditText
     private lateinit var ratingBar: RatingBar
     private lateinit var tv_oneStar: TextView
     private lateinit var tv_twoStar: TextView
@@ -207,6 +211,16 @@ class AddHotelFragment(private var idUser: String) : Fragment() {
                 val mainActivity = requireActivity() as MainActivity
                 mainActivity.replaceFragment(MyProfile(idUser))
             }
+            else{
+                val arg = Bundle()
+                arg.putString("date", arguments?.getString("date"))
+
+                val myHotel = MyHotel(idUser)
+                myHotel.arguments = arg
+
+                val mainActivity = requireActivity() as MainActivity
+                mainActivity.replaceFragment(myHotel)
+            }
         }
 
         btn_next.setOnClickListener {
@@ -254,7 +268,7 @@ class AddHotelFragment(private var idUser: String) : Fragment() {
     }
 
     private fun validatePhoneNumber(): Boolean {
-        return if (et_phoneN.text.toString().trim().length != 10){
+        return if (et_phoneN.text.toString().trim().length != 10 && et_phoneN.text.toString().trim().length != 11){
             lPhoneN.error = "Số di động không hợp lệ."
             false
         } else true
@@ -315,6 +329,10 @@ class AddHotelFragment(private var idUser: String) : Fragment() {
             check = false
         if (isCheckEmpty(lLocationDetail, et_locationDetail, "Địa chỉ chi tiết"))
             check = false
+        if (isCheckEmpty(lLongitude, et_longitude, "Kinh độ"))
+            check = false
+        if (isCheckEmpty(lLatitude, et_latitude, "Vĩ độ"))
+            check = false
         if (isCheckEmpty(lPhoneN, et_phoneN, "Số điện thoại") || !validatePhoneNumber())
             check = false
         if (isCheckEmpty(lDescription, et_description, "Mô tả khách sạn"))
@@ -352,9 +370,12 @@ class AddHotelFragment(private var idUser: String) : Fragment() {
     private fun nextStepWithData(){
         val arg = Bundle()
 
+        arg.putString("from", fromFrag)
         arg.putString("hotelName", et_hotelName.text.toString().trim())
         arg.putString("city", actvCity.text.toString().trim())
         arg.putString("locationDetail", et_locationDetail.text.toString().trim())
+        arg.putString("longitude", et_longitude.text.toString())
+        arg.putString("latitude", et_latitude.text.toString())
         arg.putInt("star", ratingBar.rating.toInt())
         arg.putString("phoneN", et_phoneN.text.toString().trim())
         arg.putString("description", et_description.text.toString().trim())
@@ -366,6 +387,10 @@ class AddHotelFragment(private var idUser: String) : Fragment() {
 
         if (arguments?.getStringArrayList("pics") != null){
             arg.putStringArrayList("pics", arguments?.getStringArrayList("pics"))
+        }
+        if (fromFrag == "edit"){
+            arg.putString("idHotel", arguments?.getString("idHotel"))
+            arg.putString("date", arguments?.getString("date"))
         }
 
         val addHotelImageFragment = addHotelImageFragment(idUser)
@@ -385,6 +410,10 @@ class AddHotelFragment(private var idUser: String) : Fragment() {
         actvCity = view.findViewById(R.id.actvCity)
         lLocationDetail = view.findViewById(R.id.lLocationDetail)
         et_locationDetail = lLocationDetail.editText as TextInputEditText
+        lLongitude = view.findViewById(R.id.lLongitude)
+        et_longitude = lLongitude.editText as TextInputEditText
+        lLatitude = view.findViewById(R.id.lLatitude)
+        et_latitude = lLatitude.editText as TextInputEditText
         ratingBar = view.findViewById(R.id.ratingBar5)
         tv_oneStar = view.findViewById(R.id.tv_oneStar)
         tv_twoStar = view.findViewById(R.id.tv_twoStar)
@@ -418,6 +447,8 @@ class AddHotelFragment(private var idUser: String) : Fragment() {
             et_hotelName.text = Editable.Factory.getInstance().newEditable(arguments?.getString("hotelName"))
             actvCity.text = Editable.Factory.getInstance().newEditable(arguments?.getString("city"))
             et_locationDetail.text = Editable.Factory.getInstance().newEditable(arguments?.getString("locationDetail"))
+            et_longitude.text = Editable.Factory.getInstance().newEditable(arguments?.getString("longitude"))
+            et_latitude.text = Editable.Factory.getInstance().newEditable(arguments?.getString("latitude"))
             val star = arguments?.getInt("star")
             if (star != null) {
                 ratingBar.rating = star.toFloat()
@@ -437,6 +468,10 @@ class AddHotelFragment(private var idUser: String) : Fragment() {
                 displayMomoMethod()
                 et_merchantCode.text = Editable.Factory.getInstance().newEditable(arguments?.getString("merchantCode"))
             }
+        }
+
+        if (fromFrag == "edit"){
+            view.findViewById<TextView>(R.id.addHotel_title).text = "Sửa thông tin khách sạn"
         }
     }
 

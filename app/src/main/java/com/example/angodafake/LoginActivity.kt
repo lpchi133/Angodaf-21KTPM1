@@ -175,7 +175,7 @@ class LoginActivity : AppCompatActivity() {
             lPhoneN.error = "Số di động không được để trống."
             false
         } else{
-            if (phoneN.length != 10){
+            if (phoneN.length != 10 && phoneN.length != 11){
                 lPhoneN.error = "Số di động không hợp lệ."
                 false
             } else{

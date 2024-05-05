@@ -137,7 +137,7 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
 
 
 
-                BookmarkUtils.getAllBookmarks("tYw0x3oVS7gAd9wOdOszzvJMOEM2") { favList ->
+                BookmarkUtils.getAllBookmarks(idUser) { favList ->
                     favList.forEach { bookmark ->
                         if (bookmark.ID_Hotel == hotel.ID) {
                             Log.d("id_hotel", "$bookmark.ID_Hotel, ${hotel.toString()}")
@@ -261,10 +261,6 @@ class HotelAdapter(private val context: Context, private var hotels: List<Hotel>
 
     override fun getItemCount(): Int {
         return hotels.size
-    }
-
-    fun getStudents(): List<Hotel> {
-        return hotels
     }
 
     fun updateDataGradually(newData: List<Hotel>) {
