@@ -60,12 +60,6 @@ class BookRoom : AppCompatActivity() {
     private lateinit var purchaseId: String
     private lateinit var purchase: Purchase
 
-    private lateinit var changeCustomerBtn: Button
-    private lateinit var specialDemand: TextInputEditText
-
-    private lateinit var customerName: String
-    private lateinit var customerEmail: String
-
     private lateinit var seenVoucherBtn: Button
     private lateinit var recyclerView: RecyclerView
     private lateinit var layoutManager: LinearLayoutManager
@@ -105,7 +99,7 @@ class BookRoom : AppCompatActivity() {
 
         dialog = Dialog(this)
         dialog.setContentView(R.layout.purchased)
-        anim = dialog.findViewById<LottieAnimationView>(R.id.checkPurchase)
+        anim = dialog.findViewById(R.id.checkPurchase)
 
         paymentMethodLayout = findViewById(R.id.paymentMethod)
         countdownTextView = findViewById(R.id.timer)
@@ -125,7 +119,7 @@ class BookRoom : AppCompatActivity() {
 
         hotelID = intent.getStringExtra("hotelID").toString()
         val roomID = intent.getStringExtra("roomID")
-        HotelUtils.getHotelByID(hotelID!!){ hotel ->
+        HotelUtils.getHotelByID(hotelID){ hotel ->
             findViewById<TextView>(R.id.locationDetail).text = hotel.locationDetail
             findViewById<TextView>(R.id.rating).text = when (hotel.point?.toInt()){
                 in 0 until 3 -> { "${hotel.point} Cực tệ" }

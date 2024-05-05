@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -15,14 +16,14 @@ import com.example.angodafake.Bookmark
 import com.example.angodafake.R
 import com.example.angodafake.Utilities.BookmarkUtils
 import com.example.angodafake.Utilities.HotelUtils
+import com.example.angodafake.Utilities.PictureUtils
 import com.example.angodafake.db.Hotel
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.database.core.utilities.Utilities
+import com.squareup.picasso.Picasso
 
 class BookmarkAdapter(private val rootView: View, private val context: Context, private var bookmarks: List<com.example.angodafake.db.Bookmark>) : RecyclerView.Adapter<BookmarkAdapter.MyViewHolder>() {
     private var listener: OnItemClickListener? = null
-    private lateinit var HotelMarked: Hotel
-//    private lateinit var Picture: Picture
-
     interface OnItemClickListener {
         fun onItemClick(bookmark: Bookmark)
     }
@@ -39,14 +40,10 @@ class BookmarkAdapter(private val rootView: View, private val context: Context, 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = bookmarks[position]
 
-        HotelUtils.getHotelByID(currentItem.ID_Hotel!!){hotel ->
-            HotelMarked = hotel
-//          Picture = hotel_db.PictureDAO().getPictureByHotelID(currentItem.ID_Hotel)
-//          PictureUtils.getPictureByHotelID(currentItem.ID_Hotel){picture ->
-//            Picture = picture
-//        }
-//        val idPicture = context.resources.getIdentifier(Picture.picture, "drawable", context.packageName)
-//        holder.img.setImageResource(idPicture)
+        HotelUtils.getHotelByID(currentItem.ID_Hotel!!){ HotelMarked ->
+            PictureUtils.getPictureByHotelID(HotelMarked.ID!!){
+                Picasso.get().load(it.url).into(holder.img)
+            }
             holder.hotelName.text = HotelMarked.name
             holder.buttonFav.setOnClickListener {
                 val bookmarks_tmp = bookmarks.toMutableList()
@@ -70,7 +67,7 @@ class BookmarkAdapter(private val rootView: View, private val context: Context, 
     }
 
     class MyViewHolder(bookmarkItem: View) : RecyclerView.ViewHolder(bookmarkItem) {
-//        val img: ImageView = bookmarkItem.findViewById(R.id.imageView)
+        val img: ImageView = bookmarkItem.findViewById(R.id.imageView)
         val hotelName: TextView = bookmarkItem.findViewById(R.id.hotelName)
         val buttonFav: Button = bookmarkItem.findViewById(R.id.fav)
         val location: TextView = bookmarkItem.findViewById(R.id.Location)

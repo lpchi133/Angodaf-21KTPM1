@@ -17,6 +17,22 @@ object PurchaseUtils {
         database = Firebase.database.reference
     }
 
+    fun updatePurchaseStatus(purchaseID: String, callback: (String) -> Unit) {
+        val purchaseUpdate = hashMapOf<String, Any>(
+            "/purchases/$purchaseID/detail" to "HOAN_TAT",
+            "/purchases/$purchaseID/status_purchase" to "DA_THANH_TOAN"
+        )
+
+        database.updateChildren(purchaseUpdate)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    callback.invoke("success")
+                } else {
+                    callback.invoke("failure")
+                }
+            }
+    }
+
     fun getAllPurchases(ownerID: String, listener: (List<Purchase>) -> Unit) {
         val purchasesQuery = database.child("purchases")
 
