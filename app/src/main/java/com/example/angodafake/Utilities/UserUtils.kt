@@ -14,13 +14,12 @@ import kotlinx.coroutines.tasks.await
 
 object UserUtils {
     private var database: DatabaseReference = Firebase.database.reference
-    fun getUserByID(ID: String, listener: (User) -> Unit){
+    fun getUserByID(ID: String, listener: (User?) -> Unit){
         val usersQuery = database.child("users/$ID")
         usersQuery.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // Xử lý khi dữ liệu thay đổi
                 val user = dataSnapshot.getValue(User::class.java)
-                if (user != null)
                     listener(user)
             }
 

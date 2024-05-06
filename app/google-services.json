@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "1042728725800",
+    "firebase_url": "https://mobile-angodaf-default-rtdb.firebaseio.com",
     "project_id": "mobile-angodaf",
     "storage_bucket": "mobile-angodaf.appspot.com"
   },
@@ -12,7 +13,20 @@
           "package_name": "com.example.angodafake"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1042728725800-b7se4ngd29rqup0obou0jqr76orcbr6j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.angodafake",
+            "certificate_hash": "bbbfec42173a689fb32c6586f9db7db451e94981"
+          }
+        },
+        {
+          "client_id": "1042728725800-lk2ho4quhir582lom6g9sr6hfll21nc3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDhcpCoXdzkRkphoplUr4VCG2DW2gUsuKE"
@@ -20,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1042728725800-lk2ho4quhir582lom6g9sr6hfll21nc3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

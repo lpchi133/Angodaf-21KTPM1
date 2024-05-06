@@ -89,7 +89,7 @@ class EditInfoFragment(private var idUser: String) : Fragment() {
         val check = mutableListOf(true, true, true, true, true)
 
         UserUtils.getUserByID(idUser){
-            if (it.name != null){
+            if (it!!.name != null){
                 etName.text = Editable.Factory.getInstance().newEditable(it.name)
             }
             if (it.dob != null){
@@ -230,7 +230,7 @@ class EditInfoFragment(private var idUser: String) : Fragment() {
                     val country = actvCountry.text.toString().trim()
                     val user = User(null, name, dob, gender, number, email, country)
                     UserUtils.getUserByID(idUser){ it ->
-                        if (email != it.email || number != it.phoneN){
+                        if (email != it!!.email || number != it.phoneN){
                             openPwDialog( object: PasswordDialogListener{
                                     override fun onSubmitClicked(password: String) {
                                         UserUtils.updateUserByID(idUser, user, password){check->

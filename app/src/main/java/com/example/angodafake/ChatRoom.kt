@@ -101,7 +101,7 @@ class ChatRoom : AppCompatActivity() {
         if (Type_User == "User") {
             UserUtils.getUserByID(ID_User) {user ->
                 HotelUtils.getHotelByID(ID_Partner) {hotel ->
-                    ChatUtils.getOrCreateChatRoom(ID_ChatRoom, ID_User, ID_Partner, user.name!!, hotel.name!!) {id_chatroom ->
+                    ChatUtils.getOrCreateChatRoom(ID_ChatRoom, ID_User, ID_Partner, user!!.name!!, hotel.name!!) {id_chatroom ->
                         ID_ChatRoom = id_chatroom
                     }
                 }
@@ -109,7 +109,7 @@ class ChatRoom : AppCompatActivity() {
         } else {
             UserUtils.getUserByID(ID_Partner) {user ->
                 HotelUtils.getHotelByID(ID_User) {hotel ->
-                    ChatUtils.getOrCreateChatRoom(ID_ChatRoom, ID_User, ID_Partner, hotel.name!!, user.name!!) {id_chatroom ->
+                    ChatUtils.getOrCreateChatRoom(ID_ChatRoom, ID_User, ID_Partner, hotel.name!!, user!!.name!!) {id_chatroom ->
                         ID_ChatRoom = id_chatroom
                     }
                 }

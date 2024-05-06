@@ -179,7 +179,7 @@ class PastCancelPurchaseDetail : AppCompatActivity() {
             }
 
             UserUtils.getUserByID(ownerID) { o ->
-                owner = o
+                owner = o!!
 
                 clientName.text = owner.name
             }

@@ -326,6 +326,7 @@ id comment5
 id comment6
 id commentField
 id comment_notdone
+id constraintLayout
 id constraintLayout2
 id constraintLayout3
 id contactsRV
@@ -894,11 +895,14 @@ string btn_removeorder
 string btn_reorder
 string c_title
 string changePw_title
+string client_id
 string cmt_title
 string content_active_room
 string content_canceled_room
 string content_past_room
+string default_web_client_id
 string editInfo_title
+string firebase_database_url
 string fragment1
 string fragment2
 string fragment3

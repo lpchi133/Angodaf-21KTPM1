@@ -143,7 +143,7 @@ class Hotel_infor(private var idUser: String) : Fragment() {
                     imageAdapter.submitList(pictureList)
 
                     UserUtils.getUserByID(hotel.ID_Owner!!){user ->
-                        User = user
+                        User = user!!
 
                         Log.d("FilterFragment", "Received data - user: $User")
 
