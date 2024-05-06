@@ -298,6 +298,9 @@ class SignUpActivity : AppCompatActivity() {
             checkArray[3] = validatePass(lPass, etPass)
             checkArray[4] = validateConfirmPass(lConfirmPass, etConfirmPass, etPass)
             checkArray[1] = !isCheckEmpty(lDob, etDob, "Ngày sinh") && checkArray[1]
+            if (!checkArray[1]){
+                lDob.error = "Bạn phải đủ 18 tuổi để đăng kí"
+            }
     }
     private fun isCheckEmpty(textInputLayout: TextInputLayout, editText: EditText, name: String) : Boolean{
         return if (editText.text.toString().trim() == ""){

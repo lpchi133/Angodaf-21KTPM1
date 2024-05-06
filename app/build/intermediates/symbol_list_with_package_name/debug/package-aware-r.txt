@@ -3581,6 +3581,7 @@ id btn_back
 id btn_bookmark
 id btn_call
 id btn_cancel
+id btn_change
 id btn_changeInf
 id btn_changePw
 id btn_chat
@@ -3652,6 +3653,7 @@ id center_vertical
 id chain
 id chain2
 id chains
+id changePwTittle
 id chart
 id chat
 id chatFab
@@ -3918,6 +3920,7 @@ id lCheckIn
 id lCheckOut
 id lCity
 id lConfirmPass
+id lConfirmedNewPw
 id lConveniences
 id lCountry
 id lDate
@@ -3934,6 +3937,8 @@ id lLocationDetail
 id lLongitude
 id lMerchantCode
 id lName
+id lNewPw
+id lOldPw
 id lPass
 id lPass2
 id lPhoneN
@@ -3950,6 +3955,7 @@ id layout
 id layout_addHotel_title
 id layout_addRoom_title
 id layout_bookedRoomsQty
+id layout_changePw_title
 id layout_editInfo_title
 id layout_manageRoom_title
 id layout_signup_title
@@ -4746,6 +4752,7 @@ layout fragment_add_room
 layout fragment_add_room_image
 layout fragment_bill
 layout fragment_bookmark
+layout fragment_change_pw
 layout fragment_edit_info
 layout fragment_home
 layout fragment_home_filter
@@ -4915,6 +4922,7 @@ string call_notification_hang_up_action
 string call_notification_incoming_text
 string call_notification_ongoing_text
 string call_notification_screening_text
+string changePw_title
 string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern

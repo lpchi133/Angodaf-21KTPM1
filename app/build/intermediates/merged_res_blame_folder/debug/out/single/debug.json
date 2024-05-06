@@ -952,6 +952,10 @@
         "source": "com.example.angodafake.app-main-47:/drawable/upload_img_layout.jpg"
     },
     {
+        "merged": "com.example.angodafake.app-merged_res-45:/layout_fragment_change_pw.xml.flat",
+        "source": "com.example.angodafake.app-main-47:/layout/fragment_change_pw.xml"
+    },
+    {
         "merged": "com.example.angodafake.app-merged_res-45:/drawable_b48f9f78ec2cf2bbe745f28a2f5f5541.jpg.flat",
         "source": "com.example.angodafake.app-main-47:/drawable/b48f9f78ec2cf2bbe745f28a2f5f5541.jpg"
     },

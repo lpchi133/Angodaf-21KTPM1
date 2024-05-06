@@ -100,6 +100,10 @@
         "source": "com.example.angodafake.app-main-47:/layout/activity_login.xml"
     },
     {
+        "merged": "com.example.angodafake.app-mergeDebugResources-44:/layout/fragment_change_pw.xml",
+        "source": "com.example.angodafake.app-main-47:/layout/fragment_change_pw.xml"
+    },
+    {
         "merged": "com.example.angodafake.app-mergeDebugResources-44:/layout/custom_hotel_of_management_voucher.xml",
         "source": "com.example.angodafake.app-main-47:/layout/custom_hotel_of_management_voucher.xml"
     },

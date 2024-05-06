@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -112,6 +113,9 @@ class Hotel_infor(private var idUser: String) : Fragment() {
         val rateStatus: TextView = view.findViewById(R.id.rateStatus)
         val count_cmt: TextView = view.findViewById(R.id.cmt)
         val btnChat: ImageView = view.findViewById(R.id.chat)
+        val btnCall: ImageButton = view.findViewById(R.id.btn_call)
+        val hotelPhone: TextView = view.findViewById(R.id.hotel_phone)
+
         var nameUser: String = ""
 
         inforVoucher.setOnClickListener {
@@ -265,6 +269,13 @@ class Hotel_infor(private var idUser: String) : Fragment() {
                                 .replace(R.id.frameLayout, listRoom)
                                 .addToBackStack(null)
                                 .commit()
+                        }
+
+                        btnCall.setOnClickListener {
+                            val phone_number = hotelPhone.text
+                            val phone_uri = Uri.parse("tel:$phone_number")
+                            val phone_intent = Intent(Intent.ACTION_DIAL, phone_uri)
+                            startActivity(phone_intent)
                         }
 
                         view.findViewById<ImageButton>(R.id.btn_local).setOnClickListener {

@@ -1,7 +1,10 @@
 package com.example.angodafake
 
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import com.example.angodafake.Utilities.UserUtils
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -30,6 +34,7 @@ class MyProfile(private var idUser: String) : Fragment() {
     private lateinit var btn_add_hotel: Button
     private lateinit var btn_my_comments: Button
     private lateinit var btn_chat : Button
+    private lateinit var btn_changePw: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,6 +88,11 @@ class MyProfile(private var idUser: String) : Fragment() {
             startActivity(intent)
         }
 
+        btn_changePw.setOnClickListener {
+            val mainActivity = requireActivity() as MainActivity
+            mainActivity.replaceFragment(ChangePwFragment(idUser))
+        }
+
         btn_my_comments.setOnClickListener {
             val intent = Intent(requireActivity(), MyComment::class.java)
             intent.putExtra("id_user", idUser)
@@ -91,9 +101,15 @@ class MyProfile(private var idUser: String) : Fragment() {
 
         btn_logout.setOnClickListener {
             auth.signOut()
-            val intent = Intent(requireActivity(), LoginActivity::class.java)
-            startActivity(intent)
-            requireActivity().finish()
+            showSuccessSnackBar("Đăng xuất thành công", it)
+
+            val handler = Handler()
+            handler.postDelayed({
+                val intent = Intent(requireActivity(), LoginActivity::class.java)
+                startActivity(intent)
+                requireActivity().finish()
+            }, 500)
+
         }
         return view
     }
@@ -107,6 +123,14 @@ class MyProfile(private var idUser: String) : Fragment() {
         btn_add_hotel = view.findViewById(R.id.btn_add_hotel)
         btn_my_comments = view.findViewById(R.id.btn_my_comments)
         btn_chat = view.findViewById(R.id.btn_chat)
+        btn_changePw = view.findViewById(R.id.btn_changePw)
+    }
+
+    private fun showSuccessSnackBar(msg: String, view: View) {
+        val snackbar = Snackbar.make(view.rootView, msg, Snackbar.LENGTH_LONG)
+        snackbar.view.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#3193FF"))
+        snackbar.setTextColor(Color.WHITE)
+        snackbar.show()
     }
 
 
