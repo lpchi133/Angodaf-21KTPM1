@@ -1,12 +1,16 @@
 package com.example.angodafake.Adapter
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -14,7 +18,10 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.CancelPurchase
+import com.example.angodafake.Home
 import com.example.angodafake.Hotel_infor
+import com.example.angodafake.MainActivity
+import com.example.angodafake.MyRoom
 import com.example.angodafake.PurchaseExtra
 import com.example.angodafake.R
 import com.example.angodafake.db.Purchase
@@ -71,23 +78,8 @@ class ActivePurchaseAdapter(private val fragment: Fragment, private var activePu
         }
 
         holder.reorderbtn.setOnClickListener {
-//            Toast.makeText(context, "Press", Toast.LENGTH_SHORT).show()
-            val arg = Bundle()
-            val idUser = currentItem.Purchase?.ID_Owner
-            arg.putString("Flow_1", "reorder")
-            arg.putString("hotelPosition", currentItem.Purchase?.ID_Hotel)
-
-            // Khởi tạo Fragment Filter và đính kèm Bundle
-            val Fragment = idUser?.let { it1 -> Hotel_infor(it1) }
-            Fragment?.arguments = arg
-
-            val fragmentManager = fragment.requireActivity().supportFragmentManager
-            if (Fragment != null) {
-                fragmentManager.beginTransaction()
-                    .replace(R.id.frameLayout, Fragment)
-                    .addToBackStack(null)  // Để quay lại Fragment Home khi ấn nút Back
-                    .commit()
-            }
+            val mainActivity = fragment.requireActivity() as MainActivity
+            mainActivity.replaceFragment(Home(currentItem.Purchase?.ID_Owner!!, currentItem.nameHotel))
         }
 
         holder.itemView.setOnClickListener {
