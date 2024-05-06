@@ -240,6 +240,7 @@ id btn_back
 id btn_bookmark
 id btn_call
 id btn_cancel
+id btn_change
 id btn_changeInf
 id btn_changePw
 id btn_chat
@@ -297,6 +298,7 @@ id cbHue
 id cbNhaTrang
 id cbVungTau
 id cb_momo
+id changePwTittle
 id chart
 id chat
 id chatFab
@@ -436,6 +438,7 @@ id lCheckIn
 id lCheckOut
 id lCity
 id lConfirmPass
+id lConfirmedNewPw
 id lConveniences
 id lCountry
 id lDate
@@ -452,6 +455,8 @@ id lLocationDetail
 id lLongitude
 id lMerchantCode
 id lName
+id lNewPw
+id lOldPw
 id lPass
 id lPass2
 id lPhoneN
@@ -467,6 +472,7 @@ id layout
 id layout_addHotel_title
 id layout_addRoom_title
 id layout_bookedRoomsQty
+id layout_changePw_title
 id layout_editInfo_title
 id layout_manageRoom_title
 id layout_signup_title
@@ -839,6 +845,7 @@ layout fragment_add_room
 layout fragment_add_room_image
 layout fragment_bill
 layout fragment_bookmark
+layout fragment_change_pw
 layout fragment_edit_info
 layout fragment_home
 layout fragment_home_filter
@@ -886,6 +893,7 @@ string btn_order
 string btn_removeorder
 string btn_reorder
 string c_title
+string changePw_title
 string cmt_title
 string content_active_room
 string content_canceled_room

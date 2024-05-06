@@ -34,6 +34,7 @@ class MyProfile(private var idUser: String) : Fragment() {
     private lateinit var btn_add_hotel: Button
     private lateinit var btn_my_comments: Button
     private lateinit var btn_chat : Button
+    private lateinit var btn_changePw: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,6 +88,11 @@ class MyProfile(private var idUser: String) : Fragment() {
             startActivity(intent)
         }
 
+        btn_changePw.setOnClickListener {
+            val mainActivity = requireActivity() as MainActivity
+            mainActivity.replaceFragment(ChangePwFragment(idUser))
+        }
+
         btn_my_comments.setOnClickListener {
             val intent = Intent(requireActivity(), MyComment::class.java)
             intent.putExtra("id_user", idUser)
@@ -117,6 +123,7 @@ class MyProfile(private var idUser: String) : Fragment() {
         btn_add_hotel = view.findViewById(R.id.btn_add_hotel)
         btn_my_comments = view.findViewById(R.id.btn_my_comments)
         btn_chat = view.findViewById(R.id.btn_chat)
+        btn_changePw = view.findViewById(R.id.btn_changePw)
     }
 
     private fun showSuccessSnackBar(msg: String, view: View) {

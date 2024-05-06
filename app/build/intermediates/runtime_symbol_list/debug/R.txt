@@ -3580,6 +3580,7 @@ int id btn_back 0x7f0900aa
 int id btn_bookmark 0x7f0900ab
 int id btn_call 0x7f0900ac
 int id btn_cancel 0x7f0900ad
+int id btn_change 0x7f090480
 int id btn_changeInf 0x7f0900ae
 int id btn_changePw 0x7f0900af
 int id btn_chat 0x7f0900b0
@@ -3651,6 +3652,7 @@ int id center_vertical 0x7f0900f1
 int id chain 0x7f0900f2
 int id chain2 0x7f0900f3
 int id chains 0x7f0900f4
+int id changePwTittle 0x7f090481
 int id chart 0x7f0900f5
 int id chat 0x7f0900f6
 int id chatFab 0x7f0900f7
@@ -3917,6 +3919,7 @@ int id lCheckIn 0x7f0901fb
 int id lCheckOut 0x7f0901fc
 int id lCity 0x7f0901fd
 int id lConfirmPass 0x7f0901fe
+int id lConfirmedNewPw 0x7f090482
 int id lConveniences 0x7f0901ff
 int id lCountry 0x7f090200
 int id lDate 0x7f090201
@@ -3933,6 +3936,8 @@ int id lLocationDetail 0x7f09020b
 int id lLongitude 0x7f09020c
 int id lMerchantCode 0x7f09020d
 int id lName 0x7f09020e
+int id lNewPw 0x7f090483
+int id lOldPw 0x7f090484
 int id lPass 0x7f09020f
 int id lPass2 0x7f090210
 int id lPhoneN 0x7f090211
@@ -3949,6 +3954,7 @@ int id layout 0x7f09021b
 int id layout_addHotel_title 0x7f09021c
 int id layout_addRoom_title 0x7f09021d
 int id layout_bookedRoomsQty 0x7f09021e
+int id layout_changePw_title 0x7f090485
 int id layout_editInfo_title 0x7f09021f
 int id layout_manageRoom_title 0x7f090220
 int id layout_signup_title 0x7f090221
@@ -4745,6 +4751,7 @@ int layout fragment_add_room 0x7f0c0060
 int layout fragment_add_room_image 0x7f0c0061
 int layout fragment_bill 0x7f0c0062
 int layout fragment_bookmark 0x7f0c0063
+int layout fragment_change_pw 0x7f0c00d1
 int layout fragment_edit_info 0x7f0c0064
 int layout fragment_home 0x7f0c0065
 int layout fragment_home_filter 0x7f0c0066
@@ -4914,6 +4921,7 @@ int string call_notification_hang_up_action 0x7f120032
 int string call_notification_incoming_text 0x7f120033
 int string call_notification_ongoing_text 0x7f120034
 int string call_notification_screening_text 0x7f120035
+int string changePw_title 0x7f1200f9
 int string character_counter_content_description 0x7f120036
 int string character_counter_overflowed_content_description 0x7f120037
 int string character_counter_pattern 0x7f120038

@@ -20,7 +20,8 @@ object UserUtils {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // Xử lý khi dữ liệu thay đổi
                 val user = dataSnapshot.getValue(User::class.java)
-                listener(user!!)
+                if (user != null)
+                    listener(user)
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -122,7 +123,6 @@ object UserUtils {
                             user.updateEmail(newUser.email!!)
                                 .addOnCompleteListener { task ->
                                     if (task.isSuccessful){
-                                        Log.d("checkAuth", "true")
                                         database.child("users").child(ID).setValue(newUser)
                                         listener(true)
                                     } else{

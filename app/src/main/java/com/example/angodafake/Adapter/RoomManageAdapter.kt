@@ -124,8 +124,9 @@ class RoomManageAdapter(private val context: Context, private var room_list: Arr
             }
             holder.layout_bookedRoomsQty.setOnClickListener {
                 val arg = Bundle()
-                arg.putString("from", "edit")
+                arg.putString("from", "edit_room")
                 arg.putString("date", date)
+                arg.putString("idHotel", room.ID_Hotel)
                 arg.putStringArrayList("bills", list)
 
                 val billFrag = BillFragment(idUser)

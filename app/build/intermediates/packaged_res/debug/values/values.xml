@@ -359,6 +359,7 @@
     <string name="btn_removeorder">Hủy đặt phòng</string>
     <string name="btn_reorder">Đặt phòng lại</string>
     <string name="c_title">Tin nhắn</string>
+    <string name="changePw_title">Đổi mật khẩu</string>
     <string name="cmt_title">Nhận xét của tôi</string>
     <string name="content_active_room">Quý khách không có đặt chỗ sắp tới nào!</string>
     <string name="content_canceled_room">Quý khách không có đặt chỗ đã hủy gần đây!</string>
