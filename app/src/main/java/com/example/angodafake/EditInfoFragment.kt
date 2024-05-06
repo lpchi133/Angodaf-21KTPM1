@@ -217,8 +217,6 @@ class EditInfoFragment(private var idUser: String) : Fragment() {
                 else{
                     check[4] = validatePhoneNumber(lPhoneN, etPhoneN)
                 }
-                Log.d("check[4]", check[4].toString())
-                Log.d("check[4] nd", etPhoneN.text.toString())
 
                 if (check[0] && check[1] && check[2] && check[3] && check[4]){
                     val name = etName.text.toString().trim()
