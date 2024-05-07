@@ -622,8 +622,6 @@ id sign_up_title
 id sort
 id specialDemand
 id spinner
-id statisticsFab
-id statisticsLL
 id status1
 id status2
 id status3

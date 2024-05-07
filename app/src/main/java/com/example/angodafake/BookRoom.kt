@@ -52,6 +52,7 @@ class BookRoom : AppCompatActivity() {
     private lateinit var bookRoomBtn: Button
     private lateinit var backBtn: ImageView
     private lateinit var hotelPicture: ImageView
+    private lateinit var idUser: String
 
     private var firstPrice: Int = 0
     private var discountValue: Int = 0
@@ -111,6 +112,7 @@ class BookRoom : AppCompatActivity() {
 
         val checkInTime = intent.getStringExtra("checkInTime") ?: ""
         val checkOutTime = intent.getStringExtra("checkOutTime") ?: ""
+        idUser = intent.getStringExtra("idUser") ?: ""
         findViewById<TextView>(R.id.checkIn).text = convertDateTimeToString(checkInTime, 1)
         findViewById<TextView>(R.id.checkOut).text = convertDateTimeToString(checkOutTime, 1)
         val dayInHotel = calculateDaysBetweenDates(checkInTime, checkOutTime).toString()
@@ -155,7 +157,7 @@ class BookRoom : AppCompatActivity() {
             typeRoom = room.type.toString()
         }
 
-        UserUtils.getUserByID("tYw0x3oVS7gAd9wOdOszzvJMOEM2"){user ->
+        UserUtils.getUserByID(idUser){user ->
             findViewById<TextView>(R.id.customerName).text = user.name
             dialog.findViewById<TextView>(R.id.customerName).text = user.name
             findViewById<TextView>(R.id.mailConfirm).text = "Chúng tôi sẽ gửi xác nhận đặt phòng của bạn đến ${user.email}. Vui lòng kiểm tra và xác nhận đặt phòng."
@@ -206,7 +208,7 @@ class BookRoom : AppCompatActivity() {
         bookRoomBtn.setOnClickListener {
             purchaseId = getPurchaseID()
 
-            bookRoom(hotelID, "tYw0x3oVS7gAd9wOdOszzvJMOEM2", roomID,
+            bookRoom(hotelID, idUser, roomID,
                 roomQuantity, getTimePurchase(), (firstPrice - discountValue).toDouble(),
                 checkInTime, checkOutTime, dialog, anim)
 

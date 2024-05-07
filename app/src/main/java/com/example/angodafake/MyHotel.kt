@@ -44,8 +44,6 @@ class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
     private lateinit var addFab : FloatingActionButton
     private lateinit var voucherLL : View
     private lateinit var voucherFab : FloatingActionButton
-    private lateinit var statisticsLL : View
-    private lateinit var statisticsFab : FloatingActionButton
     private lateinit var billLL : View
     private lateinit var billFab : FloatingActionButton
     private lateinit var chatLL : View
@@ -78,7 +76,6 @@ class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
         initUI(view)
         initShowout(addLL)
         initShowout(voucherLL)
-        initShowout(statisticsLL)
         initShowout(billLL)
         initShowout(qrLL)
         initShowout(chatLL)
@@ -147,10 +144,6 @@ class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
             startActivity(intent)
         }
 
-        statisticsFab.setOnClickListener {
-
-        }
-
         chatFab.setOnClickListener {
                 val intent = Intent(context, ChatList::class.java)
                 intent.putExtra("id_user", idUser)
@@ -211,7 +204,6 @@ class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
         if (rotate){
             showIn(addLL)
             showIn(voucherLL)
-            showIn(statisticsLL)
             showIn(billLL)
             showIn(qrLL)
             showIn(chatLL)
@@ -219,7 +211,6 @@ class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
         } else{
             showOut(addLL)
             showOut(voucherLL)
-            showOut(statisticsLL)
             showOut(billLL)
             showOut(qrLL)
             showOut(chatLL)
@@ -291,8 +282,6 @@ class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
         addFab = view.findViewById(R.id.addFab)
         voucherLL = view.findViewById(R.id.voucherLL)
         voucherFab = view.findViewById(R.id.voucherFab)
-        statisticsLL = view.findViewById(R.id.statisticsLL)
-        statisticsFab = view.findViewById(R.id.statisticsFab)
         billLL = view.findViewById(R.id.billLL)
         billFab = view.findViewById(R.id.billFab)
         qrLL = view.findViewById(R.id.qrLL)

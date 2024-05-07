@@ -4303,8 +4303,6 @@ id startToEnd
 id startVertical
 id staticLayout
 id staticPostLayout
-id statisticsFab
-id statisticsLL
 id status1
 id status2
 id status3

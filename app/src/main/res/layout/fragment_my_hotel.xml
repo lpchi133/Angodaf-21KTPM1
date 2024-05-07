@@ -237,44 +237,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/statisticsLL"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="10dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="3dp"
-                app:cardElevation="2dp"
-                app:contentPadding="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Thống kê"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-            </androidx.cardview.widget.CardView>
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/statisticsFab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
-                android:backgroundTint="@color/blue"
-                android:clickable="true"
-                android:src="@drawable/baseline_bar_chart_24"
-                android:tint="@color/white"
-                app:fabSize="mini"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-        </LinearLayout>
-
-        <LinearLayout
             android:id="@+id/billLL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

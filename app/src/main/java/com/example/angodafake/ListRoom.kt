@@ -132,6 +132,7 @@ class ListRoom(private val idUser: String) : Fragment() {
                         intent.putExtra("hotelID", itemPosition)
                         intent.putExtra("roomID", position.toString())
                         intent.putExtra("roomQuantity", intArray[position].toString())
+                        intent.putExtra("idUser", idUser)
                         startActivity(intent)
                     }
                 })

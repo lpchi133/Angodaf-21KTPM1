@@ -212,6 +212,11 @@ object PurchaseUtils {
                         val hotelID = purchase?.ID_Hotel
 
                         if (hotelID == null || !hotelMap.containsKey(hotelID)) {
+                            completedCount++
+
+                            if (completedCount == dataSnapshot.childrenCount.toInt()) {
+                                listener(purchaseList)
+                            }
                             continue
                         }
 
