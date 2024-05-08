@@ -84,7 +84,7 @@ class ChangePwFragment(private var idUser: String) : Fragment() {
                 val pw = et_oldPw.text.toString()
                 val user = Firebase.auth.currentUser
                 UserUtils.getUserByID(idUser){
-                    val email = if (it.email == "" || it.email == null){
+                    val email = if (it!!.email == "" || it.email == null){
                         "${it.phoneN}@gmail.com"
                     } else{
                         it.email

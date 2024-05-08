@@ -3188,6 +3188,7 @@ drawable beach3
 drawable beach4
 drawable bg_add_first_room
 drawable bg_add_imgs
+drawable bg_spinner
 drawable bg_upload_room_img
 drawable border
 drawable border1
@@ -3695,6 +3696,7 @@ id comment_notdone
 id compress
 id confirm_button
 id constraint
+id constraintLayout
 id constraintLayout2
 id constraintLayout3
 id contactsRV
@@ -3813,6 +3815,7 @@ id fill_horizontal
 id fill_vertical
 id filled
 id filter
+id filterSpinner
 id find
 id findButton
 id firstRectangle
@@ -4462,6 +4465,7 @@ id triangle
 id tv
 id tv2
 id tvCity
+id tvHotel
 id tvPrice
 id tvRating
 id tvTitle
@@ -4948,6 +4952,7 @@ string content_active_room
 string content_canceled_room
 string content_past_room
 string copy_toast_msg
+string default_web_client_id
 string define_zxingandroidembedded
 string editInfo_title
 string error_a11y_label
@@ -4958,6 +4963,7 @@ string fab_transformation_sheet_behavior
 string fallback_menu_item_copy_link
 string fallback_menu_item_open_in_browser
 string fallback_menu_item_share_link
+string firebase_database_url
 string fragment1
 string fragment2
 string fragment3

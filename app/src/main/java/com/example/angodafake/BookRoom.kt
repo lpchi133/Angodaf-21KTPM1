@@ -158,9 +158,9 @@ class BookRoom : AppCompatActivity() {
         }
 
         UserUtils.getUserByID(idUser){user ->
-            findViewById<TextView>(R.id.customerName).text = user.name
-            dialog.findViewById<TextView>(R.id.customerName).text = user.name
-            findViewById<TextView>(R.id.mailConfirm).text = "Chúng tôi sẽ gửi xác nhận đặt phòng của bạn đến ${user.email}. Vui lòng kiểm tra và xác nhận đặt phòng."
+            findViewById<TextView>(R.id.customerName).text = user?.name
+            dialog.findViewById<TextView>(R.id.customerName).text = user?.name
+            findViewById<TextView>(R.id.mailConfirm).text = "Chúng tôi sẽ gửi xác nhận đặt phòng của bạn đến ${user?.email}. Vui lòng kiểm tra và xác nhận đặt phòng."
         }
 
         findViewById<TextView>(R.id.cost).text = "Giá gốc (${roomQuantity} phòng x ${dayInHotel} đêm)"

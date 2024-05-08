@@ -8,33 +8,66 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.text.Layout
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TabHost
 import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.IntentSenderRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.angodafake.Utilities.UserUtils
 import com.example.angodafake.db.User
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.android.gms.auth.api.identity.Identity
+import com.google.android.gms.auth.api.identity.SignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthCredential
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
+import com.google.firebase.database.database
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var tabHost : TabHost
     private lateinit var auth: FirebaseAuth
+    private var oneTapClient: SignInClient? = null
+    private lateinit var signInRequest: BeginSignInRequest
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        //dang nhap bang gg
         auth = Firebase.auth
 
+        oneTapClient = Identity.getSignInClient(this)
+        signInRequest = BeginSignInRequest.builder()
+            .setGoogleIdTokenRequestOptions(
+                BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
+                    .setSupported(true)
+                    // Your server's client ID, not your Android client ID.
+                    .setServerClientId(getString(R.string.default_web_client_id))
+                    // Only show accounts previously used to sign in.
+                    .setFilterByAuthorizedAccounts(false)
+                    .build())
+            .build()
+
+        //dang nhap bang email/ sdt
         tabHost = findViewById(R.id.tabHost)
         tabHost.setup()
 
@@ -62,6 +95,78 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
+
+    fun signinGoogle(view: View){
+        findViewById<ProgressBar>(R.id.progressBar).visibility = View.VISIBLE
+        CoroutineScope(Dispatchers.Main).launch {
+            signinGoogle()
+        }
+    }
+
+    private suspend fun signinGoogle(){
+        val result = oneTapClient?.beginSignIn(signInRequest)?.await()
+        val intentSenderRequest = IntentSenderRequest.Builder(result!!.pendingIntent).build()
+        activityResultLauncher.launch(intentSenderRequest)
+    }
+
+    private val activityResultLauncher: ActivityResultLauncher<IntentSenderRequest> =
+        registerForActivityResult(
+            ActivityResultContracts.StartIntentSenderForResult()
+        ){result->
+            if (result.resultCode == RESULT_OK){
+                try{
+                    val credential = oneTapClient!!.getSignInCredentialFromIntent(result.data)
+                    val idToken = credential.googleIdToken
+                    if (idToken != null){
+                        val firebaseCredential = GoogleAuthProvider.getCredential(idToken, null)
+                        auth.signInWithCredential(firebaseCredential).addOnCompleteListener {
+                            if (it.isSuccessful){
+                                findViewById<ProgressBar>(R.id.progressBar).visibility = View.INVISIBLE
+                                val user = auth.currentUser
+                                showSuccessSnackBar("Đăng nhập thành công!")
+                                UserUtils.getUserByID(user!!.uid){getUser->
+                                    if (getUser != null){
+                                        val handler = Handler()
+                                        handler.postDelayed({
+                                            val intent = Intent(this, MainActivity::class.java)
+                                            intent.putExtra("idUser", user.uid)
+                                            startActivity(intent)
+                                            finish()
+                                        }, 1000)
+                                    } else{
+                                        val name = user.displayName
+                                        val dob = ""
+                                        val email = user.email
+                                        val gender = ""
+                                        val number = ""
+                                        val country = ""
+                                        val cardNumber = ""
+                                        val cardName = ""
+
+                                        val us = User(null,name, dob, gender, number, email, country, cardNumber, cardName)
+                                        val userID = auth.currentUser!!.uid
+                                        Firebase.database.reference.child("users").child(userID).setValue(us)
+                                        val handler = Handler()
+                                        handler.postDelayed({
+                                            val intent = Intent(this, MainActivity::class.java)
+                                            intent.putExtra("idUser", user.uid)
+                                            startActivity(intent)
+                                            finish()
+                                        }, 1000)
+                                    }
+                                }
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                showSnackBar("Đăng nhập thành công!")
+                            }
+                        }
+                    }
+                } catch (e: ApiException){
+                    e.printStackTrace()
+                }
+            }
+
+        }
     private fun setUpTabEmail(){
         val lEmail = findViewById<TextInputLayout>(R.id.lEmail)
         val etEmail = lEmail.editText as TextInputEditText

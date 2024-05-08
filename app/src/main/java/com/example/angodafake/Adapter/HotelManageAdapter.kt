@@ -27,7 +27,7 @@ import com.squareup.picasso.Picasso
 interface OnHotelDeleteListener {
     fun onHotelDeleted(hotel: Hotel)
 }
-class HotelManageAdapter (private val context: Context, private var hotel_list: ArrayList<Hotel>, var date: String) : RecyclerView.Adapter<HotelManageAdapter.ViewHolder>() {
+class HotelManageAdapter (private val context: Context, private var hotel_list: ArrayList<Hotel>, var date: String, var dateType: Int) : RecyclerView.Adapter<HotelManageAdapter.ViewHolder>() {
     private var onDeleteListener: OnHotelDeleteListener? = null
 
     fun setOnDeleteListener(listener: OnHotelDeleteListener) {
@@ -124,29 +124,57 @@ class HotelManageAdapter (private val context: Context, private var hotel_list: 
             Picasso.get().load(it.url)
                 .into(holder.imageView)
         }
-        hotel.ID?.let {
-            PurchaseUtils.getBookedRoomBillsByHotelID(it, date) { bookedRoomBills, bookedRoomQty ->
-                RoomUtils.getRoomQtyByHotelID(it) { roomQty ->
-                    holder.tv_bookedRoomsQty.text = "$bookedRoomQty/$roomQty"
-                }
-                val list = ArrayList<String>()
-                for (bill in bookedRoomBills!!){
-                    list.add(bill.ID!!)
-                }
-                holder.layout_bookedRoomsQty.setOnClickListener {
-                    val arg = Bundle()
-                    arg.putString("from", "edit")
-                    arg.putString("date", date)
-                    arg.putStringArrayList("bills", list)
 
-                    val billFrag = BillFragment(hotel.ID_Owner!!)
-                    billFrag.arguments = arg
+        if (dateType == 0){
+            hotel.ID?.let {
+                PurchaseUtils.getBookedRoomBillsByHotelIDAndBookedDate(it, date) { bookedRoomBills, bookedRoomQty ->
+                    RoomUtils.getRoomQtyByHotelID(it) { roomQty ->
+                        holder.tv_bookedRoomsQty.text = "$bookedRoomQty/$roomQty"
+                    }
+                    val list = ArrayList<String>()
+                    for (bill in bookedRoomBills!!){
+                        list.add(bill.ID!!)
+                    }
+                    holder.layout_bookedRoomsQty.setOnClickListener {
+                        val arg = Bundle()
+                        arg.putString("from", "edit")
+                        arg.putString("date", date)
+                        arg.putStringArrayList("bills", list)
 
-                    val mainActivity = context as MainActivity
-                    mainActivity.replaceFragment(billFrag)
+                        val billFrag = BillFragment(hotel.ID_Owner!!)
+                        billFrag.arguments = arg
+
+                        val mainActivity = context as MainActivity
+                        mainActivity.replaceFragment(billFrag)
+                    }
+                }
+            }
+        } else if (dateType == 1){
+            hotel.ID?.let {
+                PurchaseUtils.getBookedRoomBillsByHotelID(it, date) { bookedRoomBills, bookedRoomQty ->
+                    RoomUtils.getRoomQtyByHotelID(it) { roomQty ->
+                        holder.tv_bookedRoomsQty.text = "$bookedRoomQty/$roomQty"
+                    }
+                    val list = ArrayList<String>()
+                    for (bill in bookedRoomBills!!){
+                        list.add(bill.ID!!)
+                    }
+                    holder.layout_bookedRoomsQty.setOnClickListener {
+                        val arg = Bundle()
+                        arg.putString("from", "edit")
+                        arg.putString("date", date)
+                        arg.putStringArrayList("bills", list)
+
+                        val billFrag = BillFragment(hotel.ID_Owner!!)
+                        billFrag.arguments = arg
+
+                        val mainActivity = context as MainActivity
+                        mainActivity.replaceFragment(billFrag)
+                    }
                 }
             }
         }
+
 
 
     }

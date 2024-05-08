@@ -71,7 +71,7 @@ class CommentAdapter(private val context: Context, private var comment: MutableL
         holder.content.text = currentItem.content
 
         UserUtils.getUserByID(currentItem.ID_Owner!!) {customer ->
-            holder.customer.text = "${customer.name} | ${customer.country} | ${currentItem.type_customer}"
+            holder.customer.text = "${customer!!.name} | ${customer.country} | ${currentItem.type_customer}"
         }
 
         PurchaseUtils.getPurchaseByID(currentItem.ID_Purchase!!) {purchase ->

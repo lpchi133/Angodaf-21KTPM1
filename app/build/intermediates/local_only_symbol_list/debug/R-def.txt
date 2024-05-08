@@ -94,6 +94,7 @@ drawable beach3
 drawable beach4
 drawable bg_add_first_room
 drawable bg_add_imgs
+drawable bg_spinner
 drawable bg_upload_room_img
 drawable border
 drawable border1
@@ -326,6 +327,7 @@ id comment5
 id comment6
 id commentField
 id comment_notdone
+id constraintLayout
 id constraintLayout2
 id constraintLayout3
 id contactsRV
@@ -380,6 +382,7 @@ id et_Password
 id fav
 id fieldvoucher
 id filter
+id filterSpinner
 id find
 id findButton
 id firstRectangle
@@ -728,6 +731,7 @@ id traphong
 id tv
 id tv2
 id tvCity
+id tvHotel
 id tvPrice
 id tvRating
 id tv_PhoneN
@@ -896,7 +900,9 @@ string cmt_title
 string content_active_room
 string content_canceled_room
 string content_past_room
+string default_web_client_id
 string editInfo_title
+string firebase_database_url
 string fragment1
 string fragment2
 string fragment3

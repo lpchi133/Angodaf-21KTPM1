@@ -59,7 +59,7 @@ class BillAdapter(private val context: Context, private var purchaseList: ArrayL
         holder.tv_quantity.text = "x${purchase.quantity}"
         holder.tv_date.text = "${purchase.date_come} - ${purchase.date_go}"
         UserUtils.getUserByID(purchase.ID_Owner!!){
-            holder.tv_customerName.text = it.name
+            holder.tv_customerName.text = it!!.name
             if (it.phoneN != "" && it.phoneN != null){
                 holder.tv_contactInf.text = it.phoneN
             }else{

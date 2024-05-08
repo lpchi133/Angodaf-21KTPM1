@@ -79,7 +79,7 @@ class ScanQRCodeActivity : AppCompatActivity() {
                                 }
                                 if (check){
                                     UserUtils.getUserByID(purchase.ID_Owner!!){ user ->
-                                        dialog.findViewById<TextView>(R.id.customerName).text = user.name
+                                        dialog.findViewById<TextView>(R.id.customerName).text = user!!.name
                                     }
                                     HotelUtils.getHotelByID(purchase.ID_Hotel!!){ hotel ->
                                         dialog.findViewById<TextView>(R.id.hotelName).text = hotel.name

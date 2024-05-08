@@ -158,6 +158,33 @@ object PurchaseUtils {
         })
     }
 
+    fun getBookedRoomBillsByHotelIDAndBookedDate(ID_Hotel: String, date: String, listener: (List<Purchase>?, Int) -> Unit){
+        val billQuery = database.child("purchases")
+        billQuery.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val purchaseList = mutableListOf<Purchase>()
+                var count = 0
+                for (purchaseSnapshort in dataSnapshot.children){
+                    val purchase = purchaseSnapshort.getValue(Purchase::class.java)
+                    if (purchase?.ID_Hotel == ID_Hotel
+                        && (purchase.time_cancel == "" || purchase.time_cancel == null)
+                        && purchase.time_booking == date
+                    ) {
+                        purchase.ID = purchaseSnapshort.key
+                        purchaseList.add(purchase)
+                        count += purchase.quantity ?: 0
+                    }
+                }
+                listener(purchaseList, count)
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Xử lý khi có lỗi xảy ra
+                Log.e("firebase", "Error getting room count: ${databaseError.message}")
+                listener(null, 0)
+            }
+        })
+    }
+
     fun getBookedRoomBillsByRoomID(ID_Hotel: String, ID_Room: String, date: String, listener: (List<Purchase>?, Int) -> Unit){
         val billQuery = database.child("purchases")
         billQuery.addListenerForSingleValueEvent(object : ValueEventListener {

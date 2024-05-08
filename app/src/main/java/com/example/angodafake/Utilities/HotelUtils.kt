@@ -153,5 +153,26 @@ object HotelUtils {
         }
     }
 
+    fun getHotelsByName(hotelName: String, listener: (MutableList<Hotel>) -> Unit){
+        val hotelsQuery = database.child("hotels")
+        hotelsQuery.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val hotelsList = mutableListOf<Hotel>()
+                for (hotelSnapshot in dataSnapshot.children) {
+                    val hotel = hotelSnapshot.getValue(Hotel::class.java)
+                    if (hotel?.name!!.toLowerCase(Locale.getDefault()).contains(hotelName.toLowerCase(Locale.getDefault()))) {
+                        hotel.ID = hotelSnapshot.key
+                        hotel.let { hotelsList.add(it) }
+                    }
+                }
+                listener(hotelsList)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+    }
+
 
 }
