@@ -20,7 +20,10 @@ object UserUtils {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // Xử lý khi dữ liệu thay đổi
                 val user = dataSnapshot.getValue(User::class.java)
+                if (user != null)
                     listener(user)
+                else
+                    listener(null)
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -116,8 +119,9 @@ object UserUtils {
                 } else{
                     oldUser.email!!
                 }
-                val credential = EmailAuthProvider.getCredential(email, pw)
-                user!!.reauthenticate(credential).addOnCompleteListener {
+                if (pw != ""){
+                    val credential = EmailAuthProvider.getCredential(email, pw)
+                    user!!.reauthenticate(credential).addOnCompleteListener {
                         if (it.isSuccessful){
                             user.updateEmail(newUser.email!!)
                                 .addOnCompleteListener { task ->
@@ -131,6 +135,10 @@ object UserUtils {
                         } else{
                             listener(false)
                         }
+                    }
+                } else{
+                    database.child("users").child(ID).setValue(newUser)
+                    listener(true)
                 }
             }
             override fun onCancelled(databaseError: DatabaseError) {
@@ -138,5 +146,4 @@ object UserUtils {
             }
         })
     }
-
 }

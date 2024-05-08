@@ -26,6 +26,8 @@ import com.example.angodafake.db.User
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.gms.auth.api.identity.SignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
@@ -44,7 +46,6 @@ import kotlinx.coroutines.tasks.await
 class LoginActivity : AppCompatActivity() {
     private lateinit var tabHost : TabHost
     private lateinit var auth: FirebaseAuth
-    private lateinit var google_login_button: LinearLayout
     private var oneTapClient: SignInClient? = null
     private lateinit var signInRequest: BeginSignInRequest
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,15 +54,14 @@ class LoginActivity : AppCompatActivity() {
 
         //dang nhap bang gg
         auth = Firebase.auth
-        auth.signOut()
-        google_login_button = findViewById(R.id.google_login_button)
+
         oneTapClient = Identity.getSignInClient(this)
         signInRequest = BeginSignInRequest.builder()
             .setGoogleIdTokenRequestOptions(
                 BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
                     .setSupported(true)
                     // Your server's client ID, not your Android client ID.
-                    .setServerClientId(getString(R.string.client_id))
+                    .setServerClientId(getString(R.string.default_web_client_id))
                     // Only show accounts previously used to sign in.
                     .setFilterByAuthorizedAccounts(false)
                     .build())
@@ -124,38 +124,37 @@ class LoginActivity : AppCompatActivity() {
                                 findViewById<ProgressBar>(R.id.progressBar).visibility = View.INVISIBLE
                                 val user = auth.currentUser
                                 showSuccessSnackBar("Đăng nhập thành công!")
-//                                UserUtils.getUserByID(user!!.uid){getUser->
-//                                    if (getUser != null){
-//                                        val handler = Handler()
-//                                        handler.postDelayed({
-//                                            val intent = Intent(this, MainActivity::class.java)
-//                                            intent.putExtra("idUser", user.uid)
-//                                            startActivity(intent)
-//                                            finish()
-//                                        }, 1000)
-//                                    } else{
-//                                        val name = user.displayName
-//                                        val dob = ""
-//                                        val email = user.email
-//                                        val gender = ""
-//                                        val number = ""
-//                                        val country = ""
-//                                        val cardNumber = ""
-//                                        val cardName = ""
-//
-//                                        val us = User(null,name, dob, gender, number, email, country, cardNumber, cardName)
-//                                        val userID = auth.currentUser!!.uid
-//                                        Firebase.database.reference.child("users").child(userID).setValue(us)
-//                                        val handler = Handler()
-//                                        handler.postDelayed({
-//                                            val intent = Intent(this, MainActivity::class.java)
-//                                            intent.putExtra("idUser", user.uid)
-//                                            startActivity(intent)
-//                                            finish()
-//                                        }, 1000)
-//                                    }
-//                                }
+                                UserUtils.getUserByID(user!!.uid){getUser->
+                                    if (getUser != null){
+                                        val handler = Handler()
+                                        handler.postDelayed({
+                                            val intent = Intent(this, MainActivity::class.java)
+                                            intent.putExtra("idUser", user.uid)
+                                            startActivity(intent)
+                                            finish()
+                                        }, 1000)
+                                    } else{
+                                        val name = user.displayName
+                                        val dob = ""
+                                        val email = user.email
+                                        val gender = ""
+                                        val number = ""
+                                        val country = ""
+                                        val cardNumber = ""
+                                        val cardName = ""
 
+                                        val us = User(null,name, dob, gender, number, email, country, cardNumber, cardName)
+                                        val userID = auth.currentUser!!.uid
+                                        Firebase.database.reference.child("users").child(userID).setValue(us)
+                                        val handler = Handler()
+                                        handler.postDelayed({
+                                            val intent = Intent(this, MainActivity::class.java)
+                                            intent.putExtra("idUser", user.uid)
+                                            startActivity(intent)
+                                            finish()
+                                        }, 1000)
+                                    }
+                                }
                             } else {
                                 // If sign in fails, display a message to the user.
                                 showSnackBar("Đăng nhập thành công!")

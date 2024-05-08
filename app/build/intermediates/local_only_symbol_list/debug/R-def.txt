@@ -94,6 +94,7 @@ drawable beach3
 drawable beach4
 drawable bg_add_first_room
 drawable bg_add_imgs
+drawable bg_spinner
 drawable bg_upload_room_img
 drawable border
 drawable border1
@@ -381,6 +382,7 @@ id et_Password
 id fav
 id fieldvoucher
 id filter
+id filterSpinner
 id find
 id findButton
 id firstRectangle
@@ -731,6 +733,7 @@ id traphong
 id tv
 id tv2
 id tvCity
+id tvHotel
 id tvPrice
 id tvRating
 id tv_PhoneN
@@ -895,7 +898,6 @@ string btn_removeorder
 string btn_reorder
 string c_title
 string changePw_title
-string client_id
 string cmt_title
 string content_active_room
 string content_canceled_room

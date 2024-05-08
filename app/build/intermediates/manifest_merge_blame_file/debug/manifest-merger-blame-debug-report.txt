@@ -393,29 +393,29 @@
 208        </service>
 209
 210        <activity
-210-->[com.google.android.gms:play-services-auth:21.0.0] C:\Users\lephu\.gradle\caches\transforms-3\ab1a2d08e419254c5aa0eab20a418377\transformed\play-services-auth-21.0.0\AndroidManifest.xml:23:9-27:75
+210-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\lephu\.gradle\caches\transforms-3\dc200dfa8b872e81e3c5e6d12f4aa33d\transformed\play-services-auth-20.5.0\AndroidManifest.xml:23:9-27:75
 211            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-211-->[com.google.android.gms:play-services-auth:21.0.0] C:\Users\lephu\.gradle\caches\transforms-3\ab1a2d08e419254c5aa0eab20a418377\transformed\play-services-auth-21.0.0\AndroidManifest.xml:24:13-93
+211-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\lephu\.gradle\caches\transforms-3\dc200dfa8b872e81e3c5e6d12f4aa33d\transformed\play-services-auth-20.5.0\AndroidManifest.xml:24:13-93
 212            android:excludeFromRecents="true"
-212-->[com.google.android.gms:play-services-auth:21.0.0] C:\Users\lephu\.gradle\caches\transforms-3\ab1a2d08e419254c5aa0eab20a418377\transformed\play-services-auth-21.0.0\AndroidManifest.xml:25:13-46
+212-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\lephu\.gradle\caches\transforms-3\dc200dfa8b872e81e3c5e6d12f4aa33d\transformed\play-services-auth-20.5.0\AndroidManifest.xml:25:13-46
 213            android:exported="false"
-213-->[com.google.android.gms:play-services-auth:21.0.0] C:\Users\lephu\.gradle\caches\transforms-3\ab1a2d08e419254c5aa0eab20a418377\transformed\play-services-auth-21.0.0\AndroidManifest.xml:26:13-37
+213-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\lephu\.gradle\caches\transforms-3\dc200dfa8b872e81e3c5e6d12f4aa33d\transformed\play-services-auth-20.5.0\AndroidManifest.xml:26:13-37
 214            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-214-->[com.google.android.gms:play-services-auth:21.0.0] C:\Users\lephu\.gradle\caches\transforms-3\ab1a2d08e419254c5aa0eab20a418377\transformed\play-services-auth-21.0.0\AndroidManifest.xml:27:13-72
+214-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\lephu\.gradle\caches\transforms-3\dc200dfa8b872e81e3c5e6d12f4aa33d\transformed\play-services-auth-20.5.0\AndroidManifest.xml:27:13-72
 215        <!--
 216            Service handling Google Sign-In user revocation. For apps that do not integrate with
 217            Google Sign-In, this service will never be started.
 218        -->
 219        <service
-219-->[com.google.android.gms:play-services-auth:21.0.0] C:\Users\lephu\.gradle\caches\transforms-3\ab1a2d08e419254c5aa0eab20a418377\transformed\play-services-auth-21.0.0\AndroidManifest.xml:33:9-37:51
+219-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\lephu\.gradle\caches\transforms-3\dc200dfa8b872e81e3c5e6d12f4aa33d\transformed\play-services-auth-20.5.0\AndroidManifest.xml:33:9-37:51
 220            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
-220-->[com.google.android.gms:play-services-auth:21.0.0] C:\Users\lephu\.gradle\caches\transforms-3\ab1a2d08e419254c5aa0eab20a418377\transformed\play-services-auth-21.0.0\AndroidManifest.xml:34:13-89
+220-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\lephu\.gradle\caches\transforms-3\dc200dfa8b872e81e3c5e6d12f4aa33d\transformed\play-services-auth-20.5.0\AndroidManifest.xml:34:13-89
 221            android:exported="true"
-221-->[com.google.android.gms:play-services-auth:21.0.0] C:\Users\lephu\.gradle\caches\transforms-3\ab1a2d08e419254c5aa0eab20a418377\transformed\play-services-auth-21.0.0\AndroidManifest.xml:35:13-36
+221-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\lephu\.gradle\caches\transforms-3\dc200dfa8b872e81e3c5e6d12f4aa33d\transformed\play-services-auth-20.5.0\AndroidManifest.xml:35:13-36
 222            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
-222-->[com.google.android.gms:play-services-auth:21.0.0] C:\Users\lephu\.gradle\caches\transforms-3\ab1a2d08e419254c5aa0eab20a418377\transformed\play-services-auth-21.0.0\AndroidManifest.xml:36:13-107
+222-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\lephu\.gradle\caches\transforms-3\dc200dfa8b872e81e3c5e6d12f4aa33d\transformed\play-services-auth-20.5.0\AndroidManifest.xml:36:13-107
 223            android:visibleToInstantApps="true" /> <!-- Needs to be explicitly declared on P+ -->
-223-->[com.google.android.gms:play-services-auth:21.0.0] C:\Users\lephu\.gradle\caches\transforms-3\ab1a2d08e419254c5aa0eab20a418377\transformed\play-services-auth-21.0.0\AndroidManifest.xml:37:13-48
+223-->[com.google.android.gms:play-services-auth:20.5.0] C:\Users\lephu\.gradle\caches\transforms-3\dc200dfa8b872e81e3c5e6d12f4aa33d\transformed\play-services-auth-20.5.0\AndroidManifest.xml:37:13-48
 224        <uses-library
 224-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\lephu\.gradle\caches\transforms-3\895e9d687d11c4bf328d371b1c4d4611\transformed\play-services-maps-18.2.0\AndroidManifest.xml:39:9-41:40
 225            android:name="org.apache.http.legacy"

@@ -28,13 +28,16 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.Toast
 import com.example.angodafake.Utilities.UserUtils
 import com.example.angodafake.db.User
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -231,7 +234,20 @@ class EditInfoFragment(private var idUser: String) : Fragment() {
                     val user = User(null, name, dob, gender, number, email, country)
                     UserUtils.getUserByID(idUser){ it ->
                         if (email != it!!.email || number != it.phoneN){
-                            openPwDialog( object: PasswordDialogListener{
+                            val providers = Firebase.auth.currentUser!!.providerData
+                            var c = true
+                            for (profile in providers) {
+                                // Nếu user đăng nhập bằng Google, thì không được phép chỉnh sửa thông tin email
+                                if (profile.providerId == "google.com") {
+                                    c = false
+                                    break
+                                }
+                            }
+                            if (!c){
+                                lEmail.error = "Không được đổi thông tin này."
+                                showSnackBar(view, "Bạn đăng nhập bằng tài khoản google này, vì vậy email không được phép chỉnh sửa")
+                            } else{
+                                openPwDialog( object: PasswordDialogListener{
                                     override fun onSubmitClicked(password: String) {
                                         UserUtils.updateUserByID(idUser, user, password){check->
                                             if (check){
@@ -245,7 +261,8 @@ class EditInfoFragment(private var idUser: String) : Fragment() {
                                         }
                                     }
                                 }
-                            )
+                                )
+                            }
                         }
                         else{
                             UserUtils.updateUserByID(idUser, user, ""){check->

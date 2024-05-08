@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.angodafake.app-mergeDebugResources-43:/values-ms/values-ms.xml",
+            "outputFile": "com.example.angodafake.app-mergeDebugResources-44:/values-ms/values-ms.xml",
             "map": [
                 {
                     "source": "C:\\Users\\lephu\\.gradle\\caches\\transforms-3\\72c9da8feb8f0f6f58546b5f37b4968c\\transformed\\core-1.13.0\\res\\values-ms\\values-ms.xml",

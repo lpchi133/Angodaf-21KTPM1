@@ -11,12 +11,18 @@ import android.graphics.Color
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.DatePicker
+import android.widget.Spinner
+import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.Adapter.HotelManageAdapter
@@ -55,12 +61,17 @@ class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
     private lateinit var menuFab : FloatingActionButton
     private var rotate = false
 
+    private lateinit var filterSpinner: Spinner
     private lateinit var lDate : TextInputLayout
     private lateinit var et_date : TextInputEditText
     private lateinit var recyclerView : RecyclerView
     private lateinit var hotel_list : ArrayList<Hotel>
     private lateinit var date: String
+    private var dateType = 0
     private lateinit var adapter: HotelManageAdapter
+
+    private lateinit var lHotelName: TextInputLayout
+    private lateinit var et_hotelName: TextInputEditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,7 +94,31 @@ class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
         initShowout(qrLL)
         initShowout(chatLL)
 
-        adapter = HotelManageAdapter(requireContext(), hotel_list, date)
+        if (arguments?.getString("date") != null){
+            et_date.text = Editable.Factory.getInstance().newEditable(arguments?.getString("date"))
+        }
+
+        hotel_list = ArrayList()
+        //khởi tạo gt cho date
+        if (et_date.text.toString() == ""){
+            // Lấy ngày hiện tại
+            val calendar = Calendar.getInstance()
+            val year = calendar.get(Calendar.YEAR)
+            val month = calendar.get(Calendar.MONTH) + 1
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
+            val formattedDay = if (day < 10) "0$day" else "$day"
+            val formattedMonth = if (month < 10) "0$month" else "$month"
+            et_date.text = Editable.Factory.getInstance().newEditable("$formattedDay/$formattedMonth/$year")
+        }
+        date = et_date.text.toString()
+
+        val items = listOf("Ngày đặt phòng", "Ngày đến - Ngày đi")
+        val spAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, items)
+        spAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        filterSpinner.adapter = spAdapter
+
+        dateType = 0
+        adapter = HotelManageAdapter(requireContext(), hotel_list, date, dateType)
         adapter.setOnDeleteListener(this)
         adapter.onItemClick = {
             val arg = Bundle()
@@ -102,6 +137,44 @@ class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
             hotel_list.clear()
             hotel_list.addAll(hotelL)
             adapter.notifyDataSetChanged()
+        }
+
+        et_hotelName.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Không cần thực hiện gì trong trường hợp này
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Không cần thực hiện gì trong trường hợp này
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                // Phương thức này được gọi sau khi văn bản đã thay đổi
+                val enteredText = s.toString()
+                HotelUtils.getHotelsByName(enteredText){hotelL->
+                    hotel_list.clear()
+                    hotel_list.addAll(hotelL)
+                    adapter.notifyDataSetChanged()
+                }
+            }
+        })
+
+
+        filterSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedItem = items[position]
+                if (selectedItem == "Ngày đặt phòng"){
+                    adapter.dateType = 0
+                    adapter.notifyDataSetChanged()
+                } else{
+                    adapter.dateType = 1
+                    adapter.notifyDataSetChanged()
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Xử lý khi không có mục nào được chọn
+            }
         }
 
         et_date.setOnClickListener {
@@ -301,26 +374,12 @@ class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
         chatFab = view.findViewById(R.id.chatFab)
         menuFab = view.findViewById(R.id.menuFab)
 
+        lHotelName = view.findViewById(R.id.lHotelName)
+        et_hotelName = lHotelName.editText as TextInputEditText
+        recyclerView = view.findViewById(R.id.recyclerView)
+        filterSpinner = view.findViewById(R.id.filterSpinner)
         lDate = view.findViewById(R.id.lDate)
         et_date = lDate.editText as TextInputEditText
-
-        if (arguments?.getString("date") != null){
-            et_date.text = Editable.Factory.getInstance().newEditable(arguments?.getString("date"))
-        }
-
-        recyclerView = view.findViewById(R.id.recyclerView)
-        hotel_list = ArrayList()
-        if (et_date.text.toString() == ""){
-            // Lấy ngày hiện tại
-            val calendar = Calendar.getInstance()
-            val year = calendar.get(Calendar.YEAR)
-            val month = calendar.get(Calendar.MONTH) + 1
-            val day = calendar.get(Calendar.DAY_OF_MONTH)
-            val formattedDay = if (day < 10) "0$day" else "$day"
-            val formattedMonth = if (month < 10) "0$month" else "$month"
-            et_date.text = Editable.Factory.getInstance().newEditable("$formattedDay/$formattedMonth/$year")
-        }
-        date = et_date.text.toString()
     }
 
     companion object {

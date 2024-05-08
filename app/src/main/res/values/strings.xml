@@ -46,5 +46,5 @@
     <string name="bill_title">Danh sách hóa đơn</string>
     <string name="manageRooms_title">Quản lí phòng</string>
     <string name="changePw_title">Đổi mật khẩu</string>
-    <string name="client_id">1042728725800-b7se4ngd29rqup0obou0jqr76orcbr6j.apps.googleusercontent.com</string>
+    <string name="default_web_client_id">1042728725800-b7se4ngd29rqup0obou0jqr76orcbr6j.apps.googleusercontent.com</string>
 </resources>
