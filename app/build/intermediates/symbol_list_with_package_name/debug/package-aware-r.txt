@@ -3919,6 +3919,7 @@ id jumpToEnd
 id jumpToStart
 id lAcreage
 id lBenefit
+id lBillFilter
 id lCheckIn
 id lCheckOut
 id lCity
@@ -4196,6 +4197,8 @@ id radioButton3
 id radioButton4
 id radioButton5
 id radioButton6
+id radioButtonFar
+id radioButtonNear
 id radioGroup
 id radioGroup2
 id rateStatus
@@ -4464,10 +4467,12 @@ id traphong
 id triangle
 id tv
 id tv2
+id tvBill
 id tvCity
 id tvHotel
 id tvPrice
 id tvRating
+id tvRoomType
 id tvTitle
 id tv_PhoneN
 id tv_bookedRoomsQty

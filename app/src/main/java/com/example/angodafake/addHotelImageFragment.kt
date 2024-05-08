@@ -94,6 +94,8 @@ class addHotelImageFragment(private var idUser: String) : Fragment() {
 
                             val arg = Bundle()
                             arg.putString("date", arguments?.getString("date"))
+                            arg.putString("dateType", arguments?.getString("dateType"))
+                            arg.putString("searchStr", arguments?.getString("searchStr"))
                             val myHotel = MyHotel(idUser)
                             myHotel.arguments = arg
                             val mainActivity = requireActivity() as MainActivity
@@ -142,6 +144,8 @@ class addHotelImageFragment(private var idUser: String) : Fragment() {
         if (fromFrag == "edit"){
             arg.putString("idHotel", arguments?.getString("idHotel"))
             arg.putString("date", arguments?.getString("date"))
+            arg.putString("dateType", arguments?.getString("dateType"))
+            arg.putString("searchStr", arguments?.getString("searchStr"))
         }
 
         val addHotelFragment = AddHotelFragment(idUser)
@@ -171,8 +175,11 @@ class addHotelImageFragment(private var idUser: String) : Fragment() {
 
         arg.putStringArrayList("pics", picList)
         if (fromFrag == "edit"){
+            arg.putString("from", arguments?.getString("edit"))
             arg.putString("idHotel", arguments?.getString("idHotel"))
             arg.putString("date", arguments?.getString("date"))
+            arg.putString("dateType", arguments?.getString("dateType"))
+            arg.putString("searchStr", arguments?.getString("searchStr"))
         }
 
         val uploadImageFragment = UploadImageFragment(idUser)

@@ -66,6 +66,7 @@ class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
     private lateinit var hotel_list : ArrayList<Hotel>
     private lateinit var date: String
     private var dateType = 0
+    private var searchStr = ""
     private lateinit var adapter: HotelManageAdapter
 
     private lateinit var lHotelName: TextInputLayout
@@ -91,11 +92,8 @@ class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
         initShowout(qrLL)
         initShowout(chatLL)
 
-        if (arguments?.getString("date") != null){
-            et_date.text = Editable.Factory.getInstance().newEditable(arguments?.getString("date"))
-        }
-
         hotel_list = ArrayList()
+
         //khởi tạo gt cho date
         if (et_date.text.toString() == ""){
             // Lấy ngày hiện tại
@@ -107,20 +105,21 @@ class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
             val formattedMonth = if (month < 10) "0$month" else "$month"
             et_date.text = Editable.Factory.getInstance().newEditable("$formattedDay/$formattedMonth/$year")
         }
+
+        if (arguments?.getString("date") != null){
+            et_date.text = Editable.Factory.getInstance().newEditable(arguments?.getString("date"))
+        }
+
         date = et_date.text.toString()
-
-        val items = listOf("Ngày đặt phòng", "Ngày đến - Ngày đi")
-        val spAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, items)
-        spAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        filterSpinner.adapter = spAdapter
-
         dateType = 0
-        adapter = HotelManageAdapter(requireContext(), hotel_list, date, dateType)
+        adapter = HotelManageAdapter(requireContext(), hotel_list, date, dateType, searchStr)
         adapter.setOnDeleteListener(this)
         adapter.onItemClick = {
             val arg = Bundle()
             arg.putString("date", adapter.date)
             arg.putString("idHotel", it.ID)
+            arg.putString("dateType", adapter.dateType.toString())
+            arg.putString("searchStr", adapter.searchStr)
 
             val manageRoomFrg = ManageRoomsFragment(idUser)
             manageRoomFrg.arguments = arg
@@ -136,6 +135,27 @@ class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
             adapter.notifyDataSetChanged()
         }
 
+        val items = listOf("Ngày đặt phòng", "Ngày đến - Ngày đi")
+        val spAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, items)
+        spAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        filterSpinner.adapter = spAdapter
+
+        if (arguments?.getString("dateType") != null){
+            dateType = arguments?.getString("dateType")!!.toInt()
+            filterSpinner.setSelection(dateType)
+            adapter.dateType = dateType
+            adapter.notifyDataSetChanged()
+        }
+        if (arguments?.getString("searchStr") != null){
+            et_hotelName.text = Editable.Factory.getInstance().newEditable(arguments?.getString("searchStr"))
+            HotelUtils.getHotelsByNameAndIdOwner(et_hotelName.text.toString(), idUser){hotelL->
+                hotel_list.clear()
+                hotel_list.addAll(hotelL)
+                adapter.searchStr = arguments?.getString("searchStr")!!
+                adapter.notifyDataSetChanged()
+            }
+        }
+
         et_hotelName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 // Không cần thực hiện gì trong trường hợp này
@@ -148,9 +168,10 @@ class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
             override fun afterTextChanged(s: Editable?) {
                 // Phương thức này được gọi sau khi văn bản đã thay đổi
                 val enteredText = s.toString()
-                HotelUtils.getHotelsByName(enteredText){hotelL->
+                HotelUtils.getHotelsByNameAndIdOwner(enteredText, idUser){hotelL->
                     hotel_list.clear()
                     hotel_list.addAll(hotelL)
+                    adapter.searchStr = enteredText
                     adapter.notifyDataSetChanged()
                 }
             }
@@ -225,8 +246,6 @@ class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
 
         billFab.setOnClickListener {
             PurchaseUtils.getAllPurchaseByIDHotelOwner(idUser){
-                Log.d("test_purchase", it.toString())
-
                 val list = ArrayList<String>()
                 for (bill in it!!){
                     list.add(bill.ID!!)
@@ -235,6 +254,8 @@ class MyHotel(private var idUser: String) : Fragment(), OnHotelDeleteListener {
                 val arg = Bundle()
                 arg.putString("from", "edit")
                 arg.putString("date", et_date.text.toString())
+                arg.putString("dateType", dateType.toString())
+                arg.putString("searchStr", searchStr)
                 arg.putStringArrayList("bills", list)
 
                 val billFrag = BillFragment(idUser)

@@ -151,9 +151,15 @@ class AddRoomImageFragment(private var idHotel: String, private var idUser: Stri
             arg.putString("idHotel", arguments?.getString("idHotel"))
             arg.putString("idRoom", arguments?.getString("idRoom"))
             arg.putString("date", arguments?.getString("date"))
+            arg.putString("dateType", arguments?.getString("dateType"))
+            arg.putString("searchStr", arguments?.getString("searchStr"))
+            arg.putString("searchRoomStr", arguments?.getString("searchRoomStr"))
         } else if (fromFrag == "manageRoom"){
             arg.putString("idHotel", arguments?.getString("idHotel"))
             arg.putString("date", arguments?.getString("date"))
+            arg.putString("dateType", arguments?.getString("dateType"))
+            arg.putString("searchStr", arguments?.getString("searchStr"))
+            arg.putString("searchRoomStr", arguments?.getString("searchRoomStr"))
         }
 
         val addRoomFragment = AddRoomFragment(idHotel, idUser)
@@ -179,9 +185,15 @@ class AddRoomImageFragment(private var idHotel: String, private var idUser: Stri
             arg.putString("idHotel", arguments?.getString("idHotel"))
             arg.putString("idRoom", arguments?.getString("idRoom"))
             arg.putString("date", arguments?.getString("date"))
+            arg.putString("dateType", arguments?.getString("dateType"))
+            arg.putString("searchStr", arguments?.getString("searchStr"))
+            arg.putString("searchRoomStr", arguments?.getString("searchRoomStr"))
         } else if (fromFrag == "manageRoom"){
             arg.putString("idHotel", arguments?.getString("idHotel"))
             arg.putString("date", arguments?.getString("date"))
+            arg.putString("dateType", arguments?.getString("dateType"))
+            arg.putString("searchStr", arguments?.getString("searchStr"))
+            arg.putString("searchRoomStr", arguments?.getString("searchRoomStr"))
         }
 
         val uploadRoomImageFragment = UploadRoomImageFragment(idHotel, idUser)

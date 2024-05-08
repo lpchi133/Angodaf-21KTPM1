@@ -27,7 +27,7 @@ import com.squareup.picasso.Picasso
 interface OnHotelDeleteListener {
     fun onHotelDeleted(hotel: Hotel)
 }
-class HotelManageAdapter (private val context: Context, private var hotel_list: ArrayList<Hotel>, var date: String, var dateType: Int) : RecyclerView.Adapter<HotelManageAdapter.ViewHolder>() {
+class HotelManageAdapter (private val context: Context, private var hotel_list: ArrayList<Hotel>, var date: String, var dateType: Int, var searchStr: String) : RecyclerView.Adapter<HotelManageAdapter.ViewHolder>() {
     private var onDeleteListener: OnHotelDeleteListener? = null
 
     fun setOnDeleteListener(listener: OnHotelDeleteListener) {
@@ -70,6 +70,8 @@ class HotelManageAdapter (private val context: Context, private var hotel_list: 
             arg.putString("from", "edit")
             arg.putString("idHotel", hotel.ID)
             arg.putString("date", date)
+            arg.putString("dateType", dateType.toString())
+            arg.putString("searchStr", searchStr)
             arg.putString("hotelName", hotel.name)
             arg.putString("city", hotel.city)
             arg.putString("locationDetail", hotel.locationDetail)
@@ -139,6 +141,9 @@ class HotelManageAdapter (private val context: Context, private var hotel_list: 
                         val arg = Bundle()
                         arg.putString("from", "edit")
                         arg.putString("date", date)
+                        arg.putString("dateType", dateType.toString())
+                        arg.putString("searchStr", searchStr)
+
                         arg.putStringArrayList("bills", list)
 
                         val billFrag = BillFragment(hotel.ID_Owner!!)
@@ -163,6 +168,8 @@ class HotelManageAdapter (private val context: Context, private var hotel_list: 
                         val arg = Bundle()
                         arg.putString("from", "edit")
                         arg.putString("date", date)
+                        arg.putString("dateType", dateType.toString())
+                        arg.putString("searchStr", searchStr)
                         arg.putStringArrayList("bills", list)
 
                         val billFrag = BillFragment(hotel.ID_Owner!!)

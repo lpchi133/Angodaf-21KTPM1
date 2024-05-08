@@ -142,4 +142,24 @@ object RoomUtils {
         database.child("rooms").child(ID_Hotel).child(ID_Room).setValue(null)
     }
 
+    fun getRoomsByType(ID_Hotel: String, roomType: String, listener: (List<Rooms>) -> Unit){
+        val roomList = mutableListOf<Rooms>()
+        database.child("rooms").child(ID_Hotel).get().addOnSuccessListener { dataSnapshot ->
+            for (roomSnapshot in dataSnapshot.children) {
+                val room = roomSnapshot.getValue(Rooms::class.java)
+                if (room?.type!!.toLowerCase(Locale.getDefault()).contains(roomType.toLowerCase(Locale.getDefault()))){
+                    room.let {
+                        it.ID = roomSnapshot.key
+                        it.ID_Hotel = ID_Hotel
+                        roomList.add(it)
+                    }
+                }
+            }
+            listener(roomList)
+        }.addOnFailureListener { exception ->
+            Log.e("firebase", "Error getting room list", exception)
+            listener(emptyList()) // Trả về danh sách rỗng nếu có lỗi xảy ra
+        }
+    }
+
 }

@@ -143,6 +143,8 @@ class UploadImageFragment(private var idUser: String) : Fragment() {
             arg.putString("from", arguments?.getString("from"))
             arg.putString("idHotel", arguments?.getString("idHotel"))
             arg.putString("date", arguments?.getString("date"))
+            arg.putString("dateType", arguments?.getString("date"))
+            arg.putString("searchStr", arguments?.getString("searchStr"))
         }
 
         val addHotelImageFragment = addHotelImageFragment(idUser)

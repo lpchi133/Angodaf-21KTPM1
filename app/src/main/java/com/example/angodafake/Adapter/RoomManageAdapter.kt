@@ -30,7 +30,7 @@ interface OnRoomDeleteListener {
     fun onRoomDeleted(room: Rooms)
 }
 
-class RoomManageAdapter(private val context: Context, private var room_list: ArrayList<Rooms>, var date: String, var idUser: String) : RecyclerView.Adapter<RoomManageAdapter.ViewHolder>()  {
+class RoomManageAdapter(private val context: Context, private var room_list: ArrayList<Rooms>, var date: String, var idUser: String, var dateType: Int, var searchRoomStr: String, var searchStr: String) : RecyclerView.Adapter<RoomManageAdapter.ViewHolder>()  {
     private var onDeleteListener: OnRoomDeleteListener? = null
 
     fun setOnDeleteListener(listener: OnRoomDeleteListener) {
@@ -66,6 +66,12 @@ class RoomManageAdapter(private val context: Context, private var room_list: Arr
             val arg = Bundle()
             arg.putString("from", "edit")
             arg.putString("date", date)
+            arg.putString("date", date)
+            arg.putString("dateType", dateType.toString())
+            arg.putString("searchStr", searchStr)
+            arg.putString("searchRoomStr", searchRoomStr)
+            arg.putString("dateType", dateType.toString())
+            arg.putString("searchStr", searchStr)
             arg.putString("idHotel", room.ID_Hotel)
             arg.putString("idRoom", room.ID)
             arg.putString("roomType", room.type)
@@ -116,24 +122,53 @@ class RoomManageAdapter(private val context: Context, private var room_list: Arr
             Picasso.get().load(it?.url)
                 .into(holder.imageView)
         }
-        PurchaseUtils.getBookedRoomBillsByRoomID(room.ID_Hotel!!, room.ID!!, date) { bookedRoomBills, bookedRoomQty ->
-            holder.tv_bookedRoomsQty.text = "$bookedRoomQty/${room.quantity}"
-            val list = ArrayList<String>()
-            for (bill in bookedRoomBills!!){
-                list.add(bill.ID!!)
+        if (dateType == 0){
+            PurchaseUtils.getBookedRoomBillsByRoomIDAndBookedDate(room.ID_Hotel!!, room.ID!!, date) { bookedRoomBills, bookedRoomQty ->
+                holder.tv_bookedRoomsQty.text = "$bookedRoomQty/${room.quantity}"
+                val list = ArrayList<String>()
+                for (bill in bookedRoomBills!!){
+                    list.add(bill.ID!!)
+                }
+                holder.layout_bookedRoomsQty.setOnClickListener {
+                    val arg = Bundle()
+                    arg.putString("from", "edit_room")
+                    arg.putString("date", date)
+                    arg.putString("idHotel", room.ID_Hotel)
+                    arg.putString("dateType", dateType.toString())
+                    arg.putString("searchStr", searchStr)
+                    arg.putString("searchRoomStr", searchRoomStr)
+                    arg.putStringArrayList("bills", list)
+
+                    val billFrag = BillFragment(idUser)
+                    billFrag.arguments = arg
+
+                    val mainActivity = context as MainActivity
+                    mainActivity.replaceFragment(billFrag)
+                }
             }
-            holder.layout_bookedRoomsQty.setOnClickListener {
-                val arg = Bundle()
-                arg.putString("from", "edit_room")
-                arg.putString("date", date)
-                arg.putString("idHotel", room.ID_Hotel)
-                arg.putStringArrayList("bills", list)
+        } else{
+            PurchaseUtils.getBookedRoomBillsByRoomID(room.ID_Hotel!!, room.ID!!, date) { bookedRoomBills, bookedRoomQty ->
+                holder.tv_bookedRoomsQty.text = "$bookedRoomQty/${room.quantity}"
+                val list = ArrayList<String>()
+                for (bill in bookedRoomBills!!){
+                    list.add(bill.ID!!)
+                }
+                holder.layout_bookedRoomsQty.setOnClickListener {
+                    val arg = Bundle()
+                    arg.putString("from", "edit_room")
+                    arg.putString("date", date)
+                    arg.putString("idHotel", room.ID_Hotel)
+                    arg.putString("dateType", dateType.toString())
+                    arg.putString("searchStr", searchStr)
+                    arg.putString("searchRoomStr", searchRoomStr)
+                    arg.putStringArrayList("bills", list)
 
-                val billFrag = BillFragment(idUser)
-                billFrag.arguments = arg
+                    val billFrag = BillFragment(idUser)
+                    billFrag.arguments = arg
 
-                val mainActivity = context as MainActivity
-                mainActivity.replaceFragment(billFrag)
+                    val mainActivity = context as MainActivity
+                    mainActivity.replaceFragment(billFrag)
+                }
             }
         }
     }

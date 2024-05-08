@@ -59,11 +59,15 @@ class BillAdapter(private val context: Context, private var purchaseList: ArrayL
         holder.tv_quantity.text = "x${purchase.quantity}"
         holder.tv_date.text = "${purchase.date_come} - ${purchase.date_go}"
         UserUtils.getUserByID(purchase.ID_Owner!!){
-            holder.tv_customerName.text = it!!.name
-            if (it.phoneN != "" && it.phoneN != null){
+            if (it == null){
+                holder.tv_customerName.text = "Khách hàng này đã bị xóa khỏi hệ thống"
+            } else{
+                holder.tv_customerName.text = it.name
+            }
+            if (it?.phoneN != "" && it?.phoneN != null){
                 holder.tv_contactInf.text = it.phoneN
             }else{
-                holder.tv_contactInf.text = it.email
+                holder.tv_contactInf.text = it?.email
             }
         }
         holder.tv_orderTime.text = purchase.time_booking

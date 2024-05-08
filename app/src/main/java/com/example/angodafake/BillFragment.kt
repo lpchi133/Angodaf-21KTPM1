@@ -2,20 +2,28 @@ package com.example.angodafake
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angodafake.Adapter.BillAdapter
+import com.example.angodafake.Utilities.HotelUtils
 import com.example.angodafake.Utilities.PurchaseUtils
 import com.example.angodafake.db.Purchase
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import java.text.DecimalFormat
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
 import java.util.Locale
 
 // TODO: Rename parameter arguments, choose names that match
@@ -32,8 +40,12 @@ class BillFragment(private var idUser: String) : Fragment() {
     private lateinit var recyclerView : RecyclerView
     private lateinit var adapter : BillAdapter
     private lateinit var bill_list : ArrayList<Purchase>
+    private var bill_list_tmp = ArrayList<Purchase>()
     private lateinit var btn_back : ImageButton
     private lateinit var tv_total : TextView
+    private lateinit var lBillFilter: TextInputLayout
+    private lateinit var et_billFilter: TextInputEditText
+    private lateinit var radioGroup: RadioGroup
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +74,7 @@ class BillFragment(private var idUser: String) : Fragment() {
             for (bill in list!!){
                 PurchaseUtils.getPurchaseByID(bill){
                     bill_list.add(it)
+                    bill_list_tmp.add(it)
                     adapter.notifyDataSetChanged()
                     if (it.time_cancel == "" || it.time_cancel == null){
                         total += it.total_purchase!!
@@ -71,10 +84,86 @@ class BillFragment(private var idUser: String) : Fragment() {
             }
         }
 
+        et_billFilter.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Không cần thực hiện gì trong trường hợp này
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Không cần thực hiện gì trong trường hợp này
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                // Phương thức này được gọi sau khi văn bản đã thay đổi
+                val enteredText = s.toString()
+                if (enteredText == ""){
+                    bill_list.clear()
+                    bill_list.addAll(bill_list_tmp)
+                    adapter.notifyDataSetChanged()
+                    var total = 0.0
+                    for (bill in bill_list){
+                        total += bill.total_purchase!!
+                        tv_total.text = "${formatMoney(total.toInt())} VND"
+                    }
+                } else{
+                    bill_list.clear()
+                    var total = 0.0
+                    for (bill in bill_list_tmp){
+                        HotelUtils.getHotelByID(bill.ID_Hotel!!){
+                            if (bill.ID?.toLowerCase(Locale.ROOT)!!.contains(enteredText.toLowerCase(Locale.ROOT))
+                                || it.name?.toLowerCase(Locale.ROOT)!!.contains(enteredText.toLowerCase(Locale.ROOT))
+                                || SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(
+                                    SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault()).parse(bill.time_booking!!)!!
+                                ).contains(enteredText)){
+                                bill_list.add(bill)
+                                adapter.notifyDataSetChanged()
+                                if (bill.time_cancel == "" || bill.time_cancel == null){
+                                    total += bill.total_purchase!!
+                                    tv_total.text = "${formatMoney(total.toInt())} VND"
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        })
+
+        radioGroup.setOnCheckedChangeListener { group, checkedId ->
+            val radioButton: RadioButton = view.findViewById(checkedId)
+            if (radioButton.text == "Gần nhất"){
+                bill_list.sortByDescending {
+                    val bookingDate = SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault()).parse(it.time_booking!!)
+                    bookingDate
+                }
+                adapter.notifyDataSetChanged()
+                bill_list_tmp.sortByDescending {
+                    val bookingDate = SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault()).parse(it.time_booking!!)
+                    bookingDate
+                }
+            } else{
+                bill_list.sortBy {
+                    val bookingDate =
+                        SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault()).parse(
+                            it.time_booking!!
+                        )
+                    bookingDate
+                }
+                adapter.notifyDataSetChanged()
+                bill_list_tmp.sortBy {
+                    val bookingDate = SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault()).parse(it.time_booking!!)
+                    bookingDate
+                }
+            }
+            adapter.notifyDataSetChanged()
+        }
+
         btn_back.setOnClickListener {
             if (fromFrag == "edit"){
                 val arg = Bundle()
                 arg.putString("date", arguments?.getString("date"))
+                arg.putString("dateType", arguments?.getString("dateType"))
+                arg.putString("searchStr", arguments?.getString("searchStr"))
 
                 val hotelManageFrg = MyHotel(idUser)
                 hotelManageFrg.arguments = arg
@@ -85,6 +174,9 @@ class BillFragment(private var idUser: String) : Fragment() {
                 val arg = Bundle()
                 arg.putString("date", arguments?.getString("date"))
                 arg.putString("idHotel", arguments?.getString("idHotel"))
+                arg.putString("dateType", arguments?.getString("dateType"))
+                arg.putString("searchStr", arguments?.getString("searchStr"))
+                arg.putString("searchRoomStr", arguments?.getString("searchRoomStr"))
 
                 val roomManageFrg = ManageRoomsFragment(idUser)
                 roomManageFrg.arguments = arg
@@ -108,6 +200,9 @@ class BillFragment(private var idUser: String) : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerView)
         btn_back = view.findViewById(R.id.btn_back)
         tv_total = view.findViewById(R.id.tv_total)
+        lBillFilter = view.findViewById(R.id.lBillFilter)
+        et_billFilter = lBillFilter.editText as TextInputEditText
+        radioGroup = view.findViewById(R.id.radioGroup)
         bill_list = ArrayList()
     }
     companion object {

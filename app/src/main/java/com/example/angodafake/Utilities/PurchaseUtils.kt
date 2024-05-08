@@ -168,7 +168,38 @@ object PurchaseUtils {
                     val purchase = purchaseSnapshort.getValue(Purchase::class.java)
                     if (purchase?.ID_Hotel == ID_Hotel
                         && (purchase.time_cancel == "" || purchase.time_cancel == null)
-                        && purchase.time_booking == date
+                        && SimpleDateFormat("dd/MM/yyyy",
+                            Locale.getDefault()).format(SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault()).parse(purchase.time_booking!!)!!)
+                        == SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(SimpleDateFormat("d/M/yyyy", Locale.getDefault()).parse(date)!!)
+                    ) {
+                        purchase.ID = purchaseSnapshort.key
+                        purchaseList.add(purchase)
+                        count += purchase.quantity ?: 0
+                    }
+                }
+                listener(purchaseList, count)
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Xử lý khi có lỗi xảy ra
+                Log.e("firebase", "Error getting room count: ${databaseError.message}")
+                listener(null, 0)
+            }
+        })
+    }
+    fun getBookedRoomBillsByRoomIDAndBookedDate(ID_Hotel: String, ID_Room: String, date: String, listener: (List<Purchase>?, Int) -> Unit){
+        val billQuery = database.child("purchases")
+        billQuery.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val purchaseList = mutableListOf<Purchase>()
+                var count = 0
+                for (purchaseSnapshort in dataSnapshot.children){
+                    val purchase = purchaseSnapshort.getValue(Purchase::class.java)
+                    if (purchase?.ID_Hotel == ID_Hotel
+                        && (purchase.time_cancel == "" || purchase.time_cancel == null)
+                        && purchase.ID_Room == ID_Room
+                        && SimpleDateFormat("dd/MM/yyyy",
+                            Locale.getDefault()).format(SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault()).parse(purchase.time_booking!!)!!)
+                        == SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(SimpleDateFormat("d/M/yyyy", Locale.getDefault()).parse(date)!!)
                     ) {
                         purchase.ID = purchaseSnapshort.key
                         purchaseList.add(purchase)

@@ -214,6 +214,8 @@ class AddHotelFragment(private var idUser: String) : Fragment() {
             else{
                 val arg = Bundle()
                 arg.putString("date", arguments?.getString("date"))
+                arg.putString("dateType", arguments?.getString("dateType"))
+                arg.putString("searchStr", arguments?.getString("searchStr"))
 
                 val myHotel = MyHotel(idUser)
                 myHotel.arguments = arg
@@ -391,6 +393,8 @@ class AddHotelFragment(private var idUser: String) : Fragment() {
         if (fromFrag == "edit"){
             arg.putString("idHotel", arguments?.getString("idHotel"))
             arg.putString("date", arguments?.getString("date"))
+            arg.putString("dateType", arguments?.getString("dateType"))
+            arg.putString("searchStr", arguments?.getString("searchStr"))
         }
 
         val addHotelImageFragment = addHotelImageFragment(idUser)

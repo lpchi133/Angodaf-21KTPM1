@@ -121,6 +121,7 @@ object HotelUtils {
                 val room = roomSnapshot.getValue(Rooms::class.java)
                 room?.let { room ->
                     room.ID = roomSnapshot.key
+                    room.ID_Hotel = ID_hotel
                     PurchaseUtils.getPurchaseByRoom(room.ID_Hotel!!, room.ID!!, SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Calendar.getInstance().time)) { isDateAfterGoDate ->
                         if (!isDateAfterGoDate) {
                             allRoomsValid = false
@@ -135,6 +136,7 @@ object HotelUtils {
                     val room = roomSnapshot.getValue(Rooms::class.java)
                     room?.let { room ->
                         room.ID = roomSnapshot.key
+                        room.ID_Hotel = ID_hotel
                         // Xóa phòng, ảnh, bình luận và các giao dịch liên quan
                         RoomUtils.deleteRoom(room.ID_Hotel!!, room.ID!!)
                         CommentUtils.deleteCommentByIDHotel(room.ID_Hotel!!)
@@ -153,14 +155,15 @@ object HotelUtils {
         }
     }
 
-    fun getHotelsByName(hotelName: String, listener: (MutableList<Hotel>) -> Unit){
+    fun getHotelsByNameAndIdOwner(hotelName: String, ID_owner: String, listener: (MutableList<Hotel>) -> Unit){
         val hotelsQuery = database.child("hotels")
         hotelsQuery.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val hotelsList = mutableListOf<Hotel>()
                 for (hotelSnapshot in dataSnapshot.children) {
                     val hotel = hotelSnapshot.getValue(Hotel::class.java)
-                    if (hotel?.name!!.toLowerCase(Locale.getDefault()).contains(hotelName.toLowerCase(Locale.getDefault()))) {
+                    if (hotel?.name!!.toLowerCase(Locale.getDefault()).contains(hotelName.toLowerCase(Locale.getDefault()))
+                        && hotel.ID_Owner == ID_owner) {
                         hotel.ID = hotelSnapshot.key
                         hotel.let { hotelsList.add(it) }
                     }

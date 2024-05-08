@@ -111,6 +111,9 @@ class AddRoomFragment(private var idHotel: String, private var idUser: String) :
                 val arg = Bundle()
                 arg.putString("date", arguments?.getString("date"))
                 arg.putString("idHotel", arguments?.getString("idHotel"))
+                arg.putString("dateType", arguments?.getString("dateType"))
+                arg.putString("searchStr", arguments?.getString("searchStr"))
+                arg.putString("searchRoomStr", arguments?.getString("searchRoomStr"))
 
                 val manageRoomFrg = ManageRoomsFragment(idUser)
                 manageRoomFrg.arguments = arg
@@ -206,9 +209,15 @@ class AddRoomFragment(private var idHotel: String, private var idUser: String) :
             arg.putString("idHotel", arguments?.getString("idHotel"))
             arg.putString("idRoom", arguments?.getString("idRoom"))
             arg.putString("date", arguments?.getString("date"))
+            arg.putString("dateType", arguments?.getString("dateType"))
+            arg.putString("searchStr", arguments?.getString("searchStr"))
+            arg.putString("searchRoomStr", arguments?.getString("searchRoomStr"))
         } else if (fromFrag == "manageRoom"){
             arg.putString("idHotel", arguments?.getString("idHotel"))
             arg.putString("date", arguments?.getString("date"))
+            arg.putString("dateType", arguments?.getString("dateType"))
+            arg.putString("searchStr", arguments?.getString("searchStr"))
+            arg.putString("searchRoomStr", arguments?.getString("searchRoomStr"))
         }
 
         if (arguments?.getStringArrayList("pics") != null){
